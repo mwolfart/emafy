@@ -7,9 +7,11 @@ export const Button = styled.button`
     padding: 0 36px 0 36px;
     color: #EEEEEE;
     text-align: center;
-    font-family: Montserrat, Arial, sans-serif;
+    font-family: Montserrat, "Trebuchet MS", Arial, sans-serif;
     font-size: 16px;
     font-weight: bold;
     line-height: 48px;
     letter-spacing: 1.5px;
+    width: fit-content;
+    align-self: center;
 `
