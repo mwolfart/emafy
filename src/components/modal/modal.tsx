@@ -1,8 +1,10 @@
 import React, { FC } from 'react'
 import styled from 'styled-components'
 import 'font-awesome/css/font-awesome.min.css'
+import { CloseButton } from '../closeButton/closeButton'
 
 type ModalProperties = {
+    closeModalCallback?: () => void
     large?: boolean
 }
 
@@ -14,8 +16,11 @@ const ModalRectangle = styled.div`
     background-color: #F2F2F2;
     border-radius: 16px;
     border-width: 0px;
-    box-shadow: 0px 80px 100px rgba(0, 0, 0, 0.5);
-    padding: 32px 32px 48px 32px;
+    box-shadow: 0px 80px 100px;
+    padding-top: 32px;
+    padding-left: 32px;
+    padding-right: 32px;
+    padding-bottom: 48px;
     color: #757575;
     text-align: center;
     font-family: Montserrat, "Trebuchet MS", Arial, sans-serif;
@@ -33,20 +38,13 @@ const ModalRectangle = styled.div`
         line-height: 40px;
         font-weight: 600;
     }
-
-    & .close-button {
-        text-align: right;
-    }
 `
 
-export const Modal: FC = ({ children }) =>
-    <ModalRectangle>
-        <i className="fa fa-times fa-2x close-button"></i>
-        { children }
-    </ModalRectangle>
-
-export const ModalLarge: FC = ({ children }) =>
-    <ModalRectangle large>
-        <i className="fa fa-times fa-2x close-button"></i>
-        { children }
-    </ModalRectangle>
+export const Modal: FC<ModalProperties> = ({ children, closeModalCallback, large }) => {
+    return (
+        <ModalRectangle large={large}>
+            <CloseButton onClickCallback={closeModalCallback || (() => 0)}/>
+            { children }
+        </ModalRectangle>
+    )
+}
