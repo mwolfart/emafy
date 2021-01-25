@@ -4,7 +4,7 @@ export const Button = styled.button`
     background-image: linear-gradient(45deg, #BF0A45, #E4305D 66%, #EE7321);
     border-radius: 12px;
     border-width: 0px;
-    padding: 0 36px 0 36px;
+    padding: 0px 36px;
     color: #EEEEEE;
     text-align: center;
     font-family: Montserrat, "Trebuchet MS", Arial, sans-serif;
@@ -14,4 +14,14 @@ export const Button = styled.button`
     letter-spacing: 1.5px;
     width: fit-content;
     align-self: center;
+`
+
+export const CleanButton = styled.button`
+    padding: 0;
+    border: 0;
+    margin: 0;
+    background-color: unset;
+    color: unset;
+    text-align: unset;
+    display: contents;
 `
