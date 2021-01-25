@@ -15,3 +15,4 @@ export const Canvas: FC = ({ children }) =>
     <CanvasRectangle>
         { children }
     </CanvasRectangle>
+    
