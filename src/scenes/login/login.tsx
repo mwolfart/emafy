@@ -10,7 +10,7 @@ export const LoginScene: VFC = () => {
 
     return (
         <Canvas>
-        <Modal>
+        <Modal closeModalCallback={ () => {} }>
             <div className="title">Sign in</div>
             <p>To start using the platform, please login using the Spotify API through the link below</p>
             <Button onClick={login}>Login using Spotify</Button>
