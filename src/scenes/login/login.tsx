@@ -1,7 +1,7 @@
 import React, { VFC } from 'react';
 import { Modal } from '../../components/modal/modal';
 import { Canvas } from '../../components/canvas/canvas';
-import { Button } from '../../components/ui';
+import { Button } from '../../components/ui/index';
 
 export const LoginScene: VFC = () => {
     const login = () => {
