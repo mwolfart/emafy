@@ -20,3 +20,4 @@ export const LoginScene: VFC = () => {
     </Canvas>
   )
 }
+
