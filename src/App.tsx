@@ -5,7 +5,7 @@ import { LoginScene } from './scenes/login/login';
 
 function App(): JSX.Element {
   return (
-    <LoginScene></LoginScene>
+    <LoginScene />
   );
 }
 
