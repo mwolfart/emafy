@@ -1,7 +1,7 @@
 import React from "react"
 import { VFC } from "react"
 import styled from "styled-components"
-import { CleanButton } from "../ui"
+import { CleanButton } from "../ui/index"
 
 const CloseButtonIcon = styled.i`
     text-align: right;
