@@ -1,4 +1,6 @@
-export { Button } from "./button/default"
-export { CleanButton } from "./button/clean"
+export { Canvas } from './canvas'
 
-export { ModalRectangle } from "./modalRectangle"
+export { Button } from './button/default'
+export { CleanButton } from './button/clean'
+
+export { ModalRectangle } from './modalRectangle'

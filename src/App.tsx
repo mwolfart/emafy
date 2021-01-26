@@ -1,11 +1,9 @@
-import React from 'react';
-import './App.css';
-import { LoginScene } from './scenes/login/login';
+import React from 'react'
+import './App.css'
+import { LoginScene } from './scenes/login/login'
 
 const App: () => JSX.Element = () => {
-  return (
-    <LoginScene />
-  );
+  return <LoginScene />
 }
 
 export default App
