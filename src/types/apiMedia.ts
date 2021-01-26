@@ -1,15 +1,15 @@
-type image = {
+type Image = {
   url: string
 }
 
 export type BasicRawMedia = {
-  images?: image[]
+  images?: Image[]
   id: string
   name: string
 }
 
-type rawTracksAlbum = {
-  images: image[]
+type RawTracksAlbum = {
+  images: Image[]
   id: string
 }
 
@@ -20,7 +20,7 @@ export interface RawAlbum extends BasicRawMedia {
 
 export interface RawTrack extends BasicRawMedia {
   artists: BasicRawMedia[]
-  album: rawTracksAlbum
+  album: RawTracksAlbum
   duration_ms: number
 }
 
@@ -30,12 +30,12 @@ export interface RawArtist extends BasicRawMedia {
   popularity: number
 }
 
-export type savedAlbum = {
+export type SavedAlbum = {
   added_at: string
   album: RawAlbum
 }
 
-export type savedTrack = {
+export type SavedTrack = {
   added_at: string
   track: RawTrack
 }

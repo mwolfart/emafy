@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-type hashParamsType = {
+type HashParamsType = {
   access_token: null | string
   state: null | string
   token_type: null | string
@@ -17,7 +17,7 @@ const generateRandomString = (length: number): string => {
   return text
 }
 
-const getHashParams = (): hashParamsType => {
+const getHashParams = (): HashParamsType => {
   let hashParams = {
     access_token: null,
     state: null,

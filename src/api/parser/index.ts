@@ -3,8 +3,8 @@ import {
   RawAlbum,
   RawTrack,
   RawArtist,
-  savedAlbum,
-  savedTrack,
+  SavedAlbum,
+  SavedTrack,
 } from 'types/apiMedia'
 
 const parseImages = (images?: { url: string }[]): Array<string> | undefined =>
@@ -75,10 +75,10 @@ export const parseTracks = (rawTracks: Array<RawTrack>): Array<Song> =>
   rawTracks.map((item) => parseTrack(item))
 
 export const parseSavedAlbums = (
-  savedAlbums: Array<savedAlbum>,
+  savedAlbums: Array<SavedAlbum>,
 ): Array<Album> => savedAlbums.map(({ album }) => parseAlbum(album))
 
-export const parseSavedTracks = (savedTracks: Array<savedTrack>): Array<Song> =>
+export const parseSavedTracks = (savedTracks: Array<SavedTrack>): Array<Song> =>
   savedTracks.map(({ track }) => parseTrack(track))
 
 export const parseSimpleArtists = (
