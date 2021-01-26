@@ -6,13 +6,13 @@ import {
   parseSimpleArtists,
 } from './parser'
 
-type nextURL = string | null
+type NextURL = string | null
 
 const getSaved = <T, U>(
   route: string,
-  next: nextURL,
+  next: NextURL,
   parser: (items: T[]) => U[],
-): Promise<{ entities: U[]; next: nextURL }> => {
+): Promise<{ entities: U[]; next: NextURL }> => {
   const baseLink = 'me/' + route
   const requestLink = next ? `${baseLink}${next}` : baseLink
   return spotifyInstance<T>(requestLink).then(({ data: { items, next } }) => {
@@ -28,24 +28,24 @@ const getSaved = <T, U>(
 }
 
 export const getSavedAlbums = (
-  next: nextURL,
-): Promise<{ entities: Array<Album>; next: nextURL }> => {
+  next: NextURL,
+): Promise<{ entities: Array<Album>; next: NextURL }> => {
   const route = 'albums'
   return getSaved(route, next, parseSavedAlbums)
 }
 
 export const getSavedSongs = (
-  next: nextURL,
-): Promise<{ entities: Array<Song>; next: nextURL }> => {
+  next: NextURL,
+): Promise<{ entities: Array<Song>; next: NextURL }> => {
   const route = 'tracks'
   return getSaved(route, next, parseSavedTracks)
 }
 
 export const getUsersTopArtists = (
-  next: nextURL,
+  next: NextURL,
 ): Promise<{
   entities: Array<SimpleArtist>
-  next: nextURL
+  next: NextURL
 }> => {
   const route = 'top/artists'
   return getSaved(route, next, parseSimpleArtists)

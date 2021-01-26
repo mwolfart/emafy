@@ -1,23 +1,23 @@
-type media = {
+type Media = {
   name: string
   images?: Array<string>
   id: string
 }
 
-type reference = string
+type Reference = string
 
-export interface Album extends media {
-  artists: Array<media>
+export interface Album extends Media {
+  artists: Array<Media>
   totalTracks: number
 }
 
-export interface Song extends media {
-  artists: Array<media>
-  albumReference: reference
+export interface Song extends Media {
+  artists: Array<Media>
+  albumReference: Reference
   duration: number
 }
 
-export interface SimpleArtist extends media {
+export interface SimpleArtist extends Media {
   genres: Array<string> | []
   followers: number
   popularity: number
