@@ -1,5 +1,4 @@
 import React, { FC } from 'react'
-import 'font-awesome/css/font-awesome.min.css'
 import { CloseButton } from '../closeButton/closeButton'
 import { ModalRectangle, Props as ModalRectProps } from '../ui/modalRectangle'
 
