@@ -1,12 +1,12 @@
 import axios, { AxiosResponse } from 'axios'
 
-type headerProps = {
+type HeaderProps = {
   headers: {
     Authorization: string
   }
 }
 
-const createHeader = (): headerProps => {
+const createHeader = (): HeaderProps => {
   const accessToken = localStorage.getItem('access_token')
   return {
     headers: {
