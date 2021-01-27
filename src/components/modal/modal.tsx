@@ -6,11 +6,8 @@ type Props = {
   closeModalCallback: () => void
 } & ModalRectProps
 
-export const Modal: FC<Props> = ({ children, closeModalCallback, large }) => {
-  return (
-    <ModalRectangle large={large}>
-      <CloseButton onClickCallback={closeModalCallback} />
-      {children}
-    </ModalRectangle>
-  )
-}
+export const Modal: FC<Props> = ({ children, closeModalCallback, large }) =>
+  <ModalRectangle large={large}>
+    <CloseButton onClickCallback={closeModalCallback} />
+    {children}
+  </ModalRectangle>
