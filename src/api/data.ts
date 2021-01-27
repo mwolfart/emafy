@@ -15,16 +15,18 @@ const getSaved = <T, U>(
 ): Promise<{ entities: U[]; next: NextURL }> => {
   const baseLink = 'me/' + route
   const requestLink = next ? `${baseLink}${next}` : baseLink
-  return spotifyInstance<T>(requestLink).then(({ data: { items, next } }) => {
-    const nextLink =
-      typeof next === 'string'
-        ? next.replace('https://api.spotify.com/v1/' + baseLink, '')
-        : null
-    return {
-      entities: parser(items),
-      next: nextLink,
-    }
-  })
+  return spotifyInstance<{ items: T[]; next?: string }>(requestLink).then(
+    ({ data: { items, next } }) => {
+      const nextLink =
+        typeof next === 'string'
+          ? next.replace('https://api.spotify.com/v1/' + baseLink, '')
+          : null
+      return {
+        entities: parser(items),
+        next: nextLink,
+      }
+    },
+  )
 }
 
 export const getSavedAlbums = (
