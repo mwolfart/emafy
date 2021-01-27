@@ -3,9 +3,9 @@ import { Modal } from 'components/modal/modal'
 import { Button, Canvas } from 'components/ui'
 
 export const LoginScene: VFC = () => {
-  const login = () => {}
+  const login: () => void = () => {}
 
-  const closeLoginModal = () => {}
+  const closeLoginModal: () => void = () => {}
 
   return (
     <Canvas>
