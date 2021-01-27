@@ -4,7 +4,7 @@ import { Button, Canvas } from 'components/ui'
 import { authenticate } from 'api/credentials'
 
 export const LoginScene: VFC = () => {
-  const login = (): void => {
+  const apiAuth = (): void => {
     authenticate()
   }
 
@@ -18,7 +18,7 @@ export const LoginScene: VFC = () => {
           To start using the platform, please login using the Spotify API
           through the link below
         </p>
-        <Button onClick={login}>Login using Spotify</Button>
+        <Button onClick={apiAuth}>Login using Spotify</Button>
       </Modal>
     </Canvas>
   )
