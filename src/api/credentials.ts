@@ -1,4 +1,5 @@
-import axios from 'axios'
+import { LOCAL_STORAGE } from './localStorage.enum'
+import { spotifyInstance } from './spotifyInstance'
 
 type HashParamsType = {
   access_token: null | string
@@ -15,6 +16,12 @@ const generateRandomString = (length: number): string => {
     text += possible.charAt(Math.floor(Math.random() * possible.length))
   }
   return text
+}
+
+const generateAndStoreStateToRequest = (): string => {
+  const state = generateRandomString(16)
+  localStorage.setItem(LOCAL_STORAGE.AUTH_STATE, state)
+  return state
 }
 
 const getHashParams = (): HashParamsType => {
@@ -35,63 +42,57 @@ const getHashParams = (): HashParamsType => {
   return hashParams
 }
 
-export const authenticate = (): void => {
-  const stateKey = 'spotify_auth_state'
-  const state = generateRandomString(16)
-  localStorage.setItem(stateKey, state)
+const hasCrossSiteRequestForgery = (state: string | null): boolean => {
+  const storedState = localStorage.getItem(LOCAL_STORAGE.AUTH_STATE)
+  return state == null || state !== storedState
+}
 
-  const client_id = process.env.REACT_APP_API_KEY || ''
-  const redirect_uri = `${process.env.REACT_APP_API_URI}`
+export const authenticate = (): void => {
+  const state = generateAndStoreStateToRequest()
+
+  const client_id = process.env.REACT_APP_API_KEY ?? ''
+  const redirect_uri = process.env.REACT_APP_API_URI ?? ''
 
   const scope =
     'user-read-private user-read-email user-library-read user-top-read streaming user-read-birthdate user-read-email user-read-private'
 
-  let url = 'https://accounts.spotify.com/authorize'
+  const baseURL = 'https://accounts.spotify.com/authorize'
 
-  url += '?response_type=token'
-  url += `&client_id=${encodeURIComponent(client_id)}`
-  url += `&scope=${encodeURIComponent(scope)}`
-  url += `&redirect_uri=${encodeURIComponent(redirect_uri)}`
-  url += `&state=${encodeURIComponent(state)}`
+  const token = '?response_type=token'
+  const clientId = `&client_id=${encodeURIComponent(client_id)}`
+  const scopeParam = `&scope=${encodeURIComponent(scope)}`
+  const redirectUri = `&redirect_uri=${encodeURIComponent(redirect_uri)}`
+  const stateParam = `&state=${encodeURIComponent(state)}`
+
+  const url = baseURL + token + clientId + scopeParam + redirectUri + stateParam
   window.location.href = url
 }
 
 export const login = (
   onLogin: (accessToken: string) => void,
-): false | undefined => {
-  const params = getHashParams()
+): boolean | null => {
+  const { access_token, state } = getHashParams()
 
-  if (!params.access_token) {
+  if (!access_token) {
+    return null
+  }
+
+  if (hasCrossSiteRequestForgery(state)) {
+    alert(
+      'There was an error during the authentication, please, refresh the webpage and try again',
+    )
     return false
   }
 
-  const stateKey = 'spotify_auth_state'
+  localStorage.setItem(LOCAL_STORAGE.ACCESS_TOKEN, access_token)
 
-  const { access_token, state } = params
-  const storedState = localStorage.getItem(stateKey)
-
-  localStorage.setItem('access_token', access_token)
-
-  if (access_token && (state == null || state !== storedState)) {
-    alert('There was an error during the authentication')
-    return false
-  }
-  localStorage.removeItem(stateKey)
-  if (access_token) {
-    axios
-      .get('https://api.spotify.com/v1/me', {
-        headers: {
-          Authorization: 'Bearer ' + access_token,
-        },
-      })
-      .then(function ({ data: { id } }) {
-        localStorage.setItem('userName', id)
-        onLogin(access_token)
-      })
-      .catch(function (error) {
-        alert('Login failed')
-      })
-    return undefined
-  }
-  return undefined
+  spotifyInstance<{ id: string }>('me')
+    .then(function ({ data: { id } }) {
+      localStorage.setItem(LOCAL_STORAGE.USER_NAME, id)
+      onLogin(access_token)
+    })
+    .catch(function (error) {
+      alert('Login failed')
+    })
+  return true
 }
