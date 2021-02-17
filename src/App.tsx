@@ -1,6 +1,7 @@
 import { isLoggedIn, login } from 'api/credentials'
 import React from 'react'
 import './App.css'
+import './themes.sass'
 import { LoginScene } from './scenes/login/login'
 
 const App = (): JSX.Element => {
