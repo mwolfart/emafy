@@ -5,7 +5,8 @@ import { Button } from '../index'
 
 describe('Button', () => {
   it('renders Button correctly', () => {
-    const { container } = render(<Button>Text</Button>)
-    expect(container.childElementCount).toBeTruthy()
+    const { getByRole } = render(<Button>Text</Button>)
+    const buttonElement = getByRole('button')
+    expect(buttonElement).toBeTruthy()
   })
 })
