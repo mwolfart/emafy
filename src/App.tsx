@@ -5,7 +5,7 @@ import { LoginScene } from './scenes/login/login'
 
 const App: () => JSX.Element = () => {
   const loggedIn = isLoggedIn() || login(() => {})
-  return loggedIn ? <div>adasd</div> : <LoginScene />
+  return loggedIn ? <div>You are logged in</div> : <LoginScene />
 }
 
 export default App
