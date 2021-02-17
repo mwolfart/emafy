@@ -1,3 +1,4 @@
+import { strings } from 'strings'
 import { LOCAL_STORAGE } from './localStorage.enum'
 import { spotifyInstance } from './spotifyInstance'
 
@@ -78,9 +79,7 @@ export const login = (
   }
 
   if (hasCrossSiteRequestForgery(state)) {
-    alert(
-      'There was an error during the authentication, please, refresh the webpage and try again',
-    )
+    alert(strings.api.credentials.errorAuth)
     return false
   }
 
@@ -92,7 +91,7 @@ export const login = (
       onLogin(access_token)
     })
     .catch(function (error) {
-      alert('Login failed')
+      alert(strings.api.credentials.errorLoginFailed)
     })
   return true
 }
