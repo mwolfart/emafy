@@ -5,7 +5,8 @@ import { ModalRectangle } from './index'
 
 describe('ModalRectangle', () => {
   it('renders ModalRectangle correctly', () => {
-    const { container } = render(<ModalRectangle>Text</ModalRectangle>)
-    expect(container.childElementCount).toBeTruthy()
+    const { getByText } = render(<ModalRectangle>Text</ModalRectangle>)
+    const rectangleElement = getByText('Text')
+    expect(rectangleElement).toBeTruthy()
   })
 })

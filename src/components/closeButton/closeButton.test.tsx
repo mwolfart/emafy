@@ -5,14 +5,16 @@ import { CloseButton } from './closeButton'
 
 describe('CloseButton', () => {
   it('renders CloseButton correctly', () => {
-    const { container } = render(<CloseButton onClickCallback={() => {}} />)
-    expect(container.childElementCount).toBeTruthy()
+    const { getByRole } = render(<CloseButton onClickCallback={() => {}} />)
+    const buttonElement = getByRole('button', { name: 'Close modal' })
+    expect(buttonElement).toBeTruthy()
   })
 
   it('calls onClickCallback on button click', () => {
     const onClick = jest.fn()
     const { getByRole } = render(<CloseButton onClickCallback={onClick} />)
-    fireEvent.click(getByRole('button', { name: 'Close modal' }))
+    const buttonElement = getByRole('button', { name: 'Close modal' })
+    fireEvent.click(buttonElement)
     expect(onClick).toHaveBeenCalled()
   })
 })

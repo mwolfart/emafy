@@ -5,7 +5,8 @@ import { Canvas } from './index'
 
 describe('Canvas', () => {
   it('renders Canvas correctly', () => {
-    const { container } = render(<Canvas>Text</Canvas>)
-    expect(container.childElementCount).toBeTruthy()
+    const { getByText } = render(<Canvas>Text</Canvas>)
+    const canvasElement = getByText('Text')
+    expect(canvasElement).toBeTruthy()
   })
 })
