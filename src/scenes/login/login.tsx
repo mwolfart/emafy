@@ -2,6 +2,7 @@ import React, { VFC } from 'react'
 import { Modal } from 'components/modal/modal'
 import { Button, Canvas } from 'components/ui'
 import { authenticate } from 'api/credentials'
+import { strings } from 'strings'
 
 export const LoginScene: VFC = () => {
   const apiAuth = (): void => {
@@ -13,12 +14,11 @@ export const LoginScene: VFC = () => {
   return (
     <Canvas>
       <Modal closeModalCallback={closeLoginModal}>
-        <div className="title">Sign in</div>
-        <p>
-          To start using the platform, please login using the Spotify API
-          through the link below
-        </p>
-        <Button onClick={apiAuth}>Login using Spotify</Button>
+        <div className="title">{strings.scenes.login.signin}</div>
+        <p>{strings.scenes.login.instructions}</p>
+        <Button onClick={apiAuth}>
+          {strings.scenes.login.loginUsingSpotify}
+        </Button>
       </Modal>
     </Canvas>
   )
