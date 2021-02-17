@@ -11,8 +11,8 @@ describe('CloseButton', () => {
 
   it('calls onClickCallback on button click', () => {
     const onClick = jest.fn()
-    const { getByLabelText } = render(<CloseButton onClickCallback={onClick} />)
-    fireEvent.click(getByLabelText('Close modal'))
+    const { getByRole } = render(<CloseButton onClickCallback={onClick} />)
+    fireEvent.click(getByRole('button', { name: 'Close modal' }))
     expect(onClick).toHaveBeenCalled()
   })
 })
