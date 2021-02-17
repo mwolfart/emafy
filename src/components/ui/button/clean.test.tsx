@@ -5,7 +5,8 @@ import { CleanButton } from '../index'
 
 describe('CleanButton', () => {
   it('renders CleanButton correctly', () => {
-    const { container } = render(<CleanButton>Text</CleanButton>)
-    expect(container.childElementCount).toBeTruthy()
+    const { getByRole } = render(<CleanButton>Text</CleanButton>)
+    const buttonElement = getByRole('button')
+    expect(buttonElement).toBeTruthy()
   })
 })
