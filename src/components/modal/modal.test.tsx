@@ -5,10 +5,11 @@ import { Modal } from './modal'
 
 describe('Modal', () => {
   it('renders Modal correctly', () => {
-    const { container } = render(
+    const { getByText } = render(
       <Modal closeModalCallback={() => {}}>Text</Modal>,
     )
-    expect(container.childElementCount).toBeTruthy()
+    const modalElement = getByText('Text')
+    expect(modalElement).toBeTruthy()
   })
 
   it('calls closeModalCallback on Modal close', () => {
