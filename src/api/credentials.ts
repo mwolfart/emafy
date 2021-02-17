@@ -96,3 +96,6 @@ export const login = (
     })
   return true
 }
+
+export const isLoggedIn = (): boolean =>
+  !!localStorage.getItem(LOCAL_STORAGE.ACCESS_TOKEN)
