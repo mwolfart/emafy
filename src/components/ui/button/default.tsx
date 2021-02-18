@@ -3,17 +3,17 @@ import styled from 'styled-components'
 export const Button = styled.button`
   background-image: linear-gradient(
     45deg,
-    var(--color-primary),
-    var(--color-button-intermed) 66%,
-    var(--color-secondary)
+    ${(props) => props.theme.colorPrimary},
+    ${(props) => props.theme.colorButtonIntermed} 66%,
+    ${(props) => props.theme.colorSecondary}
   );
   border-radius: 12px;
   border-width: 0px;
   padding: 0px 36px;
-  color: var(--color-text-button);
+  color: ${(props) => props.theme.colorTextButton};
   text-align: center;
-  font-family: var(--font-style);
-  font-size: var(--font-size-paragraph);
+  font-family: ${(props) => props.theme.fontStyle};
+  font-size: ${(props) => props.theme.fontSizeParagraph};
   font-weight: bold;
   line-height: 48px;
   letter-spacing: 1.5px;

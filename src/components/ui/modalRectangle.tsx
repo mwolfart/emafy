@@ -9,7 +9,7 @@ export const ModalRectangle = styled.div`
   width: ${({ large }: Props) => (large ? '800px' : '400px')};
   display: flex;
   flex-direction: column;
-  background-color: var(--color-background);
+  background-color: ${(props) => props.theme.colorBackground};
   border-radius: 16px;
   border-width: 0px;
   box-shadow: 0px 80px 100px;
@@ -17,11 +17,11 @@ export const ModalRectangle = styled.div`
   padding-left: 32px;
   padding-right: 32px;
   padding-bottom: 48px;
-  color: var(--color-text-paragraph);
+  color: ${(props) => props.theme.colorTextParagraph};
   text-align: center;
-  font-family: var(--font-style);
+  font-family: ${(props) => props.theme.fontStyle};
   font-weight: 400;
-  font-size: var(--font-size-paragraph);
+  font-size: ${(props) => props.theme.fontSizeParagraph};
   line-height: 28px;
 
   p {
@@ -29,8 +29,8 @@ export const ModalRectangle = styled.div`
   }
 
   & .title {
-    font-size: var(--font-size-title);
-    color: var(--color-text-title);
+    font-size: ${(props) => props.theme.fontSizeTitle};
+    color: ${(props) => props.theme.colorTextTitle};
     line-height: 40px;
     font-weight: 600;
   }
