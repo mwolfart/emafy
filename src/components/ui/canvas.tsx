@@ -6,6 +6,6 @@ export const Canvas = styled.div`
   min-width: 100vw;
   display: flex;
   justify-content: center;
-  background-color: var(--color-background-disabled);
+  background-color: ${(props) => props.theme.colorBackgroundDisabled};
   place-items: center;
 `
