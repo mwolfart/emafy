@@ -1,4 +1,18 @@
-export const mainTheme = {
+type Theme = {
+  colorPrimary: string
+  colorButtonIntermed: string
+  colorSecondary: string
+  colorTextParagraph: string
+  colorTextTitle: string
+  colorTextButton: string
+  colorBackground: string
+  colorBackgroundDisabled: string
+  fontStyle: string
+  fontSizeParagraph: string
+  fontSizeTitle: string
+}
+
+export const mainTheme: Theme = {
   colorPrimary: '#bf0a45',
   colorButtonIntermed: '#e4305d',
   colorSecondary: '#ee7321',
