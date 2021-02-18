@@ -9,7 +9,7 @@ const App = (): JSX.Element => {
   const isUserLoggedIn = isLoggedIn() || login(() => {})
   return (
     <ThemeProvider theme={mainTheme}>
-      {isUserLoggedIn ? <div>You are logged in</div> : <LoginScene />}{' '}
+      {isUserLoggedIn ? <div>You are logged in</div> : <LoginScene />}
     </ThemeProvider>
   )
 }
