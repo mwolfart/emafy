@@ -1,8 +1,8 @@
 import { isLoggedIn, login } from 'api/credentials'
 import React from 'react'
 import './App.css'
-import { mainTheme } from './themes'
-import { LoginScene } from './scenes/login/login'
+import { mainTheme } from 'themes'
+import { LoginScene } from 'scenes/login/login'
 import { ThemeProvider } from 'styled-components'
 
 const App = (): JSX.Element => {
