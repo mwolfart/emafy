@@ -1,4 +1,4 @@
-type Media = {
+export type Media = {
   name: string
   images?: Array<string>
   id: string
