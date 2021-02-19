@@ -5,7 +5,7 @@ import { mainTheme } from 'themes'
 import { LoginScene } from 'scenes/login/login'
 import { ThemeProvider } from 'styled-components'
 import { Album } from 'types/media'
-import { MediaGridMenu } from 'scenes/login/mediaGridMenu'
+import { MediaGridMenu } from 'components/mediaGridMenu/mediaGridMenu'
 
 const App = (): JSX.Element => {
   const isUserLoggedIn = isLoggedIn() || login(() => {})
