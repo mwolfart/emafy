@@ -14,6 +14,12 @@ const MediaSquare = styled.a`
   text-decoration: unset;
   padding: 20px;
   max-width: 210px;
+  transition: 0.3s ease;
+
+  &:hover {
+    background-color: ${(props) => props.theme.colorDarkerBackgroundHover};
+    transition: 0.3s ease;
+  }
 
   img {
     width: 200px;
@@ -24,6 +30,7 @@ const MediaSquare = styled.a`
     border-width: 0px;
     line-height: 200px;
     text-align: center;
+    overflow: hidden;
   }
 
   & .title {

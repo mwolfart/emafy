@@ -8,6 +8,8 @@ type Theme = {
   colorTextDisabled: string
   colorBackground: string
   colorBackgroundDisabled: string
+  colorDarkerBackground: string
+  colorDarkerBackgroundHover: string
   colorImageBackground: string
   fontStyle: string
   fontSizeParagraph: string
@@ -24,6 +26,8 @@ export const mainTheme: Theme = {
   colorTextDisabled: '#888888',
   colorBackground: '#f2f2f2',
   colorBackgroundDisabled: '#aaaaaa55',
+  colorDarkerBackground: '#f0f0f0',
+  colorDarkerBackgroundHover: '#e0e0e0',
   colorImageBackground: '#cccccc',
   fontStyle: "Montserrat, 'Trebuchet MS', Arial, sans-serif",
   fontSizeParagraph: '16px',
