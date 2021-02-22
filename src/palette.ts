@@ -8,9 +8,12 @@ export type Palette = {
   colorTextDisabled: string
   colorBackground: string
   colorBackgroundDisabled: string
-  colorLinkBackground: string
-  colorLinkBackgroundHover: string
+  colorDarkerBackground: string
+  colorDarkerBackgroundHover: string
   colorImageBackground: string
+  fontStyle: string
+  fontSizeParagraph: string
+  fontSizeTitle: string
 }
 
 export const mainPalette: Palette = {
@@ -23,7 +26,10 @@ export const mainPalette: Palette = {
   colorTextDisabled: '#888888',
   colorBackground: '#f2f2f2',
   colorBackgroundDisabled: '#aaaaaa55',
-  colorLinkBackground: '#f0f0f0',
-  colorLinkBackgroundHover: '#e0e0e0',
+  colorDarkerBackground: '#f0f0f0',
+  colorDarkerBackgroundHover: '#e0e0e0',
   colorImageBackground: '#cccccc',
+  fontStyle: "Montserrat, 'Trebuchet MS', Arial, sans-serif",
+  fontSizeParagraph: '16px',
+  fontSizeTitle: '24px',
 }
