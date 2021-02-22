@@ -5,6 +5,7 @@ type Theme = {
   colorTextParagraph: string
   colorTextTitle: string
   colorTextButton: string
+  colorTextDisabled: string
   colorBackground: string
   colorBackgroundDisabled: string
   colorDarkerBackground: string
@@ -22,6 +23,7 @@ export const mainTheme: Theme = {
   colorTextParagraph: '#757575',
   colorTextTitle: '#222222',
   colorTextButton: '#eeeeee',
+  colorTextDisabled: '#888888',
   colorBackground: '#f2f2f2',
   colorBackgroundDisabled: '#aaaaaa55',
   colorDarkerBackground: '#f0f0f0',
