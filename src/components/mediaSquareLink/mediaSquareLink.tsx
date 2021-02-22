@@ -15,10 +15,15 @@ const MediaSquare = styled.a`
   padding: 20px;
   max-width: 210px;
   transition: 0.3s ease;
+  transform: scale(1);
 
   &:hover {
-    background-color: ${(props) => props.theme.colorDarkerBackgroundHover};
     transition: 0.3s ease;
+    transform: scale(1.2);
+
+    img {
+      box-shadow: 0px 60px 80px #0000003f;
+    }
   }
 
   img {
