@@ -19,10 +19,10 @@ const MediaSquare = styled.a`
 
   &:hover {
     transition: 0.3s ease;
-    transform: scale(1.2);
+    transform: scale(1.1);
 
     img {
-      box-shadow: 0px 60px 80px #0000003f;
+      box-shadow: 0px 60px 80px #00000045;
     }
   }
 
