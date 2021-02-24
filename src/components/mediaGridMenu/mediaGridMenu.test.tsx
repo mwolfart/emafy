@@ -1,4 +1,3 @@
-import React from 'react'
 import { render } from '@testing-library/react'
 
 import { MediaGridMenu } from './mediaGridMenu'
@@ -45,17 +44,14 @@ describe('MediaGridMenu', () => {
     const { getByText, getAllByText } = render(
       <MediaGridMenu mediaList={albumList} />,
     )
-    let gridElement = getByText('Oceans')
-    expect(gridElement).toBeTruthy()
+
+    const arr = ['Oceans', 'Foo', 'Volcanos', 'Earthquake', 'Carrot']
+    arr.forEach((query: string): void => {
+      const element = getByText(query)
+      expect(element).toBeTruthy()
+    })
+
     const gridElementList = getAllByText('Foo, Bar')
     expect(gridElementList.length).toEqual(2)
-    gridElement = getByText('Foo')
-    expect(gridElement).toBeTruthy()
-    gridElement = getByText('Volcanos')
-    expect(gridElement).toBeTruthy()
-    gridElement = getByText('Earthquake')
-    expect(gridElement).toBeTruthy()
-    gridElement = getByText('Carrot')
-    expect(gridElement).toBeTruthy()
   })
 })
