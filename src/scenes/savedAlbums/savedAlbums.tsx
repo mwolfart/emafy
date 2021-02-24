@@ -65,7 +65,7 @@ export const SavedAlbums: VFC = () => {
       <div className="header">
         <div className="description">
           <div className="title">My saved albums</div>
-          <div className="subtitle">XX albums</div>
+          <div className="subtitle">{albumList.length} albums</div>
         </div>
         <ToggleButton
           toggleState={displayGridView}
