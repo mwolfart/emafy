@@ -1,4 +1,3 @@
-import { faKeyboard } from '@fortawesome/free-solid-svg-icons'
 import { Album } from 'types/media'
 
 const faker = require('faker')
