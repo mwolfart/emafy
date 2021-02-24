@@ -1,22 +1,27 @@
-import { FC } from 'react'
+import { ChangeEvent, FC } from 'react'
 import styled from 'styled-components'
 import { GlobalProps } from 'types/props'
 
-type Props = {
+type WrapperProps = {
   isOnOff?: boolean
   labelLeft?: string
   labelRight?: string
 } & GlobalProps
 
-const Wrapper = styled.div<Props>`
+type Props = {
+  toggleState: boolean
+  onChangeCallback: (value: boolean) => void
+} & WrapperProps
+
+const Wrapper = styled.div<WrapperProps>`
   display: flex;
   flex-direction: row;
   align-items: center;
 
   div {
-    font-family: ${(props: Props) => props.theme?.fontStyle};
+    font-family: ${(props: WrapperProps) => props.theme?.fontStyle};
     font-weight: 400;
-    font-size: ${(props: Props) => props.theme?.fontSizeParagraph};
+    font-size: ${(props: WrapperProps) => props.theme?.fontSizeParagraph};
     height: 100%;
     padding: 0 10px;
   }
@@ -35,7 +40,7 @@ const Wrapper = styled.div<Props>`
       bottom: 0;
       border-radius: 30px;
       border-width: 0;
-      background-color: ${(props: Props) =>
+      background-color: ${(props: WrapperProps) =>
         props.isOnOff
           ? props.theme?.colorDarkerBackground
           : props.theme?.colorSecondary};
@@ -56,7 +61,7 @@ const Wrapper = styled.div<Props>`
     }
 
     input:checked + .background {
-      background-color: ${(props: Props) => props.theme?.colorPrimary};
+      background-color: ${(props: WrapperProps) => props.theme?.colorPrimary};
       transition: 0.3s ease;
     }
 
@@ -73,13 +78,30 @@ const Wrapper = styled.div<Props>`
   }
 `
 
-export const ToggleButton: FC<Props> = ({ isOnOff, labelLeft, labelRight }) => (
-  <Wrapper isOnOff={isOnOff}>
-    {labelLeft ? <div>{labelLeft}</div> : ''}
-    <label>
-      <input className="switch" type="checkbox" />
-      <div className="background" />
-    </label>
-    {labelRight ? <div>{labelRight}</div> : ''}
-  </Wrapper>
-)
+export const ToggleButton: FC<Props> = ({
+  toggleState,
+  onChangeCallback,
+  isOnOff,
+  labelLeft,
+  labelRight,
+}) => {
+  const onChange = (event: ChangeEvent<HTMLInputElement>): void => {
+    onChangeCallback(event.currentTarget.checked)
+  }
+
+  return (
+    <Wrapper isOnOff={isOnOff}>
+      {labelLeft ? <div>{labelLeft}</div> : ''}
+      <label>
+        <input
+          className="switch"
+          type="checkbox"
+          onChange={onChange}
+          defaultChecked={toggleState}
+        />
+        <div className="background" />
+      </label>
+      {labelRight ? <div>{labelRight}</div> : ''}
+    </Wrapper>
+  )
+}
