@@ -1,5 +1,5 @@
 import { isLoggedIn, login } from 'api/credentials'
-import React from 'react'
+
 import './App.css'
 import { mainTheme } from 'themes'
 import { LoginScene } from 'scenes/login/login'

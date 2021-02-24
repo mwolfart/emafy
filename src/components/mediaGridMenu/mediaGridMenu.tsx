@@ -1,5 +1,4 @@
 import { MediaSquareLink } from 'components/mediaSquareLink/mediaSquareLink'
-import React from 'react'
 import { VFC } from 'react'
 import styled from 'styled-components'
 import { Media } from 'types/media'
