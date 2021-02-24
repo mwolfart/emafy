@@ -62,10 +62,7 @@ const MediaSquare = styled.a`
 export const MediaSquareLink: VFC<Props> = ({ mediaInfo }) => {
   return (
     <MediaSquare href="">
-      <img
-        src={mediaInfo.images && mediaInfo.images[0]}
-        alt={mediaInfo.name}
-      ></img>
+      <img src={mediaInfo.images && mediaInfo.images[0]} alt={mediaInfo.name} />
       <div className="title">{mediaInfo.name}</div>
       {(mediaInfo as Album).artists && (
         <div className="subtitle">
