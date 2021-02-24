@@ -5,8 +5,6 @@ import '@fortawesome/fontawesome-free/css/fontawesome.min.css'
 import '@fortawesome/fontawesome-free/css/solid.min.css'
 import { LoginScene } from 'scenes/login/login'
 import { createGlobalStyle, ThemeProvider } from 'styled-components'
-import { Menu as MediaMenu } from 'components/media/menu/menu'
-import { albums } from 'fixtures/albums'
 import { mainStyles } from 'styles'
 
 const App = (): JSX.Element => {
@@ -20,7 +18,7 @@ const App = (): JSX.Element => {
   return (
     <ThemeProvider theme={mainStyles}>
       <GlobalLinkStyle />
-      {isUserLoggedIn ? <MediaMenu mediaList={albums} /> : <LoginScene />}
+      {isUserLoggedIn ? <SavedAlbums /> : <LoginScene />}
     </ThemeProvider>
   )
 }
