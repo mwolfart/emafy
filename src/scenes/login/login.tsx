@@ -1,4 +1,4 @@
-import React, { VFC } from 'react'
+import { VFC } from 'react'
 import { Modal } from 'components/modal/modal'
 import { Button, Canvas } from 'components/ui'
 import { authenticate } from 'api/credentials'
