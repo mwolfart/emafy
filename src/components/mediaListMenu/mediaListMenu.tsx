@@ -11,6 +11,7 @@ type Props = {
 const MediaList = styled.div`
   display: flex;
   flex-direction: column;
+  padding: 10px;
 `
 
 export const MediaListMenu: VFC<Props> = ({ mediaList }) => {
