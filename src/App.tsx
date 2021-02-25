@@ -4,7 +4,7 @@ import './App.css'
 import { mainTheme } from 'themes'
 import { LoginScene } from 'scenes/login/login'
 import { ThemeProvider } from 'styled-components'
-import { MediaGridMenu } from 'components/mediaGridMenu/mediaGridMenu'
+import { MediaMenu } from 'components/mediaMenu/mediaMenu'
 import { albums } from 'fixtures/albums'
 
 const App = (): JSX.Element => {
@@ -12,7 +12,7 @@ const App = (): JSX.Element => {
 
   return (
     <ThemeProvider theme={mainTheme}>
-      {isUserLoggedIn ? <MediaGridMenu mediaList={albums} /> : <LoginScene />}
+      {isUserLoggedIn ? <MediaMenu mediaList={albums} /> : <LoginScene />}
     </ThemeProvider>
   )
 }
