@@ -12,12 +12,10 @@ const MediaList = styled.div`
   flex-direction: column;
 `
 
-export const MediaListMenu: VFC<Props> = ({ mediaList }) => {
-  return (
-    <MediaList>
-      {mediaList.map((media: Media) => (
-        <MediaRowLink key={media.id} mediaInfo={media} />
-      ))}
-    </MediaList>
-  )
-}
+export const MediaListMenu: VFC<Props> = ({ mediaList }) => (
+  <MediaList>
+    {mediaList.map((media: Media) => (
+      <MediaRowLink key={media.id} mediaInfo={media} />
+    ))}
+  </MediaList>
+)
