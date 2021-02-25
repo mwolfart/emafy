@@ -58,10 +58,7 @@ const MediaRow = styled.a`
 export const MediaRowLink: VFC<Props> = ({ mediaInfo }) => {
   return (
     <MediaRow href="">
-      <img
-        src={mediaInfo.images && mediaInfo.images[0]}
-        alt={mediaInfo.name}
-      ></img>
+      <img src={mediaInfo.images && mediaInfo.images[0]} alt={mediaInfo.name} />
       <div className="description">
         <div className="title">{mediaInfo.name}</div>
         {(mediaInfo as Album).artists && (
