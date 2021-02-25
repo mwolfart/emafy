@@ -16,7 +16,7 @@ describe('Modal', () => {
     const { getByRole } = render(
       <Modal closeModalCallback={onClose}>Modal Text</Modal>,
     )
-    const modalElement = getByRole('button', { name: 'Close modal' });
+    const modalElement = getByRole('button', { name: 'Close modal' })
     fireEvent.click(modalElement)
     expect(onClose).toHaveBeenCalled()
   })
