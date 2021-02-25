@@ -1,5 +1,4 @@
 import { MediaRowLink } from 'components/mediaRowLink/mediaRowLink'
-import React from 'react'
 import { VFC } from 'react'
 import styled from 'styled-components'
 import { Media } from 'types/media'
