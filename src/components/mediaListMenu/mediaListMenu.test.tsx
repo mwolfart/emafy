@@ -1,61 +1,35 @@
-import React from 'react'
 import { render } from '@testing-library/react'
 
 import { MediaListMenu } from './mediaListMenu'
-import { Album } from 'types/media'
+import { albums } from 'fixtures/albums'
+import { Album, Media } from 'types/media'
 
-describe('MediaListMenu', () => {
-  it('renders MediaListMenu correctly', () => {
-    const albumA: Album = {
-      id: '01',
-      name: 'Oceans',
-      artists: [
-        { id: '02', name: 'Foo' },
-        { id: '03', name: 'Bar' },
-      ],
-      totalTracks: 10,
-    }
+describe('MediaGridMenu', () => {
+  it('renders MediaGridMenu correctly', () => {
+    const albumList = albums
 
-    const albumB: Album = {
-      id: '04',
-      name: 'Volcanos',
-      artists: [
-        { id: '02', name: 'Foo' },
-        { id: '03', name: 'Bar' },
-      ],
-      totalTracks: 10,
-    }
+    const { getByText } = render(<MediaListMenu mediaList={albumList} />)
 
-    const albumC: Album = {
-      id: '05',
-      name: 'Earthquake',
-      artists: [{ id: '02', name: 'Foo' }],
-      totalTracks: 10,
-    }
+    const albumNames = albumList.map((album: Album) => album.name)
 
-    const albumD: Album = {
-      id: '06',
-      name: 'Carrot',
-      artists: [{ id: '07', name: 'Gee' }],
-      totalTracks: 10,
-    }
+    const artistNameReduction = (
+      fullString: string,
+      curArtistName: string,
+    ): string => `${fullString}, ${curArtistName}`
+    const artistListToString = (artistList: Media[]): string =>
+      artistList.map((artist: Media) => artist.name).reduce(artistNameReduction)
+    const artistNames = albumList
+      .map((album: Album) => album.artists)
+      .map(artistListToString)
 
-    const albumList = [albumA, albumB, albumC, albumD]
+    albumNames.forEach((query: string): void => {
+      const element = getByText(query)
+      expect(element).toBeTruthy()
+    })
 
-    const { getByText, getAllByText } = render(
-      <MediaListMenu mediaList={albumList} />,
-    )
-    let gridElement = getByText('Oceans')
-    expect(gridElement).toBeTruthy()
-    const gridElementList = getAllByText('Foo, Bar')
-    expect(gridElementList.length).toEqual(2)
-    gridElement = getByText('Foo')
-    expect(gridElement).toBeTruthy()
-    gridElement = getByText('Volcanos')
-    expect(gridElement).toBeTruthy()
-    gridElement = getByText('Earthquake')
-    expect(gridElement).toBeTruthy()
-    gridElement = getByText('Carrot')
-    expect(gridElement).toBeTruthy()
+    artistNames.forEach((query: string): void => {
+      const element = getByText(query)
+      expect(element).toBeTruthy()
+    })
   })
 })
