@@ -1,6 +1,6 @@
 export const strings = {
   components: {
-    closeButton: 'Close Button',
+    closeButton: 'Close modal',
   },
   scenes: {
     login: {

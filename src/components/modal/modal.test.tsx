@@ -1,4 +1,5 @@
 import { fireEvent, render } from '@testing-library/react'
+import { strings } from 'strings'
 
 import { Modal } from './modal'
 
@@ -16,7 +17,9 @@ describe('Modal', () => {
     const { getByRole } = render(
       <Modal closeModalCallback={onClose}>Modal Text</Modal>,
     )
-    const modalElement = getByRole('button', { name: 'Close modal' });
+    const modalElement = getByRole('button', {
+      name: strings.components.closeButton,
+    })
     fireEvent.click(modalElement)
     expect(onClose).toHaveBeenCalled()
   })

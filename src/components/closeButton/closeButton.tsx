@@ -15,7 +15,7 @@ type Props = {
 export const CloseButton: VFC<Props> = ({ onClickCallback }) => (
   <CleanButton
     onClick={onClickCallback}
-    aria-label={strings.scenes.login.instructions}
+    aria-label={strings.components.closeButton}
   >
     <CloseButtonIcon className="fa fa-times fa-2x close-button" />
   </CleanButton>
