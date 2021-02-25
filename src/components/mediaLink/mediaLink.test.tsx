@@ -1,10 +1,10 @@
 import { render } from '@testing-library/react'
 
-import { MediaSquareLink } from './mediaSquareLink'
+import { MediaLink } from './mediaLink'
 import { Album } from 'types/media'
 
-describe('MediaSquareLink', () => {
-  it('renders MediaSquareLink correctly', () => {
+describe('MediaLink', () => {
+  it('renders MediaLink correctly', () => {
     const album: Album = {
       id: '01',
       name: 'Oceans',
@@ -14,7 +14,7 @@ describe('MediaSquareLink', () => {
       ],
       totalTracks: 10,
     }
-    const { getByText } = render(<MediaSquareLink mediaInfo={album} />)
+    const { getByText } = render(<MediaLink mediaInfo={album} />)
     let linkElement = getByText('Oceans')
     expect(linkElement).toBeTruthy()
     linkElement = getByText('Foo, Bar')
