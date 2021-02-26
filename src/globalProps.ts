@@ -1,5 +1,5 @@
-import { Theme } from 'themes'
+import { Styles } from 'styles'
 
 export type GlobalProps = {
-  theme?: Theme
+  theme?: Styles
 }

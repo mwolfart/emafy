@@ -9,16 +9,17 @@ type Props = {
   rowVariant?: boolean
 }
 
-type MenuBlockProps = {
+type StyledProps = {
   rowVariant?: boolean
 } & GlobalProps
 
-const MediaMenuBlock = styled.div<MenuBlockProps>`
-  display: grid;
-  grid-template-columns: ${(props: MenuBlockProps) =>
-    props.rowVariant
-      ? '1fr'
-      : 'repeat(auto-fill, minmax(max(240px, 100%/10), 1fr))'};
+const MediaMenuBlock = styled.div<StyledProps>`
+  ${({ rowVariant, theme }: StyledProps) => `
+    display: grid;
+    grid-template-columns: ${
+      rowVariant ? '1fr' : 'repeat(auto-fill, minmax(max(240px, 100%/10), 1fr))'
+    };
+  `}
 `
 
 export const MediaMenu: VFC<Props> = ({
