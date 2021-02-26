@@ -1,9 +1,8 @@
 import React, { useState, VFC } from 'react'
 import { ToggleButton } from 'components/ui/toggleButton/toggleButton'
-import { MediaGridMenu } from 'components/mediaGridMenu/mediaGridMenu'
-import { MediaListMenu } from 'components/mediaListMenu/mediaListMenu'
 import styled from 'styled-components'
 import { albumList } from 'example'
+import { MediaMenu } from 'components/mediaMenu/mediaMenu'
 
 const Wrapper = styled.div`
   display: flex;
@@ -47,7 +46,7 @@ const Wrapper = styled.div`
 `
 
 export const SavedAlbums: VFC = () => {
-  const [displayGridView, setDisplayGridView] = useState<boolean>(true)
+  const [displayListView, setDisplayListView] = useState<boolean>(true)
   const [isTransitioning, setTransitioning] = useState<boolean>(false)
   let transitionTimeout: NodeJS.Timeout
 
@@ -55,7 +54,7 @@ export const SavedAlbums: VFC = () => {
     setTransitioning(true)
     clearTimeout(transitionTimeout)
     transitionTimeout = setTimeout((): void => {
-      setDisplayGridView(isGrid)
+      setDisplayListView(isGrid)
       setTransitioning(false)
     }, 250)
   }
@@ -68,16 +67,12 @@ export const SavedAlbums: VFC = () => {
           <div className="subtitle">{albumList.length} albums</div>
         </div>
         <ToggleButton
-          toggleState={displayGridView}
+          toggleState={displayListView}
           onChangeCallback={changeView}
         />
       </div>
       <div className={isTransitioning ? 'media-menu-transition' : 'media-menu'}>
-        {displayGridView ? (
-          <MediaGridMenu mediaList={albumList} />
-        ) : (
-          <MediaListMenu mediaList={albumList} />
-        )}
+        <MediaMenu mediaList={albumList} rowVariant={displayListView} />
       </div>
     </Wrapper>
   )
