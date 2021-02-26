@@ -1,4 +1,4 @@
-type Theme = {
+export type Theme = {
   colorPrimary: string
   colorButtonIntermed: string
   colorSecondary: string
