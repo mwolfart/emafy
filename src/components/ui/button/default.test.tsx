@@ -1,11 +1,11 @@
-import { render } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 
 import { Button } from '../index'
 
 describe('Button', () => {
   it('renders Button correctly', () => {
-    const { getByRole } = render(<Button>Text</Button>)
-    const buttonElement = getByRole('button')
+    render(<Button>Text</Button>)
+    const buttonElement = screen.getByRole('button')
     expect(buttonElement).toBeTruthy()
   })
 })

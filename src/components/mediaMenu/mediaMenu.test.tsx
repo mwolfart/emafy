@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 
 import { MediaMenu } from './mediaMenu'
 import { albums } from 'fixtures/albums'
@@ -8,7 +8,7 @@ describe('MediaMenu', () => {
   it('renders MediaMenu correctly', () => {
     const albumList = albums
 
-    const { getByText } = render(<MediaMenu mediaList={albumList} />)
+    render(<MediaMenu mediaList={albumList} />)
 
     const albumNames = albumList.map((album: Album) => album.name)
 
@@ -23,12 +23,12 @@ describe('MediaMenu', () => {
       .map(artistListToString)
 
     albumNames.forEach((query: string): void => {
-      const element = getByText(query)
+      const element = screen.getByText(query)
       expect(element).toBeTruthy()
     })
 
     artistNames.forEach((query: string): void => {
-      const element = getByText(query)
+      const element = screen.getByText(query)
       expect(element).toBeTruthy()
     })
   })
