@@ -55,7 +55,6 @@ const MediaLinkBlock = styled.a<StyledProps>`
       };
       background-color: ${theme?.palette.colorImageBackground};
       border-radius: ${theme?.borderRadiusDefault};
-      line-height: ${rowVariant ? '50px' : '200px'};
       text-align: center;
       overflow: hidden;
     }
