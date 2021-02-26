@@ -24,7 +24,7 @@ export const ModalRectangle = styled.div<StyledProps>`
     font-family: ${theme?.fontStyle};
     font-weight: ${theme?.fontBoldOne};
     font-size: ${theme?.fontSizeParagraph};
-    line-height: 28px;
+    line-height: ${theme?.lineHeightSimple};
 
     p {
       padding-bottom: 12px;
@@ -33,7 +33,6 @@ export const ModalRectangle = styled.div<StyledProps>`
     & .title {
       font-size: ${theme?.fontSizeTitle};
       color: ${theme?.palette.colorTextTitle};
-      line-height: 40px;
       font-weight: ${theme?.fontBoldTwo};
     }
   `}
