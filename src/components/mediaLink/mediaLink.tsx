@@ -1,3 +1,4 @@
+import { GlobalProps } from 'globalProps'
 import { VFC } from 'react'
 import styled from 'styled-components'
 import { Album, Media } from 'types/media'
@@ -5,46 +6,71 @@ import { Album, Media } from 'types/media'
 type Props = {
   mediaInfo: Media
   rowVariant?: boolean
-}
+} & GlobalProps
 
-type DescriptionWrapperProps = {
+type LinkBlockProps = {
   rowVariant?: boolean
-}
+} & GlobalProps
 
-const MediaLinkBlock = styled.a`
+const MediaLinkBlock = styled.a<LinkBlockProps>`
   display: flex;
-  flex-direction: column;
-  font-family: ${(props) => props.theme.fontStyle};
+  flex-direction: ${(props: LinkBlockProps) =>
+    props.rowVariant ? 'row' : 'column'};
+  font-family: ${(props: LinkBlockProps) => props.theme?.fontStyle};
   text-decoration: unset;
-  padding: 20px;
-  max-width: 210px;
+  padding: 10px;
   transition: 0.3s ease;
   transform: scale(1);
+  ${(props: LinkBlockProps) =>
+    props.rowVariant
+      ? `
+  margin: 10px;
+  border-radius: 16px;
+  background-color: ${props.theme?.colorDarkerBackground};
+  `
+      : `
+  max-width: 210px;
+  `}
 
   &:hover {
     transition: 0.3s ease;
-    transform: scale(1.1);
-
-    img {
-      box-shadow: 0px 60px 80px #00000045;
-    }
+    ${(props: LinkBlockProps) =>
+      props.rowVariant
+        ? `background-color: ${props.theme?.colorDarkerBackgroundHover};`
+        : `
+      transform: scale(1.1);
+      
+      img {
+        box-shadow: 0px 60px 80px #00000045;
+      }`}
   }
 
   img {
-    width: 200px;
-    height: 200px;
-    box-shadow: 0px 60px 80px #0000002a;
-    background-color: ${(props) => props.theme.colorImageBackground};
+    width: ${(props: LinkBlockProps) => (props.rowVariant ? '100px' : '200px')};
+    height: ${(props: LinkBlockProps) =>
+      props.rowVariant ? '100px' : '200px'};
+    ${(props: LinkBlockProps) =>
+      props.rowVariant ? '' : 'box-shadow: 0px 60px 80px #0000002a'};
+    background-color: ${(props: LinkBlockProps) =>
+      props.theme?.colorImageBackground};
     border-radius: 16px;
     border-width: 0px;
-    line-height: 200px;
+    line-height: ${(props: LinkBlockProps) =>
+      props.rowVariant ? '50px' : '200px'};
     text-align: center;
     overflow: hidden;
   }
 `
 
+const DescriptionWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  font-weight: 600;
+`
+
 const Title = styled.h3`
-  color: ${(props) => props.theme.colorTextTitle};
+  color: ${(props: GlobalProps) => props.theme?.colorTextTitle};
   width: 100%;
   padding-left: 10px;
   text-align: left;
@@ -55,7 +81,7 @@ const Title = styled.h3`
 `
 
 const SubTitle = styled.h4`
-  color: ${(props) => props.theme.colorTextDisabled};
+  color: ${(props: GlobalProps) => props.theme?.colorTextDisabled};
   width: 100%;
   padding-left: 10px;
   text-align: left;
@@ -65,16 +91,14 @@ const SubTitle = styled.h4`
   margin: 0;
 `
 
-const DescriptionWrapper = styled.div<DescriptionWrapperProps>``
-
 export const MediaLink: VFC<Props> = ({
   mediaInfo,
   rowVariant: isRowVariant,
 }) => {
   return (
-    <MediaLinkBlock href="">
+    <MediaLinkBlock href="" rowVariant={isRowVariant}>
       <img src={mediaInfo.images && mediaInfo.images[0]} alt={mediaInfo.name} />
-      <DescriptionWrapper rowVariant={isRowVariant}>
+      <DescriptionWrapper>
         <Title>{mediaInfo.name}</Title>
         {(mediaInfo as Album).artists && (
           <SubTitle>

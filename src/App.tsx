@@ -12,7 +12,11 @@ const App = (): JSX.Element => {
 
   return (
     <ThemeProvider theme={mainTheme}>
-      {isUserLoggedIn ? <MediaMenu mediaList={albums} /> : <LoginScene />}
+      {isUserLoggedIn ? (
+        <MediaMenu mediaList={albums} rowVariant />
+      ) : (
+        <LoginScene />
+      )}
     </ThemeProvider>
   )
 }
