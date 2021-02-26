@@ -3,46 +3,51 @@ import { ToggleButton } from 'components/ui/toggleButton/toggleButton'
 import styled from 'styled-components'
 import { albumList } from 'example'
 import { MediaMenu } from 'components/mediaMenu/mediaMenu'
+import { GlobalProps as StyledProps } from 'types/props'
 
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-
-  .header {
+const Wrapper = styled.div<StyledProps>`
+  ${({ theme }: StyledProps) => `
     display: flex;
-    flex-direction: row;
-    height: 20%;
-    padding-left: 30px;
-    padding-right: 30px;
-    padding-top: 20px;
-    font-family: ${(props) => props.theme.fontStyle};
+    flex-direction: column;
 
-    .description {
+    .header {
       display: flex;
-      flex-direction: column;
-      flex-grow: 1;
+      flex-direction: row;
+      height: 20%;
+      padding: 20px 30px;
+      font-family: ${theme?.fontStyle};
 
-      .title {
-        color: ${(props) => props.theme?.colorTextTitle};
-        font-size: ${(props) => props.theme?.fontSizeTitle};
-      }
+      .description {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
 
-      .subtitle {
-        color: ${(props) => props.theme?.colorTextParagraph};
-        font-size: ${(props) => props.theme?.fontSizeParagraph};
+        .title {
+          color: ${theme?.palette.colorTextTitle};
+          font-size: ${theme?.fontSizeTitle};
+        }
+
+        .subtitle {
+          color: ${theme?.palette.colorTextParagraph};
+          font-size: ${theme?.fontSizeParagraph};
+        }
       }
     }
-  }
 
-  .media-menu {
-    opacity: 1;
-    transition: 0.25s ease 0.2s;
-  }
+    .media-menu {
+      padding-left: 20px;
+      padding-right: 20px;
+      opacity: 1;
+      transition: ${theme?.transitionQuickDelayed};
+    }
 
-  .media-menu-transition {
-    opacity: 0;
-    transition: 0.25s ease;
-  }
+    .media-menu-transition {
+      padding-left: 20px;
+      padding-right: 20px;
+      opacity: 0;
+      transition: ${theme?.transitionQuick};
+    }
+  `}
 `
 
 export const SavedAlbums: VFC = () => {

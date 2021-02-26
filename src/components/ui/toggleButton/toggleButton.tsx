@@ -2,7 +2,7 @@ import { ChangeEvent, FC } from 'react'
 import styled from 'styled-components'
 import { GlobalProps } from 'types/props'
 
-type WrapperProps = {
+type StyledProps = {
   isOnOff?: boolean
   labelLeft?: string
   labelRight?: string
@@ -11,71 +11,74 @@ type WrapperProps = {
 type Props = {
   toggleState: boolean
   onChangeCallback: (value: boolean) => void
-} & WrapperProps
+} & StyledProps
 
-const Wrapper = styled.div<WrapperProps>`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+const Wrapper = styled.div<StyledProps>`
+  ${({ isOnOff, theme }: StyledProps) => `
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 
-  div {
-    font-family: ${(props: WrapperProps) => props.theme?.fontStyle};
-    font-weight: 400;
-    font-size: ${(props: WrapperProps) => props.theme?.fontSizeParagraph};
-    height: 100%;
-    padding: 0 10px;
-  }
-
-  label {
-    position: relative;
-    display: inline-block;
-    width: 60px;
-    height: 34px;
-
-    .background {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      border-radius: 30px;
-      border-width: 0;
-      background-color: ${(props: WrapperProps) =>
-        props.isOnOff
-          ? props.theme?.colorDarkerBackground
-          : props.theme?.colorSecondary};
-      transition: 0.3s ease;
+    div {
+      font-family: ${theme?.fontStyle};
+      font-weight: ${theme?.fontBoldOne};
+      font-size: ${theme?.fontSizeParagraph};
+      height: 100%;
+      padding: 0 10px;
     }
 
-    .background:before {
-      position: absolute;
-      content: '';
-      width: 26px;
-      height: 26px;
-      top: 4px;
-      left: 4px;
-      border-radius: 13px;
-      border-width: 0;
-      background-color: #fff;
-      transition: 0.3s ease;
-    }
+    label {
+      position: relative;
+      display: inline-block;
+      width: 60px;
+      height: 34px;
 
-    input:checked + .background {
-      background-color: ${(props: WrapperProps) => props.theme?.colorPrimary};
-      transition: 0.3s ease;
-    }
+      .background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-radius: ${theme?.borderRadiusLarge};
+        border-width: 0;
+        background-color: ${
+          isOnOff
+            ? theme?.palette.colorDarkerBackground
+            : theme?.palette.colorSecondary
+        };
+        transition: ${theme?.transitionQuick};
+      }
 
-    input:checked + .background:before {
-      transition: 0.3 ease;
-      transform: translateX(26px);
-    }
+      .background:before {
+        position: absolute;
+        content: '';
+        width: 26px;
+        height: 26px;
+        top: 4px;
+        left: 4px;
+        border-radius: 13px;
+        border-width: 0;
+        background-color: #fff;
+        transition: ${theme?.transitionQuick};
+      }
 
-    input {
-      opacity: 0;
-      width: 0;
-      height: 0;
+      input:checked + .background {
+        background-color: ${theme?.palette.colorPrimary};
+        transition: ${theme?.transitionQuick};
+      }
+
+      input:checked + .background:before {
+        transition: ${theme?.transitionQuick};
+        transform: translateX(26px);
+      }
+
+      input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
     }
-  }
+  `}
 `
 
 export const ToggleButton: FC<Props> = ({
