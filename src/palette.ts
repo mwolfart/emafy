@@ -1,4 +1,4 @@
-export type Theme = {
+export type Palette = {
   colorPrimary: string
   colorButtonIntermed: string
   colorSecondary: string
@@ -11,12 +11,9 @@ export type Theme = {
   colorDarkerBackground: string
   colorDarkerBackgroundHover: string
   colorImageBackground: string
-  fontStyle: string
-  fontSizeParagraph: string
-  fontSizeTitle: string
 }
 
-export const mainTheme: Theme = {
+export const mainPalette: Palette = {
   colorPrimary: '#bf0a45',
   colorButtonIntermed: '#e4305d',
   colorSecondary: '#ee7321',
@@ -29,7 +26,4 @@ export const mainTheme: Theme = {
   colorDarkerBackground: '#f0f0f0',
   colorDarkerBackgroundHover: '#e0e0e0',
   colorImageBackground: '#cccccc',
-  fontStyle: "Montserrat, 'Trebuchet MS', Arial, sans-serif",
-  fontSizeParagraph: '16px',
-  fontSizeTitle: '24px',
 }
