@@ -3,12 +3,18 @@ import { render, screen } from '@testing-library/react'
 import { MediaMenu } from './mediaMenu'
 import { albums } from 'fixtures/albums'
 import { Album, Media } from 'types/media'
+import { ThemeProvider } from 'styled-components'
+import { mainStyles } from 'styles'
 
 describe('MediaMenu', () => {
   it('renders MediaMenu correctly', () => {
     const albumList = albums
 
-    render(<MediaMenu mediaList={albumList} />)
+    render(
+      <ThemeProvider theme={mainStyles}>
+        <MediaMenu mediaList={albumList} />
+      </ThemeProvider>,
+    )
 
     const albumNames = albumList.map((album: Album) => album.name)
 
