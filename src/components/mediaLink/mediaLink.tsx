@@ -98,20 +98,18 @@ const SubTitle = styled.h4<StyledProps>`
 export const MediaLink: VFC<Props> = ({
   mediaInfo,
   rowVariant: isRowVariant,
-}) => {
-  return (
-    <MediaLinkBlock href="" rowVariant={isRowVariant}>
-      <img src={mediaInfo.images && mediaInfo.images[0]} alt={mediaInfo.name} />
-      <DescriptionWrapper>
-        <Title>{mediaInfo.name}</Title>
-        {(mediaInfo as Album).artists && (
-          <SubTitle>
-            {(mediaInfo as Album).artists
-              .map((artist: Media) => artist.name)
-              .reduce((accum: String, name: String) => `${accum}, ${name}`)}
-          </SubTitle>
-        )}
-      </DescriptionWrapper>
-    </MediaLinkBlock>
-  )
-}
+}) => (
+  <MediaLinkBlock href="" rowVariant={isRowVariant}>
+    <img src={mediaInfo.images && mediaInfo.images[0]} alt={mediaInfo.name} />
+    <DescriptionWrapper>
+      <Title>{mediaInfo.name}</Title>
+      {(mediaInfo as Album).artists && (
+        <SubTitle>
+          {(mediaInfo as Album).artists
+            .map((artist: Media) => artist.name)
+            .reduce((accum: String, name: String) => `${accum}, ${name}`)}
+        </SubTitle>
+      )}
+    </DescriptionWrapper>
+  </MediaLinkBlock>
+)
