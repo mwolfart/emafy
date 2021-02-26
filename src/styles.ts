@@ -14,6 +14,8 @@ export type Styles = {
   fontSizeTiny: string
   fontSizeParagraph: string
   fontSizeTitle: string
+  imageSizeSmall: string
+  imageSizeMedium: string
   transitionQuick: string
   palette: Palette
 }
@@ -32,6 +34,8 @@ export const mainStyles: Styles = {
   fontSizeTiny: '12px',
   fontSizeParagraph: '16px',
   fontSizeTitle: '24px',
+  imageSizeSmall: '100px',
+  imageSizeMedium: '200px',
   transitionQuick: '0.3s ease',
   palette: mainPalette,
 }

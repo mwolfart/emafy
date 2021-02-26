@@ -46,8 +46,8 @@ const MediaLinkBlock = styled.a<StyledProps>`
     }
 
     img {
-      width: ${rowVariant ? '100px' : '200px'};
-      height: ${rowVariant ? '100px' : '200px'};
+      width: ${rowVariant ? theme?.imageSizeSmall : theme?.imageSizeMedium};
+      height: ${rowVariant ? theme?.imageSizeSmall : theme?.imageSizeMedium};
       ${
         rowVariant
           ? ''
