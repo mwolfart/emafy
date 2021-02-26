@@ -14,6 +14,7 @@ export type Styles = {
   fontSizeTiny: string
   fontSizeParagraph: string
   fontSizeTitle: string
+  lineHeightSimple: string
   imageSizeSmall: string
   imageSizeMedium: string
   transitionQuick: string
@@ -36,6 +37,7 @@ export const mainStyles: Styles = {
   fontSizeTitle: '24px',
   imageSizeSmall: '100px',
   imageSizeMedium: '200px',
+  lineHeightSimple: '28px',
   transitionQuick: '0.3s ease',
   palette: mainPalette,
 }

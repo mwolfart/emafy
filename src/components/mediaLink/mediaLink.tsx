@@ -75,10 +75,10 @@ const Title = styled.h3<StyledProps>`
     color: ${theme?.palette.colorTextTitle};
     width: 100%;
     padding-left: 10px;
+    padding-bottom: 10px;
     text-align: left;
     font-weight: ${theme?.fontBoldTwo};
     font-size: ${theme?.fontSizeParagraph};
-    line-height: 36px;
     margin: 0;
   `}
 `
