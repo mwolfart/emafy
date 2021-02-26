@@ -20,7 +20,6 @@ const MediaLinkBlock = styled.a<StyledProps>`
     text-decoration: unset;
     padding: 12px;
     transition: ${theme?.transitionQuick};
-    transform: scale(1);
     ${
       rowVariant
         ? `
