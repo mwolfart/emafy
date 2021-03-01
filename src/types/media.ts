@@ -18,7 +18,7 @@ export interface Song extends Media {
 }
 
 export interface SimpleArtist extends Media {
-  genres: Array<string> | []
+  genres: Array<string>
   followers: number
   popularity: number
 }

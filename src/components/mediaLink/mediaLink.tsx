@@ -1,7 +1,7 @@
 import { GlobalProps } from 'globalProps'
 import { VFC } from 'react'
 import styled from 'styled-components'
-import { Album, Media } from 'types/media'
+import { Album, Media, SimpleArtist } from 'types/media'
 
 type Props = {
   mediaInfo: Media
@@ -62,11 +62,12 @@ const MediaLinkBlock = styled.a<StyledProps>`
 `
 
 const DescriptionWrapper = styled.div<StyledProps>`
-  ${({ theme }: StyledProps) => `
+  ${({ rowVariant, theme }: StyledProps) => `
     display: flex;
     flex-direction: column;
     text-align: left;
     font-weight: ${theme?.fontBoldTwo};
+    padding-top: ${rowVariant ? '0' : '10px'};
   `}
 `
 
@@ -98,18 +99,38 @@ const SubTitle = styled.h4<StyledProps>`
 export const MediaLink: VFC<Props> = ({
   mediaInfo,
   rowVariant: isRowVariant,
-}) => (
-  <MediaLinkBlock href="" rowVariant={isRowVariant}>
-    <img src={mediaInfo.images && mediaInfo.images[0]} alt={mediaInfo.name} />
-    <DescriptionWrapper>
-      <Title>{mediaInfo.name}</Title>
-      {(mediaInfo as Album).artists && (
-        <SubTitle>
-          {(mediaInfo as Album).artists
-            .map((artist: Media) => artist.name)
-            .reduce((accum: String, name: String) => `${accum}, ${name}`)}
-        </SubTitle>
-      )}
-    </DescriptionWrapper>
-  </MediaLinkBlock>
-)
+}) => {
+  const renderSubTitle = (): string => {
+    const isAlbum = 'artists' in mediaInfo && 'totalTracks' in mediaInfo
+    const isSong =
+      'artists' in mediaInfo &&
+      'albumReference' in mediaInfo &&
+      'duration' in mediaInfo
+    const isArtist =
+      'genres' in mediaInfo &&
+      'followers' in mediaInfo &&
+      'popularity' in mediaInfo
+
+    if (isAlbum || isSong) {
+      return (mediaInfo as Album).artists
+        .map((artist: Media) => artist.name)
+        .reduce((accum: string, name: string) => `${accum}, ${name}`)
+    }
+    if (isArtist) {
+      return (mediaInfo as SimpleArtist).genres.reduce(
+        (accum: string, genre: string) => `${accum}, ${genre}`,
+      )
+    }
+    return ''
+  }
+
+  return (
+    <MediaLinkBlock href="" rowVariant={isRowVariant}>
+      <img src={mediaInfo.images && mediaInfo.images[0]} alt={mediaInfo.name} />
+      <DescriptionWrapper rowVariant={isRowVariant}>
+        <Title>{mediaInfo.name}</Title>
+        <SubTitle>{renderSubTitle()}</SubTitle>
+      </DescriptionWrapper>
+    </MediaLinkBlock>
+  )
+}
