@@ -100,22 +100,12 @@ export const MediaLink: VFC<Props> = ({
   rowVariant: isRowVariant,
 }) => {
   const renderSubTitle = (): string => {
-    const isAlbum = 'artists' in mediaInfo && 'totalTracks' in mediaInfo
-    const isSong =
-      'artists' in mediaInfo &&
-      'albumReference' in mediaInfo &&
-      'duration' in mediaInfo
-    const isArtist =
-      'genres' in mediaInfo &&
-      'followers' in mediaInfo &&
-      'popularity' in mediaInfo
-
-    if (isAlbum || isSong) {
+    if (mediaInfo.type === 'album' || mediaInfo.type === 'song') {
       return (mediaInfo as Album).artists
         .map((artist: Media) => artist.name)
         .reduce((accum: string, name: string) => `${accum}, ${name}`)
     }
-    if (isArtist) {
+    if (mediaInfo.type === 'artist') {
       return (mediaInfo as SimpleArtist).genres.reduce(
         (accum: string, genre: string) => `${accum}, ${genre}`,
       )
