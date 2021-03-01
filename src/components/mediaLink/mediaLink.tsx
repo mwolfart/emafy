@@ -24,7 +24,7 @@ const MediaLinkBlock = styled.a<StyledProps>`
         ? `
     margin: 10px; 
     border-radius: ${theme?.borderRadiusDefault};
-    background-color: ${theme?.palette.colorDarkerBackground};`
+    background-color: ${theme?.palette.colorLinkBackground};`
         : `
     max-width: 210px;`
     }
@@ -34,7 +34,7 @@ const MediaLinkBlock = styled.a<StyledProps>`
       ${
         rowVariant
           ? `
-      background-color: ${theme?.palette.colorDarkerBackgroundHover};`
+      background-color: ${theme?.palette.colorLinkBackgroundHover};`
           : `
       transform: scale(1.1);
         
