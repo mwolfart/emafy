@@ -12,11 +12,17 @@ describe('MediaLink', () => {
         <MediaLink mediaInfo={album} />
       </ThemeProvider>,
     )
-    let linkElement = screen.getByText(album.name)
-    expect(linkElement).toBeTruthy()
-    linkElement = screen.getByText(
-      `${album.artists[0].name}, ${album.artists[1].name}`,
-    )
-    expect(linkElement).toBeTruthy()
+    const albumNameRegex = new RegExp(album.name)
+    const linkElement = screen.getByRole('link', { name: albumNameRegex })
+    expect(linkElement).toHaveAttribute('href', '')
+
+    const headingElement = screen.getAllByRole('heading', { name: album.name })
+    expect(headingElement.length).toBeGreaterThan(0)
+
+    const artistNames = `${album.artists[0].name}, ${album.artists[1].name}`
+    const headingElementArtists = screen.getAllByRole('heading', {
+      name: artistNames,
+    })
+    expect(headingElementArtists.length).toBeGreaterThan(0)
   })
 })
