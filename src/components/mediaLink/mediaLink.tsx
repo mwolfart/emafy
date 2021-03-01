@@ -124,9 +124,11 @@ export const MediaLink: VFC<Props> = ({
     return ''
   }
 
+  const imgSrc = mediaInfo.images?.[0] ?? ''
+
   return (
     <MediaLinkBlock href="" rowVariant={isRowVariant}>
-      <img src={mediaInfo.images && mediaInfo.images[0]} alt={mediaInfo.name} />
+      <img src={imgSrc} alt={mediaInfo.name} />
       <DescriptionWrapper rowVariant={isRowVariant}>
         <Title>{mediaInfo.name}</Title>
         <SubTitle>{renderSubTitle()}</SubTitle>
