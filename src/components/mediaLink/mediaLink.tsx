@@ -17,7 +17,6 @@ const MediaLinkBlock = styled.a<StyledProps>`
     display: flex;
     flex-direction: ${rowVariant ? 'row' : 'column'};
     font-family: ${theme?.fontStyle};
-    text-decoration: unset;
     padding: 12px;
     transition: ${theme?.transitionQuick};
     ${
