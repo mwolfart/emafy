@@ -17,25 +17,17 @@ describe('MediaMenu', () => {
     )
 
     const albumNames = albumList.map((album: Album) => album.name)
-
-    const artistNameReduction = (
-      fullString: string,
-      curArtistName: string,
-    ): string => `${fullString}, ${curArtistName}`
-    const artistListToString = (artistList: Media[]): string =>
-      artistList.map((artist: Media) => artist.name).reduce(artistNameReduction)
-    const artistNames = albumList
-      .map((album: Album) => album.artists)
-      .map(artistListToString)
-
     albumNames.forEach((query: string): void => {
       const element = screen.getByText(query)
       expect(element).toBeTruthy()
     })
 
-    artistNames.forEach((query: string): void => {
-      const element = screen.getByText(query)
-      expect(element).toBeTruthy()
+    const artistLists = albumList.map((album: Album) => album.artists)
+    artistLists.forEach((list: Media[]) => {
+      list.forEach((item: Media) => {
+        const element = screen.queryAllByText(item.name)
+        expect(element).toBeTruthy()
+      })
     })
   })
 })
