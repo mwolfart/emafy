@@ -3,6 +3,7 @@ import { VFC } from 'react'
 import styled from 'styled-components'
 import { Media, isAlbum, isArtist, isSong } from 'types/media'
 import '@fortawesome/fontawesome-free/css/solid.min.css'
+import { MediaIcon } from 'components/ui/mediaIcon'
 
 type Props = {
   mediaInfo: Media
@@ -96,18 +97,6 @@ const SubTitle = styled.h4<StyledProps>`
   `}
 `
 
-const MediaIcon = styled.i<StyledProps>`
-  ${({ rowVariant, theme }: StyledProps) => `
-    width: ${rowVariant ? theme?.imageSizeSmall : theme?.imageSizeMedium};
-    height: ${rowVariant ? theme?.imageSizeSmall : theme?.imageSizeMedium};
-    background-color: ${theme?.palette.colorImageBackground};
-    border-radius: ${theme?.borderRadiusDefault};
-    text-align: center;
-    line-height: ${rowVariant ? theme?.imageSizeSmall : theme?.imageSizeMedium};
-    color: ${theme?.palette.colorTextParagraph};
-  `}
-`
-
 export const MediaLink: VFC<Props> = ({
   mediaInfo,
   rowVariant: isRowVariant,
@@ -127,13 +116,14 @@ export const MediaLink: VFC<Props> = ({
   }
 
   const imgSrc = mediaInfo.images?.[0]
+  const iconSize = isRowVariant ? '100px' : '200px'
 
   return (
     <MediaLinkBlock href="" rowVariant={isRowVariant}>
       {imgSrc ? (
         <img src={imgSrc} alt={mediaInfo.name} />
       ) : (
-        <MediaIcon className="fas fa-6x fa-record-vinyl" />
+        <MediaIcon size={iconSize} className="fas fa-6x fa-record-vinyl" />
       )}
       <DescriptionWrapper rowVariant={isRowVariant}>
         <Title>{mediaInfo.name}</Title>
