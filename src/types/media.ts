@@ -31,7 +31,9 @@ export interface SimpleArtist extends Media {
 
 export const isAlbum = (media: Media): media is Album =>
   media.type === MediaType.album
+
 export const isSong = (media: Media): media is Song =>
   media.type === MediaType.song
+
 export const isArtist = (media: Media): media is SimpleArtist =>
   media.type === MediaType.artist
