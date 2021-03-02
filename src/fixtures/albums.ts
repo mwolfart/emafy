@@ -1,4 +1,4 @@
-import { Album } from 'types/media'
+import { Album, MediaType } from 'types/media'
 
 const faker = require('faker')
 let nextId = 0
@@ -9,9 +9,18 @@ for (let i = 0; i < 10; i++) {
     id: (nextId++).toString(),
     name: faker.name.findName(),
     artists: [
-      { id: (nextId++).toString(), name: faker.name.findName() },
-      { id: (nextId++).toString(), name: faker.name.findName() },
+      {
+        id: (nextId++).toString(),
+        name: faker.name.findName(),
+        type: MediaType.artist,
+      },
+      {
+        id: (nextId++).toString(),
+        name: faker.name.findName(),
+        type: MediaType.artist,
+      },
     ],
     totalTracks: 10,
+    type: MediaType.album,
   })
 }
