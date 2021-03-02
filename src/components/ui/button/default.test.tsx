@@ -8,10 +8,10 @@ describe('Button', () => {
   it('renders Button correctly', () => {
     render(
       <ThemeProvider theme={mainStyles}>
-        <Button>Text</Button>
+        <Button>Some Text</Button>
       </ThemeProvider>,
     )
-    const buttonElement = screen.getByRole('button')
+    const buttonElement = screen.getByRole('button', { name: 'Some Text' })
     expect(buttonElement).toBeTruthy()
   })
 })
