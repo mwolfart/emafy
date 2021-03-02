@@ -1,4 +1,8 @@
-import { MediaType } from './MediaType'
+export enum MediaType {
+  artist,
+  song,
+  album,
+}
 
 export type Media = {
   name: string
