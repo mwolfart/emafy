@@ -6,7 +6,7 @@ import styled from 'styled-components'
 export type Props = {
   iconSize: string
   iconClass: string
-  iconHint?: string
+  iconLabel?: string
 } & GlobalProps
 
 export type StyledProps = {
@@ -27,8 +27,8 @@ export const Wrapper = styled.div<StyledProps>`
   `}
 `
 
-export const MediaIcon: VFC<Props> = ({ iconSize, iconClass, iconHint }) => (
+export const MediaIcon: VFC<Props> = ({ iconSize, iconClass, iconLabel }) => (
   <Wrapper size={iconSize}>
-    <i className={iconClass} aria-label={iconHint} />
+    <i className={iconClass} aria-label={iconLabel} />
   </Wrapper>
 )

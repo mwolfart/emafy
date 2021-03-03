@@ -127,7 +127,7 @@ export const MediaLink: VFC<Props> = ({
         <MediaIcon
           iconSize={iconSize}
           iconClass={`fas ${faSize} fa-record-vinyl`}
-          iconHint={strings.components.mediaLink.noMediaIcon}
+          iconLabel={strings.components.mediaLink.noMediaIcon}
         />
       )}
       <DescriptionWrapper rowVariant={isRowVariant}>

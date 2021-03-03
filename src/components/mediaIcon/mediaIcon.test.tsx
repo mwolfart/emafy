@@ -6,19 +6,19 @@ import { ThemeProvider } from 'styled-components'
 
 describe('MediaIcon', () => {
   it('renders MediaIcon correctly', () => {
-    const iconHint = 'Icon Test'
+    const iconLabel = 'Icon Test'
 
     render(
       <ThemeProvider theme={mainStyles}>
         <MediaIcon
           iconSize="100px"
           iconClass="fa fa-2x fa-times"
-          iconHint={iconHint}
+          iconLabel={iconLabel}
         />
       </ThemeProvider>,
     )
 
-    const element = screen.getByLabelText(iconHint)
+    const element = screen.getByLabelText(iconLabel)
     expect(element).toBeTruthy()
   })
 })
