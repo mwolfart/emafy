@@ -1,7 +1,7 @@
 import { GlobalProps } from 'globalProps'
 import { VFC } from 'react'
 import styled from 'styled-components'
-import { Album, Media, SimpleArtist } from 'types/media'
+import { Media, isAlbum, isArtist, isSong } from 'types/media'
 
 type Props = {
   mediaInfo: Media
@@ -100,23 +100,13 @@ export const MediaLink: VFC<Props> = ({
   rowVariant: isRowVariant,
 }) => {
   const renderSubTitle = (): string => {
-    const isAlbum = 'artists' in mediaInfo && 'totalTracks' in mediaInfo
-    const isSong =
-      'artists' in mediaInfo &&
-      'albumReference' in mediaInfo &&
-      'duration' in mediaInfo
-    const isArtist =
-      'genres' in mediaInfo &&
-      'followers' in mediaInfo &&
-      'popularity' in mediaInfo
-
-    if (isAlbum || isSong) {
-      return (mediaInfo as Album).artists
+    if (isAlbum(mediaInfo) || isSong(mediaInfo)) {
+      return mediaInfo.artists
         .map((artist: Media) => artist.name)
         .reduce((accum: string, name: string) => `${accum}, ${name}`)
     }
-    if (isArtist) {
-      return (mediaInfo as SimpleArtist).genres.reduce(
+    if (isArtist(mediaInfo)) {
+      return mediaInfo.genres.reduce(
         (accum: string, genre: string) => `${accum}, ${genre}`,
       )
     }
