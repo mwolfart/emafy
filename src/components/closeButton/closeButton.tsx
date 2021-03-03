@@ -1,6 +1,5 @@
 import { VFC } from 'react'
 import styled from 'styled-components'
-import 'font-awesome/css/font-awesome.min.css'
 import { CleanButton } from 'components/ui/'
 import { strings } from 'strings'
 

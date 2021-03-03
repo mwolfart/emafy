@@ -2,6 +2,8 @@ import { GlobalProps } from 'globalProps'
 import { VFC } from 'react'
 import styled from 'styled-components'
 import { Media, isAlbum, isArtist, isSong } from 'types/media'
+import { MediaIcon } from 'components/mediaIcon/mediaIcon'
+import { strings } from 'strings'
 
 type Props = {
   mediaInfo: Media
@@ -113,11 +115,21 @@ export const MediaLink: VFC<Props> = ({
     return ''
   }
 
-  const imgSrc = mediaInfo.images?.[0] ?? ''
+  const imgSrc = mediaInfo.images?.[0]
+  const iconSize = isRowVariant ? '100px' : '200px'
+  const faSize = isRowVariant ? 'fa-3x' : 'fa-6x'
 
   return (
     <MediaLinkBlock href="" rowVariant={isRowVariant}>
-      <img src={imgSrc} alt={mediaInfo.name} />
+      {imgSrc ? (
+        <img src={imgSrc} alt={mediaInfo.name} />
+      ) : (
+        <MediaIcon
+          iconSize={iconSize}
+          iconClass={`fas ${faSize} fa-record-vinyl`}
+          iconLabel={strings.components.mediaLink.noMediaIcon}
+        />
+      )}
       <DescriptionWrapper rowVariant={isRowVariant}>
         <Title>{mediaInfo.name}</Title>
         <SubTitle>{renderSubTitle()}</SubTitle>
