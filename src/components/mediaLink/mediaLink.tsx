@@ -117,13 +117,17 @@ export const MediaLink: VFC<Props> = ({
 
   const imgSrc = mediaInfo.images?.[0]
   const iconSize = isRowVariant ? '100px' : '200px'
+  const faSize = isRowVariant ? 'fa-3x' : 'fa-6x'
 
   return (
     <MediaLinkBlock href="" rowVariant={isRowVariant}>
       {imgSrc ? (
         <img src={imgSrc} alt={mediaInfo.name} />
       ) : (
-        <MediaIcon iconSize={iconSize} iconClass="fas fa-6x fa-record-vinyl" />
+        <MediaIcon
+          iconSize={iconSize}
+          iconClass={`fas ${faSize} fa-record-vinyl`}
+        />
       )}
       <DescriptionWrapper rowVariant={isRowVariant}>
         <Title>{mediaInfo.name}</Title>
