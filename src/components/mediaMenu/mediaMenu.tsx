@@ -1,5 +1,5 @@
 import { MediaLink } from 'components/mediaLink/mediaLink'
-import { GlobalProps } from 'globalProps'
+import { GlobalProps } from 'types/globalProps'
 import { VFC } from 'react'
 import styled from 'styled-components'
 import { Media } from 'types/media'
@@ -13,7 +13,7 @@ type StyledProps = {
   rowVariant?: boolean
 } & GlobalProps
 
-const MediaMenuBlock = styled.div<StyledProps>`
+const Wrapper = styled.div<StyledProps>`
   ${({ rowVariant, theme }: StyledProps) => `
     display: grid;
     grid-template-columns: ${
@@ -26,9 +26,9 @@ export const MediaMenu: VFC<Props> = ({
   mediaList,
   rowVariant: isRowVariant,
 }) => (
-  <MediaMenuBlock rowVariant={isRowVariant}>
+  <Wrapper rowVariant={isRowVariant}>
     {mediaList.map((media: Media) => (
       <MediaLink key={media.id} mediaInfo={media} rowVariant={isRowVariant} />
     ))}
-  </MediaMenuBlock>
+  </Wrapper>
 )
