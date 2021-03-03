@@ -5,9 +5,11 @@ let nextId = 0
 
 export let albums: Album[] = []
 for (let i = 0; i < 10; i++) {
+  const noImageRandomSelector = Math.random() * 10 <= 1
+
   albums.push({
     id: (nextId++).toString(),
-    name: faker.name.findName(),
+    name: faker.random.words(),
     artists: [
       {
         id: (nextId++).toString(),
@@ -22,5 +24,12 @@ for (let i = 0; i < 10; i++) {
     ],
     totalTracks: 10,
     type: MediaType.album,
+    images: noImageRandomSelector
+      ? []
+      : [
+          `${faker.image.abstract()}?random=${Math.round(
+            Math.random() * 1000,
+          )}`,
+        ],
   })
 }
