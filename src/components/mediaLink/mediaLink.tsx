@@ -1,9 +1,9 @@
-import { GlobalProps } from 'globalProps'
+import { GlobalProps } from 'types/globalProps'
 import { VFC } from 'react'
 import styled from 'styled-components'
-import { Media, isAlbum, isArtist, isSong } from 'types/media'
-import { MediaIcon } from 'components/mediaIcon/mediaIcon'
-import { strings } from 'strings'
+import { Media } from 'types/media'
+import { MediaImage } from 'components/mediaImage/mediaImage'
+import { MediaDescription } from 'components/mediaDescription/mediaDescription'
 
 type Props = {
   mediaInfo: Media
@@ -14,7 +14,7 @@ type StyledProps = {
   rowVariant?: boolean
 } & GlobalProps
 
-const MediaLinkBlock = styled.a<StyledProps>`
+const Wrapper = styled.a<StyledProps>`
   ${({ rowVariant, theme }: StyledProps) => `
     display: flex;
     flex-direction: ${rowVariant ? 'row' : 'column'};
@@ -38,62 +38,13 @@ const MediaLinkBlock = styled.a<StyledProps>`
           ? `
       background-color: ${theme?.palette.colorLinkBackgroundHover};`
           : `
-      transform: scale(1.1);
-        
-      img {
-        box-shadow: ${theme?.shadowDimensionsDefault} ${theme?.shadowAccent};
-      }`
+      transform: scale(1.1);`
       }
     }
 
-    img {
-      width: ${rowVariant ? theme?.imageSizeSmall : theme?.imageSizeMedium};
-      height: ${rowVariant ? theme?.imageSizeSmall : theme?.imageSizeMedium};
-      ${
-        rowVariant
-          ? ''
-          : `box-shadow: ${theme?.shadowDimensionsDefault} ${theme?.shadowDefault}`
-      };
-      background-color: ${theme?.palette.colorImageBackground};
-      border-radius: ${theme?.borderRadiusDefault};
-      text-align: center;
-      overflow: hidden;
+    div + div {
+      padding-top: ${rowVariant ? '0' : '10px'};
     }
-  `}
-`
-
-const DescriptionWrapper = styled.div<StyledProps>`
-  ${({ rowVariant, theme }: StyledProps) => `
-    display: flex;
-    flex-direction: column;
-    text-align: left;
-    font-weight: ${theme?.fontBoldTwo};
-    padding-top: ${rowVariant ? '0' : '10px'};
-  `}
-`
-
-const Title = styled.h3<StyledProps>`
-  ${({ theme }: StyledProps) => `
-    color: ${theme?.palette.colorTextTitle};
-    width: 100%;
-    padding-left: 10px;
-    padding-bottom: 10px;
-    text-align: left;
-    font-weight: ${theme?.fontBoldTwo};
-    font-size: ${theme?.fontSizeParagraph};
-    margin: 0;
-  `}
-`
-
-const SubTitle = styled.h4<StyledProps>`
-  ${({ theme }: StyledProps) => `
-    color: ${theme?.palette.colorTextDisabled};
-    width: 100%;
-    padding-left: 10px;
-    text-align: left;
-    font-weight: ${theme?.fontBoldTwo};
-    font-size: ${theme?.fontSizeTiny};
-    margin: 0;
   `}
 `
 
@@ -101,39 +52,19 @@ export const MediaLink: VFC<Props> = ({
   mediaInfo,
   rowVariant: isRowVariant,
 }) => {
-  const renderSubTitle = (): string => {
-    if (isAlbum(mediaInfo) || isSong(mediaInfo)) {
-      return mediaInfo.artists
-        .map((artist: Media) => artist.name)
-        .reduce((accum: string, name: string) => `${accum}, ${name}`)
-    }
-    if (isArtist(mediaInfo)) {
-      return mediaInfo.genres.reduce(
-        (accum: string, genre: string) => `${accum}, ${genre}`,
-      )
-    }
-    return ''
-  }
-
   const imgSrc = mediaInfo.images?.[0]
   const iconSize = isRowVariant ? '100px' : '200px'
   const faSize = isRowVariant ? 'fa-3x' : 'fa-6x'
 
   return (
-    <MediaLinkBlock href="" rowVariant={isRowVariant}>
-      {imgSrc ? (
-        <img src={imgSrc} alt={mediaInfo.name} />
-      ) : (
-        <MediaIcon
-          iconSize={iconSize}
-          iconClass={`fas ${faSize} fa-record-vinyl`}
-          iconLabel={strings.components.mediaLink.noMediaIcon}
-        />
-      )}
-      <DescriptionWrapper rowVariant={isRowVariant}>
-        <Title>{mediaInfo.name}</Title>
-        <SubTitle>{renderSubTitle()}</SubTitle>
-      </DescriptionWrapper>
-    </MediaLinkBlock>
+    <Wrapper href="" rowVariant={isRowVariant}>
+      <MediaImage
+        src={imgSrc}
+        iconSize={iconSize}
+        iconClass={`fas ${faSize} fa-record-vinyl`}
+        allowShadow={!isRowVariant}
+      />
+      <MediaDescription mediaInfo={mediaInfo} />
+    </Wrapper>
   )
 }
