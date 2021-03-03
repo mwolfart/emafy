@@ -1,6 +1,7 @@
 export const strings = {
   components: {
     closeButton: 'Close modal',
+    mediaIcon: 'Media display icon',
   },
   scenes: {
     login: {

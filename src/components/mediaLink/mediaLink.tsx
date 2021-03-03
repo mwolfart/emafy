@@ -3,7 +3,7 @@ import { VFC } from 'react'
 import styled from 'styled-components'
 import { Media, isAlbum, isArtist, isSong } from 'types/media'
 import '@fortawesome/fontawesome-free/css/solid.min.css'
-import { MediaIcon } from 'components/ui/mediaIcon'
+import { MediaIcon } from 'components/mediaIcon/mediaIcon'
 
 type Props = {
   mediaInfo: Media
@@ -123,7 +123,7 @@ export const MediaLink: VFC<Props> = ({
       {imgSrc ? (
         <img src={imgSrc} alt={mediaInfo.name} />
       ) : (
-        <MediaIcon size={iconSize} className="fas fa-6x fa-record-vinyl" />
+        <MediaIcon iconSize={iconSize} iconClass="fas fa-6x fa-record-vinyl" />
       )}
       <DescriptionWrapper rowVariant={isRowVariant}>
         <Title>{mediaInfo.name}</Title>
