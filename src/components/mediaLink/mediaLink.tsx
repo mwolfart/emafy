@@ -3,6 +3,7 @@ import { VFC } from 'react'
 import styled from 'styled-components'
 import { Media, isAlbum, isArtist, isSong } from 'types/media'
 import { MediaIcon } from 'components/mediaIcon/mediaIcon'
+import { strings } from 'strings'
 
 type Props = {
   mediaInfo: Media
@@ -126,6 +127,7 @@ export const MediaLink: VFC<Props> = ({
         <MediaIcon
           iconSize={iconSize}
           iconClass={`fas ${faSize} fa-record-vinyl`}
+          iconHint={strings.components.mediaLink.noMediaIcon}
         />
       )}
       <DescriptionWrapper rowVariant={isRowVariant}>
