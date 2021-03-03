@@ -1,6 +1,8 @@
 import { isLoggedIn, login } from 'api/credentials'
 
 import './App.css'
+import '@fortawesome/fontawesome-free/css/fontawesome.min.css'
+import '@fortawesome/fontawesome-free/css/solid.min.css'
 import { LoginScene } from 'scenes/login/login'
 import { createGlobalStyle, ThemeProvider } from 'styled-components'
 import { MediaMenu } from 'components/mediaMenu/mediaMenu'

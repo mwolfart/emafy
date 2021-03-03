@@ -2,7 +2,6 @@ import { GlobalProps } from 'globalProps'
 import { VFC } from 'react'
 import styled from 'styled-components'
 import { Media, isAlbum, isArtist, isSong } from 'types/media'
-import '@fortawesome/fontawesome-free/css/solid.min.css'
 import { MediaIcon } from 'components/mediaIcon/mediaIcon'
 
 type Props = {
