@@ -1,6 +1,6 @@
 import { Album, MediaType } from 'types/media'
+import faker from 'faker'
 
-const faker = require('faker')
 let nextId = 0
 
 export let albums: Album[] = []
