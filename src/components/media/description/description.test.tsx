@@ -5,8 +5,8 @@ import { mainStyles } from 'styles'
 import { ThemeProvider } from 'styled-components'
 import { album } from 'fixtures/album'
 
-describe('MediaDescription', () => {
-  it('renders Media Description correctly', () => {
+describe('Description', () => {
+  it('renders Description correctly', () => {
     render(
       <ThemeProvider theme={mainStyles}>
         <Description mediaInfo={album} />

@@ -6,8 +6,8 @@ import { Album, Media } from 'types/media'
 import { ThemeProvider } from 'styled-components'
 import { mainStyles } from 'styles'
 
-describe('MediaMenu', () => {
-  it('renders Media Menu correctly', () => {
+describe('Menu', () => {
+  it('renders Menu correctly', () => {
     const albumList = albums
 
     render(

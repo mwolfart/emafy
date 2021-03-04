@@ -5,8 +5,8 @@ import { album } from 'fixtures/album'
 import { mainStyles } from 'styles'
 import { ThemeProvider } from 'styled-components'
 
-describe('MediaLink', () => {
-  it('renders Media Link correctly', () => {
+describe('Link', () => {
+  it('renders Link correctly', () => {
     render(
       <ThemeProvider theme={mainStyles}>
         <Link mediaInfo={album} />
