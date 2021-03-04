@@ -18,11 +18,9 @@ const Wrapper = styled.div<GlobalProps>`
   `}
 `
 
-export const Description: VFC<Props> = ({ mediaInfo }) => {
-  return (
-    <Wrapper>
-      <Title>{mediaInfo.name}</Title>
-      <Subtitle>{renderSubTitle(mediaInfo)}</Subtitle>
-    </Wrapper>
-  )
-}
+export const Description: VFC<Props> = ({ mediaInfo }) => (
+  <Wrapper>
+    <Title>{mediaInfo.name}</Title>
+    <Subtitle>{renderSubTitle(mediaInfo)}</Subtitle>
+  </Wrapper>
+)
