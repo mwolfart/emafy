@@ -10,10 +10,10 @@ export const renderSubTitle = (mediaInfo: Media): string => {
   return ''
 }
 
-const artistListToString = (artistList: Media[]): string =>
+export const artistListToString = (artistList: Media[]): string =>
   artistList
     .map((artist: Media) => artist.name)
     .reduce((accum: string, name: string) => `${accum}, ${name}`)
 
-const genreListToString = (genreList: string[]): string =>
+export const genreListToString = (genreList: string[]): string =>
   genreList.reduce((accum: string, genre: string) => `${accum}, ${genre}`)
