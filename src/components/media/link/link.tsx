@@ -2,8 +2,8 @@ import { GlobalProps } from 'types/globalProps'
 import { VFC } from 'react'
 import styled from 'styled-components'
 import { Media } from 'types/media'
-import { MediaImage } from 'components/mediaImage/mediaImage'
-import { MediaDescription } from 'components/mediaDescription/mediaDescription'
+import { Description as MediaDescription } from '../description/description'
+import { Image as MediaImage } from '../image/image'
 
 type Props = {
   mediaInfo: Media
@@ -48,10 +48,7 @@ const Wrapper = styled.a<StyledProps>`
   `}
 `
 
-export const MediaLink: VFC<Props> = ({
-  mediaInfo,
-  rowVariant: isRowVariant,
-}) => {
+export const Link: VFC<Props> = ({ mediaInfo, rowVariant: isRowVariant }) => {
   const imgSrc = mediaInfo.images?.[0]
   const iconSize = isRowVariant ? '100px' : '200px'
   const faSize = isRowVariant ? 'fa-3x' : 'fa-6x'

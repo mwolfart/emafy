@@ -1,15 +1,15 @@
 import { render, screen } from '@testing-library/react'
 
-import { MediaLink } from './mediaLink'
+import { Link } from './link'
 import { album } from 'fixtures/album'
 import { mainStyles } from 'styles'
 import { ThemeProvider } from 'styled-components'
 
 describe('MediaLink', () => {
-  it('renders MediaLink correctly', () => {
+  it('renders Media Link correctly', () => {
     render(
       <ThemeProvider theme={mainStyles}>
-        <MediaLink mediaInfo={album} />
+        <Link mediaInfo={album} />
       </ThemeProvider>,
     )
     const albumNameRegex = new RegExp(album.name)

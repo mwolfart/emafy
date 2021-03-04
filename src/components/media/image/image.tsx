@@ -54,7 +54,7 @@ export const Wrapper = styled.div<StyledProps>`
   `}
 `
 
-export const MediaImage: VFC<Props> = ({
+export const Image: VFC<Props> = ({
   src,
   iconSize,
   iconClass,

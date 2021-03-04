@@ -1,18 +1,18 @@
 import { render, screen } from '@testing-library/react'
 
-import { MediaMenu } from './mediaMenu'
+import { Menu } from './menu'
 import { albums } from 'fixtures/albums'
 import { Album, Media } from 'types/media'
 import { ThemeProvider } from 'styled-components'
 import { mainStyles } from 'styles'
 
 describe('MediaMenu', () => {
-  it('renders MediaMenu correctly', () => {
+  it('renders Media Menu correctly', () => {
     const albumList = albums
 
     render(
       <ThemeProvider theme={mainStyles}>
-        <MediaMenu mediaList={albumList} />
+        <Menu mediaList={albumList} />
       </ThemeProvider>,
     )
 

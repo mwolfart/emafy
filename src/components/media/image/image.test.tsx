@@ -1,15 +1,15 @@
 import { render, screen } from '@testing-library/react'
 
-import { MediaImage } from './mediaImage'
+import { Image } from './image'
 import { mainStyles } from 'styles'
 import { ThemeProvider } from 'styled-components'
 import { strings } from 'strings'
 
 describe('MediaImage', () => {
-  it('renders MediaImage correctly', () => {
+  it('renders Media Image correctly', () => {
     render(
       <ThemeProvider theme={mainStyles}>
-        <MediaImage iconSize="100px" iconClass="fa fa-2x fa-times" />
+        <Image iconSize="100px" iconClass="fa fa-2x fa-times" />
       </ThemeProvider>,
     )
     const element = screen.getByLabelText(strings.components.mediaImage.noImage)

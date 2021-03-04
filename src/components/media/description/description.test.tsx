@@ -1,15 +1,15 @@
 import { render, screen } from '@testing-library/react'
 
-import { MediaDescription } from './mediaDescription'
+import { Description } from './description'
 import { mainStyles } from 'styles'
 import { ThemeProvider } from 'styled-components'
 import { album } from 'fixtures/album'
 
 describe('MediaDescription', () => {
-  it('renders MediaDescription correctly', () => {
+  it('renders Media Description correctly', () => {
     render(
       <ThemeProvider theme={mainStyles}>
-        <MediaDescription mediaInfo={album} />
+        <Description mediaInfo={album} />
       </ThemeProvider>,
     )
 

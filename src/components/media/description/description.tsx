@@ -1,6 +1,6 @@
 import { Title, SubTitle } from 'components/ui/index'
 import { GlobalProps } from 'types/globalProps'
-import React, { VFC } from 'react'
+import { VFC } from 'react'
 import styled from 'styled-components'
 import { isAlbum, isArtist, isSong, Media } from 'types/media'
 
@@ -17,7 +17,7 @@ const Wrapper = styled.div<GlobalProps>`
   `}
 `
 
-export const MediaDescription: VFC<Props> = ({ mediaInfo }) => {
+export const Description: VFC<Props> = ({ mediaInfo }) => {
   const renderSubTitle = (): string => {
     if (isAlbum(mediaInfo) || isSong(mediaInfo)) {
       return mediaInfo.artists
