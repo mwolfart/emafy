@@ -1,4 +1,4 @@
-import { Title, SubTitle } from 'components/ui/index'
+import { Title, Subtitle } from 'components/ui/index'
 import { GlobalProps } from 'types/globalProps'
 import { VFC } from 'react'
 import styled from 'styled-components'
@@ -35,7 +35,7 @@ export const Description: VFC<Props> = ({ mediaInfo }) => {
   return (
     <Wrapper>
       <Title>{mediaInfo.name}</Title>
-      <SubTitle>{renderSubTitle()}</SubTitle>
+      <Subtitle>{renderSubTitle()}</Subtitle>
     </Wrapper>
   )
 }

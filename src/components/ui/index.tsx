@@ -6,4 +6,4 @@ export { CleanButton } from './button/clean'
 export { ModalRectangle } from './modalRectangle'
 
 export { Title } from './title'
-export { SubTitle } from './subtitle'
+export { Subtitle } from './subtitle'
