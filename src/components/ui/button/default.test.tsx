@@ -6,12 +6,14 @@ import { Button } from '../index'
 
 describe('Button', () => {
   it('renders Button correctly', () => {
+    const faker = require('faker')
+    const text = faker.random.words()
     render(
       <ThemeProvider theme={mainStyles}>
-        <Button>Some Text</Button>
+        <Button>{text}</Button>
       </ThemeProvider>,
     )
-    const buttonElement = screen.getByRole('button', { name: 'Some Text' })
+    const buttonElement = screen.getByRole('button', { name: text })
     expect(buttonElement).toBeTruthy()
   })
 })

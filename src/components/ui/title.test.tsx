@@ -6,12 +6,14 @@ import { Title } from './index'
 
 describe('Title', () => {
   it('renders Title correctly', () => {
+    const faker = require('faker')
+    const text = faker.random.words()
     render(
       <ThemeProvider theme={mainStyles}>
-        <Title>Text</Title>
+        <Title>{text}</Title>
       </ThemeProvider>,
     )
-    const rectangleElement = screen.getByText('Text')
+    const rectangleElement = screen.getByText(text)
     expect(rectangleElement).toBeTruthy()
   })
 })

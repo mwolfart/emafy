@@ -6,12 +6,14 @@ import { Canvas } from './index'
 
 describe('Canvas', () => {
   it('renders Canvas correctly', () => {
+    const faker = require('faker')
+    const text = faker.random.words()
     render(
       <ThemeProvider theme={mainStyles}>
-        <Canvas>Text</Canvas>
+        <Canvas>{text}</Canvas>
       </ThemeProvider>,
     )
-    const canvasElement = screen.getByText('Text')
+    const canvasElement = screen.getByText(text)
     expect(canvasElement).toBeTruthy()
   })
 })

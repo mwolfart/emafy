@@ -2,16 +2,18 @@ import { render, screen } from '@testing-library/react'
 import { ThemeProvider } from 'styled-components'
 import { mainStyles } from 'styles'
 
-import { SubTitle } from './index'
+import { Subtitle } from './index'
 
-describe('SubTitle', () => {
-  it('renders SubTitle correctly', () => {
+describe('Subtitle', () => {
+  it('renders Subtitle correctly', () => {
+    const faker = require('faker')
+    const text = faker.random.words()
     render(
       <ThemeProvider theme={mainStyles}>
-        <SubTitle>Text</SubTitle>
+        <Subtitle>{text}</Subtitle>
       </ThemeProvider>,
     )
-    const rectangleElement = screen.getByText('Text')
+    const rectangleElement = screen.getByText(text)
     expect(rectangleElement).toBeTruthy()
   })
 })

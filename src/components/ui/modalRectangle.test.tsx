@@ -6,12 +6,14 @@ import { ModalRectangle } from './index'
 
 describe('ModalRectangle', () => {
   it('renders ModalRectangle correctly', () => {
+    const faker = require('faker')
+    const text = faker.random.words()
     render(
       <ThemeProvider theme={mainStyles}>
-        <ModalRectangle>Text</ModalRectangle>
+        <ModalRectangle>{text}</ModalRectangle>
       </ThemeProvider>,
     )
-    const rectangleElement = screen.getByText('Text')
+    const rectangleElement = screen.getByText(text)
     expect(rectangleElement).toBeTruthy()
   })
 })
