@@ -5,20 +5,18 @@ import styled from 'styled-components'
 
 type Props = {
   src?: string
-  iconSize: string
-  iconClass: string
-  allowShadow?: boolean
+  small?: boolean
+  placeholder?: JSX.Element
 } & GlobalProps
 
 type StyledProps = {
-  size: string
-  allowShadow?: boolean
+  small?: boolean
 } & GlobalProps
 
 export const Wrapper = styled.div<StyledProps>`
-  ${({ size, allowShadow, theme }: StyledProps) => `
-    width: ${size};
-    height: ${size};
+  ${({ small, theme }: StyledProps) => `
+    width: ${small ? '100px' : '200px'};
+    height: ${small ? '100px' : '200px'};
     display: flex;
     flex-direction: column;
     background-color: ${theme?.palette.colorImageBackground};
@@ -27,13 +25,13 @@ export const Wrapper = styled.div<StyledProps>`
     text-align: center;
     color: ${theme?.palette.colorTextParagraph};
     ${
-      allowShadow &&
+      small &&
       `box-shadow: ${theme?.shadowDimensionsDefault} ${theme?.shadowDefault};`
     }
 
     &:hover {
       ${
-        allowShadow &&
+        small &&
         `box-shadow: ${theme?.shadowDimensionsDefault} ${theme?.shadowAccent};`
       }
     }
@@ -48,20 +46,12 @@ export const Wrapper = styled.div<StyledProps>`
   `}
 `
 
-export const Image: VFC<Props> = ({
-  src,
-  iconSize,
-  iconClass,
-  allowShadow,
-}) => (
-  <Wrapper size={iconSize} allowShadow={allowShadow}>
-    {src ? (
+export const Image: VFC<Props> = ({ src, small, placeholder }) => (
+  <Wrapper small={small}>
+    {src || !placeholder ? (
       <img src={src} alt={strings.components.mediaImage.image} />
     ) : (
-      <i
-        className={iconClass}
-        aria-label={strings.components.mediaImage.noImage}
-      />
+      placeholder
     )}
   </Wrapper>
 )

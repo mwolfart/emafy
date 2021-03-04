@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import { Media } from 'types/media'
 import { Description as MediaDescription } from '../description/description'
 import { Image as MediaImage } from '../image/image'
+import { strings } from 'strings'
 
 type Props = {
   mediaInfo: Media
@@ -50,17 +51,17 @@ const Wrapper = styled.a<StyledProps>`
 
 export const Link: VFC<Props> = ({ mediaInfo, rowVariant: isRowVariant }) => {
   const imgSrc = mediaInfo.images?.[0]
-  const iconSize = isRowVariant ? '100px' : '200px'
   const faSize = isRowVariant ? 'fa-3x' : 'fa-6x'
+  const placeholder = (
+    <i
+      className={`fas ${faSize} fa-record-vinyl`}
+      aria-label={strings.components.mediaImage.noImage}
+    />
+  )
 
   return (
     <Wrapper href="" rowVariant={isRowVariant}>
-      <MediaImage
-        src={imgSrc}
-        iconSize={iconSize}
-        iconClass={`fas ${faSize} fa-record-vinyl`}
-        allowShadow={!isRowVariant}
-      />
+      <MediaImage src={imgSrc} small={isRowVariant} placeholder={placeholder} />
       <MediaDescription mediaInfo={mediaInfo} />
     </Wrapper>
   )
