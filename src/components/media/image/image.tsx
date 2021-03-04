@@ -27,20 +27,14 @@ export const Wrapper = styled.div<StyledProps>`
     text-align: center;
     color: ${theme?.palette.colorTextParagraph};
     ${
-      allowShadow
-        ? `
-    box-shadow: ${theme?.shadowDimensionsDefault} ${theme?.shadowDefault};
-    `
-        : ''
+      allowShadow &&
+      `box-shadow: ${theme?.shadowDimensionsDefault} ${theme?.shadowDefault};`
     }
 
     &:hover {
       ${
-        allowShadow
-          ? `
-      box-shadow: ${theme?.shadowDimensionsDefault} ${theme?.shadowAccent};
-      `
-          : ''
+        allowShadow &&
+        `box-shadow: ${theme?.shadowDimensionsDefault} ${theme?.shadowAccent};`
       }
     }
 
