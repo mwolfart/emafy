@@ -43,7 +43,7 @@ const Wrapper = styled.div<StyledProps>`
         border-width: 0;
         background-color: ${
           isOnOff
-            ? theme?.palette.colorDarkerBackground
+            ? theme?.palette.colorLinkBackground
             : theme?.palette.colorSecondary
         };
         transition: ${theme?.transitionQuick};

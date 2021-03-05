@@ -1,5 +1,5 @@
 import { Title, Subtitle } from 'components/ui/index'
-import { GlobalProps } from 'types/globalProps'
+import { GlobalProps } from 'types/props'
 import { VFC } from 'react'
 import styled from 'styled-components'
 import { Media } from 'types/media'

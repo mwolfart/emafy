@@ -1,9 +1,9 @@
 import React, { useState, VFC } from 'react'
 import { ToggleButton } from 'components/ui/toggleButton/toggleButton'
 import styled from 'styled-components'
-import { albumList } from 'example'
-import { MediaMenu } from 'components/mediaMenu/mediaMenu'
+import { Menu as MediaMenu } from 'components/media/menu/menu'
 import { GlobalProps as StyledProps } from 'types/props'
+import { albums } from 'fixtures/albums'
 
 const Wrapper = styled.div<StyledProps>`
   ${({ theme }: StyledProps) => `
@@ -69,7 +69,7 @@ export const SavedAlbums: VFC = () => {
       <div className="header">
         <div className="description">
           <div className="title">My saved albums</div>
-          <div className="subtitle">{albumList.length} albums</div>
+          <div className="subtitle">{albums.length} albums</div>
         </div>
         <ToggleButton
           toggleState={displayListView}
@@ -77,7 +77,7 @@ export const SavedAlbums: VFC = () => {
         />
       </div>
       <div className={isTransitioning ? 'media-menu-transition' : 'media-menu'}>
-        <MediaMenu mediaList={albumList} rowVariant={displayListView} />
+        <MediaMenu mediaList={albums} rowVariant={displayListView} />
       </div>
     </Wrapper>
   )

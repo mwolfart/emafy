@@ -6,6 +6,7 @@ import '@fortawesome/fontawesome-free/css/solid.min.css'
 import { LoginScene } from 'scenes/login/login'
 import { createGlobalStyle, ThemeProvider } from 'styled-components'
 import { mainStyles } from 'styles'
+import { SavedAlbums } from 'scenes/savedAlbums/savedAlbums'
 
 const App = (): JSX.Element => {
   const isUserLoggedIn = isLoggedIn() || login(() => {})
