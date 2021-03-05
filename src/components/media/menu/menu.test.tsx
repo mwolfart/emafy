@@ -19,14 +19,14 @@ describe('Menu', () => {
     const albumNames = albumList.map((album: Album) => album.name)
     albumNames.forEach((query: string): void => {
       const element = screen.getByText(query)
-      expect(element).toBeTruthy()
+      expect(element).toBeInTheDocument()
     })
 
     const artistLists = albumList.map((album: Album) => album.artists)
     artistLists.forEach((list: Media[]) => {
       list.forEach((item: Media) => {
         const element = screen.queryAllByText(item.name)
-        expect(element).toBeTruthy()
+        expect(element).toBeInTheDocument()
       })
     })
   })

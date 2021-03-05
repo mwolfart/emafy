@@ -13,7 +13,7 @@ describe('Image', () => {
       </ThemeProvider>,
     )
     const element = screen.getByRole('img')
-    expect(element).toBeTruthy()
+    expect(element).toBeInTheDocument()
   })
 
   it('renders Image with placeholder correctly', () => {
@@ -30,6 +30,6 @@ describe('Image', () => {
       </ThemeProvider>,
     )
     const element = screen.getByLabelText(strings.components.mediaImage.noImage)
-    expect(element).toBeTruthy()
+    expect(element).toBeInTheDocument()
   })
 })

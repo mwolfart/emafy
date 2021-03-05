@@ -25,9 +25,9 @@ describe('ToggleButton', () => {
     })
     const lblLeftElement = screen.getByText(labelLeft)
     const lblRightElement = screen.getByText(labelRight)
-    expect(inputElement).toBeTruthy()
-    expect(lblLeftElement).toBeTruthy()
-    expect(lblRightElement).toBeTruthy()
+    expect(inputElement).toBeInTheDocument()
+    expect(lblLeftElement).toBeInTheDocument()
+    expect(lblRightElement).toBeInTheDocument()
   })
 
   it('calls ToggleButton change callback', () => {
@@ -41,6 +41,6 @@ describe('ToggleButton', () => {
       name: strings.components.toggleButton,
     })
     fireEvent.click(inputElement)
-    expect(onChangeCallback).toHaveBeenCalled()
+    expect(onChangeCallback).toHaveBeenCalledWith(false)
   })
 })

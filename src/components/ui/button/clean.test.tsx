@@ -8,6 +8,6 @@ describe('CleanButton', () => {
     const text = faker.random.words()
     render(<CleanButton>{text}</CleanButton>)
     const buttonElement = screen.getByRole('button')
-    expect(buttonElement).toBeTruthy()
+    expect(buttonElement).toBeInTheDocument()
   })
 })

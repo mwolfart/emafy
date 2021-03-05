@@ -11,6 +11,6 @@ describe('Login', () => {
         <LoginScene />
       </ThemeProvider>,
     )
-    expect(container.childElementCount).toBeTruthy()
+    expect(container.childElementCount).toBeInTheDocument()
   })
 })
