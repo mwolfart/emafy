@@ -2,6 +2,7 @@ export { Canvas } from './canvas'
 
 export { Button } from './button/default'
 export { CleanButton } from './button/clean'
+export { ToggleButton } from './toggleButton/toggleButton'
 
 export { ModalRectangle } from './modalRectangle'
 

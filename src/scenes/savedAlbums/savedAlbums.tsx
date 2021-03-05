@@ -1,5 +1,5 @@
 import React, { useState, VFC } from 'react'
-import { ToggleButton } from 'components/ui/toggleButton/toggleButton'
+import { ToggleButton } from 'components/ui/index'
 import styled from 'styled-components'
 import { Menu as MediaMenu } from 'components/media/menu/menu'
 import { GlobalProps as StyledProps } from 'types/props'
