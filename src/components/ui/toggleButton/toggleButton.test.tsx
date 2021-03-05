@@ -8,23 +8,23 @@ import { strings } from 'strings'
 
 describe('ToggleButton', () => {
   it('renders ToggleButton correctly', () => {
-    const labelLeft = faker.random.word()
-    const labelRight = faker.random.word()
+    const labelFalse = faker.random.word()
+    const labelTrue = faker.random.word()
     render(
       <ThemeProvider theme={mainStyles}>
         <ToggleButton
           toggleState={true}
           onChangeCallback={() => {}}
-          labelLeft={labelLeft}
-          labelRight={labelRight}
+          labelFalse={labelFalse}
+          labelTrue={labelTrue}
         />
       </ThemeProvider>,
     )
     const inputElement = screen.getByRole('checkbox', {
       name: strings.components.toggleButton,
     })
-    const lblLeftElement = screen.getByText(labelLeft)
-    const lblRightElement = screen.getByText(labelRight)
+    const lblLeftElement = screen.getByText(labelFalse)
+    const lblRightElement = screen.getByText(labelTrue)
     expect(inputElement).toBeInTheDocument()
     expect(lblLeftElement).toBeInTheDocument()
     expect(lblRightElement).toBeInTheDocument()

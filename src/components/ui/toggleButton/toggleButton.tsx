@@ -5,8 +5,8 @@ import { GlobalProps } from 'types/props'
 
 type StyledProps = {
   isOnOff?: boolean
-  labelLeft?: string
-  labelRight?: string
+  labelFalse?: string
+  labelTrue?: string
 } & GlobalProps
 
 type Props = {
@@ -86,8 +86,8 @@ export const ToggleButton: FC<Props> = ({
   toggleState,
   onChangeCallback,
   isOnOff,
-  labelLeft,
-  labelRight,
+  labelFalse,
+  labelTrue,
 }) => {
   const onChange = (event: ChangeEvent<HTMLInputElement>): void => {
     onChangeCallback(event.currentTarget.checked)
@@ -95,7 +95,7 @@ export const ToggleButton: FC<Props> = ({
 
   return (
     <Wrapper isOnOff={isOnOff}>
-      {labelLeft ? <div>{labelLeft}</div> : ''}
+      {labelFalse ? <div>{labelFalse}</div> : ''}
       <label>
         <input
           className="switch"
@@ -106,7 +106,7 @@ export const ToggleButton: FC<Props> = ({
         />
         <div className="background" />
       </label>
-      {labelRight ? <div>{labelRight}</div> : ''}
+      {labelTrue ? <div>{labelTrue}</div> : ''}
     </Wrapper>
   )
 }
