@@ -28,7 +28,7 @@ export const mainStyles: Styles = {
   shadowDimensionsLarge: '0px 80px 100px',
   shadowDefault: '#0000002a',
   shadowAccent: '#00000045',
-  borderRadiusLarge: '30px',
+  borderRadiusLarge: '32px',
   borderRadiusDefault: '16px',
   borderRadiusSmall: '12px',
   fontStyle: "Montserrat, 'Trebuchet MS', Arial, sans-serif",
