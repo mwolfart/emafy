@@ -3,17 +3,17 @@ import { ThemeProvider } from 'styled-components'
 import { mainStyles } from 'styles'
 import faker from 'faker'
 
-import { Canvas } from './index'
+import { Title } from './index'
 
-describe('Canvas', () => {
-  it('renders Canvas correctly', () => {
+describe('Title', () => {
+  it('renders Title correctly', () => {
     const text = faker.random.words()
     render(
       <ThemeProvider theme={mainStyles}>
-        <Canvas>{text}</Canvas>
+        <Title>{text}</Title>
       </ThemeProvider>,
     )
-    const canvasElement = screen.getByText(text)
-    expect(canvasElement).toBeTruthy()
+    const rectangleElement = screen.getByText(text)
+    expect(rectangleElement).toBeTruthy()
   })
 })

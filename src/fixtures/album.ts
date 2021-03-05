@@ -1,6 +1,5 @@
 import { Album, MediaType } from 'types/media'
-
-const faker = require('faker')
+import faker from 'faker'
 
 export const album: Album = {
   id: '1',
