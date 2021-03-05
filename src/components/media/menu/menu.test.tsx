@@ -26,7 +26,7 @@ describe('Menu', () => {
     artistLists.forEach((list: Media[]) => {
       list.forEach((item: Media) => {
         const element = screen.queryAllByText(item.name)
-        expect(element).toBeInTheDocument()
+        expect(element).toBeTruthy()
       })
     })
   })
