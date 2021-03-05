@@ -1,20 +1,17 @@
 import { render, screen } from '@testing-library/react'
 
-import { MediaLink } from './mediaLink'
-import { album } from 'fixtures/album'
+import { Description } from './description'
 import { mainStyles } from 'styles'
 import { ThemeProvider } from 'styled-components'
+import { album } from 'fixtures/album'
 
-describe('MediaLink', () => {
-  it('renders MediaLink correctly', () => {
+describe('Description', () => {
+  it('renders Description correctly', () => {
     render(
       <ThemeProvider theme={mainStyles}>
-        <MediaLink mediaInfo={album} />
+        <Description mediaInfo={album} />
       </ThemeProvider>,
     )
-    const albumNameRegex = new RegExp(album.name)
-    const linkElement = screen.getByRole('link', { name: albumNameRegex })
-    expect(linkElement).toHaveAttribute('href', '')
 
     const headingElement = screen.getAllByRole('heading', { name: album.name })
     expect(headingElement.length).toBeGreaterThan(0)

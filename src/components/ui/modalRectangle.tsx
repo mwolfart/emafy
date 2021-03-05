@@ -1,4 +1,4 @@
-import { GlobalProps } from 'globalProps'
+import { GlobalProps } from 'types/globalProps'
 import styled from 'styled-components'
 
 export type StyledProps = {
