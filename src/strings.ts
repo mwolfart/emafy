@@ -1,6 +1,7 @@
 export const strings = {
   components: {
     closeButton: 'Close modal',
+    toggleButton: 'Click to toggle view',
     mediaImage: {
       image: 'Cover image',
       noImage: 'No image available',
