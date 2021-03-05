@@ -1,4 +1,5 @@
 import { ChangeEvent, FC } from 'react'
+import { strings } from 'strings'
 import styled from 'styled-components'
 import { GlobalProps } from 'types/props'
 
@@ -101,6 +102,7 @@ export const ToggleButton: FC<Props> = ({
           type="checkbox"
           onChange={onChange}
           defaultChecked={toggleState}
+          aria-label={strings.components.toggleButton}
         />
         <div className="background" />
       </label>
