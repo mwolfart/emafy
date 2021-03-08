@@ -17,6 +17,9 @@ export const strings = {
     albums: {
       grid: 'Grid',
       list: 'List',
+      mySavedAlbums: 'My Saved Albums',
+      subtextAlbum: 'album',
+      subtextAlbums: 'albums',
     },
   },
   api: {

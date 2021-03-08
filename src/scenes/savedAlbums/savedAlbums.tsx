@@ -69,8 +69,14 @@ export const SavedAlbums: VFC = () => {
     <Wrapper>
       <div className="header">
         <div className="description">
-          <div className="title">My saved albums</div>
-          <div className="subtitle">{albums.length} albums</div>
+          <div className="title">{strings.scenes.albums.mySavedAlbums}</div>
+          <div className="subtitle">
+            {`${albums.length} ${
+              albums.length > 1
+                ? strings.scenes.albums.subtextAlbums
+                : strings.scenes.albums.subtextAlbum
+            }`}
+          </div>
         </div>
         <ToggleDescriptor
           toggleState={displayListView}
