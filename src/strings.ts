@@ -14,6 +14,10 @@ export const strings = {
       instructions: 'To start using the platform, please login using the Spotify API through the link below',
       loginUsingSpotify: 'Login using Spotify',
     },
+    albums: {
+      grid: 'Grid',
+      list: 'List',
+    },
   },
   api: {
     credentials: {

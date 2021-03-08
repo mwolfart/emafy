@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import { Menu as MediaMenu } from 'components/media/menu/menu'
 import { GlobalProps as StyledProps } from 'types/props'
 import { albums } from 'fixtures/albums'
+import { strings } from 'strings'
 
 const Wrapper = styled.div<StyledProps>`
   ${({ theme }: StyledProps) => `
@@ -74,6 +75,8 @@ export const SavedAlbums: VFC = () => {
         <ToggleDescriptor
           toggleState={displayListView}
           onChangeCallback={changeView}
+          labelFalse={strings.scenes.albums.grid}
+          labelTrue={strings.scenes.albums.list}
         />
       </div>
       <div className={isTransitioning ? 'media-menu-transition' : 'media-menu'}>
