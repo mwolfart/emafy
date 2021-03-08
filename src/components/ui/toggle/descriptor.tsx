@@ -16,13 +16,15 @@ const Wrapper = styled.div<GlobalProps>`
     display: flex;
     flex-direction: row;
     align-items: center;
+  `}
+`
 
-    div {
-      font-family: ${theme?.fontStyle};
-      font-weight: ${theme?.fontBoldOne};
-      font-size: ${theme?.fontSizeParagraph};
-      padding: 0 10px;
-    }
+const Label = styled.div`
+  ${({ theme }: GlobalProps) => `
+    font-family: ${theme?.fontStyle};
+    font-weight: ${theme?.fontBoldOne};
+    font-size: ${theme?.fontSizeParagraph};
+    padding: 0 10px;
   `}
 `
 
@@ -35,13 +37,13 @@ export const Descriptor: FC<Props> = ({
 }) => {
   return (
     <Wrapper>
-      {labelFalse ? <div>{labelFalse}</div> : ''}
+      {labelFalse ? <Label>{labelFalse}</Label> : ''}
       <Toggle
         onChangeCallback={onChangeCallback}
         toggleState={toggleState}
         isOnOff={isOnOff}
       />
-      {labelTrue ? <div>{labelTrue}</div> : ''}
+      {labelTrue ? <Label>{labelTrue}</Label> : ''}
     </Wrapper>
   )
 }

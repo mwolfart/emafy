@@ -1,4 +1,4 @@
-import { ChangeEvent, FC } from 'react'
+import { ChangeEvent, FC, useState } from 'react'
 import { strings } from 'strings'
 import styled from 'styled-components'
 import { GlobalProps } from 'types/props'
@@ -7,35 +7,47 @@ type StyledProps = {
   isOnOff?: boolean
 } & GlobalProps
 
+type BackgroundProps = {
+  isChecked: boolean
+} & StyledProps
+
 type Props = {
   toggleState: boolean
   onChangeCallback: (value: boolean) => void
 } & StyledProps
 
-const Wrapper = styled.label<StyledProps>`
-  ${({ isOnOff, theme }: StyledProps) => `
-    position: relative;
-    display: inline-block;
-    width: 60px;
-    height: 34px;
+const Wrapper = styled.label<GlobalProps>`
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+`
 
-    .background {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      border-radius: ${theme?.borderRadiusLarge};
-      border-width: 0;
-      background-color: ${
-        isOnOff
-          ? theme?.palette.colorLinkBackground
-          : theme?.palette.colorSecondary
-      };
-      transition: ${theme?.transitionQuick};
+const Background = styled.div`
+  ${({ isOnOff, isChecked, theme }: BackgroundProps) => `
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: ${theme?.borderRadiusLarge};
+    border-width: 0;
+    background-color: ${
+      isOnOff
+        ? theme?.palette.colorLinkBackground
+        : theme?.palette.colorSecondary
+    };
+    transition: ${theme?.transitionQuick};
+
+    ${
+      isChecked &&
+      `
+    background-color: ${theme?.palette.colorPrimary};
+    transition: ${theme?.transitionQuick};
+    `
     }
-
-    .background:before {
+  
+    &:before {
       position: absolute;
       content: '';
       width: 26px;
@@ -46,24 +58,22 @@ const Wrapper = styled.label<StyledProps>`
       border-width: 0;
       background-color: #fff;
       transition: ${theme?.transitionQuick};
-    }
 
-    input:checked + .background {
-      background-color: ${theme?.palette.colorPrimary};
-      transition: ${theme?.transitionQuick};
-    }
-
-    input:checked + .background:before {
+      ${
+        isChecked &&
+        `
       transition: ${theme?.transitionQuick};
       transform: translateX(26px);
-    }
-
-    input {
-      opacity: 0;
-      width: 0;
-      height: 0;
+      `
+      }
     }
   `}
+`
+
+const Input = styled.input`
+  opacity: 0;
+  width: 0;
+  height: 0;
 `
 
 export const Toggle: FC<Props> = ({
@@ -71,20 +81,21 @@ export const Toggle: FC<Props> = ({
   onChangeCallback,
   isOnOff,
 }) => {
+  const [checked, setChecked] = useState(toggleState)
   const onChange = (event: ChangeEvent<HTMLInputElement>): void => {
+    setChecked(!checked)
     onChangeCallback(event.currentTarget.checked)
   }
 
   return (
-    <Wrapper isOnOff={isOnOff}>
-      <input
-        className="switch"
+    <Wrapper>
+      <Input
         type="checkbox"
         onChange={onChange}
         defaultChecked={toggleState}
         aria-label={strings.components.toggleButton}
       />
-      <div className="background" />
+      <Background isOnOff={isOnOff} isChecked={checked} />
     </Wrapper>
   )
 }
