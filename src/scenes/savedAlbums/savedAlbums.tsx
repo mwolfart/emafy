@@ -1,5 +1,5 @@
-import React, { useState, VFC } from 'react'
-import { ToggleButton } from 'components/ui/index'
+import { useState, VFC } from 'react'
+import { ToggleDescriptor } from 'components/ui/index'
 import styled from 'styled-components'
 import { Menu as MediaMenu } from 'components/media/menu/menu'
 import { GlobalProps as StyledProps } from 'types/props'
@@ -71,7 +71,7 @@ export const SavedAlbums: VFC = () => {
           <div className="title">My saved albums</div>
           <div className="subtitle">{albums.length} albums</div>
         </div>
-        <ToggleButton
+        <ToggleDescriptor
           toggleState={displayListView}
           onChangeCallback={changeView}
         />

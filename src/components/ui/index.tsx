@@ -2,7 +2,7 @@ export { Canvas } from './canvas'
 
 export { Button } from './button/default'
 export { CleanButton } from './button/clean'
-export { ToggleButton } from './toggleButton/toggleButton'
+export { Descriptor as ToggleDescriptor } from './toggle/descriptor'
 
 export { ModalRectangle } from './modalRectangle'
 
