@@ -21,7 +21,6 @@ const Wrapper = styled.div<GlobalProps>`
       font-family: ${theme?.fontStyle};
       font-weight: ${theme?.fontBoldOne};
       font-size: ${theme?.fontSizeParagraph};
-      height: 100%;
       padding: 0 10px;
     }
   `}
