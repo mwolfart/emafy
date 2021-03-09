@@ -19,6 +19,7 @@ const Wrapper = styled.div<StyledProps>`
     grid-template-columns: ${
       rowVariant ? '1fr' : 'repeat(auto-fill, minmax(max(240px, 100%/10), 1fr))'
     };
+    overflow-y: ${rowVariant ? 'scroll' : 'unset'}
   `}
 `
 
