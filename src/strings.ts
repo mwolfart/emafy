@@ -1,6 +1,7 @@
 export const strings = {
   components: {
     closeButton: 'Close modal',
+    toggleButton: 'Click to toggle view',
     mediaImage: {
       image: 'Cover image',
       noImage: 'No image available',
@@ -12,6 +13,13 @@ export const strings = {
       // eslint-disable-next-line prettier/prettier
       instructions: 'To start using the platform, please login using the Spotify API through the link below',
       loginUsingSpotify: 'Login using Spotify',
+    },
+    albums: {
+      grid: 'Grid',
+      list: 'List',
+      mySavedAlbums: 'My Saved Albums',
+      subtextAlbum: 'album',
+      subtextAlbums: 'albums',
     },
   },
   api: {

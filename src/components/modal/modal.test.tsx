@@ -15,7 +15,7 @@ describe('Modal', () => {
       </ThemeProvider>,
     )
     const modalElement = screen.getByText(text)
-    expect(modalElement).toBeTruthy()
+    expect(modalElement).toBeInTheDocument()
   })
 
   it('calls closeModalCallback on Modal close', () => {

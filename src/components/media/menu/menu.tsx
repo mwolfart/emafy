@@ -1,5 +1,5 @@
 import { Link as MediaLink } from 'components/media/link/link'
-import { GlobalProps } from 'types/globalProps'
+import { GlobalProps } from 'types/props'
 import { VFC } from 'react'
 import styled from 'styled-components'
 import { Media } from 'types/media'
@@ -19,6 +19,7 @@ const Wrapper = styled.div<StyledProps>`
     grid-template-columns: ${
       rowVariant ? '1fr' : 'repeat(auto-fill, minmax(max(240px, 100%/10), 1fr))'
     };
+    overflow-y: ${rowVariant ? 'scroll' : 'unset'}
   `}
 `
 
