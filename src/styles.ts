@@ -5,6 +5,7 @@ export type Styles = {
   shadowDimensionsLarge: string
   shadowDefault: string
   shadowAccent: string
+  borderRadiusLarge: string
   borderRadiusDefault: string
   borderRadiusSmall: string
   fontStyle: string
@@ -18,6 +19,7 @@ export type Styles = {
   imageSizeSmall: string
   imageSizeMedium: string
   transitionQuick: string
+  transitionQuickDelayed: string
   palette: Palette
 }
 
@@ -26,6 +28,7 @@ export const mainStyles: Styles = {
   shadowDimensionsLarge: '0px 80px 100px',
   shadowDefault: '#0000002a',
   shadowAccent: '#00000045',
+  borderRadiusLarge: '32px',
   borderRadiusDefault: '16px',
   borderRadiusSmall: '12px',
   fontStyle: "Montserrat, 'Trebuchet MS', Arial, sans-serif",
@@ -39,5 +42,6 @@ export const mainStyles: Styles = {
   imageSizeMedium: '200px',
   lineHeightSimple: '28px',
   transitionQuick: '0.3s ease',
+  transitionQuickDelayed: '0.3s ease 0.2s',
   palette: mainPalette,
 }

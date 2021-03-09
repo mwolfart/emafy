@@ -14,6 +14,6 @@ describe('Canvas', () => {
       </ThemeProvider>,
     )
     const canvasElement = screen.getByText(text)
-    expect(canvasElement).toBeTruthy()
+    expect(canvasElement).toBeInTheDocument()
   })
 })

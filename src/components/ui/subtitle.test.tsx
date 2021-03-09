@@ -14,6 +14,6 @@ describe('Subtitle', () => {
       </ThemeProvider>,
     )
     const rectangleElement = screen.getByText(text)
-    expect(rectangleElement).toBeTruthy()
+    expect(rectangleElement).toBeInTheDocument()
   })
 })

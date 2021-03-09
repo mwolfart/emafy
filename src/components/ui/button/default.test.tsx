@@ -14,6 +14,6 @@ describe('Button', () => {
       </ThemeProvider>,
     )
     const buttonElement = screen.getByRole('button', { name: text })
-    expect(buttonElement).toBeTruthy()
+    expect(buttonElement).toBeInTheDocument()
   })
 })

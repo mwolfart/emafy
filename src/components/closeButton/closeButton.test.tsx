@@ -9,7 +9,7 @@ describe('CloseButton', () => {
     const buttonElement = screen.getByRole('button', {
       name: strings.components.closeButton,
     })
-    expect(buttonElement).toBeTruthy()
+    expect(buttonElement).toBeInTheDocument()
   })
 
   it('calls onClickCallback on button click', () => {

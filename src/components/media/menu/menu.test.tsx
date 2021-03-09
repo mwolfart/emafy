@@ -19,7 +19,7 @@ describe('Menu', () => {
     const albumNames = albumList.map((album: Album) => album.name)
     albumNames.forEach((query: string): void => {
       const element = screen.getByText(query)
-      expect(element).toBeTruthy()
+      expect(element).toBeInTheDocument()
     })
 
     const artistLists = albumList.map((album: Album) => album.artists)

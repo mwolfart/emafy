@@ -1,4 +1,4 @@
-import { GlobalProps } from 'types/globalProps'
+import { GlobalProps } from 'types/props'
 import styled from 'styled-components'
 
 export const Title = styled.h3<GlobalProps>`
