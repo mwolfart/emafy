@@ -26,6 +26,9 @@ export const strings = {
     credentials: {
       // eslint-disable-next-line prettier/prettier
       errorAuth: 'There was an error during the authentication, please, refresh the webpage and try again',
+      errorUsername: 'Error while fetching user info',
+      errorToken: 'Error while fetching token',
+      errorRefreshToken: 'Error while retrieving a new token',
       errorLoginFailed: 'Login failed',
     },
   },
