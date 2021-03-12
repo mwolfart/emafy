@@ -1,13 +1,17 @@
-import { useState, VFC } from 'react'
+import React, { useEffect, useState, VFC } from 'react'
 import { ToggleDescriptor } from 'components/ui/index'
 import styled from 'styled-components'
 import { Menu as MediaMenu } from 'components/media/menu/menu'
 import { GlobalProps as StyledProps } from 'types/props'
-import { albums } from 'fixtures/albums'
 import { strings } from 'strings'
+import { getSavedAlbums, NextURL } from 'api/data'
+import { Album } from 'types/media'
+import { mainStyles } from 'styles'
+import InfiniteScroll from 'react-infinite-scroll-component'
 
+// TODO change this
 const Wrapper = styled.div<StyledProps>`
-  ${({ theme }: StyledProps) => `
+  ${({ theme = mainStyles }: StyledProps) => `
     display: flex;
     flex-direction: column;
 
@@ -16,7 +20,7 @@ const Wrapper = styled.div<StyledProps>`
       flex-direction: row;
       height: 20%;
       padding: 20px 30px;
-      font-family: ${theme?.fontStyle};
+      font-family: ${theme.fontStyle};
 
       .description {
         display: flex;
@@ -24,13 +28,13 @@ const Wrapper = styled.div<StyledProps>`
         flex-grow: 1;
 
         .title {
-          color: ${theme?.palette.colorTextTitle};
-          font-size: ${theme?.fontSizeTitle};
+          color: ${theme.palette.colorTextTitle};
+          font-size: ${theme.fontSizeTitle};
         }
 
         .subtitle {
-          color: ${theme?.palette.colorTextParagraph};
-          font-size: ${theme?.fontSizeParagraph};
+          color: ${theme.palette.colorTextParagraph};
+          font-size: ${theme.fontSizeParagraph};
         }
       }
     }
@@ -39,14 +43,14 @@ const Wrapper = styled.div<StyledProps>`
       padding-left: 20px;
       padding-right: 20px;
       opacity: 1;
-      transition: ${theme?.transitionQuickDelayed};
+      transition: ${theme.transitionQuickDelayed};
     }
 
     .media-menu-transition {
       padding-left: 20px;
       padding-right: 20px;
       opacity: 0;
-      transition: ${theme?.transitionQuick};
+      transition: ${theme.transitionQuick};
     }
   `}
 `
@@ -54,6 +58,9 @@ const Wrapper = styled.div<StyledProps>`
 export const SavedAlbums: VFC = () => {
   const [displayListView, setDisplayListView] = useState<boolean>(true)
   const [isTransitioning, setTransitioning] = useState<boolean>(false)
+  const [nextURL, setNextURL] = useState<NextURL>(null)
+  const [albums, setAlbums] = useState<Album[]>([])
+  const [totalCount, setTotalCount] = useState<number>(0)
   let transitionTimeout: NodeJS.Timeout
 
   const changeView = (isGrid: boolean): void => {
@@ -65,29 +72,65 @@ export const SavedAlbums: VFC = () => {
     }, 250)
   }
 
+  // const scrollCheck = (event: React.UIEvent<HTMLDivElement>): void => {
+  //   const bottom =
+  //     event.currentTarget.scrollHeight - event.currentTarget.scrollTop ===
+  //     event.currentTarget.clientHeight
+  //   if (bottom && nextURL) {
+  //     getSavedAlbums(nextURL).then(({ entities: albumList, next }) => {
+  //       setAlbums(albums.concat(albumList))
+  //       setNextURL(next)
+  //     })
+  //   }
+  // }
+
+  const fetchMoreAlbums = (): void => {
+    getSavedAlbums(nextURL).then(({ entities: albumList, next }) => {
+      setAlbums(albums.concat(albumList))
+      setNextURL(next)
+    })
+  }
+
+  useEffect(() => {
+    getSavedAlbums(null).then(({ entities: albumList, next, total }) => {
+      setAlbums(albumList)
+      setTotalCount(total)
+      setNextURL(next)
+    })
+  }, [])
+
   return (
     <Wrapper>
-      <div className="header">
-        <div className="description">
-          <div className="title">{strings.scenes.albums.mySavedAlbums}</div>
-          <div className="subtitle">
-            {`${albums.length} ${
-              albums.length > 1
-                ? strings.scenes.albums.subtextAlbums
-                : strings.scenes.albums.subtextAlbum
-            }`}
+      <InfiniteScroll
+        dataLength={albums.length}
+        next={fetchMoreAlbums}
+        hasMore={albums.length < totalCount}
+        loader={''}
+      >
+        <div className="header">
+          <div className="description">
+            <div className="title">{strings.scenes.albums.mySavedAlbums}</div>
+            <div className="subtitle">
+              {`${totalCount} ${
+                totalCount > 1
+                  ? strings.scenes.albums.subtextAlbums
+                  : strings.scenes.albums.subtextAlbum
+              }`}
+            </div>
           </div>
+          <ToggleDescriptor
+            toggleState={displayListView}
+            onChangeCallback={changeView}
+            labelFalse={strings.scenes.albums.grid}
+            labelTrue={strings.scenes.albums.list}
+          />
         </div>
-        <ToggleDescriptor
-          toggleState={displayListView}
-          onChangeCallback={changeView}
-          labelFalse={strings.scenes.albums.grid}
-          labelTrue={strings.scenes.albums.list}
-        />
-      </div>
-      <div className={isTransitioning ? 'media-menu-transition' : 'media-menu'}>
-        <MediaMenu mediaList={albums} rowVariant={displayListView} />
-      </div>
+        <div
+          className={isTransitioning ? 'media-menu-transition' : 'media-menu'}
+        >
+          <MediaMenu mediaList={albums} rowVariant={displayListView} />
+        </div>
+      </InfiniteScroll>
     </Wrapper>
   )
 }
