@@ -6,32 +6,33 @@ import {
   parseSimpleArtists,
 } from './parser'
 
-type NextURL = string | null
+export type NextURL = string | null
 
 const getSaved = <T, U>(
   route: string,
   next: NextURL,
   parser: (items: T[]) => U[],
-): Promise<{ entities: U[]; next: NextURL }> => {
+): Promise<{ entities: U[]; next: NextURL; total: number }> => {
   const baseLink = 'me/' + route
   const requestLink = next ? `${baseLink}${next}` : baseLink
-  return spotifyInstance<{ items: T[]; next?: string }>(requestLink).then(
-    ({ data: { items, next } }) => {
-      const nextLink =
-        typeof next === 'string'
-          ? next.replace('https://api.spotify.com/v1/' + baseLink, '')
-          : null
-      return {
-        entities: parser(items),
-        next: nextLink,
-      }
-    },
-  )
+  return spotifyInstance<{ items: T[]; next?: string; total: number }>(
+    requestLink,
+  ).then(({ data: { items, next, total } }) => {
+    const nextLink =
+      typeof next === 'string'
+        ? next.replace('https://api.spotify.com/v1/' + baseLink, '')
+        : null
+    return {
+      entities: parser(items),
+      next: nextLink,
+      total: total,
+    }
+  })
 }
 
 export const getSavedAlbums = (
   next: NextURL,
-): Promise<{ entities: Array<Album>; next: NextURL }> => {
+): Promise<{ entities: Array<Album>; next: NextURL; total: number }> => {
   const route = 'albums'
   return getSaved(route, next, parseSavedAlbums)
 }
