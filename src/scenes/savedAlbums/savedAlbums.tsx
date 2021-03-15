@@ -62,7 +62,7 @@ const MenuWrapper = styled.div<MenuWrapperProps>`
 `
 
 export const SavedAlbums: VFC = () => {
-  const [displayListView, setDisplayListView] = useState<boolean>(true)
+  const [isViewList, setIsViewList] = useState<boolean>(true)
   const [isTransitioning, setTransitioning] = useState<boolean>(false)
   const [nextURL, setNextURL] = useState<NextURL>(null)
   const [albums, setAlbums] = useState<Album[]>([])
@@ -73,7 +73,7 @@ export const SavedAlbums: VFC = () => {
     setTransitioning(true)
     clearTimeout(transitionTimeout)
     transitionTimeout = setTimeout((): void => {
-      setDisplayListView(isGrid)
+      setIsViewList(isGrid)
       setTransitioning(false)
     }, 250)
   }
@@ -117,14 +117,14 @@ export const SavedAlbums: VFC = () => {
             </Subtitle>
           </Description>
           <ToggleDescriptor
-            toggleState={displayListView}
+            toggleState={isViewList}
             onChangeCallback={changeView}
             labelFalse={strings.scenes.albums.grid}
             labelTrue={strings.scenes.albums.list}
           />
         </Header>
         <MenuWrapper isTransitioning={isTransitioning}>
-          <MediaMenu mediaList={albums} rowVariant={displayListView} />
+          <MediaMenu mediaList={albums} rowVariant={isViewList} />
         </MenuWrapper>
       </InfiniteScroll>
     </Wrapper>
