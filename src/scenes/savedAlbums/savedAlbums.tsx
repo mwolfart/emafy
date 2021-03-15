@@ -107,7 +107,7 @@ export const SavedAlbums: VFC = () => {
       <InfiniteScroll
         dataLength={albums.length}
         next={fetchMoreAlbums}
-        hasMore={albums.length < totalCount}
+        hasMore={albums.length < totalCount && nextURL !== null}
         loader={'Loading...'}
       >
         <Header>
