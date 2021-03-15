@@ -6,7 +6,9 @@ import { createGlobalStyle, ThemeProvider } from 'styled-components'
 import { mainStyles } from 'styles'
 import { requestValidToken, hasValidToken, hasAuthCode } from 'api/credentials'
 import { SavedAlbums } from 'scenes/savedAlbums/savedAlbums'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+
+// localhost:3000/authCode=!@#$#@%#@&state=@#$@#%#
 
 const App = (): JSX.Element => {
   const GlobalLinkStyle = createGlobalStyle`
@@ -16,27 +18,34 @@ const App = (): JSX.Element => {
   `
 
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(hasValidToken())
-  const [isLoading, setIsLoading] = useState<boolean>(
+  const [isOnLoginProcess, setIsOnLoginProcess] = useState<boolean>(
     !isLoggedIn && hasAuthCode(),
   )
 
-  if (isLoading) {
-    requestValidToken(
-      () => {
-        setIsLoggedIn(true)
-        setIsLoading(false)
-      },
-      () => {
-        setIsLoggedIn(false)
-        setIsLoading(false)
-      },
-    )
+  const onSuccessCallback = (): void => {
+    setIsLoggedIn(true)
+    setIsOnLoginProcess(false)
   }
+
+  const onErrorCallback = (): void => {
+    setIsLoggedIn(false)
+    setIsOnLoginProcess(false)
+  }
+
+  useEffect(() => {
+    let cancelled = false
+    if (isOnLoginProcess && !cancelled) {
+      requestValidToken({ onSuccessCallback, onErrorCallback })
+    }
+    return () => {
+      cancelled = true
+    }
+  }, [isOnLoginProcess])
 
   return (
     <ThemeProvider theme={mainStyles}>
       <GlobalLinkStyle />
-      {!isLoading && (isLoggedIn ? <SavedAlbums /> : <LoginScene />)}
+      {!isOnLoginProcess && (isLoggedIn ? <SavedAlbums /> : <LoginScene />)}
     </ThemeProvider>
   )
 }

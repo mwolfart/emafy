@@ -26,6 +26,11 @@ type RefreshTokenResponse = {
   scope: Nullable<string>
 }
 
+type CallbackFunction = {
+  onSuccessCallback?: () => void
+  onErrorCallback?: () => void
+}
+
 const spotifyUrl = 'https://accounts.spotify.com'
 const authUrl = `${spotifyUrl}/authorize`
 const tokenUrl = `${spotifyUrl}/api/token`
@@ -215,10 +220,11 @@ export const hasAuthCode = (): boolean => {
   return !!code
 }
 
-export const requestValidToken = (
-  onSuccessCallback?: () => void,
-  onErrorCallback?: () => void,
-): void => {
+// Pass object
+export const requestValidToken = ({
+  onSuccessCallback,
+  onErrorCallback,
+}: CallbackFunction): void => {
   const hasToken = !!localStorage.getItem(LOCAL_STORAGE.ACCESS_TOKEN)
   if (!hasToken) {
     getFirstToken(onSuccessCallback, onErrorCallback)
