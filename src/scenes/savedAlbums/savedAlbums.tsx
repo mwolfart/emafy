@@ -113,7 +113,7 @@ export const SavedAlbums: VFC = () => {
         <Header>
           <Description>
             <Title>{strings.scenes.albums.mySavedAlbums}</Title>
-            <Subtitle>{albumCountText}</Subtitle>
+            <Subtitle>{`${totalCount} ${albumCountText}`}</Subtitle>
           </Description>
           <ToggleDescriptor
             toggleState={isViewList}
