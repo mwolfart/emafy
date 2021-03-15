@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import styled from 'styled-components'
-import { GlobalProps } from 'types/props'
+import { GlobalProps } from 'types/global'
 import { Toggle } from './toggle'
 
 type Props = {

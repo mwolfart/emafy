@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { GlobalProps } from 'types/props'
+import { GlobalProps } from 'types/global'
 
 export type StyledProps = {
   large?: boolean

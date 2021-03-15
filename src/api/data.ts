@@ -1,12 +1,13 @@
 import { spotifyInstance } from 'api/spotifyInstance'
 import { Album, Song, SimpleArtist } from 'types/media'
+import { Nullable } from 'types/global'
 import {
   parseSavedAlbums,
   parseSavedTracks,
   parseSimpleArtists,
 } from './parser'
 
-export type NextURL = string | null
+export type NextURL = Nullable<string>
 
 const getSaved = <T, U>(
   route: string,

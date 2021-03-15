@@ -1,7 +1,7 @@
 import { ChangeEvent, FC, useState } from 'react'
 import { strings } from 'strings'
 import styled from 'styled-components'
-import { GlobalProps } from 'types/props'
+import { GlobalProps } from 'types/global'
 
 type StyledProps = {
   isOnOff?: boolean

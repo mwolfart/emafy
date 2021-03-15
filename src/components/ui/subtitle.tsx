@@ -1,4 +1,4 @@
-import { GlobalProps } from 'types/props'
+import { GlobalProps } from 'types/global'
 import styled from 'styled-components'
 
 export const Subtitle = styled.h4<GlobalProps>`
