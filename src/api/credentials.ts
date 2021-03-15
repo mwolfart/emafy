@@ -35,9 +35,8 @@ const authUrl = `${spotifyUrl}/authorize`
 const tokenUrl = `${spotifyUrl}/api/token`
 
 const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
-const scope = `user-read-private user-read-email user-library-read 
-              user-top-read streaming user-read-birthdate 
-              user-read-email user-read-private`
+const scope =
+  'user-read-private user-read-email user-library-read user-top-read streaming user-read-birthdate user-read-email user-read-private'
 
 const client_id = process.env.REACT_APP_API_KEY ?? ''
 const client_secret = process.env.REACT_APP_API_SECRET ?? ''
