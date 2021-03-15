@@ -210,15 +210,16 @@ export const authenticate = (): void => {
   window.location.href = url
 }
 
-export const hasValidToken = (): boolean =>
-  !!localStorage.getItem(LOCAL_STORAGE.ACCESS_TOKEN) && !isTokenExpired()
+export const hasToken = (): boolean =>
+  !!localStorage.getItem(LOCAL_STORAGE.ACCESS_TOKEN)
+
+export const hasValidToken = (): boolean => hasToken() && !isTokenExpired()
 
 export const hasAuthCode = (): boolean => {
   const { code } = getAuthParamsFromURI()
   return !!code
 }
 
-// Pass object
 export const requestValidToken = ({
   onSuccessCallback,
   onErrorCallback,

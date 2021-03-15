@@ -4,7 +4,12 @@ import '@fortawesome/fontawesome-free/css/solid.min.css'
 import { LoginScene } from 'scenes/login/login'
 import { createGlobalStyle, ThemeProvider } from 'styled-components'
 import { mainStyles } from 'styles'
-import { requestValidToken, hasValidToken, hasAuthCode } from 'api/credentials'
+import {
+  requestValidToken,
+  hasValidToken,
+  hasAuthCode,
+  hasToken,
+} from 'api/credentials'
 import { SavedAlbums } from 'scenes/savedAlbums/savedAlbums'
 import { useEffect, useState } from 'react'
 
@@ -17,7 +22,7 @@ const App = (): JSX.Element => {
 
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(hasValidToken())
   const [isOnLoginProcess, setIsOnLoginProcess] = useState<boolean>(
-    !isLoggedIn && hasAuthCode(),
+    !isLoggedIn && (hasAuthCode() || hasToken()),
   )
 
   const onSuccessCallback = (): void => {
