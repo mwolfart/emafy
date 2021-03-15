@@ -20,6 +20,8 @@ export const strings = {
       mySavedAlbums: 'My Saved Albums',
       subtextAlbum: 'album',
       subtextAlbums: 'albums',
+      errorLoadingAlbums:
+        'There was an error while fetching the user saved albums',
     },
   },
   api: {
