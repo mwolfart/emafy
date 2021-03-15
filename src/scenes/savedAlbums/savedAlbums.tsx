@@ -108,7 +108,7 @@ export const SavedAlbums: VFC = () => {
         dataLength={albums.length}
         next={fetchMoreAlbums}
         hasMore={albums.length < totalCount}
-        loader={''}
+        loader={'Loading...'}
       >
         <Header>
           <Description>
