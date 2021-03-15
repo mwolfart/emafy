@@ -86,7 +86,7 @@ export const SavedAlbums: VFC = () => {
   }
 
   useEffect(() => {
-    getSavedAlbums(null).then(({ entities: albumList, next, total }) => {
+    getSavedAlbums().then(({ entities: albumList, next, total }) => {
       setAlbums(albumList)
       setTotalCount(total)
       setNextURL(next)
