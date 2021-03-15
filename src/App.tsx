@@ -8,8 +8,6 @@ import { requestValidToken, hasValidToken, hasAuthCode } from 'api/credentials'
 import { SavedAlbums } from 'scenes/savedAlbums/savedAlbums'
 import { useEffect, useState } from 'react'
 
-// localhost:3000/authCode=!@#$#@%#@&state=@#$@#%#
-
 const App = (): JSX.Element => {
   const GlobalLinkStyle = createGlobalStyle`
     a {
