@@ -13,11 +13,6 @@ type MenuWrapperProps = {
   isTransitioning?: boolean
 } & GlobalProps
 
-const Wrapper = styled.div<StyledProps>`
-  display: flex;
-  flex-direction: column;
-`
-
 const Header = styled.div<StyledProps>`
   ${({ theme = mainStyles }: StyledProps) => `
       display: flex;
@@ -50,7 +45,7 @@ const Subtitle = styled.h2<StyledProps>`
   `}
 `
 
-const MenuWrapper = styled.div<MenuWrapperProps>`
+const Wrapper = styled.div<MenuWrapperProps>`
   ${({ isTransitioning, theme = mainStyles }: MenuWrapperProps) => `
       padding-left: 20px;
       padding-right: 20px;
@@ -103,29 +98,27 @@ export const SavedAlbums: VFC = () => {
       : strings.scenes.albums.subtextAlbums
 
   return (
-    <Wrapper>
-      <InfiniteScroll
-        dataLength={albums.length}
-        next={fetchMoreAlbums}
-        hasMore={albums.length < totalCount && nextURL !== null}
-        loader={'Loading...'}
-      >
-        <Header>
-          <Description>
-            <Title>{strings.scenes.albums.mySavedAlbums}</Title>
-            <Subtitle>{`${totalCount} ${albumCountText}`}</Subtitle>
-          </Description>
-          <ToggleDescriptor
-            toggleState={isViewList}
-            onChangeCallback={changeView}
-            labelFalse={strings.scenes.albums.grid}
-            labelTrue={strings.scenes.albums.list}
-          />
-        </Header>
-        <MenuWrapper isTransitioning={isTransitioning}>
-          <MediaMenu mediaList={albums} rowVariant={isViewList} />
-        </MenuWrapper>
-      </InfiniteScroll>
-    </Wrapper>
+    <InfiniteScroll
+      dataLength={albums.length}
+      next={fetchMoreAlbums}
+      hasMore={albums.length < totalCount && nextURL !== null}
+      loader={'Loading...'}
+    >
+      <Header>
+        <Description>
+          <Title>{strings.scenes.albums.mySavedAlbums}</Title>
+          <Subtitle>{`${totalCount} ${albumCountText}`}</Subtitle>
+        </Description>
+        <ToggleDescriptor
+          toggleState={isViewList}
+          onChangeCallback={changeView}
+          labelFalse={strings.scenes.albums.grid}
+          labelTrue={strings.scenes.albums.list}
+        />
+      </Header>
+      <Wrapper isTransitioning={isTransitioning}>
+        <MediaMenu mediaList={albums} rowVariant={isViewList} />
+      </Wrapper>
+    </InfiniteScroll>
   )
 }
