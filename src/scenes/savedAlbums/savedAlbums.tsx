@@ -97,6 +97,11 @@ export const SavedAlbums: VFC = () => {
       })
   }, [])
 
+  const albumCountText =
+    totalCount === 1
+      ? strings.scenes.albums.subtextAlbum
+      : strings.scenes.albums.subtextAlbums
+
   return (
     <Wrapper>
       <InfiniteScroll
@@ -108,13 +113,7 @@ export const SavedAlbums: VFC = () => {
         <Header>
           <Description>
             <Title>{strings.scenes.albums.mySavedAlbums}</Title>
-            <Subtitle>
-              {`${totalCount} ${
-                totalCount > 1
-                  ? strings.scenes.albums.subtextAlbums
-                  : strings.scenes.albums.subtextAlbum
-              }`}
-            </Subtitle>
+            <Subtitle>{albumCountText}</Subtitle>
           </Description>
           <ToggleDescriptor
             toggleState={isViewList}
