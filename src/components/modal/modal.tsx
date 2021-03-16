@@ -1,8 +1,8 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 import { CloseButton } from '../closeButton/closeButton'
 import {
   ModalRectangle,
-  Props as ModalRectProps,
+  StyledProps as ModalRectProps,
 } from 'components/ui/modalRectangle'
 
 type Props = {

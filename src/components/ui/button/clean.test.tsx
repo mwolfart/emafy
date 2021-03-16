@@ -1,12 +1,13 @@
-import React from 'react'
-import { render } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
+import faker from 'faker'
 
 import { CleanButton } from '../index'
 
 describe('CleanButton', () => {
   it('renders CleanButton correctly', () => {
-    const { getByRole } = render(<CleanButton>Text</CleanButton>)
-    const buttonElement = getByRole('button')
-    expect(buttonElement).toBeTruthy()
+    const text = faker.random.words()
+    render(<CleanButton>{text}</CleanButton>)
+    const buttonElement = screen.getByRole('button')
+    expect(buttonElement).toBeInTheDocument()
   })
 })

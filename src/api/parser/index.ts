@@ -1,4 +1,4 @@
-import { Album, Song, SimpleArtist } from 'types/media'
+import { Album, Song, SimpleArtist, MediaType } from 'types/media'
 import {
   RawAlbum,
   RawTrack,
@@ -18,7 +18,11 @@ const parseAlbum = ({
   name,
 }: RawAlbum): Album => {
   const imagesLinks = parseImages(images)
-  const parsedArtists = artists.map(({ id, name }) => ({ id, name }))
+  const parsedArtists = artists.map(({ id, name }) => ({
+    id,
+    name,
+    type: MediaType.artist,
+  }))
 
   return {
     name,
@@ -26,6 +30,7 @@ const parseAlbum = ({
     id,
     artists: parsedArtists,
     totalTracks: total_tracks,
+    type: MediaType.album,
   }
 }
 
@@ -37,7 +42,11 @@ const parseTrack = ({
   duration_ms,
 }: RawTrack): Song => {
   const imagesLinks = parseImages(album.images)
-  const parsedArtists = artists.map(({ id, name }) => ({ id, name }))
+  const parsedArtists = artists.map(({ id, name }) => ({
+    id,
+    name,
+    type: MediaType.artist,
+  }))
 
   return {
     name,
@@ -46,6 +55,7 @@ const parseTrack = ({
     artists: parsedArtists,
     albumReference: album.id,
     duration: duration_ms,
+    type: MediaType.song,
   }
 }
 
@@ -65,6 +75,7 @@ export const parseSimpleArtist = ({
     genres,
     followers: total,
     popularity,
+    type: MediaType.artist,
   }
 }
 

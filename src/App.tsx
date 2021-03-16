@@ -1,15 +1,54 @@
-import { isLoggedIn, login } from 'api/credentials'
-import React from 'react'
 import './App.css'
-import { mainTheme } from 'themes'
+import '@fortawesome/fontawesome-free/css/fontawesome.min.css'
+import '@fortawesome/fontawesome-free/css/solid.min.css'
 import { LoginScene } from 'scenes/login/login'
-import { ThemeProvider } from 'styled-components'
+import { createGlobalStyle, ThemeProvider } from 'styled-components'
+import { mainStyles } from 'styles'
+import {
+  requestValidToken,
+  hasValidToken,
+  hasAuthCode,
+  hasToken,
+} from 'api/credentials'
+import { SavedAlbums } from 'scenes/savedAlbums/savedAlbums'
+import { useEffect, useState } from 'react'
 
 const App = (): JSX.Element => {
-  const isUserLoggedIn = isLoggedIn() || login(() => {})
+  const GlobalLinkStyle = createGlobalStyle`
+    a {
+      text-decoration: unset;
+    }
+  `
+
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(hasValidToken())
+  const [isOnLoginProcess, setIsOnLoginProcess] = useState<boolean>(
+    !isLoggedIn && (hasAuthCode() || hasToken()),
+  )
+
+  const onSuccessCallback = (): void => {
+    setIsLoggedIn(true)
+    setIsOnLoginProcess(false)
+  }
+
+  const onErrorCallback = (): void => {
+    setIsLoggedIn(false)
+    setIsOnLoginProcess(false)
+  }
+
+  useEffect(() => {
+    let cancelled = false
+    if (isOnLoginProcess && !cancelled) {
+      requestValidToken({ onSuccessCallback, onErrorCallback })
+    }
+    return () => {
+      cancelled = true
+    }
+  }, [isOnLoginProcess])
+
   return (
-    <ThemeProvider theme={mainTheme}>
-      {isUserLoggedIn ? <div>You are logged in</div> : <LoginScene />}
+    <ThemeProvider theme={mainStyles}>
+      <GlobalLinkStyle />
+      {!isOnLoginProcess && (isLoggedIn ? <SavedAlbums /> : <LoginScene />)}
     </ThemeProvider>
   )
 }

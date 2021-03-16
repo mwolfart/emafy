@@ -1,23 +1,34 @@
-import React from 'react'
-import { fireEvent, render } from '@testing-library/react'
+import { fireEvent, render, screen } from '@testing-library/react'
+import { strings } from 'strings'
+import { ThemeProvider } from 'styled-components'
+import { mainStyles } from 'styles'
+import faker from 'faker'
 
 import { Modal } from './modal'
 
 describe('Modal', () => {
   it('renders Modal correctly', () => {
-    const { getByText } = render(
-      <Modal closeModalCallback={() => {}}>Text</Modal>,
+    const text = faker.random.words()
+    render(
+      <ThemeProvider theme={mainStyles}>
+        <Modal closeModalCallback={() => {}}>{text}</Modal>
+      </ThemeProvider>,
     )
-    const modalElement = getByText('Text')
-    expect(modalElement).toBeTruthy()
+    const modalElement = screen.getByText(text)
+    expect(modalElement).toBeInTheDocument()
   })
 
   it('calls closeModalCallback on Modal close', () => {
+    const text = faker.random.words()
     const onClose = jest.fn()
-    const { getByRole } = render(
-      <Modal closeModalCallback={onClose}>Modal Text</Modal>,
+    render(
+      <ThemeProvider theme={mainStyles}>
+        <Modal closeModalCallback={onClose}>{text}</Modal>
+      </ThemeProvider>,
     )
-    const modalElement = getByRole('button', { name: 'Close modal' });
+    const modalElement = screen.getByRole('button', {
+      name: strings.components.closeButton,
+    })
     fireEvent.click(modalElement)
     expect(onClose).toHaveBeenCalled()
   })

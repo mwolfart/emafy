@@ -1,12 +1,19 @@
-import React from 'react'
-import { render } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
+import { ThemeProvider } from 'styled-components'
+import { mainStyles } from 'styles'
+import faker from 'faker'
 
 import { Button } from '../index'
 
 describe('Button', () => {
   it('renders Button correctly', () => {
-    const { getByRole } = render(<Button>Text</Button>)
-    const buttonElement = getByRole('button')
-    expect(buttonElement).toBeTruthy()
+    const text = faker.random.words()
+    render(
+      <ThemeProvider theme={mainStyles}>
+        <Button>{text}</Button>
+      </ThemeProvider>,
+    )
+    const buttonElement = screen.getByRole('button', { name: text })
+    expect(buttonElement).toBeInTheDocument()
   })
 })
