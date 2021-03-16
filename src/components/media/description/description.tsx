@@ -1,5 +1,5 @@
-import { Title, Subtitle } from 'components/ui/index'
-import { GlobalProps } from 'types/props'
+import { TitleNormal, SubtitleNormal } from 'components/ui/index'
+import { GlobalProps } from 'types/global'
 import { VFC } from 'react'
 import styled from 'styled-components'
 import { Media } from 'types/media'
@@ -20,7 +20,7 @@ const Wrapper = styled.div<GlobalProps>`
 
 export const Description: VFC<Props> = ({ mediaInfo }) => (
   <Wrapper>
-    <Title>{mediaInfo.name}</Title>
-    <Subtitle>{renderSubTitle(mediaInfo)}</Subtitle>
+    <TitleNormal>{mediaInfo.name}</TitleNormal>
+    <SubtitleNormal>{renderSubTitle(mediaInfo)}</SubtitleNormal>
   </Wrapper>
 )

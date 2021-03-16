@@ -1,5 +1,4 @@
 import { screen, render } from '@testing-library/react'
-import { albums } from 'fixtures/albums'
 import { strings } from 'strings'
 import { ThemeProvider } from 'styled-components'
 import { mainStyles } from 'styles'
@@ -16,7 +15,7 @@ describe('Saved Albums', () => {
       strings.scenes.albums.mySavedAlbums,
     )
     const labelAlbumCntElement = screen.getByText(
-      `${albums.length} ${strings.scenes.albums.subtextAlbums}`,
+      `0 ${strings.scenes.albums.subtextAlbums}`,
     )
     const labelGridElement = screen.getByText(strings.scenes.albums.grid)
     const labelListElement = screen.getByText(strings.scenes.albums.list)

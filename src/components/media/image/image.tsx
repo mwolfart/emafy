@@ -1,4 +1,4 @@
-import { GlobalProps } from 'types/props'
+import { GlobalProps } from 'types/global'
 import { VFC } from 'react'
 import { strings } from 'strings'
 import styled from 'styled-components'

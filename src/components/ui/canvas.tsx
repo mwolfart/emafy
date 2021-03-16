@@ -1,4 +1,4 @@
-import { GlobalProps as StyledProps } from 'types/props'
+import { GlobalProps as StyledProps } from 'types/global'
 import styled from 'styled-components'
 
 export const Canvas = styled.div<StyledProps>`
