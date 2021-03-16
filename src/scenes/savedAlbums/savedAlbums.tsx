@@ -24,13 +24,13 @@ const Header = styled.div<StyledProps>`
   `}
 `
 
-const Description = styled.div<StyledProps>`
+const TitleWrapper = styled.div<StyledProps>`
   display: flex;
   flex-direction: column;
   flex-grow: 1;
 `
 
-const Wrapper = styled.div<MenuWrapperProps>`
+const MenuWrapper = styled.div<MenuWrapperProps>`
   ${({ isTransitioning, theme = mainStyles }: MenuWrapperProps) => `
       padding-left: 20px;
       padding-right: 20px;
@@ -90,10 +90,10 @@ export const SavedAlbums: VFC = () => {
       loader={'Loading...'}
     >
       <Header>
-        <Description>
+        <TitleWrapper>
           <TitleBig>{strings.scenes.albums.mySavedAlbums}</TitleBig>
           <SubtitleBig>{`${totalCount} ${albumCountText}`}</SubtitleBig>
-        </Description>
+        </TitleWrapper>
         <ToggleDescriptor
           toggleState={isViewList}
           onChangeCallback={changeView}
@@ -101,9 +101,9 @@ export const SavedAlbums: VFC = () => {
           labelTrue={strings.scenes.albums.list}
         />
       </Header>
-      <Wrapper isTransitioning={isTransitioning}>
+      <MenuWrapper isTransitioning={isTransitioning}>
         <MediaMenu mediaList={albums} rowVariant={isViewList} />
-      </Wrapper>
+      </MenuWrapper>
     </InfiniteScroll>
   )
 }
