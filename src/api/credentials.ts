@@ -58,21 +58,6 @@ const generateAndStoreStateToRequest = (): string => {
   return state
 }
 
-const getAuthParamsFromURI = (): AuthorizeResponse => {
-  let hashParams = {
-    code: null,
-    state: null,
-  }
-  let e,
-    r = /([^&;=]+)=?([^&;]*)/g,
-    q = window.location.search.substring(1)
-  while ((e = r.exec(q))) {
-    /* @ts-ignore */
-    hashParams[e[1]] = decodeURIComponent(e[2])
-  }
-  return hashParams
-}
-
 const hasCrossSiteRequestForgery = (state: Nullable<string>): boolean => {
   const storedState = localStorage.getItem(LOCAL_STORAGE.AUTH_STATE)
   return state == null || state !== storedState
@@ -195,6 +180,21 @@ const updateToken = (
       alert(strings.api.credentials.errorLoginFailed)
       onErrorCallback && onErrorCallback()
     })
+}
+
+export const getAuthParamsFromURI = (): AuthorizeResponse => {
+  let hashParams = {
+    code: null,
+    state: null,
+  }
+  let e,
+    r = /([^&;=]+)=?([^&;]*)/g,
+    q = window.location.search.substring(1)
+  while ((e = r.exec(q))) {
+    /* @ts-ignore */
+    hashParams[e[1]] = decodeURIComponent(e[2])
+  }
+  return hashParams
 }
 
 export const authenticate = (): void => {

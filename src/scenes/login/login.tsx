@@ -11,7 +11,11 @@ import {
 import { strings } from 'strings'
 import { useHistory } from 'react-router'
 
-export const LoginScene: VFC = () => {
+type Props = {
+  onLogin: (value: boolean) => void
+}
+
+export const LoginScene: VFC<Props> = ({ onLogin }) => {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(hasValidToken())
   const [isOnLoginProcess, setIsOnLoginProcess] = useState<boolean>(
     !isLoggedIn && (hasAuthCode() || hasToken()),
@@ -21,17 +25,18 @@ export const LoginScene: VFC = () => {
     authenticate()
   }
 
-  const onSuccessCallback = (): void => {
-    setIsLoggedIn(true)
-    setIsOnLoginProcess(false)
-  }
-
-  const onErrorCallback = (): void => {
-    setIsLoggedIn(false)
-    setIsOnLoginProcess(false)
-  }
-
   useEffect(() => {
+    const onSuccessCallback = (): void => {
+      setIsLoggedIn(true)
+      onLogin(true)
+      setIsOnLoginProcess(false)
+    }
+
+    const onErrorCallback = (): void => {
+      setIsLoggedIn(false)
+      setIsOnLoginProcess(false)
+    }
+
     let cancelled = false
     if (isOnLoginProcess && !cancelled) {
       requestValidToken({ onSuccessCallback, onErrorCallback })
@@ -39,7 +44,7 @@ export const LoginScene: VFC = () => {
     return () => {
       cancelled = true
     }
-  }, [isOnLoginProcess])
+  }, [isOnLoginProcess, onLogin])
 
   const history = useHistory()
   !isOnLoginProcess && isLoggedIn && history.push('/saved-albums')
