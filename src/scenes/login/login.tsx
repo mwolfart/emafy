@@ -28,7 +28,6 @@ export const LoginScene: VFC<Props> = ({ onLogin }) => {
   useEffect(() => {
     const onSuccessCallback = (): void => {
       setIsLoggedIn(true)
-      onLogin(true)
       setIsOnLoginProcess(false)
     }
 
@@ -44,8 +43,9 @@ export const LoginScene: VFC<Props> = ({ onLogin }) => {
     return () => {
       cancelled = true
     }
-  }, [isOnLoginProcess, onLogin])
+  }, [isOnLoginProcess])
 
+  onLogin(isLoggedIn)
   const history = useHistory()
   !isOnLoginProcess && isLoggedIn && history.push('/saved-albums')
 

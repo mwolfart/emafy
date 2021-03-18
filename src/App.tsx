@@ -19,13 +19,13 @@ const App = (): JSX.Element => {
   `
 
   const history = createBrowserHistory()
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
   const { code, state } = getAuthParamsFromURI()
 
   const destinationPath = `/login${
     code && state ? `?code=${code}&state=${state}` : ''
   }`
-  history.push(destinationPath)
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  !isLoggedIn && history.push(destinationPath)
 
   return (
     <ThemeProvider theme={mainStyles}>
@@ -38,7 +38,6 @@ const App = (): JSX.Element => {
             component={SavedAlbums}
           />
           <Route
-            exact
             path="/login"
             component={() => <LoginScene onLogin={setIsLoggedIn} />}
           />

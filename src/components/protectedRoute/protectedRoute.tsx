@@ -11,5 +11,5 @@ export const ProtectedRoute: VFC<Props> = ({ isLoggedIn, path, component }) =>
   isLoggedIn ? (
     <Route path={path} component={component} />
   ) : (
-    <Redirect to={{ pathname: '/login', state: { from: 'saved-albums' } }} />
+    <Redirect to={{ pathname: '/login', state: { from: path } }} />
   )
