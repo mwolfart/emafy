@@ -1,7 +1,7 @@
 export enum MediaType {
-  artist,
-  song,
-  album,
+  artist = 'artist',
+  song = 'song',
+  album = 'album',
 }
 
 export type Media = {
@@ -21,9 +21,10 @@ export interface Album extends Media {
 
 export interface Song extends Media {
   artists: Array<Media>
-  albumReference: Reference
   duration: number
   type: MediaType.song
+  trackNumber: number
+  albumReference?: Reference
 }
 
 export interface SimpleArtist extends Media {

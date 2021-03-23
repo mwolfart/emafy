@@ -20,8 +20,9 @@ export interface RawAlbum extends BasicRawMedia {
 
 export interface RawTrack extends BasicRawMedia {
   artists: BasicRawMedia[]
-  album: RawTracksAlbum
   duration_ms: number
+  track_number: number
+  album?: RawTracksAlbum
 }
 
 export interface RawArtist extends BasicRawMedia {

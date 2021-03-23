@@ -2,19 +2,23 @@ import { spotifyInstance } from 'api/spotifyInstance'
 import { Album, Song, SimpleArtist } from 'types/media'
 import { Nullable } from 'types/global'
 import {
+  parseAlbum,
   parseSavedAlbums,
+  parseTracks,
   parseSavedTracks,
   parseSimpleArtists,
 } from './parser'
+import { RawAlbum } from 'types/apiMedia'
 
 export type NextURL = Nullable<string>
 
-const getSaved = <T, U>(
+const getSpotifyData = <T, U>(
   route: string,
   parser: (items: T[]) => U[],
   next?: NextURL,
+  saved?: boolean,
 ): Promise<{ entities: U[]; next: NextURL; total: number }> => {
-  const baseLink = 'me/' + route
+  const baseLink = (saved ? 'me/' : '') + route
   const requestLink = next ? `${baseLink}${next}` : baseLink
   return spotifyInstance<{ items: T[]; next?: string; total: number }>(
     requestLink,
@@ -30,6 +34,13 @@ const getSaved = <T, U>(
     }
   })
 }
+
+const getSaved = <T, U>(
+  route: string,
+  parser: (items: T[]) => U[],
+  next?: NextURL,
+): Promise<{ entities: U[]; next: NextURL; total: number }> =>
+  getSpotifyData(route, parser, next, true)
 
 export const getSavedAlbums = (
   next?: NextURL,
@@ -53,4 +64,21 @@ export const getUsersTopArtists = (
 }> => {
   const route = 'top/artists'
   return getSaved(route, parseSimpleArtists, next)
+}
+
+export const getAlbumTracks = (
+  albumId: string,
+  next?: NextURL,
+): Promise<{ entities: Array<Song>; next: NextURL; total: number }> => {
+  const route = `albums/${albumId}/tracks`
+  return getSpotifyData(route, parseTracks, next)
+}
+
+export const getAlbum = (id: string): Promise<{ entities: Album }> => {
+  const route = `albums/${id}`
+  return spotifyInstance<RawAlbum>(route).then(({ data: album }) => {
+    return {
+      entities: parseAlbum(album),
+    }
+  })
 }

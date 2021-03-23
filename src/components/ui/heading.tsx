@@ -2,23 +2,42 @@ import { GlobalProps as StyledProps } from 'types/global'
 import styled from 'styled-components'
 import { mainStyles } from 'styles'
 
-export const TitleBig = styled.h1<StyledProps>`
+const Heading = styled.div<StyledProps>`
+  ${({ theme = mainStyles }: StyledProps) => `
+    font-family: ${theme.fontStyle};
+    margin: 0;
+  `}
+`
+
+export const TitleExtraLarge = styled(Heading).attrs({ as: 'h1' })`
+  ${({ theme = mainStyles }: StyledProps) => `
+    color: ${theme.palette.colorTextTitle};
+    font-size: ${theme.fontSizeGiant};
+  `}
+`
+
+export const TitleLarge = styled(Heading).attrs({ as: 'h1' })`
   ${({ theme = mainStyles }: StyledProps) => `
     color: ${theme.palette.colorTextTitle};
     font-size: ${theme.fontSizeTitle};
-    margin: 0;
   `}
 `
 
-export const SubtitleBig = styled.h2<StyledProps>`
+export const SubtitleExtraLarge = styled(Heading).attrs({ as: 'h2' })`
+  ${({ theme = mainStyles }: StyledProps) => `
+    color: ${theme.palette.colorTextParagraph};
+    font-size: ${theme.fontSizeTitle};
+  `}
+`
+
+export const SubtitleLarge = styled(Heading).attrs({ as: 'h2' })`
   ${({ theme = mainStyles }: StyledProps) => `
     color: ${theme.palette.colorTextParagraph};
     font-size: ${theme.fontSizeParagraph};
-    margin: 0;
   `}
 `
 
-export const TitleNormal = styled.h3<StyledProps>`
+export const TitleNormal = styled(Heading).attrs({ as: 'h3' })`
   ${({ theme = mainStyles }: StyledProps) => `
     color: ${theme?.palette.colorTextTitle};
     width: 100%;
@@ -27,11 +46,10 @@ export const TitleNormal = styled.h3<StyledProps>`
     text-align: left;
     font-weight: ${theme?.fontBoldTwo};
     font-size: ${theme?.fontSizeParagraph};
-    margin: 0;
   `}
 `
 
-export const SubtitleNormal = styled.h4<StyledProps>`
+export const SubtitleNormal = styled(Heading).attrs({ as: 'h4' })`
   ${({ theme = mainStyles }: StyledProps) => `
     color: ${theme?.palette.colorTextDisabled};
     width: 100%;
@@ -39,6 +57,5 @@ export const SubtitleNormal = styled.h4<StyledProps>`
     text-align: left;
     font-weight: ${theme?.fontBoldTwo};
     font-size: ${theme?.fontSizeTiny};
-    margin: 0;
   `}
 `

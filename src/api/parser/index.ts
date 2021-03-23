@@ -10,7 +10,7 @@ import {
 const parseImages = (images?: { url: string }[]): Array<string> | undefined =>
   images?.map((item) => item.url)
 
-const parseAlbum = ({
+export const parseAlbum = ({
   artists,
   images,
   total_tracks,
@@ -40,8 +40,9 @@ const parseTrack = ({
   id,
   name,
   duration_ms,
+  track_number,
 }: RawTrack): Song => {
-  const imagesLinks = parseImages(album.images)
+  const imagesLinks = album && parseImages(album.images)
   const parsedArtists = artists.map(({ id, name }) => ({
     id,
     name,
@@ -53,8 +54,9 @@ const parseTrack = ({
     images: imagesLinks,
     id,
     artists: parsedArtists,
-    albumReference: album.id,
+    albumReference: album && album.id,
     duration: duration_ms,
+    trackNumber: track_number,
     type: MediaType.song,
   }
 }
@@ -82,8 +84,9 @@ export const parseSimpleArtist = ({
 export const parseAlbums = (rawAlbums: Array<RawAlbum>): Array<Album> =>
   rawAlbums.map((item) => parseAlbum(item))
 
-export const parseTracks = (rawTracks: Array<RawTrack>): Array<Song> =>
-  rawTracks.map((item) => parseTrack(item))
+export const parseTracks = (rawTracks: Array<RawTrack>): Array<Song> => {
+  return rawTracks.map((item) => parseTrack(item))
+}
 
 export const parseSavedAlbums = (
   savedAlbums: Array<SavedAlbum>,

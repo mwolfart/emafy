@@ -8,7 +8,7 @@ import { getSavedAlbums, NextURL } from 'api/data'
 import { Album } from 'types/media'
 import { mainStyles } from 'styles'
 import InfiniteScroll from 'react-infinite-scroll-component'
-import { SubtitleBig, TitleBig } from 'components/ui/heading'
+import { SubtitleLarge, TitleLarge } from 'components/ui/heading'
 
 type MenuWrapperProps = {
   isTransitioning?: boolean
@@ -91,8 +91,8 @@ export const SavedAlbums: VFC = () => {
     >
       <Header>
         <TitleWrapper>
-          <TitleBig>{strings.scenes.albums.mySavedAlbums}</TitleBig>
-          <SubtitleBig>{`${totalCount} ${albumCountText}`}</SubtitleBig>
+          <TitleLarge>{strings.scenes.albums.mySavedAlbums}</TitleLarge>
+          <SubtitleLarge>{`${totalCount} ${albumCountText}`}</SubtitleLarge>
         </TitleWrapper>
         <ToggleDescriptor
           toggleState={isViewList}

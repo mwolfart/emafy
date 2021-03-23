@@ -15,6 +15,7 @@ export type Styles = {
   fontSizeTiny: string
   fontSizeParagraph: string
   fontSizeTitle: string
+  fontSizeGiant: string
   lineHeightSimple: string
   imageSizeSmall: string
   imageSizeMedium: string
@@ -38,6 +39,7 @@ export const mainStyles: Styles = {
   fontSizeTiny: '12px',
   fontSizeParagraph: '16px',
   fontSizeTitle: '24px',
+  fontSizeGiant: '36px',
   imageSizeSmall: '100px',
   imageSizeMedium: '200px',
   lineHeightSimple: '28px',
