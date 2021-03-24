@@ -21,12 +21,12 @@ const Wrapper = styled.div<StyledProps>`
     display: flex;
     flex-direction: ${rowVariant ? 'row' : 'column'};
     font-family: ${theme?.fontStyle};
-    padding: 12px;
+    padding: ${theme?.divSpacingSmall};
     transition: ${theme?.transitionQuick};
     ${
       rowVariant
         ? `
-    margin: 10px; 
+    margin: ${theme?.divSpacingSmall}; 
     border-radius: ${theme?.borderRadiusDefault};
     background-color: ${theme?.palette.colorLinkBackground};`
         : `
@@ -45,7 +45,7 @@ const Wrapper = styled.div<StyledProps>`
     }
 
     div + div {
-      padding-top: ${rowVariant ? '0' : '10px'};
+      padding-top: ${rowVariant ? '0' : theme?.divSpacingSmall};
     }
   `}
 `

@@ -19,7 +19,7 @@ const Header = styled.div<StyledProps>`
       display: flex;
       flex-direction: row;
       height: 20%;
-      padding: 20px 30px;
+      padding: ${theme.divSpacingMedium} ${theme.divSpacingBig};
       font-family: ${theme.fontStyle};
   `}
 `
@@ -32,8 +32,8 @@ const TitleWrapper = styled.div<StyledProps>`
 
 const MenuWrapper = styled.div<MenuWrapperProps>`
   ${({ isTransitioning, theme = mainStyles }: MenuWrapperProps) => `
-      padding-left: 20px;
-      padding-right: 20px;
+      padding-left: ${theme.divSpacingMedium};
+      padding-right: ${theme.divSpacingMedium};
       opacity: ${isTransitioning ? '0' : '1'};
       transition: ${
         isTransitioning ? theme.transitionQuick : theme.transitionQuickDelayed

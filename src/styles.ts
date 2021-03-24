@@ -16,9 +16,13 @@ export type Styles = {
   fontSizeParagraph: string
   fontSizeTitle: string
   fontSizeGiant: string
-  lineHeightSimple: string
   imageSizeSmall: string
   imageSizeMedium: string
+  lineHeightSimple: string
+  divSpacingSmall: string
+  divSpacingMedium: string
+  divSpacingBig: string
+  divSpacingExtraBig: string
   transitionQuick: string
   transitionQuickDelayed: string
   palette: Palette
@@ -43,6 +47,10 @@ export const mainStyles: Styles = {
   imageSizeSmall: '100px',
   imageSizeMedium: '200px',
   lineHeightSimple: '28px',
+  divSpacingSmall: '10px',
+  divSpacingMedium: '20px',
+  divSpacingBig: '30px',
+  divSpacingExtraBig: '50px',
   transitionQuick: '0.3s ease',
   transitionQuickDelayed: '0.3s ease 0.2s',
   palette: mainPalette,

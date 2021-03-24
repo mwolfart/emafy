@@ -16,8 +16,8 @@ const Wrapper = styled.div<StyledProps>`
     border-radius: ${theme.borderRadiusDefault};
     border-size: 0;
     background-color: ${theme.palette.colorLinkBackground};
-    padding: 20px;
-    margin: 10px;
+    padding: ${theme.divSpacingMedium};
+    margin: ${theme.divSpacingSmall};
     font-style: ${theme.fontStyle};
     font-size: ${theme.fontSizeParagraph};
     color: ${theme.palette.colorTextTitle};
@@ -31,7 +31,9 @@ const Wrapper = styled.div<StyledProps>`
 `
 
 const TextWithPadding = styled.div<StyledProps>`
-  padding-right: 10px;
+  ${({ theme = mainStyles }: StyledProps) => `
+    padding-right: ${theme.divSpacingSmall};
+  `}
 `
 
 const TextName = styled.div<StyledProps>`
@@ -39,12 +41,14 @@ const TextName = styled.div<StyledProps>`
 `
 
 const TextDuration = styled.div<StyledProps>`
-  text-align: right;
+  ${({ theme = mainStyles }: StyledProps) => `
+    text-align: right;
 
-  &:before {
-    content: '-';
-    margin: 0 10px;
-  }
+    &:before {
+      content: '-';
+      margin: 0 ${theme.divSpacingSmall};
+    }
+  `}
 `
 
 export const TrackCell: VFC<Props> = ({ track }) => (

@@ -26,22 +26,24 @@ const Background = styled.div<Props>`
 `
 
 const SaveButton = styled(Button)`
-  margin: 10px;
+  ${({ theme = mainStyles }: StyledProps) => `
+    margin: ${theme.divSpacingSmall};
+  `}
 `
 
 export const CustomTitleExtraLarge = styled(TitleExtraLarge)`
   ${({ theme = mainStyles }: StyledProps) => `
     color: ${theme.palette.colorTextTitleLarge};
-    padding-top: 10px;
-    padding-left: 10px;
+    padding-top: ${theme.divSpacingSmall};
+    padding-left: ${theme.divSpacingSmall};
   `}
 `
 
 export const CustomSubtitleExtraLarge = styled(SubtitleExtraLarge)`
   ${({ theme = mainStyles }: StyledProps) => `
     color: ${theme.palette.colorTextSubtitleLarge};
-    padding-left: 10px;
-    padding-bottom: 30px;
+    padding-left: ${theme.divSpacingSmall};
+    padding-bottom: ${theme.divSpacingBig};
   `}
 `
 

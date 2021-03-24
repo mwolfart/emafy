@@ -24,7 +24,7 @@ const Label = styled.div`
     font-family: ${theme?.fontStyle};
     font-weight: ${theme?.fontBoldOne};
     font-size: ${theme?.fontSizeParagraph};
-    padding: 0 10px;
+    padding: 0 ${theme?.divSpacingSmall};
   `}
 `
 

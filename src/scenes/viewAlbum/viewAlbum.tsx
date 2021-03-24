@@ -6,17 +6,20 @@ import InfiniteScroll from 'react-infinite-scroll-component'
 import { RouteComponentProps } from 'react-router'
 import { strings } from 'strings'
 import styled from 'styled-components'
-import { GlobalProps } from 'types/global'
+import { mainStyles } from 'styles'
+import { GlobalProps as StyledProps } from 'types/global'
 import { Album, Song } from 'types/media'
 
 type MatchParams = {
   id: string
 }
 
-type Props = {} & RouteComponentProps<MatchParams> & GlobalProps
+type Props = {} & RouteComponentProps<MatchParams> & StyledProps
 
 const MenuWrapper = styled.div`
-  padding: 20px;
+  ${({ theme = mainStyles }: StyledProps) => `
+    padding: ${theme.divSpacingMedium};
+  `}
 `
 
 export const ViewAlbum: VFC<Props> = ({ match }) => {
