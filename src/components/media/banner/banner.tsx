@@ -2,6 +2,7 @@ import { Button } from 'components/ui'
 import { SubtitleExtraLarge, TitleExtraLarge } from 'components/ui/heading'
 import { VFC } from 'react'
 import styled from 'styled-components'
+import { mainStyles } from 'styles'
 import { GlobalProps as StyledProps } from 'types/global'
 import { isAlbum, Media } from 'types/media'
 import { renderSubTitle } from '../utils'
@@ -11,12 +12,12 @@ type Props = {
 } & StyledProps
 
 const Background = styled.div<Props>`
-  ${({ theme, mediaInfo }: Props) => `
+  ${({ theme = mainStyles, mediaInfo }: Props) => `
     background-image: linear-gradient(
       to bottom, 
-      ${theme?.palette.colorBackgroundBannerEdge},
-      ${theme?.palette.colorBackgroundBannerCenter} 50%, 
-      ${theme?.palette.colorBackgroundBannerEdge}),
+      ${theme.palette.colorBackgroundBannerEdge},
+      ${theme.palette.colorBackgroundBannerCenter} 50%, 
+      ${theme.palette.colorBackgroundBannerEdge}),
     ${mediaInfo && mediaInfo.images && `url(${mediaInfo.images[0]})`};
     background-size: cover;
     background-position-y: center;
@@ -29,15 +30,19 @@ const SaveButton = styled(Button)`
 `
 
 export const CustomTitleExtraLarge = styled(TitleExtraLarge)`
-  color: white;
-  padding-top: 10px;
-  padding-left: 10px;
+  ${({ theme = mainStyles }: StyledProps) => `
+    color: ${theme.palette.colorTextTitleLarge};
+    padding-top: 10px;
+    padding-left: 10px;
+  `}
 `
 
 export const CustomSubtitleExtraLarge = styled(SubtitleExtraLarge)`
-  color: #ccc;
-  padding-left: 10px;
-  padding-bottom: 30px;
+  ${({ theme = mainStyles }: StyledProps) => `
+    color: ${theme.palette.colorTextSubtitleLarge};
+    padding-left: 10px;
+    padding-bottom: 30px;
+  `}
 `
 
 export const Banner: VFC<Props> = ({ mediaInfo }) => {

@@ -4,6 +4,8 @@ export type Palette = {
   colorSecondary: string
   colorTextParagraph: string
   colorTextTitle: string
+  colorTextTitleLarge: string
+  colorTextSubtitleLarge: string
   colorTextButton: string
   colorTextDisabled: string
   colorBackground: string
@@ -22,6 +24,8 @@ export const mainPalette: Palette = {
   colorSecondary: '#ee7321',
   colorTextParagraph: '#757575',
   colorTextTitle: '#222222',
+  colorTextTitleLarge: '#eeeeee',
+  colorTextSubtitleLarge: '#cccccc',
   colorTextButton: '#eeeeee',
   colorTextDisabled: '#888888',
   colorBackground: '#f2f2f2',
