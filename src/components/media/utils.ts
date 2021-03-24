@@ -19,9 +19,9 @@ export const genreListToString = (genreList: string[]): string =>
   genreList.reduce((accum: string, genre: string) => `${accum}, ${genre}`)
 
 export const formatDuration = (durationMs: number): string => {
-  const hourMultiplier = 1000 * 60 * 60
-  const minuteMultiplier = 1000 * 60
   const secondMultiplier = 1000
+  const minuteMultiplier = secondMultiplier * 60
+  const hourMultiplier = minuteMultiplier * 60
 
   const hours = Math.floor(durationMs / hourMultiplier)
   durationMs -= hours * hourMultiplier
