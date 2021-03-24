@@ -32,6 +32,7 @@ export const ViewAlbum: VFC<Props> = ({ match }) => {
     if (albumInfo) {
       getAlbumTracks(albumInfo.id, nextURL).then(
         ({ entities: trackList, next }) => {
+          trackList.map((track) => (track.albumReference = albumInfo?.id))
           setAlbumTracks(albumTracks.concat(trackList))
           setNextURL(next)
         },
@@ -53,6 +54,7 @@ export const ViewAlbum: VFC<Props> = ({ match }) => {
     if (albumInfo) {
       getAlbumTracks(albumInfo.id)
         .then(({ entities: albumTrackList, next, total }) => {
+          albumTrackList.map((track) => (track.albumReference = albumInfo?.id))
           setAlbumTracks(albumTrackList)
           setTotalCount(total)
           setNextURL(next)
