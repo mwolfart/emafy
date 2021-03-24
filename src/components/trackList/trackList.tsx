@@ -8,9 +8,9 @@ type Props = {
 } & StyledProps
 
 export const TrackList: VFC<Props> = ({ trackList }) => (
-  <div>
+  <>
     {trackList.map((track) => (
       <TrackCell track={track} />
     ))}
-  </div>
+  </>
 )
