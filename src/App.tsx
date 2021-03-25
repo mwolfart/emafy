@@ -10,7 +10,7 @@ import createBrowserHistory from 'history/createBrowserHistory'
 import { useState } from 'react'
 import { ProtectedRoute } from 'components/protectedRoute/protectedRoute'
 import { getAuthParamsFromURI } from 'api/credentials'
-import { ViewAlbum } from 'scenes/viewAlbum/viewAlbum'
+import { ViewAlbumLoader } from 'scenes/viewAlbum/viewAlbumLoader'
 
 const App = (): JSX.Element => {
   const GlobalLinkStyle = createGlobalStyle`
@@ -41,7 +41,7 @@ const App = (): JSX.Element => {
           <ProtectedRoute
             isLoggedIn={isLoggedIn}
             path="/album/:id"
-            component={ViewAlbum}
+            component={ViewAlbumLoader}
           />
           <Route
             path="/login"
