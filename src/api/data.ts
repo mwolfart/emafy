@@ -4,20 +4,31 @@ import { Nullable } from 'types/global'
 import {
   parseAlbum,
   parseSavedAlbums,
-  parseTracks,
   parseSavedTracks,
   parseSimpleArtists,
+  parseAlbumTracks,
 } from './parser'
-import { RawAlbum } from 'types/apiMedia'
+import { RawAlbum, RawAlbumTrack } from 'types/apiMedia'
 
 export type NextURL = Nullable<string>
 
-const getSpotifyData = <T, U>(
-  route: string,
-  parser: (items: T[]) => U[],
-  next?: NextURL,
-  saved?: boolean,
-): Promise<{ entities: U[]; next: NextURL; total: number }> => {
+type spotifyDataRequest<T, U> = {
+  route: string
+  parser: (items: T[]) => U[]
+  next?: NextURL
+  saved?: boolean
+}
+
+const getSpotifyData = <T, U>({
+  route,
+  parser,
+  next,
+  saved,
+}: spotifyDataRequest<T, U>): Promise<{
+  entities: U[]
+  next: NextURL
+  total: number
+}> => {
   const baseLink = (saved ? 'me/' : '') + route
   const requestLink = next ? `${baseLink}${next}` : baseLink
   return spotifyInstance<{ items: T[]; next?: string; total: number }>(
@@ -35,25 +46,18 @@ const getSpotifyData = <T, U>(
   })
 }
 
-const getSaved = <T, U>(
-  route: string,
-  parser: (items: T[]) => U[],
-  next?: NextURL,
-): Promise<{ entities: U[]; next: NextURL; total: number }> =>
-  getSpotifyData(route, parser, next, true)
-
 export const getSavedAlbums = (
   next?: NextURL,
 ): Promise<{ entities: Array<Album>; next: NextURL; total: number }> => {
   const route = 'albums'
-  return getSaved(route, parseSavedAlbums, next)
+  return getSpotifyData({ route, parser: parseSavedAlbums, next, saved: true })
 }
 
 export const getSavedSongs = (
   next: NextURL,
 ): Promise<{ entities: Array<Song>; next: NextURL }> => {
   const route = 'tracks'
-  return getSaved(route, parseSavedTracks, next)
+  return getSpotifyData({ route, parser: parseSavedTracks, next, saved: true })
 }
 
 export const getUsersTopArtists = (
@@ -63,15 +67,23 @@ export const getUsersTopArtists = (
   next: NextURL
 }> => {
   const route = 'top/artists'
-  return getSaved(route, parseSimpleArtists, next)
+  return getSpotifyData({
+    route,
+    parser: parseSimpleArtists,
+    next,
+    saved: true,
+  })
 }
 
 export const getAlbumTracks = (
-  albumId: string,
+  album: Album,
   next?: NextURL,
 ): Promise<{ entities: Array<Song>; next: NextURL; total: number }> => {
-  const route = `albums/${albumId}/tracks`
-  return getSpotifyData(route, parseTracks, next)
+  const route = `albums/${album.id}/tracks`
+  return getSpotifyData({
+    route,
+    parser: (items: RawAlbumTrack[]) => parseAlbumTracks(items, album),
+  })
 }
 
 export const getAlbum = (id: string): Promise<{ entities: Album }> => {

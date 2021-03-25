@@ -30,9 +30,8 @@ export const ViewAlbum: VFC<Props> = ({ match }) => {
 
   const fetchMoreAlbumTracks = (): void => {
     if (albumInfo) {
-      getAlbumTracks(albumInfo.id, nextURL).then(
+      getAlbumTracks(albumInfo, nextURL).then(
         ({ entities: trackList, next }) => {
-          trackList.map((track) => (track.albumReference = albumInfo?.id))
           setAlbumTracks(albumTracks.concat(trackList))
           setNextURL(next)
         },
@@ -52,15 +51,14 @@ export const ViewAlbum: VFC<Props> = ({ match }) => {
 
   useEffect(() => {
     if (albumInfo) {
-      getAlbumTracks(albumInfo.id)
+      getAlbumTracks(albumInfo)
         .then(({ entities: albumTrackList, next, total }) => {
-          albumTrackList.map((track) => (track.albumReference = albumInfo?.id))
           setAlbumTracks(albumTrackList)
           setTotalCount(total)
           setNextURL(next)
         })
         .catch((e) => {
-          alert(strings.scenes.albums.errorLoadingAlbums)
+          alert(strings.scenes.albums.errorLoadingAlbumTracks)
         })
     }
   }, [albumInfo])

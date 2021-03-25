@@ -1,3 +1,5 @@
+import { RawTracksAlbum } from "./apiMedia"
+
 export enum MediaType {
   artist = 'artist',
   song = 'song',
@@ -24,7 +26,7 @@ export interface Song extends Media {
   duration: number
   type: MediaType.song
   trackNumber: number
-  albumReference?: Reference
+  albumReference: Reference
 }
 
 export interface SimpleArtist extends Media {
@@ -34,11 +36,13 @@ export interface SimpleArtist extends Media {
   type: MediaType.artist
 }
 
-export const isAlbum = (media: Media): media is Album =>
-  media.type === MediaType.album
+export const isAlbum = (media: Media | RawTracksAlbum): media is Album =>
+  typeof media === 'object' && 'type' in media && media.type === MediaType.album
 
 export const isSong = (media: Media): media is Song =>
-  media.type === MediaType.song
+  typeof media === 'object' && 'type' in media && media.type === MediaType.song
 
 export const isArtist = (media: Media): media is SimpleArtist =>
+  typeof media === 'object' &&
+  'type' in media &&
   media.type === MediaType.artist

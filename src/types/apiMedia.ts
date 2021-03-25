@@ -8,7 +8,7 @@ export type BasicRawMedia = {
   name: string
 }
 
-type RawTracksAlbum = {
+export type RawTracksAlbum = {
   images: Image[]
   id: string
 }
@@ -18,11 +18,14 @@ export interface RawAlbum extends BasicRawMedia {
   total_tracks: number
 }
 
-export interface RawTrack extends BasicRawMedia {
+export interface RawAlbumTrack extends BasicRawMedia {
   artists: BasicRawMedia[]
   duration_ms: number
   track_number: number
-  album?: RawTracksAlbum
+}
+
+export interface RawTrack extends RawAlbumTrack {
+  album: RawTracksAlbum
 }
 
 export interface RawArtist extends BasicRawMedia {
