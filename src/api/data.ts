@@ -84,6 +84,7 @@ export const getAlbumTracks = (
   return getSpotifyData({
     route,
     parser: (items: RawAlbumTrack[]) => parseAlbumTracks(items, album),
+    next,
   })
 }
 

@@ -13,6 +13,12 @@ type Props = {
   albumInfo: Album
 } & StyledProps
 
+type AlbumTracksResponse = {
+  entities: Song[]
+  next: NextURL
+  total: number
+}
+
 const MenuWrapper = styled.div`
   ${({ theme = mainStyles }: StyledProps) => `
     padding: ${theme.divSpacingMedium};
@@ -24,26 +30,48 @@ export const ViewAlbum: VFC<Props> = ({ albumInfo }) => {
   const [nextURL, setNextURL] = useState<NextURL>(null)
   const [totalCount, setTotalCount] = useState<number>(0)
 
-  const fetchMoreAlbumTracks = useCallback((): void => {
-    getAlbumTracks(albumInfo, nextURL)
-      .then(({ entities: trackList, next, total }) => {
-        setAlbumTracks(albumTracks.concat(trackList))
-        totalCount === 0 && setTotalCount(total)
-        setNextURL(next)
-      })
-      .catch((e) => {
-        alert(strings.scenes.albums.errorLoadingAlbumTracks)
-      })
-  }, [albumInfo, albumTracks, totalCount, nextURL])
+  const storeMoreTracks = ({
+    entities,
+    next,
+    total,
+  }: AlbumTracksResponse): void => {
+    setAlbumTracks(albumTracks.concat(entities))
+    totalCount === 0 && setTotalCount(total)
+    setNextURL(next)
+  }
+
+  const storeFirstTracks = ({
+    entities,
+    next,
+    total,
+  }: AlbumTracksResponse): void => {
+    setAlbumTracks(entities)
+    setTotalCount(total)
+    setNextURL(next)
+  }
+
+  const fetchAlbumTracks = useCallback(
+    (
+      callback: (response: AlbumTracksResponse) => void,
+      nextURL?: NextURL,
+    ): void => {
+      getAlbumTracks(albumInfo, nextURL)
+        .then(callback)
+        .catch(() => {
+          alert(strings.scenes.albums.errorLoadingAlbumTracks)
+        })
+    },
+    [albumInfo],
+  )
 
   useEffect(() => {
-    fetchMoreAlbumTracks()
-  }, [fetchMoreAlbumTracks])
+    fetchAlbumTracks(storeFirstTracks)
+  }, [fetchAlbumTracks])
 
   return (
     <InfiniteScroll
       dataLength={albumTracks.length}
-      next={fetchMoreAlbumTracks}
+      next={() => fetchAlbumTracks(storeMoreTracks, nextURL)}
       hasMore={albumTracks.length < totalCount && nextURL != null}
       loader={'Loading...'}
     >
