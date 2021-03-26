@@ -10,7 +10,7 @@ import createBrowserHistory from 'history/createBrowserHistory'
 import { useState } from 'react'
 import { ProtectedRoute } from 'components/protectedRoute/protectedRoute'
 import { getAuthParamsFromURI } from 'api/credentials'
-import { ViewAlbumLoader } from 'scenes/viewAlbum/viewAlbumLoader'
+import { ViewAlbumLoader } from 'scenes/loader/viewAlbumLoader'
 
 const App = (): JSX.Element => {
   const GlobalLinkStyle = createGlobalStyle`

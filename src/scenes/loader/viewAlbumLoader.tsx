@@ -2,7 +2,7 @@ import { getAlbum } from 'api/data'
 import { useEffect, useState, VFC } from 'react'
 import { RouteComponentProps } from 'react-router'
 import { Album } from 'types/media'
-import { ViewAlbum } from './viewAlbum'
+import { ViewAlbum } from '../viewAlbum/viewAlbum'
 import { GlobalProps as StyledProps } from 'types/global'
 import { strings } from 'strings'
 
