@@ -1,5 +1,14 @@
 import { isAlbum, isArtist, isSong, Media } from 'types/media'
 
+const getQuotientAndRemainder = (
+  dividend: number,
+  divisor: number,
+): number[] => {
+  const quotient = Math.floor(dividend / divisor)
+  const remainder = dividend - quotient * divisor
+  return [quotient, remainder]
+}
+
 export const renderSubTitle = (mediaInfo: Media): string => {
   if (isAlbum(mediaInfo) || isSong(mediaInfo)) {
     return artistListToString(mediaInfo.artists)
@@ -23,18 +32,16 @@ export const formatDuration = (durationMs: number): string => {
   const minuteMultiplier = secondMultiplier * 60
   const hourMultiplier = minuteMultiplier * 60
 
-  const hours = Math.floor(durationMs / hourMultiplier)
-  durationMs -= hours * hourMultiplier
-  const minutes = Math.floor(durationMs / minuteMultiplier)
-  durationMs -= minutes * minuteMultiplier
-  const seconds = Math.floor(durationMs / secondMultiplier)
+  const [hours, restMin] = getQuotientAndRemainder(durationMs, hourMultiplier)
+  const [minutes, restSec] = getQuotientAndRemainder(restMin, minuteMultiplier)
+  const [seconds] = getQuotientAndRemainder(restSec, secondMultiplier)
 
   const localeProps = {
     minimumIntegerDigits: 2,
     useGrouping: false,
   }
-  const hourLabel = hours.toLocaleString('en-US', localeProps)
-  const minuteLabel = minutes.toLocaleString('en-US', localeProps)
-  const secondLabel = seconds.toLocaleString('en-US', localeProps)
-  return `${hourLabel}:${minuteLabel}:${secondLabel}`
+  const time = [hours, minutes, seconds]
+    .map((digits) => digits.toLocaleString('en-US', localeProps))
+    .join(':')
+  return time
 }
