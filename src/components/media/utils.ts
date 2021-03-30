@@ -1,6 +1,6 @@
 import { isAlbum, isArtist, isSong, Media } from 'types/media'
 
-const getQuotientAndRemainder = (
+const calculateQuotientAndRemainder = (
   dividend: number,
   divisor: number,
 ): number[] => {
@@ -32,9 +32,15 @@ export const formatDuration = (durationMs: number): string => {
   const minuteMultiplier = secondMultiplier * 60
   const hourMultiplier = minuteMultiplier * 60
 
-  const [hours, restMin] = getQuotientAndRemainder(durationMs, hourMultiplier)
-  const [minutes, restSec] = getQuotientAndRemainder(restMin, minuteMultiplier)
-  const [seconds] = getQuotientAndRemainder(restSec, secondMultiplier)
+  const [hours, restMin] = calculateQuotientAndRemainder(
+    durationMs,
+    hourMultiplier,
+  )
+  const [minutes, restSec] = calculateQuotientAndRemainder(
+    restMin,
+    minuteMultiplier,
+  )
+  const [seconds] = calculateQuotientAndRemainder(restSec, secondMultiplier)
 
   const localeProps = {
     minimumIntegerDigits: 2,
