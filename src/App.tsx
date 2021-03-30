@@ -1,17 +1,16 @@
 import './App.css'
 import '@fortawesome/fontawesome-free/css/fontawesome.min.css'
 import '@fortawesome/fontawesome-free/css/solid.min.css'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { LoginScene } from 'scenes/login/login'
 import { createGlobalStyle, ThemeProvider } from 'styled-components'
 import { mainStyles } from 'styles'
-import {
-  requestValidToken,
-  hasValidToken,
-  hasAuthCode,
-  hasToken,
-} from 'api/credentials'
 import { SavedAlbums } from 'scenes/savedAlbums/savedAlbums'
-import { useEffect, useState } from 'react'
+import createBrowserHistory from 'history/createBrowserHistory'
+import { useState } from 'react'
+import { ProtectedRoute } from 'components/protectedRoute/protectedRoute'
+import { getAuthParamsFromURI } from 'api/credentials'
+import { ViewAlbumLoader } from 'scenes/loader/viewAlbumLoader'
 
 const App = (): JSX.Element => {
   const GlobalLinkStyle = createGlobalStyle`
@@ -20,35 +19,36 @@ const App = (): JSX.Element => {
     }
   `
 
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(hasValidToken())
-  const [isOnLoginProcess, setIsOnLoginProcess] = useState<boolean>(
-    !isLoggedIn && (hasAuthCode() || hasToken()),
-  )
+  const history = createBrowserHistory()
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const { code, state } = getAuthParamsFromURI()
 
-  const onSuccessCallback = (): void => {
-    setIsLoggedIn(true)
-    setIsOnLoginProcess(false)
-  }
-
-  const onErrorCallback = (): void => {
-    setIsLoggedIn(false)
-    setIsOnLoginProcess(false)
-  }
-
-  useEffect(() => {
-    let cancelled = false
-    if (isOnLoginProcess && !cancelled) {
-      requestValidToken({ onSuccessCallback, onErrorCallback })
-    }
-    return () => {
-      cancelled = true
-    }
-  }, [isOnLoginProcess])
+  const destinationPath = `/login${
+    code && state ? `?code=${code}&state=${state}` : ''
+  }`
+  !isLoggedIn && history.push(destinationPath)
 
   return (
     <ThemeProvider theme={mainStyles}>
       <GlobalLinkStyle />
-      {!isOnLoginProcess && (isLoggedIn ? <SavedAlbums /> : <LoginScene />)}
+      <Router>
+        <Switch>
+          <ProtectedRoute
+            isLoggedIn={isLoggedIn}
+            path="/saved-albums"
+            component={SavedAlbums}
+          />
+          <ProtectedRoute
+            isLoggedIn={isLoggedIn}
+            path="/album/:id"
+            component={ViewAlbumLoader}
+          />
+          <Route
+            path="/login"
+            component={() => <LoginScene onLogin={setIsLoggedIn} />}
+          />
+        </Switch>
+      </Router>
     </ThemeProvider>
   )
 }

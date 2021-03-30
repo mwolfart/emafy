@@ -6,7 +6,7 @@ export { Descriptor as ToggleDescriptor } from './toggle/descriptor'
 
 export { ModalRectangle } from './modalRectangle'
 
-export { TitleBig } from './heading'
-export { SubtitleBig } from './heading'
+export { TitleLarge } from './heading'
+export { SubtitleLarge } from './heading'
 export { TitleNormal } from './heading'
 export { SubtitleNormal } from './heading'

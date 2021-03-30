@@ -8,7 +8,7 @@ import { getSavedAlbums, NextURL } from 'api/data'
 import { Album } from 'types/media'
 import { mainStyles } from 'styles'
 import InfiniteScroll from 'react-infinite-scroll-component'
-import { SubtitleBig, TitleBig } from 'components/ui/heading'
+import { SubtitleLarge, TitleLarge } from 'components/ui/heading'
 
 type MenuWrapperProps = {
   isTransitioning?: boolean
@@ -19,7 +19,7 @@ const Header = styled.div<StyledProps>`
       display: flex;
       flex-direction: row;
       height: 20%;
-      padding: 20px 30px;
+      padding: ${theme.divSpacingMedium} ${theme.divSpacingBig};
       font-family: ${theme.fontStyle};
   `}
 `
@@ -32,8 +32,8 @@ const TitleWrapper = styled.div<StyledProps>`
 
 const MenuWrapper = styled.div<MenuWrapperProps>`
   ${({ isTransitioning, theme = mainStyles }: MenuWrapperProps) => `
-      padding-left: 20px;
-      padding-right: 20px;
+      padding-left: ${theme.divSpacingMedium};
+      padding-right: ${theme.divSpacingMedium};
       opacity: ${isTransitioning ? '0' : '1'};
       transition: ${
         isTransitioning ? theme.transitionQuick : theme.transitionQuickDelayed
@@ -91,8 +91,8 @@ export const SavedAlbums: VFC = () => {
     >
       <Header>
         <TitleWrapper>
-          <TitleBig>{strings.scenes.albums.mySavedAlbums}</TitleBig>
-          <SubtitleBig>{`${totalCount} ${albumCountText}`}</SubtitleBig>
+          <TitleLarge>{strings.scenes.albums.mySavedAlbums}</TitleLarge>
+          <SubtitleLarge>{`${totalCount} ${albumCountText}`}</SubtitleLarge>
         </TitleWrapper>
         <ToggleDescriptor
           toggleState={isViewList}
