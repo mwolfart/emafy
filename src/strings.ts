@@ -22,6 +22,9 @@ export const strings = {
       subtextAlbums: 'albums',
       errorLoadingAlbums:
         'There was an error while fetching the user saved albums',
+      errorLoadingAlbum: 'There was an error while fetching the album',
+      errorLoadingAlbumTracks:
+        "There was an error while fetching the current album's tracks",
     },
   },
   api: {

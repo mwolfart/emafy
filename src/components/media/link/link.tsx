@@ -5,6 +5,7 @@ import { Media } from 'types/media'
 import { Description as MediaDescription } from '../description/description'
 import { Image as MediaImage } from '../image/image'
 import { strings } from 'strings'
+import { Link as RouterLink } from 'react-router-dom'
 
 type Props = {
   mediaInfo: Media
@@ -15,17 +16,17 @@ type StyledProps = {
   rowVariant?: boolean
 } & GlobalProps
 
-const Wrapper = styled.a<StyledProps>`
+const Wrapper = styled.div<StyledProps>`
   ${({ rowVariant, theme }: StyledProps) => `
     display: flex;
     flex-direction: ${rowVariant ? 'row' : 'column'};
     font-family: ${theme?.fontStyle};
-    padding: 12px;
+    padding: ${theme?.divSpacingSmall};
     transition: ${theme?.transitionQuick};
     ${
       rowVariant
         ? `
-    margin: 10px; 
+    margin: ${theme?.divSpacingSmall}; 
     border-radius: ${theme?.borderRadiusDefault};
     background-color: ${theme?.palette.colorLinkBackground};`
         : `
@@ -44,7 +45,7 @@ const Wrapper = styled.a<StyledProps>`
     }
 
     div + div {
-      padding-top: ${rowVariant ? '0' : '10px'};
+      padding-top: ${rowVariant ? '0' : theme?.divSpacingSmall};
     }
   `}
 `
@@ -52,6 +53,8 @@ const Wrapper = styled.a<StyledProps>`
 export const Link: VFC<Props> = ({ mediaInfo, rowVariant: isRowVariant }) => {
   const imgSrc = mediaInfo.images?.[0]
   const faSize = isRowVariant ? 'fa-3x' : 'fa-6x'
+  const mediaType = mediaInfo.type.toString()
+  const linkRedirectURL = `${mediaType}/${mediaInfo.id}`
   const placeholder = (
     <i
       className={`fas ${faSize} fa-record-vinyl`}
@@ -60,9 +63,15 @@ export const Link: VFC<Props> = ({ mediaInfo, rowVariant: isRowVariant }) => {
   )
 
   return (
-    <Wrapper href="" rowVariant={isRowVariant}>
-      <MediaImage src={imgSrc} small={isRowVariant} placeholder={placeholder} />
-      <MediaDescription mediaInfo={mediaInfo} />
-    </Wrapper>
+    <RouterLink to={linkRedirectURL}>
+      <Wrapper rowVariant={isRowVariant}>
+        <MediaImage
+          src={imgSrc}
+          small={isRowVariant}
+          placeholder={placeholder}
+        />
+        <MediaDescription mediaInfo={mediaInfo} />
+      </Wrapper>
+    </RouterLink>
   )
 }

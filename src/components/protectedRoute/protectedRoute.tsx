@@ -1,15 +1,13 @@
-import { ComponentType, VFC } from 'react'
-import { Route, Redirect } from 'react-router-dom'
+import { VFC } from 'react'
+import { Route, Redirect, RouteProps } from 'react-router-dom'
 
 type Props = {
   isLoggedIn: boolean
-  path: string
-  component: ComponentType
-}
+} & RouteProps
 
-export const ProtectedRoute: VFC<Props> = ({ isLoggedIn, path, component }) =>
+export const ProtectedRoute: VFC<Props> = ({ isLoggedIn, ...rest }) =>
   isLoggedIn ? (
-    <Route path={path} component={component} />
+    <Route {...rest} />
   ) : (
-    <Redirect to={{ pathname: '/login', state: { from: path } }} />
+    <Redirect to={{ pathname: '/login', state: { from: '' } }} />
   )
