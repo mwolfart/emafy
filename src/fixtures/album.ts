@@ -5,9 +5,9 @@ export const album: Album = {
   id: '1',
   name: faker.name.findName(),
   artists: [
-    { id: '2', name: faker.name.findName(), type: MediaType.artist },
-    { id: '3', name: faker.name.findName(), type: MediaType.artist },
+    { id: '2', name: faker.name.findName(), mediaType: MediaType.artist },
+    { id: '3', name: faker.name.findName(), mediaType: MediaType.artist },
   ],
   totalTracks: 10,
-  type: MediaType.album,
+  mediaType: MediaType.album,
 }

@@ -14,16 +14,16 @@ for (let i = 0; i < 10; i++) {
       {
         id: (nextId++).toString(),
         name: faker.name.findName(),
-        type: MediaType.artist,
+        mediaType: MediaType.artist,
       },
       {
         id: (nextId++).toString(),
         name: faker.name.findName(),
-        type: MediaType.artist,
+        mediaType: MediaType.artist,
       },
     ],
     totalTracks: 10,
-    type: MediaType.album,
+    mediaType: MediaType.album,
     images: noImageRandomSelector
       ? []
       : [

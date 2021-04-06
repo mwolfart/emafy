@@ -26,7 +26,7 @@ export const parseAlbum = ({
   const parsedArtists = artists.map(({ id, name }) => ({
     id,
     name,
-    type: MediaType.artist,
+    mediaType: MediaType.artist,
   }))
 
   return {
@@ -35,7 +35,7 @@ export const parseAlbum = ({
     id,
     artists: parsedArtists,
     totalTracks: total_tracks,
-    type: MediaType.album,
+    mediaType: MediaType.album,
   }
 }
 
@@ -51,7 +51,7 @@ const parseTrack = ({
   const parsedArtists = artists.map(({ id, name }) => ({
     id,
     name,
-    type: MediaType.artist,
+    mediaType: MediaType.artist,
   }))
 
   return {
@@ -62,7 +62,7 @@ const parseTrack = ({
     albumReference: album.id,
     duration: duration_ms,
     trackNumber: track_number,
-    type: MediaType.song,
+    mediaType: MediaType.song,
   }
 }
 
@@ -82,7 +82,7 @@ export const parseSimpleArtist = ({
     genres,
     followers: total,
     popularity,
-    type: MediaType.artist,
+    mediaType: MediaType.artist,
   }
 }
 
