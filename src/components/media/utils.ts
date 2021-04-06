@@ -10,10 +10,13 @@ const calculateQuotientAndRemainder = (
 }
 
 export const renderSubTitle = (mediaInfo: Media): string => {
-  if (isAlbum(mediaInfo) || isSong(mediaInfo)) {
+  if (
+    isAlbum(mediaInfo) ||
+    (isSong(mediaInfo) && mediaInfo.artists.length > 0)
+  ) {
     return artistListToString(mediaInfo.artists)
   }
-  if (isArtist(mediaInfo)) {
+  if (isArtist(mediaInfo) && mediaInfo.genres.length > 0) {
     return genreListToString(mediaInfo.genres)
   }
   return ''
@@ -24,8 +27,20 @@ export const artistListToString = (artistList: Media[]): string =>
     .map((artist: Media) => artist.name)
     .reduce((accum: string, name: string) => `${accum}, ${name}`)
 
-export const genreListToString = (genreList: string[]): string =>
-  genreList.reduce((accum: string, genre: string) => `${accum}, ${genre}`)
+export const genreListToString = (genreList: string[]): string => {
+  const capitalizedGenres = genreList.map((genre: string) => capitalize(genre))
+  return capitalizedGenres.reduce(
+    (accum: string, genre: string) => `${accum}, ${genre}`,
+  )
+}
+
+export const capitalize = (name: string): string => {
+  const words = name.split(' ')
+  const capitalizedWords = words.map(
+    (word: string) => word[0].toUpperCase() + word.substring(1),
+  )
+  return capitalizedWords.join(' ')
+}
 
 export const formatDuration = (durationMs: number): string => {
   const secondMultiplier = 1000
