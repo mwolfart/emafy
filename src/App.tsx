@@ -11,6 +11,8 @@ import { useState } from 'react'
 import { ProtectedRoute } from 'components/protectedRoute/protectedRoute'
 import { getAuthParamsFromURI } from 'api/credentials'
 import { ViewAlbumLoader } from 'scenes/loader/viewAlbumLoader'
+import { SavedArtists } from 'scenes/savedArtists/savedArtists'
+import { SavedSongs } from 'scenes/savedSongs/savedSongs'
 
 const App = (): JSX.Element => {
   const GlobalLinkStyle = createGlobalStyle`
@@ -42,6 +44,16 @@ const App = (): JSX.Element => {
             isLoggedIn={isLoggedIn}
             path="/album/:id"
             component={ViewAlbumLoader}
+          />
+          <ProtectedRoute
+            isLoggedIn={isLoggedIn}
+            path="/saved-artists"
+            component={SavedArtists}
+          />
+          <ProtectedRoute
+            isLoggedIn={isLoggedIn}
+            path="/saved-songs"
+            component={SavedSongs}
           />
           <Route
             path="/login"
