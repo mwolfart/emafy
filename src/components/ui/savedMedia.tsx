@@ -15,15 +15,15 @@ type MenuWrapperProps = {
 } & StyledProps
 
 type Props = {
+  changeView: (isGrid: boolean) => void
+  fetchMoreMedia: () => void
+  isTransitioning: boolean
+  isViewList: boolean
+  mediaCountLabel: string
   mediaList: Media[]
   mediaTitle: string
-  mediaCountLabel: string
-  totalCount: number
   nextURL: NextURL
-  isViewList: boolean
-  isTransitioning: boolean
-  fetchMoreMedia: () => void
-  changeView: (isGrid: boolean) => void
+  totalCount: number
 }
 
 const Header = styled.div<StyledProps>`
@@ -54,15 +54,15 @@ const MenuWrapper = styled.div<MenuWrapperProps>`
 `
 
 export const SavedMedia: VFC<Props> = ({
+  changeView,
+  fetchMoreMedia,
+  isTransitioning,
+  isViewList,
+  mediaCountLabel,
   mediaList,
   mediaTitle,
-  mediaCountLabel,
-  fetchMoreMedia,
-  totalCount,
   nextURL,
-  isViewList,
-  changeView,
-  isTransitioning,
+  totalCount,
 }: Props) => (
   <InfiniteScroll
     dataLength={mediaList.length}

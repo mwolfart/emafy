@@ -3,13 +3,13 @@ import { useEffect, useState } from 'react'
 import { strings } from 'strings'
 
 type UseGetSavedMediaHookReturn<T> = {
-  mediaList: T[]
-  totalCount: number
-  nextURL: NextURL
-  isViewList: boolean
-  isTransitioning: boolean
-  fetchMoreMedia: () => void
   changeView: (isGrid: boolean) => void
+  fetchMoreMedia: () => void
+  isTransitioning: boolean
+  isViewList: boolean
+  mediaList: T[]
+  nextURL: NextURL
+  totalCount: number
 }
 
 export function useGetSavedMedia<T>(
@@ -51,12 +51,12 @@ export function useGetSavedMedia<T>(
   }, [getFunction])
 
   return {
-    mediaList,
-    totalCount,
-    nextURL,
-    isViewList,
-    isTransitioning,
-    fetchMoreMedia,
     changeView,
+    fetchMoreMedia,
+    isTransitioning,
+    isViewList,
+    mediaList,
+    nextURL,
+    totalCount,
   }
 }
