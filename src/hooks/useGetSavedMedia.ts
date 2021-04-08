@@ -2,7 +2,7 @@ import { MediaListResponse, NextURL } from 'api/data'
 import { useEffect, useState } from 'react'
 import { strings } from 'strings'
 
-type HookReturn<T> = {
+type UseGetSavedMediaHookReturn<T> = {
   mediaList: T[]
   totalCount: number
   nextURL: NextURL
@@ -14,7 +14,7 @@ type HookReturn<T> = {
 
 export function useGetSavedMedia<T>(
   getFunction: (next?: NextURL) => Promise<MediaListResponse<T>>,
-): HookReturn<T> {
+): UseGetSavedMediaHookReturn<T> {
   const [isViewList, setIsViewList] = useState<boolean>(true)
   const [isTransitioning, setTransitioning] = useState<boolean>(false)
   const [nextURL, setNextURL] = useState<NextURL>(null)
