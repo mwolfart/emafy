@@ -5,6 +5,7 @@ import { albums } from 'fixtures/albums'
 import { Album, Media } from 'types/media'
 import { ThemeProvider } from 'styled-components'
 import { mainStyles } from 'styles'
+import { BrowserRouter as Router } from 'react-router-dom'
 
 describe('Menu', () => {
   it('renders Menu correctly', () => {
@@ -12,7 +13,9 @@ describe('Menu', () => {
 
     render(
       <ThemeProvider theme={mainStyles}>
-        <Menu mediaList={albumList} />
+        <Router>
+          <Menu mediaList={albumList} />
+        </Router>
       </ThemeProvider>,
     )
 
