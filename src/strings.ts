@@ -7,6 +7,11 @@ export const strings = {
       noImage: 'No image available',
     },
   },
+  hooks: {
+    useGetSavedMedia: {
+      errorFetchingData: 'There was an error while fetching the data',
+    },
+  },
   scenes: {
     login: {
       signin: 'Sign in',
@@ -20,11 +25,19 @@ export const strings = {
       mySavedAlbums: 'My Saved Albums',
       subtextAlbum: 'album',
       subtextAlbums: 'albums',
-      errorLoadingAlbums:
-        'There was an error while fetching the user saved albums',
       errorLoadingAlbum: 'There was an error while fetching the album',
       errorLoadingAlbumTracks:
         "There was an error while fetching the current album's tracks",
+    },
+    songs: {
+      mySavedSongs: 'My Saved Songs',
+      subtextSong: 'song',
+      subtextSongs: 'songs',
+    },
+    artists: {
+      mySavedArtists: 'My Saved Artists',
+      subtextArtist: 'artist',
+      subtextArtists: 'artists',
     },
   },
   api: {

@@ -47,7 +47,7 @@ export const LoginScene: VFC<Props> = ({ onLogin }) => {
 
   onLogin(isLoggedIn)
   const history = useHistory()
-  !isOnLoginProcess && isLoggedIn && history.push('/saved-albums')
+  !isOnLoginProcess && isLoggedIn && history.push('/saved-artists')
 
   const closeLoginModal = (): void => {}
 

@@ -7,5 +7,5 @@ export const artist: SimpleArtist = {
   genres: [faker.music.genre(), faker.music.genre(), faker.music.genre()],
   popularity: Math.round(Math.random() * 100),
   followers: Math.round(Math.random() * 100000),
-  type: MediaType.artist,
+  mediaType: MediaType.artist,
 }

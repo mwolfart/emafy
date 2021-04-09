@@ -6,11 +6,13 @@ import { LoginScene } from './login'
 
 describe('Login', () => {
   it('renders Login scene correctly', () => {
+    const onLogin = jest.fn()
     const { container } = render(
       <ThemeProvider theme={mainStyles}>
-        <LoginScene />
+        <LoginScene onLogin={onLogin} />
       </ThemeProvider>,
     )
+    expect(onLogin).toHaveBeenCalled()
     expect(container.childElementCount).toBeTruthy()
   })
 })

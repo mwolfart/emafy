@@ -2,22 +2,22 @@ import { screen, render } from '@testing-library/react'
 import { strings } from 'strings'
 import { ThemeProvider } from 'styled-components'
 import { mainStyles } from 'styles'
-import { SavedAlbums } from './savedAlbums'
+import { SavedArtists } from './savedArtists'
 
-describe('Saved Albums', () => {
-  it('renders Saved Albums scene correctly', () => {
+describe('Saved Artists', () => {
+  it('renders Saved Artists scene correctly', () => {
     render(
       <ThemeProvider theme={mainStyles}>
-        <SavedAlbums />
+        <SavedArtists />
       </ThemeProvider>,
     )
     const labelSavedElement = screen.getByText(
-      strings.scenes.albums.mySavedAlbums,
+      strings.scenes.artists.mySavedArtists,
     )
-    const labelAlbumCntElement = screen.getByText(
-      `0 ${strings.scenes.albums.subtextAlbums}`,
+    const labelArtistCntElement = screen.getByText(
+      `0 ${strings.scenes.artists.subtextArtists}`,
     )
     expect(labelSavedElement).toBeTruthy()
-    expect(labelAlbumCntElement).toBeTruthy()
+    expect(labelArtistCntElement).toBeTruthy()
   })
 })
