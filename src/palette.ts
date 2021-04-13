@@ -8,7 +8,9 @@ export type Palette = {
   colorTextSubtitleLarge: string
   colorTextButton: string
   colorTextDisabled: string
+  colorTextSidebar: string
   colorBackground: string
+  colorBackgroundSidebar: string
   colorBackgroundDisabled: string
   colorBackgroundBannerEdge: string
   colorBackgroundBannerCenter: string
@@ -23,12 +25,14 @@ export const mainPalette: Palette = {
   colorButtonIntermed: '#e4305d',
   colorSecondary: '#ee7321',
   colorTextParagraph: '#757575',
-  colorTextTitle: '#222222',
-  colorTextTitleLarge: '#eeeeee',
-  colorTextSubtitleLarge: '#cccccc',
-  colorTextButton: '#eeeeee',
-  colorTextDisabled: '#888888',
+  colorTextTitle: '#222',
+  colorTextTitleLarge: '#eee',
+  colorTextSubtitleLarge: '#ccc',
+  colorTextButton: '#eee',
+  colorTextDisabled: '#888',
+  colorTextSidebar: '#666',
   colorBackground: '#f2f2f2',
+  colorBackgroundSidebar: '#1a1a1a',
   colorBackgroundDisabled: '#aaa5',
   colorBackgroundBannerEdge: '#505050ff',
   colorBackgroundBannerCenter: '#aaa5',
