@@ -27,11 +27,12 @@ const App = (): JSX.Element => {
     display: flex;
     flex-direction: row;
     width: 100vw;
-    height: 100vh;
+    height: 100%;
   `
 
   const MainScreen = styled.div`
     width: 100%;
+    overflow: auto;
   `
 
   const history = createBrowserHistory()
