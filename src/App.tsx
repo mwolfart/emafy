@@ -31,7 +31,7 @@ const App = (): JSX.Element => {
 
   const MainScreen = styled.div`
     width: 100%;
-    overflow: auto;
+    overflow: scroll;
   `
 
   const history = createBrowserHistory()

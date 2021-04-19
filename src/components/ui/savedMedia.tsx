@@ -9,6 +9,7 @@ import { GlobalProps as StyledProps } from 'types/global'
 import { Media } from 'types/media'
 import { ToggleDescriptor } from '.'
 import { SubtitleLarge, TitleLarge } from './heading'
+import { SpinnerCenterPadding } from 'components/spinner/spinner'
 
 type MenuWrapperProps = {
   isTransitioning?: boolean
@@ -68,7 +69,8 @@ export const SavedMedia: VFC<Props> = ({
     dataLength={mediaList.length}
     next={fetchMoreMedia}
     hasMore={mediaList.length < totalCount && nextURL !== null}
-    loader={'Loading...'}
+    loader={<SpinnerCenterPadding />}
+    scrollableTarget="main-screen"
   >
     <Header>
       <TitleWrapper>
