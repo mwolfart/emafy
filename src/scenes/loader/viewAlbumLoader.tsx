@@ -5,6 +5,7 @@ import { Album } from 'types/media'
 import { ViewAlbum } from '../viewAlbum/viewAlbum'
 import { GlobalProps as StyledProps } from 'types/global'
 import { strings } from 'strings'
+import BeatLoader from 'react-spinners/BeatLoader'
 
 type MatchParams = {
   id: string
@@ -30,7 +31,7 @@ export const ViewAlbumLoader: VFC<Props> = ({ match }) => {
   }, [match])
 
   return isLoading ? (
-    <>Loading...</>
+    <BeatLoader loading={isLoading} />
   ) : album ? (
     <ViewAlbum albumInfo={album} />
   ) : (
