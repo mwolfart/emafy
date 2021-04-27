@@ -23,7 +23,8 @@ const createHeader = (): HeaderProps => {
 const createRequestParams = (params?: {
   [key: string]: string
 }): RequestProps => {
-  return { ...createHeader(), params: { ...params } }
+  const header = createHeader()
+  return { ...header, params: { ...params } }
 }
 
 const instance = axios.create({
