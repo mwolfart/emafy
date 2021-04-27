@@ -6,6 +6,15 @@ export const strings = {
       image: 'Cover image',
       noImage: 'No image available',
     },
+    sidebar: {
+      songs: 'Songs',
+      artists: 'Artists',
+      albums: 'Albums',
+      playlists: 'Playlists',
+      genres: 'Genres',
+      discover: 'Discover',
+      settings: 'Settings',
+    },
   },
   hooks: {
     useGetSavedMedia: {
