@@ -50,18 +50,10 @@ const Wrapper = styled.div<StyledProps>`
   `}
 `
 
-const LinkControl = styled.div<Props>`
-  ${({ mediaInfo }: Props) => `
-      pointer-events: ${
-        mediaInfo.mediaType === MediaType.song ? 'none' : 'unset'
-      }
-  `}
-`
-
 export const Link: VFC<Props> = ({ mediaInfo, rowVariant: isRowVariant }) => {
   const imgSrc = mediaInfo.images?.[0]
   const faSize = isRowVariant ? 'fa-3x' : 'fa-6x'
-  const linkRedirectURL = `${mediaInfo.mediaType}/${mediaInfo.id}`
+  const linkRedirectURL = `/${mediaInfo.mediaType}/${mediaInfo.id}`
   const placeholder = (
     <i
       className={`fas ${faSize} fa-record-vinyl`}
@@ -70,20 +62,14 @@ export const Link: VFC<Props> = ({ mediaInfo, rowVariant: isRowVariant }) => {
   )
 
   const mediaTile = (
-    <RouterLink to={linkRedirectURL}>
-      <Wrapper rowVariant={isRowVariant}>
-        <MediaImage
-          src={imgSrc}
-          small={isRowVariant}
-          placeholder={placeholder}
-        />
-        <MediaDescription mediaInfo={mediaInfo} />
-      </Wrapper>
-    </RouterLink>
+    <Wrapper rowVariant={isRowVariant}>
+      <MediaImage src={imgSrc} small={isRowVariant} placeholder={placeholder} />
+      <MediaDescription mediaInfo={mediaInfo} />
+    </Wrapper>
   )
 
   return mediaInfo.mediaType !== MediaType.song ? (
-    <LinkControl mediaInfo={mediaInfo}>{mediaTile}</LinkControl>
+    <RouterLink to={linkRedirectURL}>{mediaTile}</RouterLink>
   ) : (
     <>{mediaTile}</>
   )
