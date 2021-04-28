@@ -1,13 +1,15 @@
-import { Album, MediaType } from 'types/media'
+import { Song, MediaType } from 'types/media'
 import faker from 'faker'
 
-export const album: Album = {
+export const song: Song = {
   id: '1',
   name: faker.name.findName(),
   artists: [
     { id: '2', name: faker.name.findName(), mediaType: MediaType.artist },
     { id: '3', name: faker.name.findName(), mediaType: MediaType.artist },
   ],
-  totalTracks: 10,
-  mediaType: MediaType.album,
+  duration: 1400000,
+  mediaType: MediaType.song,
+  trackNumber: 1,
+  albumReference: '',
 }

@@ -6,6 +6,20 @@ export const strings = {
       image: 'Cover image',
       noImage: 'No image available',
     },
+    sidebar: {
+      songs: 'Songs',
+      artists: 'Artists',
+      albums: 'Albums',
+      playlists: 'Playlists',
+      genres: 'Genres',
+      discover: 'Discover',
+      settings: 'Settings',
+    },
+  },
+  hooks: {
+    useGetSavedMedia: {
+      errorFetchingData: 'There was an error while fetching the data',
+    },
   },
   scenes: {
     login: {
@@ -20,11 +34,19 @@ export const strings = {
       mySavedAlbums: 'My Saved Albums',
       subtextAlbum: 'album',
       subtextAlbums: 'albums',
-      errorLoadingAlbums:
-        'There was an error while fetching the user saved albums',
       errorLoadingAlbum: 'There was an error while fetching the album',
       errorLoadingAlbumTracks:
         "There was an error while fetching the current album's tracks",
+    },
+    songs: {
+      mySavedSongs: 'My Saved Songs',
+      subtextSong: 'song',
+      subtextSongs: 'songs',
+    },
+    artists: {
+      mySavedArtists: 'My Saved Artists',
+      subtextArtist: 'artist',
+      subtextArtists: 'artists',
     },
   },
   api: {

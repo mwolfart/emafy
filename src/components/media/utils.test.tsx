@@ -1,6 +1,12 @@
 import { album } from 'fixtures/album'
 import { artist } from 'fixtures/artist'
-import { artistListToString, genreListToString, renderSubTitle } from './utils'
+import {
+  artistListToString,
+  capitalize,
+  formatDuration,
+  genreListToString,
+  renderSubTitle,
+} from './utils'
 
 describe('RenderSubTitle', () => {
   it('RenderSubTitle produces correct output for album', () => {
@@ -22,5 +28,19 @@ describe('GenreListToString', () => {
     expect(result).toBe(
       `${artist.genres[0]}, ${artist.genres[1]}, ${artist.genres[2]}`,
     )
+  })
+})
+
+describe('Capitalize', () => {
+  it('Capitalize produces correct output', () => {
+    const result = capitalize('foo, bar baz')
+    expect(result).toBe('Foo, Bar Baz')
+  })
+})
+
+describe('FormatDuration', () => {
+  it('FormatDuration produces correct output', () => {
+    const duration = formatDuration(4515000)
+    expect(duration).toBe('01:15:15')
   })
 })

@@ -10,7 +10,7 @@ export type Media = {
   name: string
   images?: Array<string>
   id: string
-  type: MediaType.album | MediaType.song | MediaType.artist
+  mediaType: MediaType.album | MediaType.song | MediaType.artist
 }
 
 type Reference = string
@@ -18,13 +18,13 @@ type Reference = string
 export interface Album extends Media {
   artists: Array<Media>
   totalTracks: number
-  type: MediaType.album
+  mediaType: MediaType.album
 }
 
 export interface Song extends Media {
   artists: Array<Media>
   duration: number
-  type: MediaType.song
+  mediaType: MediaType.song
   trackNumber: number
   albumReference: Reference
 }
@@ -33,16 +33,20 @@ export interface SimpleArtist extends Media {
   genres: Array<string>
   followers: number
   popularity: number
-  type: MediaType.artist
+  mediaType: MediaType.artist
 }
 
 export const isAlbum = (media: Media | RawTracksAlbum): media is Album =>
-  typeof media === 'object' && 'type' in media && media.type === MediaType.album
+  typeof media === 'object' &&
+  'mediaType' in media &&
+  media.mediaType === MediaType.album
 
 export const isSong = (media: Media): media is Song =>
-  typeof media === 'object' && 'type' in media && media.type === MediaType.song
+  typeof media === 'object' &&
+  'mediaType' in media &&
+  media.mediaType === MediaType.song
 
 export const isArtist = (media: Media): media is SimpleArtist =>
   typeof media === 'object' &&
-  'type' in media &&
-  media.type === MediaType.artist
+  'mediaType' in media &&
+  media.mediaType === MediaType.artist

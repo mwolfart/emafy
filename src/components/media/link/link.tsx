@@ -1,7 +1,7 @@
 import { GlobalProps } from 'types/global'
 import { VFC } from 'react'
 import styled from 'styled-components'
-import { Media } from 'types/media'
+import { Media, MediaType } from 'types/media'
 import { Description as MediaDescription } from '../description/description'
 import { Image as MediaImage } from '../image/image'
 import { strings } from 'strings'
@@ -53,8 +53,7 @@ const Wrapper = styled.div<StyledProps>`
 export const Link: VFC<Props> = ({ mediaInfo, rowVariant: isRowVariant }) => {
   const imgSrc = mediaInfo.images?.[0]
   const faSize = isRowVariant ? 'fa-3x' : 'fa-6x'
-  const mediaType = mediaInfo.type.toString()
-  const linkRedirectURL = `${mediaType}/${mediaInfo.id}`
+  const linkRedirectURL = `/${mediaInfo.mediaType}/${mediaInfo.id}`
   const placeholder = (
     <i
       className={`fas ${faSize} fa-record-vinyl`}
@@ -62,16 +61,16 @@ export const Link: VFC<Props> = ({ mediaInfo, rowVariant: isRowVariant }) => {
     />
   )
 
-  return (
-    <RouterLink to={linkRedirectURL}>
-      <Wrapper rowVariant={isRowVariant}>
-        <MediaImage
-          src={imgSrc}
-          small={isRowVariant}
-          placeholder={placeholder}
-        />
-        <MediaDescription mediaInfo={mediaInfo} />
-      </Wrapper>
-    </RouterLink>
+  const mediaTile = (
+    <Wrapper rowVariant={isRowVariant}>
+      <MediaImage src={imgSrc} small={isRowVariant} placeholder={placeholder} />
+      <MediaDescription mediaInfo={mediaInfo} />
+    </Wrapper>
+  )
+
+  return mediaInfo.mediaType !== MediaType.song ? (
+    <RouterLink to={linkRedirectURL}>{mediaTile}</RouterLink>
+  ) : (
+    <>{mediaTile}</>
   )
 }
