@@ -1,7 +1,7 @@
 import './App.css'
 import '@fortawesome/fontawesome-free/css/fontawesome.min.css'
 import '@fortawesome/fontawesome-free/css/solid.min.css'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { LoginScene } from 'scenes/login/login'
 import styled, { createGlobalStyle, ThemeProvider } from 'styled-components'
 import { mainStyles } from 'styles'
@@ -50,30 +50,32 @@ const App = (): JSX.Element => {
         <Wrapper>
           <Sidebar />
           <MainScreen>
-            <ProtectedRoute
-              isLoggedIn={isLoggedIn}
-              path="/saved-albums"
-              component={SavedAlbums}
-            />
-            <ProtectedRoute
-              isLoggedIn={isLoggedIn}
-              path="/album/:id"
-              component={ViewAlbumLoader}
-            />
-            <ProtectedRoute
-              isLoggedIn={isLoggedIn}
-              path="/saved-artists"
-              component={SavedArtists}
-            />
-            <ProtectedRoute
-              isLoggedIn={isLoggedIn}
-              path="/saved-songs"
-              component={SavedSongs}
-            />
-            <Route
-              path="/login"
-              component={() => <LoginScene onLogin={setIsLoggedIn} />}
-            />
+            <Switch>
+              <ProtectedRoute
+                isLoggedIn={isLoggedIn}
+                path="/saved-albums"
+                component={SavedAlbums}
+              />
+              <ProtectedRoute
+                isLoggedIn={isLoggedIn}
+                path="/album/:id"
+                component={ViewAlbumLoader}
+              />
+              <ProtectedRoute
+                isLoggedIn={isLoggedIn}
+                path="/saved-artists"
+                component={SavedArtists}
+              />
+              <ProtectedRoute
+                isLoggedIn={isLoggedIn}
+                path="/saved-songs"
+                component={SavedSongs}
+              />
+              <Route
+                path="/login"
+                component={() => <LoginScene onLogin={setIsLoggedIn} />}
+              />
+            </Switch>
           </MainScreen>
         </Wrapper>
       </Router>
