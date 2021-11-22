@@ -40,12 +40,13 @@ export const LoginScene: VFC<Props> = ({ onLogin }) => {
     if (isOnLoginProcess && !cancelled) {
       requestValidToken({ onSuccessCallback, onErrorCallback })
     }
+
+    onLogin(isLoggedIn)
     return () => {
       cancelled = true
     }
-  }, [isOnLoginProcess])
+  }, [isOnLoginProcess, onLogin, isLoggedIn])
 
-  onLogin(isLoggedIn)
   const history = useHistory()
   !isOnLoginProcess && isLoggedIn && history.push('/saved-artists')
 
