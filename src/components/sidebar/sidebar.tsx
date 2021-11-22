@@ -9,7 +9,6 @@ type ButtonProps = {
   title: string
   path: string
   icon: string
-  key: number
 }
 
 const Wrapper = styled.div`
@@ -31,46 +30,39 @@ const mediaButtons: ButtonProps[] = [
     title: strings.components.sidebar.songs,
     path: '/saved-songs/',
     icon: 'fa-music',
-    key: 0,
   },
   {
     title: strings.components.sidebar.albums,
     path: '/saved-albums/',
     icon: 'fa-compact-disc',
-    key: 1,
   },
   {
     title: strings.components.sidebar.artists,
     path: '/saved-artists/',
     icon: 'fa-guitar',
-    key: 2,
   },
   {
     title: strings.components.sidebar.playlists,
     path: '/saved-playlists/',
     icon: 'fa-list',
-    key: 3,
   },
   {
     title: strings.components.sidebar.genres,
-    path: '/',
+    path: '/genres/',
     icon: 'fa-th',
-    key: 4,
   },
 ]
 
 const miscButtons: ButtonProps[] = [
   {
     title: strings.components.sidebar.discover,
-    path: '/',
+    path: '/discover/',
     icon: 'fa-search',
-    key: 5,
   },
   {
     title: strings.components.sidebar.settings,
-    path: '/',
+    path: '/settings/',
     icon: 'fa-cog',
-    key: 6,
   },
 ]
 
@@ -79,9 +71,8 @@ export const Sidebar: VFC = () => {
     title,
     path,
     icon,
-    key,
   }: ButtonProps): JSX.Element => (
-    <SidebarButton title={title} path={path} icon={icon} key={key} />
+    <SidebarButton title={title} path={path} icon={icon} key={path} />
   )
   return (
     <Wrapper>
