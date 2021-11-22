@@ -1,7 +1,7 @@
 import './App.css'
 import '@fortawesome/fontawesome-free/css/fontawesome.min.css'
 import '@fortawesome/fontawesome-free/css/solid.min.css'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import { LoginScene } from 'scenes/login/login'
 import styled, { createGlobalStyle, ThemeProvider } from 'styled-components'
 import { mainStyles } from 'styles'
@@ -31,7 +31,7 @@ const App = (): JSX.Element => {
 
   const MainScreen = styled.div`
     width: 100%;
-    overflow: auto;
+    padding-left: 70px;
   `
 
   const history = createBrowserHistory()
@@ -46,7 +46,7 @@ const App = (): JSX.Element => {
   return (
     <ThemeProvider theme={mainStyles}>
       <GlobalLinkStyle />
-      <Router>
+      <BrowserRouter>
         <Wrapper>
           <Sidebar />
           <MainScreen>
@@ -78,7 +78,7 @@ const App = (): JSX.Element => {
             </Switch>
           </MainScreen>
         </Wrapper>
-      </Router>
+      </BrowserRouter>
     </ThemeProvider>
   )
 }
