@@ -14,6 +14,8 @@ import { ViewAlbumLoader } from 'scenes/loader/viewAlbumLoader'
 import { SavedArtists } from 'scenes/savedArtists/savedArtists'
 import { SavedSongs } from 'scenes/savedSongs/savedSongs'
 import { Sidebar } from 'components/sidebar/sidebar'
+import { Topbar } from 'components/topbar/topbar'
+import { GlobalProps } from 'types/global'
 
 const App = (): JSX.Element => {
   const GlobalLinkStyle = createGlobalStyle`
@@ -24,14 +26,30 @@ const App = (): JSX.Element => {
 
   const Wrapper = styled.div`
     display: flex;
+    flex-direction: column;
+    width: 100%;
+  `
+
+  const HeaderWrapper = styled.div`
+    position: relative;
+    width: 100vw;
+    height: 88px;
+    z-index: 1;
+  `
+
+  const ContentWrapper = styled.div`
+    display: flex;
     flex-direction: row;
     width: 100vw;
     height: 100%;
   `
 
   const MainScreen = styled.div`
-    width: 100%;
-    padding-left: 70px;
+    ${({ theme = mainStyles }: GlobalProps) => `
+      padding-left: 70px;
+      width: calc(100% - 70px);
+      background-color: ${theme.palette.colorBackground};
+    `}
   `
 
   const history = createBrowserHistory()
@@ -48,35 +66,40 @@ const App = (): JSX.Element => {
       <GlobalLinkStyle />
       <BrowserRouter>
         <Wrapper>
-          <Sidebar />
-          <MainScreen>
-            <Switch>
-              <ProtectedRoute
-                isLoggedIn={isLoggedIn}
-                path="/saved-albums"
-                component={SavedAlbums}
-              />
-              <ProtectedRoute
-                isLoggedIn={isLoggedIn}
-                path="/album/:id"
-                component={ViewAlbumLoader}
-              />
-              <ProtectedRoute
-                isLoggedIn={isLoggedIn}
-                path="/saved-artists"
-                component={SavedArtists}
-              />
-              <ProtectedRoute
-                isLoggedIn={isLoggedIn}
-                path="/saved-songs"
-                component={SavedSongs}
-              />
-              <Route
-                path="/login"
-                component={() => <LoginScene onLogin={setIsLoggedIn} />}
-              />
-            </Switch>
-          </MainScreen>
+          <HeaderWrapper>
+            <Topbar />
+          </HeaderWrapper>
+          <ContentWrapper>
+            <Sidebar />
+            <MainScreen>
+              <Switch>
+                <ProtectedRoute
+                  isLoggedIn={isLoggedIn}
+                  path="/saved-albums"
+                  component={SavedAlbums}
+                />
+                <ProtectedRoute
+                  isLoggedIn={isLoggedIn}
+                  path="/album/:id"
+                  component={ViewAlbumLoader}
+                />
+                <ProtectedRoute
+                  isLoggedIn={isLoggedIn}
+                  path="/saved-artists"
+                  component={SavedArtists}
+                />
+                <ProtectedRoute
+                  isLoggedIn={isLoggedIn}
+                  path="/saved-songs"
+                  component={SavedSongs}
+                />
+                <Route
+                  path="/login"
+                  component={() => <LoginScene onLogin={setIsLoggedIn} />}
+                />
+              </Switch>
+            </MainScreen>
+          </ContentWrapper>
         </Wrapper>
       </BrowserRouter>
     </ThemeProvider>

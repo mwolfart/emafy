@@ -25,13 +25,13 @@ export const Wrapper = styled.div<StyledProps>`
     text-align: center;
     color: ${theme?.palette.colorTextParagraph};
     ${
-      small &&
+      !small &&
       `box-shadow: ${theme?.shadowDimensionsDefault} ${theme?.shadowDefault};`
     }
 
     &:hover {
       ${
-        small &&
+        !small &&
         `box-shadow: ${theme?.shadowDimensionsDefault} ${theme?.shadowAccent};`
       }
     }

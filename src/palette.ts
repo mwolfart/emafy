@@ -37,7 +37,7 @@ export const mainPalette: Palette = {
   colorBackgroundBannerEdge: '#505050ff',
   colorBackgroundBannerCenter: '#aaa5',
   colorBackgroundBannerText: '#aaab',
-  colorLinkBackground: '#f0f0f0',
-  colorLinkBackgroundHover: '#e0e0e0',
+  colorLinkBackground: '#e5e5e5',
+  colorLinkBackgroundHover: '#dadada',
   colorImageBackground: '#cccccc',
 }
