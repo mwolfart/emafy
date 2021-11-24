@@ -3,9 +3,11 @@ import { VFC } from 'react'
 import styled from 'styled-components'
 import { mainStyles } from 'styles'
 import { GlobalProps } from 'types/global'
+import profile from 'images/profile.png'
+import { User } from 'types/media'
 
 type Props = {
-  userInfo: { name: string; image: string }
+  userInfo: User
 }
 
 const Wrapper = styled.div`
@@ -48,13 +50,16 @@ const Subtitle = styled.span`
     font-weight: ${theme.fontBoldOne};
     color: ${theme.palette.colorTextDisabled};
     text-transform: uppercase;
+    white-space: nowrap;
   `}
 `
 
 export const ProfileButton: VFC<Props> = ({ userInfo }) => {
   return (
     <Wrapper>
-      <UserIcon imagePath={userInfo.image} />
+      <UserIcon
+        imagePath={(userInfo.images?.length && userInfo.images[0]) || profile}
+      />
       <ProfileInfo>
         <Name>{userInfo.name}</Name>
         <Subtitle>View profile</Subtitle>

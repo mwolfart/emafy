@@ -12,7 +12,8 @@ const Icon = styled.img`
     width: ${theme.imageSizeIcon};
     height: ${theme.imageSizeIcon};
     border-radius: ${theme.borderRadiusMedium};
-    padding-right: ${theme.divSpacingSmall};
+    margin-right: ${theme.divSpacingMedium};
+    object-fit: cover;
   `}
 `
 

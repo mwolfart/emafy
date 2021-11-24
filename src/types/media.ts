@@ -13,6 +13,14 @@ export type Media = {
   mediaType: MediaType.album | MediaType.song | MediaType.artist
 }
 
+export type User = {
+  country: string
+  name: string
+  email: string
+  id: string
+  images?: Array<string>
+}
+
 type Reference = string
 
 export interface Album extends Media {

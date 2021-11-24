@@ -13,6 +13,14 @@ export type RawTracksAlbum = {
   id: string
 }
 
+export type RawUser = {
+  country: string
+  display_name: string
+  email: string
+  id: string
+  images: Image[]
+}
+
 export interface RawAlbum extends BasicRawMedia {
   artists: BasicRawMedia[]
   total_tracks: number

@@ -1,10 +1,12 @@
-import { VFC } from 'react'
+import { useEffect, useState, VFC } from 'react'
 import styled from 'styled-components'
 import { GlobalProps } from 'types/global'
 import { mainStyles } from 'styles'
 import { ProfileButton } from 'components/profileButton/profileButton'
 import { SearchField } from 'components/searchField/searchField'
 import { ChartButton } from 'components/chartButton/chartButton'
+import { getUserProfile } from 'api/data'
+import { User } from 'types/media'
 
 const Wrapper = styled.div`
   ${({ theme = mainStyles }: GlobalProps) => `
@@ -25,11 +27,20 @@ const Dash = styled.div`
 `
 
 export const Topbar: VFC = () => {
-  const userInfo = {
-    name: 'Darya Vermalen',
-    image:
-      'https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg',
+  const emptyUser = {
+    country: '',
+    name: '',
+    email: '',
+    id: '',
+    images: [],
   }
+  const [userInfo, setUserInfo] = useState<User>(emptyUser)
+
+  useEffect(() => {
+    getUserProfile().then((userData) => {
+      setUserInfo(userData)
+    })
+  }, [])
 
   return (
     <Wrapper>
