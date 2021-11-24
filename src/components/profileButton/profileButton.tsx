@@ -14,12 +14,20 @@ const Wrapper = styled.div`
     flex-direction: row;
     padding-left: ${theme.divSpacingSmall};
     padding-right: ${theme.divSpacingExtraBig};
+
+    @media (max-width: 576px) {
+      padding-right: ${theme.divSpacingSmall};
+    }
   `}
 `
 
 const ProfileInfo = styled.div`
   display: flex;
   flex-direction: column;
+
+  @media (max-width: 576px) {
+    display: none;
+  }
 `
 
 const Name = styled.span`

@@ -13,6 +13,15 @@ const Wrapper = styled.div`
     padding: 0 ${theme.divSpacingBig};
     align-items: center;
     width: 70%;
+    transition: 0.5s;
+
+    @media (max-width: 576px) {
+      width: 100%;
+    }
+
+    &:hover {
+      transform: scale(1.03);
+    }
   `}
 `
 

@@ -10,6 +10,10 @@ const Wrapper = styled.div`
     flex-grow: 1;
     align-self: center;
     text-align: right;
+
+    @media (max-width: 576px) {
+      display: none;
+    }
   `}
 `
 
