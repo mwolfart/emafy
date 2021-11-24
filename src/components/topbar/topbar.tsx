@@ -37,9 +37,17 @@ export const Topbar: VFC = () => {
   const [userInfo, setUserInfo] = useState<User>(emptyUser)
 
   useEffect(() => {
+    let cancelled = false
+
     getUserProfile().then((userData) => {
-      setUserInfo(userData)
+      if (!cancelled) {
+        setUserInfo(userData)
+      }
     })
+
+    return () => {
+      cancelled = true
+    }
   }, [])
 
   return (
