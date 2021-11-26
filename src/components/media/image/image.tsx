@@ -49,7 +49,7 @@ export const Wrapper = styled.div<StyledProps>`
 export const Image: VFC<Props> = ({ src, small, placeholder }) => (
   <Wrapper small={small}>
     {src || !placeholder ? (
-      <img src={src} alt={strings.components.mediaImage.image} />
+      <img src={src} alt={strings.components.media.image.description} />
     ) : (
       placeholder
     )}

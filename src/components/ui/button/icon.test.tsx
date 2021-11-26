@@ -1,11 +1,17 @@
 import { fireEvent, render, screen } from '@testing-library/react'
 import { strings } from 'strings'
 
-import { CloseButton } from './closeButton'
+import { IconButton } from './icon'
 
-describe('CloseButton', () => {
-  it('renders CloseButton correctly', () => {
-    render(<CloseButton onClickCallback={() => {}} />)
+describe('IconButton', () => {
+  it('renders IconButton correctly', () => {
+    render(
+      <IconButton
+        iconClass="fa-times"
+        ariaLabel={strings.components.closeButton}
+        onClickCallback={() => {}}
+      />,
+    )
     const buttonElement = screen.getByRole('button', {
       name: strings.components.closeButton,
     })
@@ -14,7 +20,13 @@ describe('CloseButton', () => {
 
   it('calls onClickCallback on button click', () => {
     const onClick = jest.fn()
-    render(<CloseButton onClickCallback={onClick} />)
+    render(
+      <IconButton
+        iconClass="fa-times"
+        ariaLabel={strings.components.closeButton}
+        onClickCallback={() => {}}
+      />,
+    )
     const buttonElement = screen.getByRole('button', {
       name: strings.components.closeButton,
     })

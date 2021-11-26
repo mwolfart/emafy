@@ -1,12 +1,14 @@
 export const strings = {
   components: {
-    closeButton: 'Close modal',
-    searchButton: 'Search for a song',
-    chartButton: 'View statistics',
-    toggleButton: 'Click to toggle view',
-    mediaImage: {
-      image: 'Cover image',
-      noImage: 'No image available',
+    modal: {
+      closeModal: 'Close modal',
+    },
+    media: {
+      image: {
+        description: 'Cover image',
+        unavailable: 'No cover image available',
+      },
+      toggleView: 'Click to toggle view',
     },
     sidebar: {
       songs: 'Songs',
@@ -17,7 +19,12 @@ export const strings = {
       discover: 'Discover',
       settings: 'Settings',
     },
-    searchFieldPlaceholder: 'Search for a song...',
+    topbar: {
+      viewProfile: 'View profile',
+      searchSong: 'Search for a song',
+      viewStatistics: 'View statistics',
+      searchFieldPlaceholder: 'Search for a song...',
+    },
   },
   hooks: {
     useGetSavedMedia: {

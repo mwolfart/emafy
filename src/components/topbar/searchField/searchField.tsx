@@ -1,4 +1,4 @@
-import { CleanButton } from 'components/ui'
+import { IconButton } from 'components/ui'
 import { VFC } from 'react'
 import { strings } from 'strings'
 import styled from 'styled-components'
@@ -25,12 +25,6 @@ const Wrapper = styled.div`
   `}
 `
 
-const SearchButtonIcon = styled.i`
-  ${({ theme = mainStyles }: GlobalProps) => `
-    font-size: ${theme.fontSizeIcon};
-  `}
-`
-
 const SearchInput = styled.input`
   ${({ theme = mainStyles }: GlobalProps) => `
     border: none;
@@ -49,13 +43,14 @@ export const SearchField: VFC = () => {
 
   return (
     <Wrapper>
-      <CleanButton
-        onClick={onSearchSong}
-        aria-label={strings.components.searchButton}
-      >
-        <SearchButtonIcon className="fa fa-search" />
-      </CleanButton>
-      <SearchInput placeholder={strings.components.searchFieldPlaceholder} />
+      <IconButton
+        iconClass="fa-search"
+        onClickCallback={onSearchSong}
+        ariaLabel={strings.components.topbar.searchSong}
+      />
+      <SearchInput
+        placeholder={strings.components.topbar.searchFieldPlaceholder}
+      />
     </Wrapper>
   )
 }

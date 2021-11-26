@@ -85,7 +85,7 @@ export const Toggle: FC<Props> = ({
         type="checkbox"
         onChange={onChange}
         defaultChecked={toggleState}
-        aria-label={strings.components.toggleButton}
+        aria-label={strings.components.media.toggleView}
       />
       <Background isOnOff={isOnOff} isChecked={checked} />
     </Wrapper>
