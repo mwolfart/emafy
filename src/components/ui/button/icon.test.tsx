@@ -1,19 +1,22 @@
 import { fireEvent, render, screen } from '@testing-library/react'
 import { strings } from 'strings'
-
 import { IconButton } from './icon'
+import { ThemeProvider } from 'styled-components'
+import { mainStyles } from 'styles'
 
 describe('IconButton', () => {
   it('renders IconButton correctly', () => {
     render(
-      <IconButton
-        iconClass="fa-times"
-        ariaLabel={strings.components.closeButton}
-        onClickCallback={() => {}}
-      />,
+      <ThemeProvider theme={mainStyles}>
+        <IconButton
+          iconClass="fa-times"
+          ariaLabel={strings.components.modal.closeModal}
+          onClickCallback={() => {}}
+        />
+      </ThemeProvider>,
     )
     const buttonElement = screen.getByRole('button', {
-      name: strings.components.closeButton,
+      name: strings.components.modal.closeModal,
     })
     expect(buttonElement).toBeInTheDocument()
   })
@@ -21,14 +24,16 @@ describe('IconButton', () => {
   it('calls onClickCallback on button click', () => {
     const onClick = jest.fn()
     render(
-      <IconButton
-        iconClass="fa-times"
-        ariaLabel={strings.components.closeButton}
-        onClickCallback={() => {}}
-      />,
+      <ThemeProvider theme={mainStyles}>
+        <IconButton
+          iconClass="fa-times"
+          ariaLabel={strings.components.modal.closeModal}
+          onClickCallback={onClick}
+        />
+      </ThemeProvider>,
     )
     const buttonElement = screen.getByRole('button', {
-      name: strings.components.closeButton,
+      name: strings.components.modal.closeModal,
     })
     fireEvent.click(buttonElement)
     expect(onClick).toHaveBeenCalled()

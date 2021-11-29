@@ -1,6 +1,8 @@
 import { render, screen } from '@testing-library/react'
 import { ProfileInfo } from './profileInfo'
 import faker from 'faker'
+import { ThemeProvider } from 'styled-components'
+import { mainStyles } from 'styles'
 
 describe('Profile Info', () => {
   it('renders component correctly', () => {
@@ -14,7 +16,11 @@ describe('Profile Info', () => {
       images: [userImage],
     }
 
-    render(<ProfileInfo userInfo={userInfo} />)
+    render(
+      <ThemeProvider theme={mainStyles}>
+        <ProfileInfo userInfo={userInfo} />
+      </ThemeProvider>,
+    )
     const element = screen.getByText(userName)
     expect(element).toBeInTheDocument()
   })
