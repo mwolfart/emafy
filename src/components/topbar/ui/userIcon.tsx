@@ -17,4 +17,6 @@ const Icon = styled.img`
   `}
 `
 
-export const UserIcon: VFC<Props> = ({ imagePath }) => <Icon src={imagePath} />
+export const UserIcon: VFC<Props> = ({ imagePath }) => (
+  <Icon src={imagePath} aria-hidden={true} />
+)

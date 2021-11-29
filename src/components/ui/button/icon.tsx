@@ -23,7 +23,11 @@ export const IconButton: VFC<Props> = ({
   onClickCallback,
   ariaLabel,
 }) => (
-  <CleanButton onClick={onClickCallback} aria-label={ariaLabel}>
+  <CleanButton
+    onClick={onClickCallback}
+    aria-label={ariaLabel}
+    aria-hidden={!ariaLabel}
+  >
     <Icon className={'fa ' + iconClass + ' fa-2x'} />
   </CleanButton>
 )

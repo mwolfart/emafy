@@ -43,13 +43,10 @@ export const SearchField: VFC = () => {
 
   return (
     <Wrapper>
-      <IconButton
-        iconClass="fa-search"
-        onClickCallback={onSearchSong}
-        ariaLabel={strings.components.topbar.searchSong}
-      />
+      <IconButton iconClass="fa-search" onClickCallback={onSearchSong} />
       <SearchInput
         placeholder={strings.components.topbar.searchFieldPlaceholder}
+        aria-label={strings.components.topbar.searchSong}
       />
     </Wrapper>
   )
