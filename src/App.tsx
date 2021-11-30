@@ -24,7 +24,7 @@ const App = (): JSX.Element => {
     }
   `
   const [isLoggedIn, setIsLoggedIn] = useState(false)
-  const sidebarPadding = isLoggedIn ? '70px' : '0'
+  const sidebarPadding = isLoggedIn ? '67px' : '0'
   const topbarHeight = isLoggedIn ? '88px' : '0'
 
   const Wrapper = styled.div`
