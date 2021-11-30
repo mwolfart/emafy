@@ -17,6 +17,7 @@ const Wrapper = styled.div`
     position: fixed;
     background-color: white;
     width: calc(100% - 2 * ${theme.divSpacingMedium});
+    height: calc(${theme.topbarHeight} - 2 * ${theme.divSpacingMedium});
   `}
 `
 

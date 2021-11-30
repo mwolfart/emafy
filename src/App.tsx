@@ -24,8 +24,6 @@ const App = (): JSX.Element => {
     }
   `
   const [isLoggedIn, setIsLoggedIn] = useState(false)
-  const sidebarPadding = isLoggedIn ? '67px' : '0'
-  const topbarHeight = isLoggedIn ? '88px' : '0'
 
   const Wrapper = styled.div`
     display: flex;
@@ -34,10 +32,12 @@ const App = (): JSX.Element => {
   `
 
   const HeaderWrapper = styled.div`
-    position: relative;
-    width: 100vw;
-    height: ${topbarHeight};
-    z-index: 1;
+    ${({ theme = mainStyles }: GlobalProps) => `
+      position: relative;
+      width: 100vw;
+      height: ${isLoggedIn ? theme.topbarHeight : '0'};
+      z-index: 1;
+    `}
   `
 
   const ContentWrapper = styled.div`
@@ -49,8 +49,8 @@ const App = (): JSX.Element => {
 
   const MainScreen = styled.div`
     ${({ theme = mainStyles }: GlobalProps) => `
-      padding-left: ${sidebarPadding};
-      width: calc(100% - ${sidebarPadding});
+      padding-left: ${isLoggedIn ? theme.sidebarWidth : '0'};
+      width: calc(100% - ${isLoggedIn ? theme.sidebarWidth : '0'});
       background-color: ${theme.palette.colorBackground};
     `}
   `

@@ -28,6 +28,8 @@ export type Styles = {
   divSpacingExtraBig: string
   transitionQuick: string
   transitionQuickDelayed: string
+  sidebarWidth: string
+  topbarHeight: string
   palette: Palette
 }
 
@@ -59,5 +61,7 @@ export const mainStyles: Styles = {
   divSpacingExtraBig: '50px',
   transitionQuick: '0.3s ease',
   transitionQuickDelayed: '0.3s ease 0.2s',
+  sidebarWidth: '67px',
+  topbarHeight: '90px',
   palette: mainPalette,
 }
