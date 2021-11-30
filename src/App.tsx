@@ -23,6 +23,9 @@ const App = (): JSX.Element => {
       text-decoration: unset;
     }
   `
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const sidebarPadding = isLoggedIn ? '70px' : '0'
+  const topbarHeight = isLoggedIn ? '88px' : '0'
 
   const Wrapper = styled.div`
     display: flex;
@@ -33,7 +36,7 @@ const App = (): JSX.Element => {
   const HeaderWrapper = styled.div`
     position: relative;
     width: 100vw;
-    height: 88px;
+    height: ${topbarHeight};
     z-index: 1;
   `
 
@@ -46,19 +49,18 @@ const App = (): JSX.Element => {
 
   const MainScreen = styled.div`
     ${({ theme = mainStyles }: GlobalProps) => `
-      padding-left: 70px;
-      width: calc(100% - 70px);
+      padding-left: ${sidebarPadding};
+      width: calc(100% - ${sidebarPadding});
       background-color: ${theme.palette.colorBackground};
     `}
   `
 
-  const history = createBrowserHistory()
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
   const { code, state } = getAuthParamsFromURI()
-
   const destinationPath = `/login${
     code && state ? `?code=${code}&state=${state}` : ''
   }`
+
+  const history = createBrowserHistory()
   !isLoggedIn && history.push(destinationPath)
 
   return (
@@ -66,11 +68,9 @@ const App = (): JSX.Element => {
       <GlobalLinkStyle />
       <BrowserRouter>
         <Wrapper>
-          <HeaderWrapper>
-            <Topbar />
-          </HeaderWrapper>
+          <HeaderWrapper>{isLoggedIn && <Topbar />}</HeaderWrapper>
           <ContentWrapper>
-            <Sidebar />
+            {isLoggedIn && <Sidebar />}
             <MainScreen>
               <Switch>
                 <ProtectedRoute
