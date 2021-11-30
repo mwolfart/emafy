@@ -35,7 +35,7 @@ const App = (): JSX.Element => {
     ${({ theme = mainStyles }: GlobalProps) => `
       position: relative;
       width: 100vw;
-      height: ${isLoggedIn ? theme.topbarHeight : '0'};
+      ${isLoggedIn && `height: ${theme.topbarHeight};`}
       z-index: 1;
     `}
   `
@@ -49,8 +49,8 @@ const App = (): JSX.Element => {
 
   const MainScreen = styled.div`
     ${({ theme = mainStyles }: GlobalProps) => `
-      padding-left: ${isLoggedIn ? theme.sidebarWidth : '0'};
-      width: calc(100% - ${isLoggedIn ? theme.sidebarWidth : '0'});
+      ${isLoggedIn && `padding-left: ${theme.sidebarWidth};`}
+      width: ${isLoggedIn ? `calc(100% - ${theme.sidebarWidth})` : `100%`};
       background-color: ${theme.palette.colorBackground};
     `}
   `
