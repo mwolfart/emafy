@@ -7,8 +7,8 @@ import styled from 'styled-components'
 import { mainStyles } from 'styles'
 import { GlobalProps as StyledProps } from 'types/global'
 import { Media } from 'types/media'
-import { ToggleDescriptor } from '.'
-import { SubtitleLarge, TitleLarge } from './heading'
+import { ToggleDescriptor } from '../../ui'
+import { SubtitleLarge, TitleLarge } from '../../ui/heading'
 
 type MenuWrapperProps = {
   isTransitioning?: boolean

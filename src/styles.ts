@@ -5,9 +5,10 @@ export type Styles = {
   shadowDimensionsLarge: string
   shadowDefault: string
   shadowAccent: string
-  borderRadiusLarge: string
   borderRadiusDefault: string
   borderRadiusSmall: string
+  borderRadiusMedium: string
+  borderRadiusLarge: string
   fontStyle: string
   fontBoldOne: string
   fontBoldTwo: string
@@ -16,6 +17,8 @@ export type Styles = {
   fontSizeParagraph: string
   fontSizeTitle: string
   fontSizeGiant: string
+  fontSizeIcon: string
+  imageSizeIcon: string
   imageSizeSmall: string
   imageSizeMedium: string
   lineHeightSimple: string
@@ -33,17 +36,20 @@ export const mainStyles: Styles = {
   shadowDimensionsLarge: '0px 80px 100px',
   shadowDefault: '#0000002a',
   shadowAccent: '#00000045',
-  borderRadiusLarge: '32px',
   borderRadiusDefault: '16px',
   borderRadiusSmall: '12px',
+  borderRadiusMedium: '24px',
+  borderRadiusLarge: '32px',
   fontStyle: "Montserrat, 'Trebuchet MS', Arial, sans-serif",
   fontBoldOne: '400',
   fontBoldTwo: '600',
   fontBoldThree: '700',
   fontSizeTiny: '12px',
   fontSizeParagraph: '16px',
+  fontSizeIcon: '20px',
   fontSizeTitle: '24px',
   fontSizeGiant: '36px',
+  imageSizeIcon: '48px',
   imageSizeSmall: '100px',
   imageSizeMedium: '200px',
   lineHeightSimple: '28px',

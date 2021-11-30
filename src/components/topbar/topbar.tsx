@@ -1,0 +1,80 @@
+import { useEffect, useState, VFC } from 'react'
+import styled from 'styled-components'
+import { GlobalProps } from 'types/global'
+import { mainStyles } from 'styles'
+import { ProfileInfo } from 'components/topbar/profileInfo/profileInfo'
+import { SearchField } from 'components/topbar/searchField/searchField'
+import { IconButton } from 'components/ui'
+import { getUserProfile } from 'api/data'
+import { User } from 'types/media'
+import { strings } from 'strings'
+
+const Wrapper = styled.div`
+  ${({ theme = mainStyles }: GlobalProps) => `
+    display: flex;
+    flex-direction: row;
+    padding: ${theme.divSpacingMedium};
+    position: fixed;
+    background-color: white;
+    width: calc(100% - 2 * ${theme.divSpacingMedium});
+  `}
+`
+
+const Dash = styled.div`
+  ${({ theme = mainStyles }: GlobalProps) => `
+    border-left: 2px solid ${theme.palette.colorTextSubtitleLarge};
+    margin: 5px 0;
+  `}
+`
+
+const ButtonsWrapper = styled.div`
+  ${({ theme = mainStyles }: GlobalProps) => `
+    flex-grow: 1;
+    align-self: center;
+    text-align: right;
+
+    @media (max-width: 576px) {
+      display: none;
+    }
+  `}
+`
+
+export const Topbar: VFC = () => {
+  const emptyUser = {
+    country: '',
+    name: '',
+    email: '',
+    id: '',
+    images: [],
+  }
+  const [userInfo, setUserInfo] = useState<User>(emptyUser)
+
+  useEffect(() => {
+    let cancelled = false
+
+    getUserProfile().then((userData) => {
+      if (!cancelled) {
+        setUserInfo(userData)
+      }
+    })
+
+    return () => {
+      cancelled = true
+    }
+  }, [])
+
+  return (
+    <Wrapper>
+      <ProfileInfo userInfo={userInfo} />
+      <Dash />
+      <SearchField />
+      <ButtonsWrapper>
+        <IconButton
+          iconClass="fa-chart-line"
+          ariaLabel={strings.components.topbar.viewStatistics}
+          onClickCallback={() => {}}
+        />
+      </ButtonsWrapper>
+    </Wrapper>
+  )
+}

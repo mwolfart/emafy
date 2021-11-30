@@ -1,10 +1,14 @@
 export const strings = {
   components: {
-    closeButton: 'Close modal',
-    toggleButton: 'Click to toggle view',
-    mediaImage: {
-      image: 'Cover image',
-      noImage: 'No image available',
+    modal: {
+      closeModal: 'Close modal',
+    },
+    media: {
+      image: {
+        description: 'Cover image',
+        unavailable: 'No cover image available',
+      },
+      toggleView: 'Click to toggle view',
     },
     sidebar: {
       songs: 'Songs',
@@ -14,6 +18,12 @@ export const strings = {
       genres: 'Genres',
       discover: 'Discover',
       settings: 'Settings',
+    },
+    topbar: {
+      viewProfile: 'View profile',
+      searchSong: 'Search for a song',
+      viewStatistics: 'View statistics',
+      searchFieldPlaceholder: 'Search for a song...',
     },
   },
   hooks: {
@@ -25,7 +35,8 @@ export const strings = {
     login: {
       signin: 'Sign in',
       // eslint-disable-next-line prettier/prettier
-      instructions: 'To start using the platform, please login using the Spotify API through the link below',
+      instructions:
+        'To start using the platform, please login using the Spotify API through the link below',
       loginUsingSpotify: 'Login using Spotify',
     },
     albums: {
@@ -52,7 +63,8 @@ export const strings = {
   api: {
     credentials: {
       // eslint-disable-next-line prettier/prettier
-      errorAuth: 'There was an error during the authentication, please, refresh the webpage and try again',
+      errorAuth:
+        'There was an error during the authentication, please, refresh the webpage and try again',
       errorUsername: 'Error while fetching user info',
       errorToken: 'Error while fetching token',
       errorRefreshToken: 'Error while retrieving a new token',

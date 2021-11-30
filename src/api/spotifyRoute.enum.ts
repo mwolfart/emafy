@@ -1,5 +1,5 @@
 export enum SPOTIFY_ROUTE {
-  SAVED = 'me/',
+  OWN = 'me/',
   ALBUMS = 'albums',
   ALBUM = 'albums/:id',
   ALBUM_TRACKS = 'albums/:id/tracks',

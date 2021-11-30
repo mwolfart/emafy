@@ -1,5 +1,5 @@
 import { spotifyInstance } from 'api/spotifyInstance'
-import { Album, Song, SimpleArtist } from 'types/media'
+import { Album, Song, SimpleArtist, User } from 'types/media'
 import { Nullable } from 'types/global'
 import {
   parseAlbum,
@@ -7,8 +7,9 @@ import {
   parseSavedTracks,
   parseSimpleArtists,
   parseAlbumTracks,
+  parseUserData,
 } from './parser'
-import { RawAlbum, RawAlbumTrack, RawArtist } from 'types/apiMedia'
+import { RawAlbum, RawAlbumTrack, RawArtist, RawUser } from 'types/apiMedia'
 import { SPOTIFY_ROUTE } from './spotifyRoute.enum'
 
 export type NextURL = Nullable<string>
@@ -37,7 +38,7 @@ const getSpotifyData = <T, U>({
   next: NextURL
   total: number
 }> => {
-  const baseLink = (saved ? SPOTIFY_ROUTE.SAVED : '') + route
+  const baseLink = (saved ? SPOTIFY_ROUTE.OWN : '') + route
   const requestLink = next ? `${baseLink}${next}` : baseLink
   return spotifyInstance<{ items: T[]; next?: string; total: number }>(
     requestLink,
@@ -80,10 +81,15 @@ export const getUsersTopArtists = (
   })
 }
 
+export const getUserProfile = (): Promise<User> => {
+  const route = SPOTIFY_ROUTE.OWN
+  return spotifyInstance<RawUser>(route).then(({ data }) => parseUserData(data))
+}
+
 export const getFollowedUsers = (
   next?: NextURL,
 ): Promise<MediaListResponse<SimpleArtist>> => {
-  const baseLink = SPOTIFY_ROUTE.SAVED + SPOTIFY_ROUTE.FOLLOWING
+  const baseLink = SPOTIFY_ROUTE.OWN + SPOTIFY_ROUTE.FOLLOWING
   const route = baseLink + (next || '')
   return spotifyInstance<{
     artists: {

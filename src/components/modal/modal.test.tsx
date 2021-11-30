@@ -27,7 +27,7 @@ describe('Modal', () => {
       </ThemeProvider>,
     )
     const modalElement = screen.getByRole('button', {
-      name: strings.components.closeButton,
+      name: strings.components.modal.closeModal,
     })
     fireEvent.click(modalElement)
     expect(onClose).toHaveBeenCalled()

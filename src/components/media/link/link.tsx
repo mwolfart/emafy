@@ -57,7 +57,7 @@ export const Link: VFC<Props> = ({ mediaInfo, rowVariant: isRowVariant }) => {
   const placeholder = (
     <i
       className={`fas ${faSize} fa-record-vinyl`}
-      aria-label={strings.components.mediaImage.noImage}
+      aria-label={strings.components.media.image.unavailable}
     />
   )
 
