@@ -4,13 +4,14 @@ import { VFC } from 'react'
 import styled from 'styled-components'
 import { Media } from 'types/media'
 import { renderSubTitle } from '../utils'
+import { mainStyles } from 'styles'
 
 type Props = {
   mediaInfo: Media
 } & GlobalProps
 
 const Wrapper = styled.div<GlobalProps>`
-  ${({ theme }: GlobalProps) => `
+  ${({ theme = mainStyles }: GlobalProps) => `
     display: flex;
     flex-direction: column;
     text-align: left;
@@ -18,9 +19,22 @@ const Wrapper = styled.div<GlobalProps>`
   `}
 `
 
+const PaddedTitle = styled(TitleNormal)`
+  ${({ theme = mainStyles }: GlobalProps) => `
+    padding-left: ${theme.divSpacingSmall};
+    padding-bottom: ${theme.divSpacingSmall};
+  `}
+`
+
+const PaddedSubtitle = styled(SubtitleNormal)`
+  ${({ theme = mainStyles }: GlobalProps) => `
+    padding-left: ${theme.divSpacingSmall};
+  `}
+`
+
 export const Description: VFC<Props> = ({ mediaInfo }) => (
   <Wrapper>
-    <TitleNormal>{mediaInfo.name}</TitleNormal>
-    <SubtitleNormal>{renderSubTitle(mediaInfo)}</SubtitleNormal>
+    <PaddedTitle>{mediaInfo.name}</PaddedTitle>
+    <PaddedSubtitle>{renderSubTitle(mediaInfo)}</PaddedSubtitle>
   </Wrapper>
 )

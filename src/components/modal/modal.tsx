@@ -1,8 +1,5 @@
 import { FC } from 'react'
-import {
-  ModalRectangle,
-  StyledProps as ModalRectProps,
-} from 'components/ui/modalRectangle'
+import { ModalRectangle, ModalRectProps } from 'components/ui/'
 import { IconButton } from 'components/ui'
 import { strings } from 'strings'
 

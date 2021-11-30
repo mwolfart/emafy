@@ -1,4 +1,4 @@
-import { UserIcon } from 'components/topbar/ui/userIcon'
+import { UserAvatar } from 'components/ui/userAvatar'
 import { VFC } from 'react'
 import styled from 'styled-components'
 import { mainStyles } from 'styles'
@@ -6,6 +6,7 @@ import { GlobalProps } from 'types/global'
 import profile from 'images/profile.png'
 import { User } from 'types/media'
 import { strings } from 'strings'
+import { Link as RouterLink } from 'react-router-dom'
 
 type Props = {
   userInfo: User
@@ -57,14 +58,17 @@ const Subtitle = styled.span`
 
 export const ProfileInfo: VFC<Props> = ({ userInfo }) => {
   return (
-    <Wrapper>
-      <UserIcon
-        imagePath={(userInfo.images?.length && userInfo.images[0]) || profile}
-      />
-      <Description>
-        <Name>{userInfo.name}</Name>
-        <Subtitle>{strings.components.topbar.viewProfile}</Subtitle>
-      </Description>
-    </Wrapper>
+    <RouterLink to="/me/">
+      <Wrapper>
+        <UserAvatar
+          imagePath={(userInfo.images?.length && userInfo.images[0]) || profile}
+          small={true}
+        />
+        <Description>
+          <Name>{userInfo.name}</Name>
+          <Subtitle>{strings.components.topbar.viewProfile}</Subtitle>
+        </Description>
+      </Wrapper>
+    </RouterLink>
   )
 }

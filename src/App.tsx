@@ -16,6 +16,7 @@ import { SavedSongs } from 'scenes/savedSongs/savedSongs'
 import { Sidebar } from 'components/sidebar/sidebar'
 import { Topbar } from 'components/topbar/topbar'
 import { GlobalProps } from 'types/global'
+import { Profile } from 'scenes/profile/profile'
 
 const App = (): JSX.Element => {
   const GlobalLinkStyle = createGlobalStyle`
@@ -92,6 +93,11 @@ const App = (): JSX.Element => {
                   isLoggedIn={isLoggedIn}
                   path="/saved-songs"
                   component={SavedSongs}
+                />
+                <ProtectedRoute
+                  isLoggedIn={isLoggedIn}
+                  path="/me"
+                  component={Profile}
                 />
                 <Route
                   path="/login"
