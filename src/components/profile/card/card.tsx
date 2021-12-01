@@ -11,7 +11,9 @@ import { VFC } from 'react'
 import styled from 'styled-components'
 import { mainStyles } from 'styles'
 import { GlobalProps } from 'types/global'
-import { User } from 'types/media'
+import { SimpleArtist, Song, User } from 'types/media'
+import { useGetSavedMedia } from 'hooks/useGetSavedMedia'
+import { getOwnFollowedUsers, getOwnSavedSongs } from 'api/data'
 
 type Props = {
   user: User
@@ -38,7 +40,11 @@ const FlexRowAlignRight = styled(ContainerFlexRow)`
 export const ProfileCard: VFC<Props> = ({ user }) => {
   const userImage = (user.images?.length && user.images[0]) || ''
   const userFollowerCount = user.followerCount
-  const userSavedMusicCount = 0
+
+  const followedArtists = useGetSavedMedia<SimpleArtist>(getOwnFollowedUsers)
+  const userFollowingCount = followedArtists.totalCount
+  const savedMusic = useGetSavedMedia<Song>(getOwnSavedSongs)
+  const userSavedMusicCount = savedMusic.totalCount
   const userPlaylistsCount = 0
 
   return (
@@ -57,6 +63,11 @@ export const ProfileCard: VFC<Props> = ({ user }) => {
         icon="fa-user-friends"
         title={userFollowerCount.toString()}
         subtitle="Followers"
+      />
+      <IconHeadline
+        icon="fa-user-friends"
+        title={userFollowingCount.toString()}
+        subtitle="Followed Artists"
       />
       <IconHeadline
         icon="fa-music"

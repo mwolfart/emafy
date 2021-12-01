@@ -1,12 +1,12 @@
 import { VFC } from 'react'
-import { getFollowedUsers } from 'api/data'
+import { getOwnFollowedUsers } from 'api/data'
 import { useGetSavedMedia } from 'hooks/useGetSavedMedia'
 import { SavedMedia } from 'components/media/ui/savedMedia'
 import { SimpleArtist } from 'types/media'
 import { strings } from 'strings'
 
 export const SavedArtists: VFC = () => {
-  const savedMediaProps = useGetSavedMedia<SimpleArtist>(getFollowedUsers)
+  const savedMediaProps = useGetSavedMedia<SimpleArtist>(getOwnFollowedUsers)
   const { totalCount } = savedMediaProps
 
   const mediaTitle = strings.scenes.artists.mySavedArtists

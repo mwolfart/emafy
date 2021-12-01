@@ -1,6 +1,7 @@
+import { checkIfOwnFollowsArtist } from 'api/data'
 import { ContainerFlexRow, Headline, IconButton } from 'components/ui'
 import { UserAvatar } from 'components/ui/userAvatar'
-import { VFC } from 'react'
+import { useEffect, useState, VFC } from 'react'
 import styled from 'styled-components'
 import { mainStyles } from 'styles'
 import { GlobalProps } from 'types/global'
@@ -20,11 +21,21 @@ const Wrapper = styled(ContainerFlexRow)`
 
 export const Follow: VFC<Props> = ({ follow }) => {
   const followImage = (follow.images?.length && follow.images[0]) || ''
+  const [isCurrentUserFollowing, setIsCurrentUserFollowing] = useState(false)
+  const iconLabel = isCurrentUserFollowing ? 'Following' : ''
+  const iconClass = isCurrentUserFollowing ? 'fa-user-minus' : 'fa-user-plus'
+
+  useEffect(() => {
+    checkIfOwnFollowsArtist(follow.id, 'artist').then((isFollowing) => {
+      setIsCurrentUserFollowing(isFollowing)
+    })
+  }, [follow.id])
+
   return (
     <Wrapper>
       <UserAvatar imagePath={followImage} small={true} />
-      <Headline title={follow.name} subtitle="View profile" />
-      <IconButton title="Following" icon="fa-user-plus" />
+      <Headline title={follow.name} subtitle="View artist" />
+      <IconButton title={iconLabel} icon={iconClass} />
     </Wrapper>
   )
 }

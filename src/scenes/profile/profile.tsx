@@ -1,4 +1,4 @@
-import { getUserProfile } from 'api/data'
+import { getOwnProfile } from 'api/data'
 import { useEffect, useState, VFC } from 'react'
 import styled from 'styled-components'
 import { mainStyles } from 'styles'
@@ -29,7 +29,7 @@ export const Profile: VFC = () => {
   useEffect(() => {
     let cancelled = false
 
-    getUserProfile().then((userData) => {
+    getOwnProfile().then((userData) => {
       if (!cancelled) {
         setUser(userData)
       }

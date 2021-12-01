@@ -18,7 +18,7 @@ type SpotifyDataRequest<T, U> = {
   route: string
   parser: (items: T[]) => U[]
   next?: NextURL
-  saved?: boolean
+  loggedUser?: boolean
   otherParams?: { [key: string]: string }
 }
 
@@ -32,13 +32,13 @@ const getSpotifyData = <T, U>({
   route,
   parser,
   next,
-  saved,
+  loggedUser,
 }: SpotifyDataRequest<T, U>): Promise<{
   entities: U[]
   next: NextURL
   total: number
 }> => {
-  const baseLink = (saved ? SPOTIFY_ROUTE.OWN : '') + route
+  const baseLink = (loggedUser ? SPOTIFY_ROUTE.OWN : '') + route
   const requestLink = next ? `${baseLink}${next}` : baseLink
   return spotifyInstance<{ items: T[]; next?: string; total: number }>(
     requestLink,
@@ -55,21 +55,36 @@ const getSpotifyData = <T, U>({
   })
 }
 
-export const getSavedAlbums = (
+export const getOwnProfile = (): Promise<User> => {
+  const route = SPOTIFY_ROUTE.OWN
+  return spotifyInstance<RawUser>(route).then(({ data }) => parseUserData(data))
+}
+
+export const getOwnSavedAlbums = (
   next?: NextURL,
 ): Promise<MediaListResponse<Album>> => {
   const route = SPOTIFY_ROUTE.ALBUMS
-  return getSpotifyData({ route, parser: parseSavedAlbums, next, saved: true })
+  return getSpotifyData({
+    route,
+    parser: parseSavedAlbums,
+    next,
+    loggedUser: true,
+  })
 }
 
-export const getSavedSongs = (
+export const getOwnSavedSongs = (
   next?: NextURL,
 ): Promise<MediaListResponse<Song>> => {
   const route = SPOTIFY_ROUTE.TRACKS
-  return getSpotifyData({ route, parser: parseSavedTracks, next, saved: true })
+  return getSpotifyData({
+    route,
+    parser: parseSavedTracks,
+    next,
+    loggedUser: true,
+  })
 }
 
-export const getUsersTopArtists = (
+export const getOwnTopArtists = (
   next?: NextURL,
 ): Promise<MediaListResponse<SimpleArtist>> => {
   const route = SPOTIFY_ROUTE.TOP_ARTISTS
@@ -77,16 +92,11 @@ export const getUsersTopArtists = (
     route,
     parser: parseSimpleArtists,
     next,
-    saved: true,
+    loggedUser: true,
   })
 }
 
-export const getUserProfile = (): Promise<User> => {
-  const route = SPOTIFY_ROUTE.OWN
-  return spotifyInstance<RawUser>(route).then(({ data }) => parseUserData(data))
-}
-
-export const getFollowedUsers = (
+export const getOwnFollowedUsers = (
   next?: NextURL,
 ): Promise<MediaListResponse<SimpleArtist>> => {
   const baseLink = SPOTIFY_ROUTE.OWN + SPOTIFY_ROUTE.FOLLOWING
@@ -113,6 +123,16 @@ export const getFollowedUsers = (
         total: total,
       }
     },
+  )
+}
+
+export const checkIfOwnFollowsArtist = (
+  id: string,
+  type: string,
+): Promise<boolean> => {
+  const route = SPOTIFY_ROUTE.OWN + SPOTIFY_ROUTE.FOLLOWING_CHECK
+  return spotifyInstance<boolean>(route, { ids: id, type }).then(
+    ({ data }) => data,
   )
 }
 

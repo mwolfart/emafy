@@ -5,7 +5,7 @@ import { mainStyles } from 'styles'
 import { ProfileInfo } from 'components/topbar/profileInfo/profileInfo'
 import { SearchField } from 'components/topbar/searchField/searchField'
 import { GrayIconButton } from 'components/ui'
-import { getUserProfile } from 'api/data'
+import { getOwnProfile } from 'api/data'
 import { User } from 'types/media'
 import { strings } from 'strings'
 
@@ -54,7 +54,7 @@ export const Topbar: VFC = () => {
   useEffect(() => {
     let cancelled = false
 
-    getUserProfile().then((userData) => {
+    getOwnProfile().then((userData) => {
       if (!cancelled) {
         setUserInfo(userData)
       }

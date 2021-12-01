@@ -1,4 +1,4 @@
-import { getFollowedUsers } from 'api/data'
+import { getOwnFollowedUsers } from 'api/data'
 import { Headline } from 'components/ui'
 import { useGetSavedMedia } from 'hooks/useGetSavedMedia'
 import { VFC } from 'react'
@@ -21,22 +21,22 @@ const Wrapper = styled.div`
 `
 
 export const FollowingList: VFC<Props> = ({ user }) => {
-  const followingArtists = useGetSavedMedia<SimpleArtist>(getFollowedUsers)
-  const followingCount = followingArtists.totalCount
-  const followingList = followingArtists.mediaList
-  const { nextURL, fetchMoreMedia } = followingArtists
+  const followedArtists = useGetSavedMedia<SimpleArtist>(getOwnFollowedUsers)
+  const followCount = followedArtists.totalCount
+  const followList = followedArtists.mediaList
+  const { nextURL, fetchMoreMedia } = followedArtists
 
   return (
     <Wrapper>
       <InfiniteScroll
-        dataLength={followingList.length}
+        dataLength={followList.length}
         next={fetchMoreMedia}
-        hasMore={followingList.length < followingCount && nextURL !== null}
+        hasMore={followList.length < followCount && nextURL !== null}
         loader={'Loading...'}
       >
-        <Headline title="Following" subtitle={followingCount.toString()} />
-        {followingList.map((following) => (
-          <Follow follow={following} />
+        <Headline title="Followed artists" subtitle={followCount.toString()} />
+        {followList.map((follow) => (
+          <Follow follow={follow} key={follow.id} />
         ))}
       </InfiniteScroll>
     </Wrapper>
