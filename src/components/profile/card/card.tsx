@@ -1,10 +1,10 @@
 import { UserAvatar } from 'components/ui/userAvatar'
 import {
-  Button,
   Headline,
-  IconButton,
+  GrayIconButton,
   IconHeadline,
   Rectangle,
+  IconButton,
 } from 'components/ui'
 import { ContainerFlexRow } from 'components/ui/container'
 import { VFC } from 'react'
@@ -18,7 +18,11 @@ type Props = {
 }
 
 const Wrapper = styled(Rectangle)`
-  width: 50%;
+  ${({ theme = mainStyles }: GlobalProps) => `
+    width: 50%;
+    height: fit-content;
+    box-shadow: ${theme?.shadowDimensionsDefault};
+  `}
 `
 
 const Dash = styled.div`
@@ -33,22 +37,20 @@ const FlexRowAlignRight = styled(ContainerFlexRow)`
 
 export const ProfileCard: VFC<Props> = ({ user }) => {
   const userImage = (user.images?.length && user.images[0]) || ''
-  const userFollowerCount = 0
+  const userFollowerCount = user.followerCount
   const userSavedMusicCount = 0
   const userPlaylistsCount = 0
 
   return (
     <Wrapper>
       <FlexRowAlignRight>
-        <IconButton iconClass="fa-star" onClickCallback={() => {}} />
-        <IconButton iconClass="fa-dots" onClickCallback={() => {}} />
+        <GrayIconButton iconClass="fa-star" onClickCallback={() => {}} />
+        <GrayIconButton iconClass="fa-dots" onClickCallback={() => {}} />
       </FlexRowAlignRight>
       <UserAvatar imagePath={userImage} />
       <ContainerFlexRow>
         <Headline title={user.name} subtitle={user.country} />
-        <Button square={true}>
-          <i className="fa fa-user-check" />
-        </Button>
+        <IconButton icon="fa-user-check" />
       </ContainerFlexRow>
       <Dash />
       <IconHeadline

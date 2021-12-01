@@ -19,6 +19,7 @@ export type User = {
   email: string
   id: string
   images?: Array<string>
+  followerCount: number
 }
 
 type Reference = string

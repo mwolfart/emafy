@@ -15,6 +15,8 @@ export const Button = styled.button<StyledProps>`
     );
     border-radius: ${theme?.borderRadiusSmall};
     border-width: 0;
+    display: flex;
+    flex-direction: row;
     padding: 16px ${square ? '16px' : '36px'};
     color: ${theme?.palette.colorTextButton};
     text-align: center;

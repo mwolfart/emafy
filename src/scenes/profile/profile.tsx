@@ -5,7 +5,7 @@ import { mainStyles } from 'styles'
 import { GlobalProps } from 'types/global'
 import { User } from 'types/media'
 import { ProfileCard } from 'components/profile/card/card'
-import { FollowerList } from 'components/profile/followerList/followerList'
+import { FollowingList } from 'components/profile/followingList/followingList'
 import { ContainerFlexRow } from 'components/ui'
 
 const Wrapper = styled(ContainerFlexRow)`
@@ -22,6 +22,7 @@ export const Profile: VFC = () => {
     email: '',
     id: '',
     images: [],
+    followerCount: 50,
   }
   const [user, setUser] = useState<User>(emptyUser)
 
@@ -42,7 +43,7 @@ export const Profile: VFC = () => {
   return (
     <Wrapper>
       <ProfileCard user={user} />
-      <FollowerList user={user} />
+      <FollowingList user={user} />
     </Wrapper>
   )
 }

@@ -19,6 +19,10 @@ export type RawUser = {
   email: string
   id: string
   images: Image[]
+  followers: {
+    href: string
+    total: number
+  }
 }
 
 export interface RawAlbum extends BasicRawMedia {

@@ -1,4 +1,4 @@
-import { IconButton } from 'components/ui'
+import { GrayIconButton } from 'components/ui'
 import { VFC } from 'react'
 import { strings } from 'strings'
 import styled from 'styled-components'
@@ -43,7 +43,7 @@ export const SearchField: VFC = () => {
 
   return (
     <Wrapper>
-      <IconButton iconClass="fa-search" onClickCallback={onSearchSong} />
+      <GrayIconButton iconClass="fa-search" onClickCallback={onSearchSong} />
       <SearchInput
         placeholder={strings.components.topbar.searchFieldPlaceholder}
         aria-label={strings.components.topbar.searchSong}

@@ -4,7 +4,7 @@ import { GlobalProps } from 'types/global'
 import { mainStyles } from 'styles'
 import { ProfileInfo } from 'components/topbar/profileInfo/profileInfo'
 import { SearchField } from 'components/topbar/searchField/searchField'
-import { IconButton } from 'components/ui'
+import { GrayIconButton } from 'components/ui'
 import { getUserProfile } from 'api/data'
 import { User } from 'types/media'
 import { strings } from 'strings'
@@ -47,6 +47,7 @@ export const Topbar: VFC = () => {
     email: '',
     id: '',
     images: [],
+    followerCount: 0,
   }
   const [userInfo, setUserInfo] = useState<User>(emptyUser)
 
@@ -70,7 +71,7 @@ export const Topbar: VFC = () => {
       <Dash />
       <SearchField />
       <ButtonsWrapper>
-        <IconButton
+        <GrayIconButton
           iconClass="fa-chart-line"
           ariaLabel={strings.components.topbar.viewStatistics}
           onClickCallback={() => {}}
