@@ -42,6 +42,7 @@ export interface SimpleArtist extends Media {
   genres: Array<string>
   followers: number
   popularity: number
+  isCurrentUserFollowing?: boolean
   mediaType: MediaType.artist
 }
 

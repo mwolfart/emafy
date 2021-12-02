@@ -8,7 +8,7 @@ describe('Follow', () => {
   it('renders Follow correctly', () => {
     render(
       <ThemeProvider theme={mainStyles}>
-        <Follow follow={artist} />
+        <Follow follow={artist} isCurrentUserFollowing={true} />
       </ThemeProvider>,
     )
 

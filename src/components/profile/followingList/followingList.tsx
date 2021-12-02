@@ -38,7 +38,11 @@ export const FollowingList: VFC<Props> = ({
       >
         <Headline title="Followed artists" subtitle={followCount.toString()} />
         {followList.map((follow) => (
-          <Follow follow={follow} key={follow.id} />
+          <Follow
+            follow={follow}
+            isCurrentUserFollowing={!!follow.isCurrentUserFollowing}
+            key={follow.id}
+          />
         ))}
       </InfiniteScroll>
     </Wrapper>

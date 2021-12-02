@@ -1,4 +1,9 @@
-import { getOwnFollowedUsers, getOwnProfile, getOwnSavedSongs } from 'api/data'
+import {
+  checkIfOwnFollowsArtist,
+  getOwnFollowedUsers,
+  getOwnProfile,
+  getOwnSavedSongs,
+} from 'api/data'
 import { useEffect, useState, VFC } from 'react'
 import styled from 'styled-components'
 import { mainStyles } from 'styles'
@@ -43,6 +48,15 @@ export const Profile: VFC = () => {
 
   const followedArtists = useGetSavedMedia<SimpleArtist>(getOwnFollowedUsers)
   const followList = followedArtists.mediaList
+
+  useEffect(() => {
+    followList.forEach((follow) => {
+      checkIfOwnFollowsArtist(follow.id, 'artist').then((isFollowing) => {
+        follow.isCurrentUserFollowing = isFollowing
+      })
+    })
+  }, [followList])
+
   const userFollowingCount = followedArtists.totalCount
   const { nextURL, fetchMoreMedia } = followedArtists
 

@@ -18,6 +18,6 @@ describe('FollowingList', () => {
     )
 
     const buttonCountElement = screen.getAllByRole('button')
-    expect(buttonCountElement).toEqual(10)
+    expect(buttonCountElement.length).toBe(10)
   })
 })

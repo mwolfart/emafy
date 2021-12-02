@@ -9,6 +9,7 @@ import { SimpleArtist } from 'types/media'
 
 type Props = {
   follow: SimpleArtist
+  isCurrentUserFollowing: boolean
 }
 
 const Wrapper = styled(ContainerFlexRow)`
@@ -19,17 +20,10 @@ const Wrapper = styled(ContainerFlexRow)`
   `}
 `
 
-export const Follow: VFC<Props> = ({ follow }) => {
+export const Follow: VFC<Props> = ({ follow, isCurrentUserFollowing }) => {
   const followImage = (follow.images?.length && follow.images[0]) || ''
-  const [isCurrentUserFollowing, setIsCurrentUserFollowing] = useState(false)
   const iconLabel = isCurrentUserFollowing ? 'Following' : ''
   const iconClass = isCurrentUserFollowing ? 'fa-user-minus' : 'fa-user-plus'
-
-  useEffect(() => {
-    checkIfOwnFollowsArtist(follow.id, 'artist').then((isFollowing) => {
-      setIsCurrentUserFollowing(isFollowing)
-    })
-  }, [follow.id])
 
   return (
     <Wrapper>

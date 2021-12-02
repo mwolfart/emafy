@@ -20,7 +20,7 @@ describe('IconButton', () => {
     const onClick = jest.fn()
     render(
       <ThemeProvider theme={mainStyles}>
-        <IconButton icon="fa-times" onClickCallback={() => {}} />
+        <IconButton icon="fa-times" onClickCallback={onClick} />
       </ThemeProvider>,
     )
     const buttonElement = screen.getByRole('button')
