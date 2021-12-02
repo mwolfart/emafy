@@ -18,7 +18,7 @@ export const SavedSongs: VFC = () => {
   return (
     <MediaPage
       {...savedMediaProps}
-      mediaTitle={mediaTitle}
+      pageTitle={mediaTitle}
       mediaCountLabel={mediaCountLabel}
     />
   )

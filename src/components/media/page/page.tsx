@@ -21,7 +21,7 @@ type Props = {
   isViewList: boolean
   mediaCountLabel: string
   mediaList: Media[]
-  mediaTitle: string
+  pageTitle: string
   nextURL: NextURL
   totalCount: number
 }
@@ -60,7 +60,7 @@ export const Page: VFC<Props> = ({
   isViewList,
   mediaCountLabel,
   mediaList,
-  mediaTitle,
+  pageTitle,
   nextURL,
   totalCount,
 }: Props) => (
@@ -72,7 +72,7 @@ export const Page: VFC<Props> = ({
   >
     <Header>
       <TitleWrapper>
-        <TitleLarge>{mediaTitle}</TitleLarge>
+        <TitleLarge>{pageTitle}</TitleLarge>
         <SubtitleLarge>{`${totalCount} ${mediaCountLabel}`}</SubtitleLarge>
       </TitleWrapper>
       <ToggleDescriptor

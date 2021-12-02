@@ -22,7 +22,7 @@ describe('MediaPage', () => {
             isViewList={true}
             mediaCountLabel={countLabel}
             mediaList={albumList}
-            mediaTitle={title}
+            pageTitle={title}
             nextURL={null}
             totalCount={albumList.length}
           />
@@ -58,7 +58,7 @@ describe('MediaPage', () => {
             isViewList={true}
             mediaCountLabel={countLabel}
             mediaList={albumList}
-            mediaTitle={title}
+            pageTitle={title}
             nextURL={null}
             totalCount={albumList.length}
           />
