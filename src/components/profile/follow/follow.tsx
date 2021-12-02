@@ -1,7 +1,6 @@
-import { checkIfOwnFollowsArtist } from 'api/data'
 import { ContainerFlexRow, Headline, IconButton } from 'components/ui'
 import { UserAvatar } from 'components/ui/userAvatar'
-import { useEffect, useState, VFC } from 'react'
+import { VFC } from 'react'
 import { strings } from 'strings'
 import styled from 'styled-components'
 import { mainStyles } from 'styles'
