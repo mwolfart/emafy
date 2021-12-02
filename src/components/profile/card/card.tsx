@@ -12,6 +12,7 @@ import styled from 'styled-components'
 import { mainStyles } from 'styles'
 import { GlobalProps } from 'types/global'
 import { User } from 'types/media'
+import { strings } from 'strings'
 
 type Props = {
   user: User
@@ -62,23 +63,23 @@ export const ProfileCard: VFC<Props> = ({
       <IconHeadline
         icon="fa-user-friends"
         title={userFollowerCount.toString()}
-        subtitle="Followers"
+        subtitle={strings.components.profile.card.followers}
       />
       <IconHeadline
         icon="fa-user-friends"
         title={followingCount.toString()}
-        subtitle="Followed Artists"
+        subtitle={strings.components.profile.card.followedArtists}
       />
       <IconHeadline
         icon="fa-music"
         title={savedMusicCount.toString()}
-        subtitle="Tracks"
+        subtitle={strings.components.profile.card.tracks}
       />
       <Dash />
       <IconHeadline
         icon="fa-list"
         title={playlistCount.toString()}
-        subtitle="Playlists"
+        subtitle={strings.components.profile.card.playlists}
       />
     </Wrapper>
   )

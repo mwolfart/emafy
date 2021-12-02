@@ -2,6 +2,7 @@ import { NextURL } from 'api/data'
 import { Headline } from 'components/ui'
 import { VFC } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
+import { strings } from 'strings'
 import styled from 'styled-components'
 import { mainStyles } from 'styles'
 import { GlobalProps } from 'types/global'
@@ -36,7 +37,10 @@ export const FollowingList: VFC<Props> = ({
         hasMore={followList.length < followCount && nextURL !== null}
         loader={'Loading...'}
       >
-        <Headline title="Followed artists" subtitle={followCount.toString()} />
+        <Headline
+          title={strings.components.profile.followedArtists}
+          subtitle={followCount.toString()}
+        />
         {followList.map((follow) => (
           <Follow
             follow={follow}

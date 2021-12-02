@@ -3,6 +3,7 @@ import { ThemeProvider } from 'styled-components'
 import { mainStyles } from 'styles'
 import { artist } from 'fixtures/artist'
 import { Follow } from './follow'
+import { strings } from 'strings'
 
 describe('Follow', () => {
   it('renders Follow correctly', () => {
@@ -13,9 +14,11 @@ describe('Follow', () => {
     )
 
     const nameElement = screen.getByText(artist.name)
-    const subtitleElement = screen.getByText('View artist')
+    const subtitleElement = screen.getByText(
+      strings.components.profile.follow.view,
+    )
     const buttonElement = screen.getByRole('button', {
-      name: 'Following',
+      name: strings.components.profile.follow.following,
     })
     expect(nameElement).toBeInTheDocument()
     expect(subtitleElement).toBeInTheDocument()

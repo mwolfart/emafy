@@ -25,6 +25,19 @@ export const strings = {
       viewStatistics: 'View statistics',
       searchFieldPlaceholder: 'Search for a song...',
     },
+    profile: {
+      card: {
+        followers: 'Followers',
+        followedArtists: 'Followed artists',
+        tracks: 'Tracks',
+        playlists: 'Playlists',
+      },
+      follow: {
+        view: 'View artist',
+        following: 'Following',
+      },
+      followedArtists: 'Followed artists',
+    },
   },
   hooks: {
     useGetSavedMedia: {
