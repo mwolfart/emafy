@@ -1,7 +1,7 @@
 import { VFC } from 'react'
 import { getOwnFollowedUsers } from 'api/data'
 import { useGetSavedMedia } from 'hooks/useGetSavedMedia'
-import { SavedMedia } from 'components/media/ui/savedMedia'
+import { Page as MediaPage } from 'components/media/page/page'
 import { SimpleArtist } from 'types/media'
 import { strings } from 'strings'
 
@@ -16,7 +16,7 @@ export const SavedArtists: VFC = () => {
       : strings.scenes.artists.subtextArtists
 
   return (
-    <SavedMedia
+    <MediaPage
       {...savedMediaProps}
       mediaTitle={mediaTitle}
       mediaCountLabel={mediaCountLabel}

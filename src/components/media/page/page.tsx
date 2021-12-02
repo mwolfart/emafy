@@ -53,7 +53,7 @@ const MenuWrapper = styled.div<MenuWrapperProps>`
     `}
 `
 
-export const SavedMedia: VFC<Props> = ({
+export const Page: VFC<Props> = ({
   changeView,
   fetchMoreMedia,
   isTransitioning,
