@@ -1,16 +1,18 @@
-import { getOwnFollowedUsers } from 'api/data'
+import { NextURL } from 'api/data'
 import { Headline } from 'components/ui'
-import { useGetSavedMedia } from 'hooks/useGetSavedMedia'
 import { VFC } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import styled from 'styled-components'
 import { mainStyles } from 'styles'
 import { GlobalProps } from 'types/global'
-import { SimpleArtist, User } from 'types/media'
+import { SimpleArtist } from 'types/media'
 import { Follow } from '../follow/follow'
 
 type Props = {
-  user: User
+  followList: SimpleArtist[]
+  followCount: number
+  nextURL: NextURL
+  fetchMoreFollows: () => void
 }
 
 const Wrapper = styled.div`
@@ -20,17 +22,17 @@ const Wrapper = styled.div`
   `}
 `
 
-export const FollowingList: VFC<Props> = ({ user }) => {
-  const followedArtists = useGetSavedMedia<SimpleArtist>(getOwnFollowedUsers)
-  const followCount = followedArtists.totalCount
-  const followList = followedArtists.mediaList
-  const { nextURL, fetchMoreMedia } = followedArtists
-
+export const FollowingList: VFC<Props> = ({
+  followList,
+  followCount,
+  nextURL,
+  fetchMoreFollows,
+}) => {
   return (
     <Wrapper>
       <InfiniteScroll
         dataLength={followList.length}
-        next={fetchMoreMedia}
+        next={fetchMoreFollows}
         hasMore={followList.length < followCount && nextURL !== null}
         loader={'Loading...'}
       >

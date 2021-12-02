@@ -42,7 +42,10 @@ export const Profile: VFC = () => {
   }, [])
 
   const followedArtists = useGetSavedMedia<SimpleArtist>(getOwnFollowedUsers)
+  const followList = followedArtists.mediaList
   const userFollowingCount = followedArtists.totalCount
+  const { nextURL, fetchMoreMedia } = followedArtists
+
   const savedMusic = useGetSavedMedia<Song>(getOwnSavedSongs)
   const userSavedMusicCount = savedMusic.totalCount
   const playlistCount = 0
@@ -55,7 +58,12 @@ export const Profile: VFC = () => {
         savedMusicCount={userSavedMusicCount}
         playlistCount={playlistCount}
       />
-      <FollowingList user={user} />
+      <FollowingList
+        followList={followList}
+        followCount={userFollowingCount}
+        nextURL={nextURL}
+        fetchMoreFollows={fetchMoreMedia}
+      />
     </Wrapper>
   )
 }
