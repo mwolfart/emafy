@@ -1,13 +1,16 @@
-import { useEffect, useState, VFC } from 'react'
+import { VFC } from 'react'
 import styled from 'styled-components'
 import { GlobalProps } from 'types/global'
 import { mainStyles } from 'styles'
 import { ProfileInfo } from 'components/topbar/profileInfo/profileInfo'
 import { SearchField } from 'components/topbar/searchField/searchField'
 import { GrayIconButton } from 'components/ui'
-import { getOwnProfile } from 'api/data'
 import { User } from 'types/media'
 import { strings } from 'strings'
+
+type Props = {
+  user: User
+}
 
 const Wrapper = styled.div`
   ${({ theme = mainStyles }: GlobalProps) => `
@@ -40,34 +43,10 @@ const ButtonsWrapper = styled.div`
   `}
 `
 
-export const Topbar: VFC = () => {
-  const emptyUser = {
-    country: '',
-    name: '',
-    email: '',
-    id: '',
-    images: [],
-    followerCount: 0,
-  }
-  const [userInfo, setUserInfo] = useState<User>(emptyUser)
-
-  useEffect(() => {
-    let cancelled = false
-
-    getOwnProfile().then((userData) => {
-      if (!cancelled) {
-        setUserInfo(userData)
-      }
-    })
-
-    return () => {
-      cancelled = true
-    }
-  }, [])
-
+export const Topbar: VFC<Props> = ({ user }) => {
   return (
     <Wrapper>
-      <ProfileInfo userInfo={userInfo} />
+      <ProfileInfo userInfo={user} />
       <Dash />
       <SearchField />
       <ButtonsWrapper>

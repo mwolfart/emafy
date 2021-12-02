@@ -1,10 +1,9 @@
 import {
   checkIfOwnFollowsArtist,
   getOwnFollowedUsers,
-  getOwnProfile,
   getOwnSavedSongs,
 } from 'api/data'
-import { useEffect, useState, VFC } from 'react'
+import { useEffect, VFC } from 'react'
 import styled from 'styled-components'
 import { mainStyles } from 'styles'
 import { GlobalProps } from 'types/global'
@@ -14,38 +13,17 @@ import { FollowingList } from 'components/profile/followingList/followingList'
 import { ContainerFlexRow } from 'components/ui'
 import { useGetSavedMedia } from 'hooks/useGetSavedMedia'
 
+type Props = {
+  user: User
+}
+
 const Wrapper = styled(ContainerFlexRow)`
   ${({ theme = mainStyles }: GlobalProps) => `
     padding: ${theme.divSpacingExtraBig};
   `}
 `
 
-export const Profile: VFC = () => {
-  // TODO refactor with topbar
-  const emptyUser = {
-    country: '',
-    name: '',
-    email: '',
-    id: '',
-    images: [],
-    followerCount: 50,
-  }
-  const [user, setUser] = useState<User>(emptyUser)
-
-  useEffect(() => {
-    let cancelled = false
-
-    getOwnProfile().then((userData) => {
-      if (!cancelled) {
-        setUser(userData)
-      }
-    })
-
-    return () => {
-      cancelled = true
-    }
-  }, [])
-
+export const Profile: VFC<Props> = ({ user }) => {
   const followedArtists = useGetSavedMedia<SimpleArtist>(getOwnFollowedUsers)
   const followList = followedArtists.mediaList
 
