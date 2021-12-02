@@ -4,8 +4,8 @@ import { GrayIconButton } from './grayIcon'
 import { ThemeProvider } from 'styled-components'
 import { mainStyles } from 'styles'
 
-describe('IconButton', () => {
-  it('renders IconButton correctly', () => {
+describe('GrayIconButton', () => {
+  it('renders GrayIconButton correctly', () => {
     render(
       <ThemeProvider theme={mainStyles}>
         <GrayIconButton

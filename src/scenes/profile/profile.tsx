@@ -1,12 +1,13 @@
-import { getOwnProfile } from 'api/data'
+import { getOwnFollowedUsers, getOwnProfile, getOwnSavedSongs } from 'api/data'
 import { useEffect, useState, VFC } from 'react'
 import styled from 'styled-components'
 import { mainStyles } from 'styles'
 import { GlobalProps } from 'types/global'
-import { User } from 'types/media'
+import { SimpleArtist, Song, User } from 'types/media'
 import { ProfileCard } from 'components/profile/card/card'
 import { FollowingList } from 'components/profile/followingList/followingList'
 import { ContainerFlexRow } from 'components/ui'
+import { useGetSavedMedia } from 'hooks/useGetSavedMedia'
 
 const Wrapper = styled(ContainerFlexRow)`
   ${({ theme = mainStyles }: GlobalProps) => `
@@ -40,9 +41,20 @@ export const Profile: VFC = () => {
     }
   }, [])
 
+  const followedArtists = useGetSavedMedia<SimpleArtist>(getOwnFollowedUsers)
+  const userFollowingCount = followedArtists.totalCount
+  const savedMusic = useGetSavedMedia<Song>(getOwnSavedSongs)
+  const userSavedMusicCount = savedMusic.totalCount
+  const playlistCount = 0
+
   return (
     <Wrapper>
-      <ProfileCard user={user} />
+      <ProfileCard
+        user={user}
+        followingCount={userFollowingCount}
+        savedMusicCount={userSavedMusicCount}
+        playlistCount={playlistCount}
+      />
       <FollowingList user={user} />
     </Wrapper>
   )

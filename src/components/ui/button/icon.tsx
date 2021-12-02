@@ -7,6 +7,7 @@ import { Button } from './default'
 type Props = {
   title?: string
   icon: string
+  onClickCallback: () => void
 }
 
 const PaddedText = styled.div`
@@ -15,8 +16,8 @@ const PaddedText = styled.div`
   `}
 `
 
-export const IconButton: VFC<Props> = ({ title, icon }) => (
-  <Button square={!title}>
+export const IconButton: VFC<Props> = ({ title, icon, onClickCallback }) => (
+  <Button square={!title} onClick={onClickCallback}>
     <i className={'fa ' + icon} />
     {title && <PaddedText>{title}</PaddedText>}
   </Button>

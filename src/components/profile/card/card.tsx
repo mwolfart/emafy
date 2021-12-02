@@ -11,12 +11,13 @@ import { VFC } from 'react'
 import styled from 'styled-components'
 import { mainStyles } from 'styles'
 import { GlobalProps } from 'types/global'
-import { SimpleArtist, Song, User } from 'types/media'
-import { useGetSavedMedia } from 'hooks/useGetSavedMedia'
-import { getOwnFollowedUsers, getOwnSavedSongs } from 'api/data'
+import { User } from 'types/media'
 
 type Props = {
   user: User
+  followingCount: number
+  savedMusicCount: number
+  playlistCount: number
 }
 
 const Wrapper = styled(Rectangle)`
@@ -37,15 +38,14 @@ const FlexRowAlignRight = styled(ContainerFlexRow)`
   justify-content: right;
 `
 
-export const ProfileCard: VFC<Props> = ({ user }) => {
+export const ProfileCard: VFC<Props> = ({
+  user,
+  followingCount,
+  savedMusicCount,
+  playlistCount,
+}) => {
   const userImage = (user.images?.length && user.images[0]) || ''
   const userFollowerCount = user.followerCount
-
-  const followedArtists = useGetSavedMedia<SimpleArtist>(getOwnFollowedUsers)
-  const userFollowingCount = followedArtists.totalCount
-  const savedMusic = useGetSavedMedia<Song>(getOwnSavedSongs)
-  const userSavedMusicCount = savedMusic.totalCount
-  const userPlaylistsCount = 0
 
   return (
     <Wrapper>
@@ -56,7 +56,7 @@ export const ProfileCard: VFC<Props> = ({ user }) => {
       <UserAvatar imagePath={userImage} />
       <ContainerFlexRow>
         <Headline title={user.name} subtitle={user.country} />
-        <IconButton icon="fa-user-check" />
+        <IconButton icon="fa-user-check" onClickCallback={() => {}} />
       </ContainerFlexRow>
       <Dash />
       <IconHeadline
@@ -66,18 +66,18 @@ export const ProfileCard: VFC<Props> = ({ user }) => {
       />
       <IconHeadline
         icon="fa-user-friends"
-        title={userFollowingCount.toString()}
+        title={followingCount.toString()}
         subtitle="Followed Artists"
       />
       <IconHeadline
         icon="fa-music"
-        title={userSavedMusicCount.toString()}
+        title={savedMusicCount.toString()}
         subtitle="Tracks"
       />
       <Dash />
       <IconHeadline
         icon="fa-list"
-        title={userPlaylistsCount.toString()}
+        title={playlistCount.toString()}
         subtitle="Playlists"
       />
     </Wrapper>

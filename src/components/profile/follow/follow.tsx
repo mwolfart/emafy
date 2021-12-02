@@ -35,7 +35,11 @@ export const Follow: VFC<Props> = ({ follow }) => {
     <Wrapper>
       <UserAvatar imagePath={followImage} small={true} />
       <Headline title={follow.name} subtitle="View artist" />
-      <IconButton title={iconLabel} icon={iconClass} />
+      <IconButton
+        title={iconLabel}
+        icon={iconClass}
+        onClickCallback={() => {}}
+      />
     </Wrapper>
   )
 }
