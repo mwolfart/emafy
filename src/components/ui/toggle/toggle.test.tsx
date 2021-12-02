@@ -1,7 +1,6 @@
 import { fireEvent, render, screen } from '@testing-library/react'
 import { ThemeProvider } from 'styled-components'
 import { mainStyles } from 'styles'
-
 import { strings } from 'strings'
 import { Toggle } from './toggle'
 
@@ -13,7 +12,7 @@ describe('Toggle', () => {
       </ThemeProvider>,
     )
     const inputElement = screen.getByRole('checkbox', {
-      name: strings.components.toggleButton,
+      name: strings.components.media.toggleView,
     })
     expect(inputElement).toBeInTheDocument()
   })
@@ -26,7 +25,7 @@ describe('Toggle', () => {
       </ThemeProvider>,
     )
     const inputElement = screen.getByRole('checkbox', {
-      name: strings.components.toggleButton,
+      name: strings.components.media.toggleView,
     })
     fireEvent.click(inputElement)
     expect(onChangeCallback).toHaveBeenCalledWith(false)
