@@ -3,7 +3,6 @@ import { strings } from 'strings'
 import { ThemeProvider } from 'styled-components'
 import { mainStyles } from 'styles'
 import faker from 'faker'
-
 import { Modal } from './modal'
 
 describe('Modal', () => {

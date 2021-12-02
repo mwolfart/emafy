@@ -1,5 +1,4 @@
 import { render, screen } from '@testing-library/react'
-
 import { Image } from './image'
 import { mainStyles } from 'styles'
 import { ThemeProvider } from 'styled-components'

@@ -2,7 +2,6 @@ import { render, screen } from '@testing-library/react'
 import { ThemeProvider } from 'styled-components'
 import { mainStyles } from 'styles'
 import faker from 'faker'
-
 import { Rectangle } from './default'
 
 describe('Rectangle', () => {
