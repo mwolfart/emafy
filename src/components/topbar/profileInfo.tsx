@@ -1,4 +1,4 @@
-import { UserAvatar } from 'components/ui/userAvatar'
+import { Avatar } from 'components/ui'
 import { VFC } from 'react'
 import styled from 'styled-components'
 import { mainStyles } from 'styles'
@@ -63,7 +63,7 @@ export const ProfileInfo: VFC<Props> = ({ userInfo }) => {
   return (
     <RouterLink to="/me/">
       <Wrapper>
-        <UserAvatar imagePath={imagePath} small={true} />
+        <Avatar imagePath={imagePath} small={true} />
         <Description>
           <Name>{userInfo.name}</Name>
           <Subtitle>{viewProfileText}</Subtitle>

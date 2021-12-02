@@ -1,4 +1,4 @@
-import { UserAvatar } from 'components/ui/userAvatar'
+import { Avatar } from 'components/ui'
 import {
   Headline,
   GrayIconButton,
@@ -57,7 +57,7 @@ export const ProfileCard: VFC<Props> = ({
         <GrayIconButton iconClass="fa-star" onClickCallback={() => {}} />
         <GrayIconButton iconClass="fa-dots" onClickCallback={() => {}} />
       </FlexRowAlignRight>
-      <UserAvatar imagePath={userImage} />
+      <Avatar imagePath={userImage} />
       <ContainerFlexRow>
         <Headline title={user.name} subtitle={user.country} />
         <IconButton icon="fa-user-check" onClickCallback={() => {}} />
