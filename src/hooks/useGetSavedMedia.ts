@@ -11,6 +11,7 @@ type UseGetSavedMediaHookReturn<T> = {
   mediaList: T[]
   nextURL: NextURL
   totalCount: number
+  isLoading: boolean
 }
 
 export function useGetSavedMedia<T>(
@@ -21,6 +22,7 @@ export function useGetSavedMedia<T>(
   const [nextURL, setNextURL] = useState<NextURL>(null)
   const [mediaList, setMediaList] = useState<T[]>([])
   const [totalCount, setTotalCount] = useState<number>(0)
+  const [isLoading, setIsLoading] = useState<boolean>(true)
   let transitionTimeout: NodeJS.Timeout
 
   const changeView = (isGrid: boolean): void => {
@@ -46,9 +48,13 @@ export function useGetSavedMedia<T>(
         setMediaList(entities)
         setTotalCount(total)
         setNextURL(next)
+        setIsLoading(false)
       },
       () => {
         alert(strings.hooks.useGetSavedMedia.errorFetchingData)
+      },
+      () => {
+        setIsLoading(false)
       },
     )
   }, [getFunction])
@@ -61,5 +67,6 @@ export function useGetSavedMedia<T>(
     mediaList,
     nextURL,
     totalCount,
+    isLoading,
   }
 }

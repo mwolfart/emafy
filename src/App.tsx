@@ -34,6 +34,7 @@ const App = (): JSX.Element => {
     display: flex;
     flex-direction: column;
     width: 100%;
+    height: 100%;
   `
 
   const HeaderWrapper = styled.div`
@@ -46,10 +47,12 @@ const App = (): JSX.Element => {
   `
 
   const ContentWrapper = styled.div`
-    display: flex;
-    flex-direction: row;
-    width: 100vw;
-    height: 100%;
+    ${({ theme = mainStyles }: GlobalProps) => `
+      display: flex;
+      flex-direction: row;
+      width: 100vw;
+      height: calc(100% - ${theme.topbarHeight});
+    `}
   `
 
   const MainScreen = styled.div`
@@ -57,6 +60,7 @@ const App = (): JSX.Element => {
       ${isLoggedIn && `padding-left: ${theme.sidebarWidth};`}
       width: ${isLoggedIn ? `calc(100% - ${theme.sidebarWidth})` : `100%`};
       background-color: ${theme.palette.colorBackground};
+      height: 100%;
     `}
   `
 
