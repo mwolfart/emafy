@@ -2,6 +2,7 @@ export function cancellableRequest<T>(
   requestFn: () => Promise<T>,
   successCallback: (data: T) => void,
   errorCallback?: () => void,
+  finallyCallback?: () => void,
 ): () => void {
   let cancelled = false
 
@@ -13,6 +14,9 @@ export function cancellableRequest<T>(
     })
     .catch(() => {
       errorCallback && errorCallback()
+    })
+    .finally(() => {
+      finallyCallback && finallyCallback()
     })
 
   return () => {

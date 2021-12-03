@@ -20,6 +20,7 @@ import { Profile } from 'scenes/profile/profile'
 import { User } from 'types/media'
 import { getOwnProfile } from 'api/data'
 import { cancellableRequest } from 'api/utils'
+import { BeatLoader } from 'components/loader'
 
 const App = (): JSX.Element => {
   const GlobalLinkStyle = createGlobalStyle`
@@ -79,57 +80,68 @@ const App = (): JSX.Element => {
   const [isLoading, setIsLoading] = useState<boolean>(true)
 
   useEffect(() => {
-    return cancellableRequest(getOwnProfile, (userData) => {
-      setLoggedUser(userData)
-      setIsLoading(false)
-    })
-  }, [])
+    return cancellableRequest(
+      getOwnProfile,
+      (userData) => {
+        setLoggedUser(userData)
+        setIsLoading(false)
+      },
+      () => {},
+      () => {
+        setIsLoading(false)
+      },
+    )
+  }, [isLoggedIn])
 
   return (
     <ThemeProvider theme={mainStyles}>
       <GlobalLinkStyle />
       <BrowserRouter>
-        <Wrapper>
-          <HeaderWrapper>
-            {isLoggedIn && <Topbar user={loggedUser} />}
-          </HeaderWrapper>
-          <ContentWrapper>
-            {isLoggedIn && <Sidebar />}
-            <MainScreen>
-              <Switch>
-                <ProtectedRoute
-                  isLoggedIn={isLoggedIn}
-                  path="/saved-albums"
-                  component={SavedAlbums}
-                />
-                <ProtectedRoute
-                  isLoggedIn={isLoggedIn}
-                  path="/album/:id"
-                  component={ViewAlbumLoader}
-                />
-                <ProtectedRoute
-                  isLoggedIn={isLoggedIn}
-                  path="/saved-artists"
-                  component={SavedArtists}
-                />
-                <ProtectedRoute
-                  isLoggedIn={isLoggedIn}
-                  path="/saved-songs"
-                  component={SavedSongs}
-                />
-                <ProtectedRoute
-                  isLoggedIn={isLoggedIn}
-                  path="/me"
-                  component={() => <Profile user={loggedUser} />}
-                />
-                <Route
-                  path="/login"
-                  component={() => <LoginScene onLogin={setIsLoggedIn} />}
-                />
-              </Switch>
-            </MainScreen>
-          </ContentWrapper>
-        </Wrapper>
+        {isLoading ? (
+          <BeatLoader />
+        ) : (
+          <Wrapper>
+            <HeaderWrapper>
+              {isLoggedIn && <Topbar user={loggedUser} />}
+            </HeaderWrapper>
+            <ContentWrapper>
+              {isLoggedIn && <Sidebar />}
+              <MainScreen>
+                <Switch>
+                  <ProtectedRoute
+                    isLoggedIn={isLoggedIn}
+                    path="/saved-albums"
+                    component={SavedAlbums}
+                  />
+                  <ProtectedRoute
+                    isLoggedIn={isLoggedIn}
+                    path="/album/:id"
+                    component={ViewAlbumLoader}
+                  />
+                  <ProtectedRoute
+                    isLoggedIn={isLoggedIn}
+                    path="/saved-artists"
+                    component={SavedArtists}
+                  />
+                  <ProtectedRoute
+                    isLoggedIn={isLoggedIn}
+                    path="/saved-songs"
+                    component={SavedSongs}
+                  />
+                  <ProtectedRoute
+                    isLoggedIn={isLoggedIn}
+                    path="/me"
+                    component={() => <Profile user={loggedUser} />}
+                  />
+                  <Route
+                    path="/login"
+                    component={() => <LoginScene onLogin={setIsLoggedIn} />}
+                  />
+                </Switch>
+              </MainScreen>
+            </ContentWrapper>
+          </Wrapper>
+        )}
       </BrowserRouter>
     </ThemeProvider>
   )
