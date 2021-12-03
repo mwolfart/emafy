@@ -19,6 +19,7 @@ import { GlobalProps } from 'types/global'
 import { Profile } from 'scenes/profile/profile'
 import { User } from 'types/media'
 import { getOwnProfile } from 'api/data'
+import { cancellableRequest } from 'api/utils'
 
 const App = (): JSX.Element => {
   const GlobalLinkStyle = createGlobalStyle`
@@ -75,19 +76,13 @@ const App = (): JSX.Element => {
     followerCount: 0,
   }
   const [loggedUser, setLoggedUser] = useState<User>(emptyUser)
+  const [isLoading, setIsLoading] = useState<boolean>(true)
 
   useEffect(() => {
-    let cancelled = false
-
-    getOwnProfile().then((userData) => {
-      if (!cancelled) {
-        setLoggedUser(userData)
-      }
+    return cancellableRequest(getOwnProfile, (userData) => {
+      setLoggedUser(userData)
+      setIsLoading(false)
     })
-
-    return () => {
-      cancelled = true
-    }
   }, [])
 
   return (

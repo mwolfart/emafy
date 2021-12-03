@@ -1,6 +1,7 @@
 import { MediaListResponse, NextURL } from 'api/data'
 import { useEffect, useState } from 'react'
 import { strings } from 'strings'
+import { cancellableRequest } from '../api/utils'
 
 type UseGetSavedMediaHookReturn<T> = {
   changeView: (isGrid: boolean) => void
@@ -39,15 +40,17 @@ export function useGetSavedMedia<T>(
   }
 
   useEffect(() => {
-    getFunction()
-      .then(({ entities, next, total }) => {
+    return cancellableRequest(
+      getFunction,
+      ({ entities, next, total }) => {
         setMediaList(entities)
         setTotalCount(total)
         setNextURL(next)
-      })
-      .catch(() => {
+      },
+      () => {
         alert(strings.hooks.useGetSavedMedia.errorFetchingData)
-      })
+      },
+    )
   }, [getFunction])
 
   return {
