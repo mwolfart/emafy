@@ -47,10 +47,12 @@ export const ViewAlbum: VFC<Props> = ({ match }) => {
           setAlbumTracks(entities)
           setTotalCount(total)
           setNextURL(next)
-          setIsLoading(false)
         })
         .catch(() => {
           alert(strings.scenes.albums.errorLoadingAlbumTracks)
+        })
+        .finally(() => {
+          setIsLoading(false)
         })
     }
 
@@ -63,8 +65,6 @@ export const ViewAlbum: VFC<Props> = ({ match }) => {
         },
         () => {
           alert(strings.scenes.albums.errorLoadingAlbum)
-        },
-        () => {
           setIsLoading(false)
         },
       )
