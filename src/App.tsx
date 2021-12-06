@@ -10,7 +10,6 @@ import createBrowserHistory from 'history/createBrowserHistory'
 import { useEffect, useState } from 'react'
 import { ProtectedRoute } from 'components/protectedRoute/protectedRoute'
 import { getAuthParamsFromURI } from 'api/credentials'
-import { ViewAlbumLoader } from 'scenes/loader/viewAlbumLoader'
 import { SavedArtists } from 'scenes/savedArtists/savedArtists'
 import { SavedSongs } from 'scenes/savedSongs/savedSongs'
 import { Sidebar } from 'components/sidebar/sidebar'
@@ -21,6 +20,7 @@ import { User } from 'types/media'
 import { getOwnProfile } from 'api/data'
 import { cancellableRequest } from 'api/utils'
 import { BeatLoader } from 'components/loader'
+import { ViewAlbum } from 'scenes/viewAlbum/viewAlbum'
 
 const App = (): JSX.Element => {
   const GlobalLinkStyle = createGlobalStyle`
@@ -120,7 +120,7 @@ const App = (): JSX.Element => {
                   <ProtectedRoute
                     isLoggedIn={isLoggedIn}
                     path="/album/:id"
-                    component={ViewAlbumLoader}
+                    component={ViewAlbum}
                   />
                   <ProtectedRoute
                     isLoggedIn={isLoggedIn}
