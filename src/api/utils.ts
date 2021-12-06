@@ -13,10 +13,14 @@ export function cancellableRequest<T>(
       }
     })
     .catch(() => {
-      errorCallback && errorCallback()
+      if (!cancelled) {
+        errorCallback && errorCallback()
+      }
     })
     .finally(() => {
-      finallyCallback && finallyCallback()
+      if (!cancelled) {
+        finallyCallback && finallyCallback()
+      }
     })
 
   return () => {
