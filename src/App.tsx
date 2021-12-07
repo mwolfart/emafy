@@ -7,7 +7,7 @@ import styled, { createGlobalStyle, ThemeProvider } from 'styled-components'
 import { mainStyles } from 'styles'
 import { SavedAlbums } from 'scenes/savedAlbums/savedAlbums'
 import createBrowserHistory from 'history/createBrowserHistory'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { ProtectedRoute } from 'components/protectedRoute/protectedRoute'
 import { getAuthParamsFromURI } from 'api/credentials'
 import { ViewAlbumLoader } from 'scenes/loader/viewAlbumLoader'
@@ -16,6 +16,9 @@ import { SavedSongs } from 'scenes/savedSongs/savedSongs'
 import { Sidebar } from 'components/sidebar/sidebar'
 import { Topbar } from 'components/topbar/topbar'
 import { GlobalProps } from 'types/global'
+import { Profile } from 'scenes/profile/profile'
+import { User } from 'types/media'
+import { getOwnProfile } from 'api/data'
 
 const App = (): JSX.Element => {
   const GlobalLinkStyle = createGlobalStyle`
@@ -63,12 +66,38 @@ const App = (): JSX.Element => {
   const history = createBrowserHistory()
   !isLoggedIn && history.push(destinationPath)
 
+  const emptyUser = {
+    country: '',
+    name: '',
+    email: '',
+    id: '',
+    images: [],
+    followerCount: 0,
+  }
+  const [loggedUser, setLoggedUser] = useState<User>(emptyUser)
+
+  useEffect(() => {
+    let cancelled = false
+
+    getOwnProfile().then((userData) => {
+      if (!cancelled) {
+        setLoggedUser(userData)
+      }
+    })
+
+    return () => {
+      cancelled = true
+    }
+  }, [])
+
   return (
     <ThemeProvider theme={mainStyles}>
       <GlobalLinkStyle />
       <BrowserRouter>
         <Wrapper>
-          <HeaderWrapper>{isLoggedIn && <Topbar />}</HeaderWrapper>
+          <HeaderWrapper>
+            {isLoggedIn && <Topbar user={loggedUser} />}
+          </HeaderWrapper>
           <ContentWrapper>
             {isLoggedIn && <Sidebar />}
             <MainScreen>
@@ -92,6 +121,11 @@ const App = (): JSX.Element => {
                   isLoggedIn={isLoggedIn}
                   path="/saved-songs"
                   component={SavedSongs}
+                />
+                <ProtectedRoute
+                  isLoggedIn={isLoggedIn}
+                  path="/me"
+                  component={() => <Profile user={loggedUser} />}
                 />
                 <Route
                   path="/login"

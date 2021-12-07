@@ -19,6 +19,7 @@ export type User = {
   email: string
   id: string
   images?: Array<string>
+  followerCount: number
 }
 
 type Reference = string
@@ -41,6 +42,7 @@ export interface SimpleArtist extends Media {
   genres: Array<string>
   followers: number
   popularity: number
+  isCurrentUserFollowing?: boolean
   mediaType: MediaType.artist
 }
 

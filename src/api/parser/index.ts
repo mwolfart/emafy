@@ -121,10 +121,12 @@ export const parseUserData = ({
   email,
   id,
   images,
+  followers,
 }: RawUser): User => ({
   id,
   name: display_name,
   email,
   country,
   images: parseImages(images),
+  followerCount: followers.total,
 })

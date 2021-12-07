@@ -1,7 +1,8 @@
 export type Palette = {
   colorPrimary: string
-  colorButtonIntermed: string
   colorSecondary: string
+  colorTertiary: string
+  colorButtonIntermed: string
   colorTextParagraph: string
   colorTextTitle: string
   colorTextTitleLarge: string
@@ -22,8 +23,9 @@ export type Palette = {
 
 export const mainPalette: Palette = {
   colorPrimary: '#bf0a45',
-  colorButtonIntermed: '#e4305d',
   colorSecondary: '#ee7321',
+  colorTertiary: '#d4256240',
+  colorButtonIntermed: '#e4305d',
   colorTextParagraph: '#757575',
   colorTextTitle: '#222',
   colorTextTitleLarge: '#eee',

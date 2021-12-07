@@ -1,9 +1,6 @@
 import { FC } from 'react'
-import {
-  ModalRectangle,
-  StyledProps as ModalRectProps,
-} from 'components/ui/modalRectangle'
-import { IconButton } from 'components/ui'
+import { ModalRectangle, ModalRectProps } from 'components/ui/'
+import { GrayIconButton } from 'components/ui'
 import { strings } from 'strings'
 
 type Props = {
@@ -12,7 +9,7 @@ type Props = {
 
 export const Modal: FC<Props> = ({ children, closeModalCallback, large }) => (
   <ModalRectangle large={large}>
-    <IconButton
+    <GrayIconButton
       iconClass="fa-times"
       ariaLabel={strings.components.modal.closeModal}
       onClickCallback={closeModalCallback}

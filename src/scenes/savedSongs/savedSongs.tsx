@@ -1,12 +1,12 @@
 import { VFC } from 'react'
-import { getSavedSongs } from 'api/data'
+import { getOwnSavedSongs } from 'api/data'
 import { useGetSavedMedia } from 'hooks/useGetSavedMedia'
 import { SavedMedia } from 'components/media/ui/savedMedia'
 import { Song } from 'types/media'
 import { strings } from 'strings'
 
 export const SavedSongs: VFC = () => {
-  const savedMediaProps = useGetSavedMedia<Song>(getSavedSongs)
+  const savedMediaProps = useGetSavedMedia<Song>(getOwnSavedSongs)
   const { totalCount } = savedMediaProps
 
   const mediaTitle = strings.scenes.songs.mySavedSongs

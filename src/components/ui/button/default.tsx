@@ -1,8 +1,12 @@
-import { GlobalProps as StyledProps } from 'types/global'
+import { GlobalProps } from 'types/global'
 import styled from 'styled-components'
 
+type StyledProps = {
+  square?: boolean
+} & GlobalProps
+
 export const Button = styled.button<StyledProps>`
-  ${({ theme }: StyledProps) => `
+  ${({ square, theme }: StyledProps) => `
     background-image: linear-gradient(
       45deg,
       ${theme?.palette.colorPrimary},
@@ -11,7 +15,9 @@ export const Button = styled.button<StyledProps>`
     );
     border-radius: ${theme?.borderRadiusSmall};
     border-width: 0;
-    padding: 16px 36px;
+    display: flex;
+    flex-direction: row;
+    padding: 16px ${square ? '16px' : '36px'};
     color: ${theme?.palette.colorTextButton};
     text-align: center;
     font-family: ${theme?.fontStyle};

@@ -1,23 +1,18 @@
 import { fireEvent, render, screen } from '@testing-library/react'
+import React from 'react'
 import { strings } from 'strings'
-import { IconButton } from './icon'
 import { ThemeProvider } from 'styled-components'
 import { mainStyles } from 'styles'
+import { IconButton } from './icon'
 
 describe('IconButton', () => {
   it('renders IconButton correctly', () => {
     render(
       <ThemeProvider theme={mainStyles}>
-        <IconButton
-          iconClass="fa-times"
-          ariaLabel={strings.components.modal.closeModal}
-          onClickCallback={() => {}}
-        />
+        <IconButton icon="fa-times" onClickCallback={() => {}} />
       </ThemeProvider>,
     )
-    const buttonElement = screen.getByRole('button', {
-      name: strings.components.modal.closeModal,
-    })
+    const buttonElement = screen.getByRole('button')
     expect(buttonElement).toBeInTheDocument()
   })
 
@@ -25,16 +20,10 @@ describe('IconButton', () => {
     const onClick = jest.fn()
     render(
       <ThemeProvider theme={mainStyles}>
-        <IconButton
-          iconClass="fa-times"
-          ariaLabel={strings.components.modal.closeModal}
-          onClickCallback={onClick}
-        />
+        <IconButton icon="fa-times" onClickCallback={onClick} />
       </ThemeProvider>,
     )
-    const buttonElement = screen.getByRole('button', {
-      name: strings.components.modal.closeModal,
-    })
+    const buttonElement = screen.getByRole('button')
     fireEvent.click(buttonElement)
     expect(onClick).toHaveBeenCalled()
   })

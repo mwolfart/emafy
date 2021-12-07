@@ -9,6 +9,7 @@ export type Styles = {
   borderRadiusSmall: string
   borderRadiusMedium: string
   borderRadiusLarge: string
+  borderRadiusImage: string
   fontStyle: string
   fontBoldOne: string
   fontBoldTwo: string
@@ -42,6 +43,7 @@ export const mainStyles: Styles = {
   borderRadiusSmall: '12px',
   borderRadiusMedium: '24px',
   borderRadiusLarge: '32px',
+  borderRadiusImage: '96px',
   fontStyle: "Montserrat, 'Trebuchet MS', Arial, sans-serif",
   fontBoldOne: '400',
   fontBoldTwo: '600',

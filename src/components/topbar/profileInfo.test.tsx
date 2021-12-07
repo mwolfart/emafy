@@ -3,6 +3,7 @@ import { ProfileInfo } from './profileInfo'
 import faker from 'faker'
 import { ThemeProvider } from 'styled-components'
 import { mainStyles } from 'styles'
+import { BrowserRouter as Router } from 'react-router-dom'
 
 describe('Profile Info', () => {
   it('renders component correctly', () => {
@@ -14,11 +15,14 @@ describe('Profile Info', () => {
       email: faker.internet.email(),
       id: faker.random.alphaNumeric(),
       images: [userImage],
+      followerCount: faker.datatype.number(100),
     }
 
     render(
       <ThemeProvider theme={mainStyles}>
-        <ProfileInfo userInfo={userInfo} />
+        <Router>
+          <ProfileInfo userInfo={userInfo} />
+        </Router>
       </ThemeProvider>,
     )
     const element = screen.getByText(userName)
