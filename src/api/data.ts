@@ -18,7 +18,7 @@ type SpotifyDataRequest<T, U> = {
   route: string
   parser: (items: T[]) => U[]
   next?: NextURL
-  loggedUser?: boolean
+  shouldGetInfoFromLoggedUser?: boolean
   otherParams?: { [key: string]: string }
 }
 
@@ -32,13 +32,14 @@ const getSpotifyData = <T, U>({
   route,
   parser,
   next,
-  loggedUser,
+  shouldGetInfoFromLoggedUser,
 }: SpotifyDataRequest<T, U>): Promise<{
   entities: U[]
   next: NextURL
   total: number
 }> => {
-  const baseLink = (loggedUser ? SPOTIFY_ROUTE.OWN : '') + route
+  const linkPrefix = shouldGetInfoFromLoggedUser ? SPOTIFY_ROUTE.OWN : ''
+  const baseLink = linkPrefix + route
   const requestLink = next ? `${baseLink}${next}` : baseLink
   return spotifyInstance<{ items: T[]; next?: string; total: number }>(
     requestLink,
@@ -68,7 +69,7 @@ export const getOwnSavedAlbums = (
     route,
     parser: parseSavedAlbums,
     next,
-    loggedUser: true,
+    shouldGetInfoFromLoggedUser: true,
   })
 }
 
@@ -80,7 +81,7 @@ export const getOwnSavedSongs = (
     route,
     parser: parseSavedTracks,
     next,
-    loggedUser: true,
+    shouldGetInfoFromLoggedUser: true,
   })
 }
 
@@ -92,7 +93,7 @@ export const getOwnTopArtists = (
     route,
     parser: parseSimpleArtists,
     next,
-    loggedUser: true,
+    shouldGetInfoFromLoggedUser: true,
   })
 }
 
