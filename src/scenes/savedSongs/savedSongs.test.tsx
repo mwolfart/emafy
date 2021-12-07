@@ -1,23 +1,55 @@
 import { screen, render } from '@testing-library/react'
+import { songs as mockedSongs } from 'fixtures/songs'
+import { BrowserRouter } from 'react-router-dom'
 import { strings } from 'strings'
 import { ThemeProvider } from 'styled-components'
 import { mainStyles } from 'styles'
 import { SavedSongs } from './savedSongs'
 
+jest.mock('hooks/useGetSavedMedia', () => ({
+  useGetSavedMedia: () => ({
+    changeView: jest.fn(),
+    fetchMoreMedia: jest.fn(),
+    isTransitioning: false,
+    isViewList: false,
+    mediaList: mockedSongs,
+    nextURL: null,
+    totalCount: mockedSongs.length,
+    isLoading: false,
+  }),
+}))
+
 describe('Saved Songs', () => {
-  it('renders Saved Songs scene correctly', () => {
+  it('renders scene headers correctly', () => {
     render(
       <ThemeProvider theme={mainStyles}>
-        <SavedSongs />
+        <BrowserRouter>
+          <SavedSongs />
+        </BrowserRouter>
       </ThemeProvider>,
     )
     const labelSavedElement = screen.getByText(
       strings.scenes.songs.mySavedSongs,
     )
     const labelSongCntElement = screen.getByText(
-      `0 ${strings.scenes.songs.subtextSongs}`,
+      `${mockedSongs.length} ${strings.scenes.songs.subtextSongs}`,
     )
     expect(labelSavedElement).toBeTruthy()
     expect(labelSongCntElement).toBeTruthy()
+  })
+
+  it('renders song list correctly', async () => {
+    render(
+      <ThemeProvider theme={mainStyles}>
+        <BrowserRouter>
+          <SavedSongs />
+        </BrowserRouter>
+      </ThemeProvider>,
+    )
+
+    mockedSongs.forEach((song) => {
+      const el = screen.getByText(song.name)
+      expect(el).toBeTruthy()
+    })
   })
 })
