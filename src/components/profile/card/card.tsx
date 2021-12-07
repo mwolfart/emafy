@@ -46,7 +46,10 @@ export const ProfileCard: VFC<Props> = ({
   playlistCount,
 }) => {
   const userImage = (user.images?.length && user.images[0]) || ''
-  const userFollowerCount = user.followerCount
+  const userFollowerCount = user.followerCount.toString()
+  const userFollowingCount = followingCount.toString()
+  const userSavedMusicCount = savedMusicCount.toString()
+  const userPlaylistCount = playlistCount.toString()
 
   return (
     <Wrapper>
@@ -62,23 +65,23 @@ export const ProfileCard: VFC<Props> = ({
       <Dash />
       <IconHeadline
         icon="fa-user-friends"
-        title={userFollowerCount.toString()}
+        title={userFollowerCount}
         subtitle={strings.components.profile.card.followers}
       />
       <IconHeadline
         icon="fa-user-friends"
-        title={followingCount.toString()}
+        title={userFollowingCount}
         subtitle={strings.components.profile.card.followedArtists}
       />
       <IconHeadline
         icon="fa-music"
-        title={savedMusicCount.toString()}
+        title={userSavedMusicCount}
         subtitle={strings.components.profile.card.tracks}
       />
       <Dash />
       <IconHeadline
         icon="fa-list"
-        title={playlistCount.toString()}
+        title={userPlaylistCount}
         subtitle={strings.components.profile.card.playlists}
       />
     </Wrapper>
