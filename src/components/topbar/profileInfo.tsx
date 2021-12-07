@@ -57,16 +57,16 @@ const Subtitle = styled.span`
 `
 
 export const ProfileInfo: VFC<Props> = ({ userInfo }) => {
+  const imagePath = (userInfo.images?.length && userInfo.images[0]) || profile
+  const viewProfileText = strings.components.topbar.viewProfile
+
   return (
     <RouterLink to="/me/">
       <Wrapper>
-        <UserAvatar
-          imagePath={(userInfo.images?.length && userInfo.images[0]) || profile}
-          small={true}
-        />
+        <UserAvatar imagePath={imagePath} small={true} />
         <Description>
           <Name>{userInfo.name}</Name>
-          <Subtitle>{strings.components.topbar.viewProfile}</Subtitle>
+          <Subtitle>{viewProfileText}</Subtitle>
         </Description>
       </Wrapper>
     </RouterLink>
