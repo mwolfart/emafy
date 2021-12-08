@@ -22,47 +22,52 @@ import { cancellableRequest } from 'api/utils'
 import { BeatLoader } from 'components/loader'
 import { ViewAlbum } from 'scenes/viewAlbum/viewAlbum'
 
-const App = (): JSX.Element => {
-  const GlobalLinkStyle = createGlobalStyle`
-    a {
-      text-decoration: unset;
-    }
-  `
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
+type StyledProps = {
+  isLoggedIn: boolean
+} & GlobalProps
 
-  const Wrapper = styled.div`
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 100%;
-  `
+const GlobalLinkStyle = createGlobalStyle`
+a {
+  text-decoration: unset;
+}
+`
 
-  const HeaderWrapper = styled.div`
-    ${({ theme = mainStyles }: GlobalProps) => `
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+`
+
+const HeaderWrapper = styled.div`
+  ${({ isLoggedIn, theme = mainStyles }: StyledProps) => `
       position: relative;
       width: 100vw;
       ${isLoggedIn && `height: ${theme.topbarHeight};`}
       z-index: 1;
     `}
-  `
+`
 
-  const ContentWrapper = styled.div`
-    ${({ theme = mainStyles }: GlobalProps) => `
+const ContentWrapper = styled.div`
+  ${({ theme = mainStyles }: GlobalProps) => `
       display: flex;
       flex-direction: row;
       width: 100vw;
       height: calc(100% - ${theme.topbarHeight});
     `}
-  `
+`
 
-  const MainScreen = styled.div`
-    ${({ theme = mainStyles }: GlobalProps) => `
+const MainScreen = styled.div`
+  ${({ isLoggedIn, theme = mainStyles }: StyledProps) => `
       ${isLoggedIn && `padding-left: ${theme.sidebarWidth};`}
       width: ${isLoggedIn ? `calc(100% - ${theme.sidebarWidth})` : `100%`};
       background-color: ${theme.palette.colorBackground};
       height: 100%;
     `}
-  `
+`
+
+const App = (): JSX.Element => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
 
   const { code, state } = getAuthParamsFromURI()
   const destinationPath = `/login${
@@ -105,12 +110,12 @@ const App = (): JSX.Element => {
           <BeatLoader />
         ) : (
           <Wrapper>
-            <HeaderWrapper>
+            <HeaderWrapper isLoggedIn={isLoggedIn}>
               {isLoggedIn && <Topbar user={loggedUser} />}
             </HeaderWrapper>
             <ContentWrapper>
               {isLoggedIn && <Sidebar />}
-              <MainScreen>
+              <MainScreen isLoggedIn={isLoggedIn}>
                 <Switch>
                   <ProtectedRoute
                     isLoggedIn={isLoggedIn}
