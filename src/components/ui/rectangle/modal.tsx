@@ -1,12 +1,11 @@
 import styled from 'styled-components'
-import { GlobalProps } from 'types/global'
 
-export type StyledProps = {
+interface IProps {
   large?: boolean
-} & GlobalProps
+}
 
-export const ModalRectangle = styled.div<StyledProps>`
-  ${({ large, theme }: StyledProps) => ` 
+export const ModalRectangle = styled.div<IProps>`
+  ${({ large, theme }) => ` 
     height: ${large ? '500px' : '250px'};
     width: ${large ? '800px' : '400px'};
     display: flex;

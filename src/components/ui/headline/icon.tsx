@@ -1,7 +1,6 @@
 import React, { VFC } from 'react'
 import styled from 'styled-components'
-import { mainStyles } from 'styles'
-import { GlobalProps } from 'types/global'
+
 import { ContainerFlexRow, Headline } from '..'
 
 type Props = {
@@ -11,7 +10,7 @@ type Props = {
 }
 
 const Icon = styled.i`
-  ${({ theme = mainStyles }: GlobalProps) => `
+  ${({ theme }) => `
     color: ${theme.palette.colorPrimary};
     background-color: ${theme.palette.colorTertiary};
     border-radius: ${theme.borderRadiusSmall};

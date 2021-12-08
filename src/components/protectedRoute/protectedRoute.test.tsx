@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react'
 import { ThemeProvider } from 'styled-components'
-import { mainStyles } from 'styles'
+import { defaultTheme } from 'theme'
 import { Router } from 'react-router-dom'
 import { ProtectedRoute } from './protectedRoute'
 import { SavedAlbums } from 'scenes/savedAlbums/savedAlbums'
@@ -13,7 +13,7 @@ describe('ProtectedRoute', () => {
   it('redirects to login page correctly', () => {
     const history = createMemoryHistory()
     render(
-      <ThemeProvider theme={mainStyles}>
+      <ThemeProvider theme={defaultTheme}>
         <Router history={history}>
           <ProtectedRoute
             isLoggedIn={false}
@@ -39,7 +39,7 @@ describe('ProtectedRoute', () => {
     }))
     const history = createMemoryHistory()
     render(
-      <ThemeProvider theme={mainStyles}>
+      <ThemeProvider theme={defaultTheme}>
         <Router history={history}>
           <ProtectedRoute
             isLoggedIn={true}

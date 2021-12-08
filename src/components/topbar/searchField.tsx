@@ -2,11 +2,9 @@ import { GrayIconButton } from 'components/ui'
 import { VFC } from 'react'
 import { strings } from 'strings'
 import styled from 'styled-components'
-import { mainStyles } from 'styles'
-import { GlobalProps } from 'types/global'
 
 const Wrapper = styled.div`
-  ${({ theme = mainStyles }: GlobalProps) => `
+  ${({ theme }) => `
     display: flex;
     flex-direction: row;
     color: ${theme.palette.colorTextDisabled};
@@ -26,7 +24,7 @@ const Wrapper = styled.div`
 `
 
 const SearchInput = styled.input`
-  ${({ theme = mainStyles }: GlobalProps) => `
+  ${({ theme }) => `
     border: none;
     border-bottom: 2px solid ${theme.palette.colorTextSubtitleLarge};
     flex-grow: 1;

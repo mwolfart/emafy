@@ -2,17 +2,19 @@ import { Button } from 'components/ui'
 import { SubtitleExtraLarge, TitleExtraLarge } from 'components/ui/heading'
 import { VFC } from 'react'
 import styled from 'styled-components'
-import { mainStyles } from 'styles'
-import { GlobalProps as StyledProps } from 'types/global'
 import { isAlbum, Media } from 'types/media'
 import { renderSubTitle } from '../utils'
 
 type Props = {
   mediaInfo?: Media
-} & StyledProps
+}
 
-const Background = styled.div<Props>`
-  ${({ theme = mainStyles, mediaInfo }: Props) => `
+interface IProps {
+  mediaInfo?: Media
+}
+
+const Background = styled.div<IProps>`
+  ${({ theme, mediaInfo }) => `
     background-image: linear-gradient(
       to bottom, 
       ${theme.palette.colorBackgroundBannerEdge},
@@ -26,13 +28,13 @@ const Background = styled.div<Props>`
 `
 
 const SaveButton = styled(Button)`
-  ${({ theme = mainStyles }: StyledProps) => `
+  ${({ theme }) => `
     margin: ${theme.divSpacingSmall};
   `}
 `
 
 export const CustomTitleExtraLarge = styled(TitleExtraLarge)`
-  ${({ theme = mainStyles }: StyledProps) => `
+  ${({ theme }) => `
     color: ${theme.palette.colorTextTitleLarge};
     padding-top: ${theme.divSpacingSmall};
     padding-left: ${theme.divSpacingSmall};
@@ -40,7 +42,7 @@ export const CustomTitleExtraLarge = styled(TitleExtraLarge)`
 `
 
 export const CustomSubtitleExtraLarge = styled(SubtitleExtraLarge)`
-  ${({ theme = mainStyles }: StyledProps) => `
+  ${({ theme }) => `
     color: ${theme.palette.colorTextSubtitleLarge};
     padding-left: ${theme.divSpacingSmall};
     padding-bottom: ${theme.divSpacingBig};

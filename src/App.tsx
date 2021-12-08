@@ -4,7 +4,6 @@ import '@fortawesome/fontawesome-free/css/solid.min.css'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import { LoginScene } from 'scenes/login/login'
 import styled, { createGlobalStyle, ThemeProvider } from 'styled-components'
-import { mainStyles } from 'styles'
 import { SavedAlbums } from 'scenes/savedAlbums/savedAlbums'
 import createBrowserHistory from 'history/createBrowserHistory'
 import { useEffect, useState } from 'react'
@@ -14,17 +13,17 @@ import { SavedArtists } from 'scenes/savedArtists/savedArtists'
 import { SavedSongs } from 'scenes/savedSongs/savedSongs'
 import { Sidebar } from 'components/sidebar/sidebar'
 import { Topbar } from 'components/topbar/topbar'
-import { GlobalProps } from 'types/global'
 import { Profile } from 'scenes/profile/profile'
 import { User } from 'types/media'
 import { getOwnProfile } from 'api/data'
 import { cancellableRequest } from 'api/utils'
 import { BeatLoader } from 'components/loader'
 import { ViewAlbum } from 'scenes/viewAlbum/viewAlbum'
+import { defaultTheme } from 'theme'
 
-type StyledProps = {
+interface IProps {
   isLoggedIn: boolean
-} & GlobalProps
+}
 
 const GlobalLinkStyle = createGlobalStyle`
 a {
@@ -39,8 +38,8 @@ const Wrapper = styled.div`
   height: 100%;
 `
 
-const HeaderWrapper = styled.div`
-  ${({ isLoggedIn, theme = mainStyles }: StyledProps) => `
+const HeaderWrapper = styled.div<IProps>`
+  ${({ isLoggedIn, theme }) => `
       position: relative;
       width: 100vw;
       ${isLoggedIn && `height: ${theme.topbarHeight};`}
@@ -49,7 +48,7 @@ const HeaderWrapper = styled.div`
 `
 
 const ContentWrapper = styled.div`
-  ${({ theme = mainStyles }: GlobalProps) => `
+  ${({ theme }) => `
       display: flex;
       flex-direction: row;
       width: 100vw;
@@ -57,8 +56,8 @@ const ContentWrapper = styled.div`
     `}
 `
 
-const MainScreen = styled.div`
-  ${({ isLoggedIn, theme = mainStyles }: StyledProps) => `
+const MainScreen = styled.div<IProps>`
+  ${({ isLoggedIn, theme }) => `
       ${isLoggedIn && `padding-left: ${theme.sidebarWidth};`}
       width: ${isLoggedIn ? `calc(100% - ${theme.sidebarWidth})` : `100%`};
       background-color: ${theme.palette.colorBackground};
@@ -103,7 +102,7 @@ const App = (): JSX.Element => {
   }, [isLoggedIn])
 
   return (
-    <ThemeProvider theme={mainStyles}>
+    <ThemeProvider theme={defaultTheme}>
       <GlobalLinkStyle />
       <BrowserRouter>
         {isLoading ? (

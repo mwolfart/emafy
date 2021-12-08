@@ -1,7 +1,6 @@
 import { VFC } from 'react'
 import styled from 'styled-components'
-import { mainStyles } from 'styles'
-import { GlobalProps } from 'types/global'
+
 import { ContainerFlexCol } from '../container'
 
 type Props = {
@@ -10,14 +9,14 @@ type Props = {
 }
 
 const Wrapper = styled(ContainerFlexCol)`
-  ${({ theme = mainStyles }: GlobalProps) => `
+  ${({ theme }) => `
     flex-grow: 1;
     margin: ${theme.divSpacingMedium} 0;
   `}
 `
 
 const Title = styled.span`
-  ${({ theme = mainStyles }: GlobalProps) => `
+  ${({ theme }) => `
     color: ${theme?.palette.colorTextTitle};
     font-weight: ${theme?.fontBoldTwo};
     font-size: ${theme?.fontSizeTitle};
@@ -27,7 +26,7 @@ const Title = styled.span`
 `
 
 const Subtitle = styled.span`
-  ${({ theme = mainStyles }: GlobalProps) => `
+  ${({ theme }) => `
     color: ${theme?.palette.colorTextDisabled};
     font-weight: ${theme?.fontBoldTwo};
     font-size: ${theme?.fontSizeParagraph};

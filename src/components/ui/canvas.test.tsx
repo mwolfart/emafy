@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react'
 import { ThemeProvider } from 'styled-components'
-import { mainStyles } from 'styles'
+import { defaultTheme } from 'theme'
 import faker from 'faker'
 import { Canvas } from './index'
 
@@ -8,7 +8,7 @@ describe('Canvas', () => {
   it('renders Canvas correctly', () => {
     const text = faker.random.words()
     render(
-      <ThemeProvider theme={mainStyles}>
+      <ThemeProvider theme={defaultTheme}>
         <Canvas>{text}</Canvas>
       </ThemeProvider>,
     )

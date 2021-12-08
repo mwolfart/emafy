@@ -1,11 +1,12 @@
 import { FC } from 'react'
-import { ModalRectangle, ModalRectProps } from 'components/ui/'
+import { ModalRectangle } from 'components/ui/'
 import { GrayIconButton } from 'components/ui'
 import { strings } from 'strings'
 
 type Props = {
   closeModalCallback: () => void
-} & ModalRectProps
+  large?: boolean
+}
 
 export const Modal: FC<Props> = ({ children, closeModalCallback, large }) => (
   <ModalRectangle large={large}>

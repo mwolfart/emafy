@@ -5,8 +5,7 @@ import { VFC } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import { strings } from 'strings'
 import styled from 'styled-components'
-import { mainStyles } from 'styles'
-import { GlobalProps } from 'types/global'
+
 import { SimpleArtist } from 'types/media'
 import { Follow } from '../follow/follow'
 
@@ -18,7 +17,7 @@ type Props = {
 }
 
 const Wrapper = styled.div`
-  ${({ theme = mainStyles }: GlobalProps) => `
+  ${({ theme }) => `
     padding: 0 ${theme.divSpacingExtraBig};
     width: 50%;
   `}

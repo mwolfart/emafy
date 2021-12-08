@@ -3,8 +3,6 @@ import { Avatar } from 'components/ui'
 import { VFC } from 'react'
 import { strings } from 'strings'
 import styled from 'styled-components'
-import { mainStyles } from 'styles'
-import { GlobalProps } from 'types/global'
 import { SimpleArtist } from 'types/media'
 
 type Props = {
@@ -13,7 +11,7 @@ type Props = {
 }
 
 const Wrapper = styled(ContainerFlexRow)`
-  ${({ theme = mainStyles }: GlobalProps) => `
+  ${({ theme }) => `
     padding: ${theme.divSpacingSmall} 0;
     border-bottom: 2px solid ${theme.palette.colorTextSubtitleLarge};
     width: 100%;

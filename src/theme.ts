@@ -1,40 +1,7 @@
-import { mainPalette, Palette } from 'palette'
+import { mainPalette } from 'palette'
+import { DefaultTheme } from 'styled-components'
 
-export type Styles = {
-  shadowDimensionsDefault: string
-  shadowDimensionsLarge: string
-  shadowDefault: string
-  shadowAccent: string
-  borderRadiusDefault: string
-  borderRadiusSmall: string
-  borderRadiusMedium: string
-  borderRadiusLarge: string
-  borderRadiusImage: string
-  fontStyle: string
-  fontBoldOne: string
-  fontBoldTwo: string
-  fontBoldThree: string
-  fontSizeTiny: string
-  fontSizeParagraph: string
-  fontSizeTitle: string
-  fontSizeGiant: string
-  fontSizeIcon: string
-  imageSizeIcon: string
-  imageSizeSmall: string
-  imageSizeMedium: string
-  lineHeightSimple: string
-  divSpacingSmall: string
-  divSpacingMedium: string
-  divSpacingBig: string
-  divSpacingExtraBig: string
-  transitionQuick: string
-  transitionQuickDelayed: string
-  sidebarWidth: string
-  topbarHeight: string
-  palette: Palette
-}
-
-export const mainStyles: Styles = {
+export const defaultTheme: DefaultTheme = {
   shadowDimensionsDefault: '0px 60px 80px',
   shadowDimensionsLarge: '0px 80px 100px',
   shadowDefault: '#0000002a',

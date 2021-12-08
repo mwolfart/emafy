@@ -1,5 +1,5 @@
 import { Link as MediaLink } from 'components/media/link/link'
-import { GlobalProps } from 'types/global'
+
 import { VFC } from 'react'
 import styled from 'styled-components'
 import { Media } from 'types/media'
@@ -9,12 +9,12 @@ type Props = {
   rowVariant?: boolean
 }
 
-type StyledProps = {
+interface IProps {
   rowVariant?: boolean
-} & GlobalProps
+}
 
-const Wrapper = styled.div<StyledProps>`
-  ${({ rowVariant, theme }: StyledProps) => `
+const Wrapper = styled.div<IProps>`
+  ${({ rowVariant, theme }) => `
     display: grid;
     grid-template-columns: ${
       rowVariant ? '1fr' : 'repeat(auto-fill, minmax(max(240px, 100%/10), 1fr))'

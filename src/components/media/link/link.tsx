@@ -1,4 +1,3 @@
-import { GlobalProps } from 'types/global'
 import { VFC } from 'react'
 import styled from 'styled-components'
 import { Media, MediaType } from 'types/media'
@@ -10,14 +9,14 @@ import { Link as RouterLink } from 'react-router-dom'
 type Props = {
   mediaInfo: Media
   rowVariant?: boolean
-} & GlobalProps
+}
 
-type StyledProps = {
+interface IProps {
   rowVariant?: boolean
-} & GlobalProps
+}
 
-const Wrapper = styled.div<StyledProps>`
-  ${({ rowVariant, theme }: StyledProps) => `
+const Wrapper = styled.div<IProps>`
+  ${({ rowVariant, theme }) => `
     display: flex;
     flex-direction: ${rowVariant ? 'row' : 'column'};
     font-family: ${theme?.fontStyle};

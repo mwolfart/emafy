@@ -1,27 +1,6 @@
-export type Palette = {
-  colorPrimary: string
-  colorSecondary: string
-  colorTertiary: string
-  colorButtonIntermed: string
-  colorTextParagraph: string
-  colorTextTitle: string
-  colorTextTitleLarge: string
-  colorTextSubtitleLarge: string
-  colorTextButton: string
-  colorTextDisabled: string
-  colorTextSidebar: string
-  colorBackground: string
-  colorBackgroundSidebar: string
-  colorBackgroundDisabled: string
-  colorBackgroundBannerEdge: string
-  colorBackgroundBannerCenter: string
-  colorBackgroundBannerText: string
-  colorLinkBackground: string
-  colorLinkBackgroundHover: string
-  colorImageBackground: string
-}
+import { IPalette } from 'styled'
 
-export const mainPalette: Palette = {
+export const mainPalette: IPalette = {
   colorPrimary: '#bf0a45',
   colorSecondary: '#ee7321',
   colorTertiary: '#d4256240',

@@ -4,16 +4,10 @@ import InfiniteScroll from 'react-infinite-scroll-component'
 import { Menu as MediaMenu } from 'components/media/menu/menu'
 import { strings } from 'strings'
 import styled from 'styled-components'
-import { mainStyles } from 'styles'
-import { GlobalProps as StyledProps } from 'types/global'
 import { Media } from 'types/media'
 import { ToggleDescriptor } from '../../ui'
 import { SubtitleLarge, TitleLarge } from '../../ui/heading'
 import { BeatLoader } from 'components/loader'
-
-type MenuWrapperProps = {
-  isTransitioning?: boolean
-} & StyledProps
 
 type Props = {
   changeView: (isGrid: boolean) => void
@@ -27,8 +21,12 @@ type Props = {
   totalCount: number
 }
 
-const Header = styled.div<StyledProps>`
-  ${({ theme = mainStyles }: StyledProps) => `
+interface IProps {
+  isTransitioning?: boolean
+}
+
+const Header = styled.div`
+  ${({ theme }) => `
         display: flex;
         flex-direction: row;
         height: 20%;
@@ -37,14 +35,14 @@ const Header = styled.div<StyledProps>`
     `}
 `
 
-const TitleWrapper = styled.div<StyledProps>`
+const TitleWrapper = styled.div`
   display: flex;
   flex-direction: column;
   flex-grow: 1;
 `
 
-const MenuWrapper = styled.div<MenuWrapperProps>`
-  ${({ isTransitioning, theme = mainStyles }: MenuWrapperProps) => `
+const MenuWrapper = styled.div<IProps>`
+  ${({ isTransitioning, theme }) => `
         padding-left: ${theme.divSpacingMedium};
         padding-right: ${theme.divSpacingMedium};
         opacity: ${isTransitioning ? '0' : '1'};

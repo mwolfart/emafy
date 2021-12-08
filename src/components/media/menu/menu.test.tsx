@@ -3,7 +3,7 @@ import { Menu } from './menu'
 import { albums } from 'fixtures/albums'
 import { Album, Media } from 'types/media'
 import { ThemeProvider } from 'styled-components'
-import { mainStyles } from 'styles'
+import { defaultTheme } from 'theme'
 import { BrowserRouter as Router } from 'react-router-dom'
 
 describe('Menu', () => {
@@ -11,7 +11,7 @@ describe('Menu', () => {
     const albumList = albums
 
     render(
-      <ThemeProvider theme={mainStyles}>
+      <ThemeProvider theme={defaultTheme}>
         <Router>
           <Menu mediaList={albumList} />
         </Router>

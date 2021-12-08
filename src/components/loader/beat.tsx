@@ -2,11 +2,9 @@ import { mainPalette } from 'palette'
 import { VFC } from 'react'
 import { BeatLoader } from 'react-spinners'
 import styled from 'styled-components'
-import { mainStyles } from 'styles'
-import { GlobalProps } from 'types/global'
 
 const Wrapper = styled.div`
-  ${({ theme = mainStyles }: GlobalProps) => `
+  ${({ theme }) => `
     display: flex;
     height: 100%;
     justify-content: center;

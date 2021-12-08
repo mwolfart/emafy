@@ -3,7 +3,7 @@ import { songs as mockedSongs } from 'fixtures/songs'
 import { BrowserRouter } from 'react-router-dom'
 import { strings } from 'strings'
 import { ThemeProvider } from 'styled-components'
-import { mainStyles } from 'styles'
+import { defaultTheme } from 'theme'
 import { SavedSongs } from './savedSongs'
 
 jest.mock('hooks/useGetSavedMedia', () => ({
@@ -22,7 +22,7 @@ jest.mock('hooks/useGetSavedMedia', () => ({
 describe('Saved Songs', () => {
   it('renders scene headers correctly', () => {
     render(
-      <ThemeProvider theme={mainStyles}>
+      <ThemeProvider theme={defaultTheme}>
         <BrowserRouter>
           <SavedSongs />
         </BrowserRouter>
@@ -40,7 +40,7 @@ describe('Saved Songs', () => {
 
   it('renders song list correctly', async () => {
     render(
-      <ThemeProvider theme={mainStyles}>
+      <ThemeProvider theme={defaultTheme}>
         <BrowserRouter>
           <SavedSongs />
         </BrowserRouter>

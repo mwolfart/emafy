@@ -3,7 +3,7 @@ import { songs as mockedSongs } from 'fixtures/songs'
 import { user } from 'fixtures/user'
 import { BrowserRouter } from 'react-router-dom'
 import { ThemeProvider } from 'styled-components'
-import { mainStyles } from 'styles'
+import { defaultTheme } from 'theme'
 import { Profile } from './profile'
 
 jest.mock('hooks/useGetSavedMedia', () => ({
@@ -32,7 +32,7 @@ jest.mock('hooks/useGetUserFollows', () => ({
 describe('Profile', () => {
   it('renders basic card information correctly', () => {
     render(
-      <ThemeProvider theme={mainStyles}>
+      <ThemeProvider theme={defaultTheme}>
         <BrowserRouter>
           <Profile user={user} />
         </BrowserRouter>

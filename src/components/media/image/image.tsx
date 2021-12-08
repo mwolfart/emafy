@@ -1,4 +1,3 @@
-import { GlobalProps } from 'types/global'
 import { VFC } from 'react'
 import { strings } from 'strings'
 import styled from 'styled-components'
@@ -7,14 +6,14 @@ type Props = {
   src?: string
   small?: boolean
   placeholder?: JSX.Element
-} & GlobalProps
+}
 
-type StyledProps = {
+interface IProps {
   small?: boolean
-} & GlobalProps
+}
 
-export const Wrapper = styled.div<StyledProps>`
-  ${({ small, theme }: StyledProps) => `
+export const Wrapper = styled.div<IProps>`
+  ${({ small, theme }) => `
     width: ${small ? '100px' : '200px'};
     height: ${small ? '100px' : '200px'};
     display: flex;

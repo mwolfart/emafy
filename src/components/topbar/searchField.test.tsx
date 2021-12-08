@@ -2,12 +2,12 @@ import { render, screen } from '@testing-library/react'
 import { strings } from 'strings'
 import { SearchField } from './searchField'
 import { ThemeProvider } from 'styled-components'
-import { mainStyles } from 'styles'
+import { defaultTheme } from 'theme'
 
 describe('Search Field', () => {
   it('renders component correctly', () => {
     render(
-      <ThemeProvider theme={mainStyles}>
+      <ThemeProvider theme={defaultTheme}>
         <SearchField />
       </ThemeProvider>,
     )

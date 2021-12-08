@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react'
 import { ThemeProvider } from 'styled-components'
-import { mainStyles } from 'styles'
+import { defaultTheme } from 'theme'
 import faker from 'faker'
 
 import { IconHeadline } from './icon'
@@ -10,7 +10,7 @@ describe('IconHeadline', () => {
     const title = faker.random.words()
     const subtitle = faker.random.words()
     render(
-      <ThemeProvider theme={mainStyles}>
+      <ThemeProvider theme={defaultTheme}>
         <IconHeadline icon="fa-times" title={title} subtitle={subtitle} />
       </ThemeProvider>,
     )

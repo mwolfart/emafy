@@ -1,6 +1,5 @@
 import { FC } from 'react'
 import styled from 'styled-components'
-import { GlobalProps } from 'types/global'
 import { Toggle } from './toggle'
 
 type Props = {
@@ -9,10 +8,10 @@ type Props = {
   isOnOff?: boolean
   labelTrue?: string
   labelFalse?: string
-} & GlobalProps
+}
 
-const Wrapper = styled.div<GlobalProps>`
-  ${({ theme }: GlobalProps) => `
+const Wrapper = styled.div`
+  ${({ theme }) => `
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -20,7 +19,7 @@ const Wrapper = styled.div<GlobalProps>`
 `
 
 const Label = styled.div`
-  ${({ theme }: GlobalProps) => `
+  ${({ theme }) => `
     font-family: ${theme?.fontStyle};
     font-weight: ${theme?.fontBoldOne};
     font-size: ${theme?.fontSizeParagraph};

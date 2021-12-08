@@ -1,14 +1,15 @@
 import { render, screen } from '@testing-library/react'
 import { ThemeProvider } from 'styled-components'
-import { mainStyles } from 'styles'
+
 import { artist } from 'fixtures/artist'
 import { Follow } from './follow'
 import { strings } from 'strings'
+import { defaultTheme } from 'theme'
 
 describe('Follow', () => {
   it('renders Follow correctly', () => {
     render(
-      <ThemeProvider theme={mainStyles}>
+      <ThemeProvider theme={defaultTheme}>
         <Follow follow={artist} isCurrentUserFollowing={true} />
       </ThemeProvider>,
     )

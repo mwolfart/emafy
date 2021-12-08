@@ -1,7 +1,7 @@
 import { fireEvent, render, screen } from '@testing-library/react'
 import { ProfileInfo } from './profileInfo'
 import { ThemeProvider } from 'styled-components'
-import { mainStyles } from 'styles'
+import { defaultTheme } from 'theme'
 import { BrowserRouter, Router } from 'react-router-dom'
 import { user } from '../../fixtures/user'
 import { createMemoryHistory } from 'history'
@@ -10,7 +10,7 @@ import { strings } from 'strings'
 describe('Profile Info', () => {
   it('renders component correctly', () => {
     render(
-      <ThemeProvider theme={mainStyles}>
+      <ThemeProvider theme={defaultTheme}>
         <BrowserRouter>
           <ProfileInfo userInfo={user} />
         </BrowserRouter>
@@ -26,7 +26,7 @@ describe('Profile Info', () => {
     const path = '/me/'
 
     render(
-      <ThemeProvider theme={mainStyles}>
+      <ThemeProvider theme={defaultTheme}>
         <Router history={history}>
           <ProfileInfo userInfo={user} />
         </Router>

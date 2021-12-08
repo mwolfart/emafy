@@ -3,7 +3,7 @@ import { artists as mockedArtists } from 'fixtures/artists'
 import { BrowserRouter } from 'react-router-dom'
 import { strings } from 'strings'
 import { ThemeProvider } from 'styled-components'
-import { mainStyles } from 'styles'
+import { defaultTheme } from 'theme'
 import { SavedArtists } from './savedArtists'
 
 jest.mock('hooks/useGetSavedMedia', () => ({
@@ -22,7 +22,7 @@ jest.mock('hooks/useGetSavedMedia', () => ({
 describe('Saved Artists', () => {
   it('renders scene headers correctly', () => {
     render(
-      <ThemeProvider theme={mainStyles}>
+      <ThemeProvider theme={defaultTheme}>
         <BrowserRouter>
           <SavedArtists />
         </BrowserRouter>
@@ -40,7 +40,7 @@ describe('Saved Artists', () => {
 
   it('renders artist list correctly', async () => {
     render(
-      <ThemeProvider theme={mainStyles}>
+      <ThemeProvider theme={defaultTheme}>
         <BrowserRouter>
           <SavedArtists />
         </BrowserRouter>

@@ -1,8 +1,6 @@
 import { CleanButton } from 'components/ui'
 import { VFC } from 'react'
 import styled from 'styled-components'
-import { mainStyles } from 'styles'
-import { GlobalProps } from 'types/global'
 
 type Props = {
   iconClass: string
@@ -11,7 +9,7 @@ type Props = {
 }
 
 const Icon = styled.i`
-  ${({ theme = mainStyles }: GlobalProps) => `
+  ${({ theme }) => `
     text-align: right;
     font-size: ${theme.fontSizeIcon};
     color: ${theme.palette.colorTextDisabled};

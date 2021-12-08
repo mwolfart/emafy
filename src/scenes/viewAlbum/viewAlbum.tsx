@@ -8,8 +8,6 @@ import InfiniteScroll from 'react-infinite-scroll-component'
 import { RouteComponentProps } from 'react-router'
 import { strings } from 'strings'
 import styled from 'styled-components'
-import { mainStyles } from 'styles'
-import { GlobalProps as StyledProps } from 'types/global'
 import { Album, Song } from 'types/media'
 
 type MatchParams = {
@@ -18,8 +16,7 @@ type MatchParams = {
 
 type Props = {
   albumInfo: Album
-} & RouteComponentProps<MatchParams> &
-  StyledProps
+} & RouteComponentProps<MatchParams>
 
 type AlbumTracksResponse = {
   entities: Song[]
@@ -28,7 +25,7 @@ type AlbumTracksResponse = {
 }
 
 const MenuWrapper = styled.div`
-  ${({ theme = mainStyles }: StyledProps) => `
+  ${({ theme }) => `
     padding: ${theme.divSpacingMedium};
   `}
 `

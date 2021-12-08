@@ -1,13 +1,13 @@
 import { render, screen } from '@testing-library/react'
 import { Image } from './image'
-import { mainStyles } from 'styles'
+import { defaultTheme } from 'theme'
 import { ThemeProvider } from 'styled-components'
 import { strings } from 'strings'
 
 describe('Image', () => {
   it('renders Image correctly', () => {
     render(
-      <ThemeProvider theme={mainStyles}>
+      <ThemeProvider theme={defaultTheme}>
         <Image />
       </ThemeProvider>,
     )
@@ -24,7 +24,7 @@ describe('Image', () => {
     )
 
     render(
-      <ThemeProvider theme={mainStyles}>
+      <ThemeProvider theme={defaultTheme}>
         <Image placeholder={placeholder} />
       </ThemeProvider>,
     )

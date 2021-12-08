@@ -1,30 +1,27 @@
 import { ChangeEvent, FC, useState } from 'react'
 import { strings } from 'strings'
 import styled from 'styled-components'
-import { GlobalProps } from 'types/global'
-
-type StyledProps = {
-  isOnOff?: boolean
-} & GlobalProps
-
-type BackgroundProps = {
-  isChecked: boolean
-} & StyledProps
 
 type Props = {
   toggleState: boolean
   onChangeCallback: (value: boolean) => void
-} & StyledProps
+  isOnOff?: boolean
+}
 
-const Wrapper = styled.label<GlobalProps>`
+interface IProps {
+  isChecked: boolean
+  isOnOff?: boolean
+}
+
+const Wrapper = styled.label`
   position: relative;
   display: inline-block;
   width: 60px;
   height: 34px;
 `
 
-const Background = styled.div`
-  ${({ isOnOff, isChecked, theme }: BackgroundProps) => `
+const Background = styled.div<IProps>`
+  ${({ isOnOff, isChecked, theme }) => `
     position: absolute;
     top: 0;
     left: 0;

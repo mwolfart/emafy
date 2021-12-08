@@ -3,7 +3,7 @@ import faker from 'faker'
 import { SidebarButton } from './sidebarButton'
 import { createMemoryHistory } from 'history'
 import { ThemeProvider } from 'styled-components'
-import { mainStyles } from 'styles'
+import { defaultTheme } from 'theme'
 import { BrowserRouter, Router } from 'react-router-dom'
 
 describe('Sidebar button', () => {
@@ -13,7 +13,7 @@ describe('Sidebar button', () => {
     const icon = faker.random.word()
 
     render(
-      <ThemeProvider theme={mainStyles}>
+      <ThemeProvider theme={defaultTheme}>
         <BrowserRouter>
           <SidebarButton title={title} path={path} icon={icon} />
         </BrowserRouter>
@@ -32,7 +32,7 @@ describe('Sidebar button', () => {
     history.push = jest.fn()
 
     render(
-      <ThemeProvider theme={mainStyles}>
+      <ThemeProvider theme={defaultTheme}>
         <Router history={history}>
           <SidebarButton title={title} path={path} icon={icon} />
         </Router>
