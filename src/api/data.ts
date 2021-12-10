@@ -11,6 +11,7 @@ import {
 } from './parser'
 import { RawAlbum, RawAlbumTrack, RawArtist, RawUser } from 'types/apiMedia'
 import { SPOTIFY_ROUTE } from './spotifyRoute.enum'
+import { extractNextFromNextURL } from './utils'
 
 export type NextURL = Nullable<string>
 
@@ -20,6 +21,12 @@ type SpotifyDataRequest<T, U> = {
   next?: NextURL
   shouldGetInfoFromLoggedUser?: boolean
   otherParams?: { [key: string]: string }
+}
+
+type RawMediaListResponse<T> = {
+  items: T[]
+  next?: string
+  total: number
 }
 
 export type MediaListResponse<T> = {
@@ -44,16 +51,32 @@ const getSpotifyData = <T, U>({
   return spotifyInstance<{ items: T[]; next?: string; total: number }>(
     requestLink,
   ).then(({ data: { items, next, total } }) => {
-    const nextLink =
-      typeof next === 'string'
-        ? next.replace('https://api.spotify.com/v1/' + baseLink, '')
-        : null
     return {
       entities: parser(items),
-      next: nextLink,
+      next: extractNextFromNextURL(next),
       total: total,
     }
   })
+}
+
+const getArtistListData = (
+  route: string,
+): Promise<MediaListResponse<SimpleArtist>> => {
+  return spotifyInstance<{
+    artists: RawMediaListResponse<RawArtist>
+  }>(route, { type: 'artist' }).then(
+    ({
+      data: {
+        artists: { items, next, total },
+      },
+    }) => {
+      return {
+        entities: parseSimpleArtists(items),
+        next: extractNextFromNextURL(next),
+        total: total,
+      }
+    },
+  )
 }
 
 export const getOwnProfile = (): Promise<User> => {
@@ -102,29 +125,7 @@ export const getOwnFollowedUsers = (
 ): Promise<MediaListResponse<SimpleArtist>> => {
   const baseLink = SPOTIFY_ROUTE.OWN + SPOTIFY_ROUTE.FOLLOWING
   const route = baseLink + (next || '')
-  return spotifyInstance<{
-    artists: {
-      items: RawArtist[]
-      next?: string
-      total: number
-    }
-  }>(route, { type: 'artist' }).then(
-    ({
-      data: {
-        artists: { items, next, total },
-      },
-    }) => {
-      const nextLink =
-        typeof next === 'string'
-          ? next.replace('https://api.spotify.com/v1/' + baseLink, '')
-          : null
-      return {
-        entities: parseSimpleArtists(items),
-        next: nextLink,
-        total: total,
-      }
-    },
-  )
+  return getArtistListData(route)
 }
 
 export const checkIfOwnFollowsArtist = (
@@ -133,6 +134,38 @@ export const checkIfOwnFollowsArtist = (
 ): Promise<boolean> => {
   const route = SPOTIFY_ROUTE.OWN + SPOTIFY_ROUTE.FOLLOWING_CHECK
   return spotifyInstance<boolean>(route, { ids: id, type }).then(
+    ({ data }) => data,
+  )
+}
+
+export const getUserFollowedUsers = (
+  id: string,
+  next?: NextURL,
+): Promise<MediaListResponse<SimpleArtist>> => {
+  const baseLink = '/' + id + '/' + SPOTIFY_ROUTE.FOLLOWING
+  const route = baseLink + (next || '')
+  return getArtistListData(route)
+}
+
+export const getUserSavedSongs = (
+  id: string,
+  next?: NextURL,
+): Promise<MediaListResponse<Song>> => {
+  const route = '/' + id + '/' + SPOTIFY_ROUTE.TRACKS
+  return getSpotifyData({
+    route,
+    parser: parseSavedTracks,
+    next,
+  })
+}
+
+export const checkIfUserFollowsArtist = (
+  userId: string,
+  artistId: string,
+  type: string,
+): Promise<boolean> => {
+  const route = '/' + userId + '/' + SPOTIFY_ROUTE.FOLLOWING_CHECK
+  return spotifyInstance<boolean>(route, { ids: artistId, type }).then(
     ({ data }) => data,
   )
 }

@@ -1,3 +1,11 @@
+import { Nullable } from 'types/global'
+
+export const extractNextFromNextURL = (nextUrl?: string): Nullable<string> => {
+  return typeof nextUrl === 'string'
+    ? nextUrl.slice(nextUrl.indexOf('?'))
+    : null
+}
+
 export function cancellableRequest<T>(
   requestFn: () => Promise<T>,
   successCallback: (data: T) => void,
