@@ -1,12 +1,12 @@
 import { NextURL } from 'api/data'
 import { VFC } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
-import { Menu as MediaMenu } from 'components/media/menu/menu'
+import { Group as MediaGroup } from 'components/media/menu/group/group'
 import { strings } from 'strings'
 import styled from 'styled-components'
 import { Media } from 'types/media'
-import { ToggleDescriptor } from '../../ui'
-import { SubtitleLarge, TitleLarge } from '../../ui/heading'
+import { ToggleDescriptor } from '../../../ui'
+import { SubtitleLarge, TitleLarge } from '../../../ui/heading'
 import { BeatLoader } from 'components/loader'
 
 type Props = {
@@ -82,7 +82,7 @@ export const Page: VFC<Props> = ({
       />
     </Header>
     <MenuWrapper isTransitioning={isTransitioning}>
-      <MediaMenu mediaList={mediaList} rowVariant={isViewList} />
+      <MediaGroup mediaList={mediaList} rowVariant={isViewList} />
     </MenuWrapper>
   </InfiniteScroll>
 )

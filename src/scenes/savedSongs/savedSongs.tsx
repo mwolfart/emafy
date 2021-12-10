@@ -1,7 +1,7 @@
 import { VFC } from 'react'
 import { getOwnSavedSongs } from 'api/data'
 import { useGetSavedMedia } from 'hooks/useGetSavedMedia'
-import { Page as MediaPage } from 'components/media/page/page'
+import { Page as MediaPage } from 'components/media/menu/page/page'
 import { Song } from 'types/media'
 import { strings } from 'strings'
 import { BeatLoader } from 'components/loader'

@@ -1,5 +1,4 @@
-import { Link as MediaLink } from 'components/media/link/link'
-
+import { Link as MediaLink } from 'components/media/menu/link/link'
 import { VFC } from 'react'
 import styled from 'styled-components'
 import { Media } from 'types/media'
@@ -22,7 +21,7 @@ const Wrapper = styled.div<IProps>`
   `}
 `
 
-export const Menu: VFC<Props> = ({ mediaList, rowVariant: isRowVariant }) => (
+export const Group: VFC<Props> = ({ mediaList, rowVariant: isRowVariant }) => (
   <Wrapper rowVariant={isRowVariant}>
     {mediaList.map((media: Media) => (
       <MediaLink key={media.id} mediaInfo={media} rowVariant={isRowVariant} />

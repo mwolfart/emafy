@@ -1,19 +1,19 @@
 import { render, screen } from '@testing-library/react'
-import { Menu } from './menu'
+import { Group } from './group'
 import { albums } from 'fixtures/albums'
 import { Album, Media } from 'types/media'
 import { ThemeProvider } from 'styled-components'
 import { defaultTheme } from 'theme'
 import { BrowserRouter as Router } from 'react-router-dom'
 
-describe('Menu', () => {
-  it('renders Menu correctly', () => {
+describe('MediaGroup', () => {
+  it('renders Group correctly', () => {
     const albumList = albums
 
     render(
       <ThemeProvider theme={defaultTheme}>
         <Router>
-          <Menu mediaList={albumList} />
+          <Group mediaList={albumList} />
         </Router>
       </ThemeProvider>,
     )

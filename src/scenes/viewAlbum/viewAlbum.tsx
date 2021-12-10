@@ -1,7 +1,7 @@
 import { getAlbum, getAlbumTracks, NextURL } from 'api/data'
 import { cancellableRequest } from 'api/utils'
 import { BeatLoader } from 'components/loader'
-import { Banner } from 'components/media/banner/banner'
+import { Banner } from 'components/media/artist/banner/banner'
 import { TrackList } from 'components/trackList/trackList'
 import { useEffect, useState, VFC } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
