@@ -1,23 +1,55 @@
 import { screen, render } from '@testing-library/react'
+import { artists as mockedArtists } from 'fixtures/artists'
+import { BrowserRouter } from 'react-router-dom'
 import { strings } from 'strings'
 import { ThemeProvider } from 'styled-components'
 import { mainStyles } from 'styles'
 import { SavedArtists } from './savedArtists'
 
+jest.mock('hooks/useGetSavedMedia', () => ({
+  useGetSavedMedia: () => ({
+    changeView: jest.fn(),
+    fetchMoreMedia: jest.fn(),
+    isTransitioning: false,
+    isViewList: false,
+    mediaList: mockedArtists,
+    nextURL: null,
+    totalCount: mockedArtists.length,
+    isLoading: false,
+  }),
+}))
+
 describe('Saved Artists', () => {
-  it('renders Saved Artists scene correctly', () => {
+  it('renders scene headers correctly', () => {
     render(
       <ThemeProvider theme={mainStyles}>
-        <SavedArtists />
+        <BrowserRouter>
+          <SavedArtists />
+        </BrowserRouter>
       </ThemeProvider>,
     )
     const labelSavedElement = screen.getByText(
       strings.scenes.artists.mySavedArtists,
     )
     const labelArtistCntElement = screen.getByText(
-      `0 ${strings.scenes.artists.subtextArtists}`,
+      `${mockedArtists.length} ${strings.scenes.artists.subtextArtists}`,
     )
     expect(labelSavedElement).toBeTruthy()
     expect(labelArtistCntElement).toBeTruthy()
+  })
+
+  it('renders artist list correctly', async () => {
+    render(
+      <ThemeProvider theme={mainStyles}>
+        <BrowserRouter>
+          <SavedArtists />
+        </BrowserRouter>
+      </ThemeProvider>,
+    )
+
+    mockedArtists.forEach((artist) => {
+      const el = screen.getByText(artist.name)
+      expect(el).toBeTruthy()
+    })
   })
 })

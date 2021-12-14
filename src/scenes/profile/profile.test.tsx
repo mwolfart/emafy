@@ -1,14 +1,41 @@
 import { render, screen } from '@testing-library/react'
+import { songs as mockedSongs } from 'fixtures/songs'
 import { user } from 'fixtures/user'
+import { BrowserRouter } from 'react-router-dom'
 import { ThemeProvider } from 'styled-components'
 import { mainStyles } from 'styles'
 import { Profile } from './profile'
 
+jest.mock('hooks/useGetSavedMedia', () => ({
+  useGetSavedMedia: () => ({
+    changeView: jest.fn(),
+    fetchMoreMedia: jest.fn(),
+    isTransitioning: false,
+    isViewList: false,
+    mediaList: mockedSongs,
+    nextURL: null,
+    totalCount: mockedSongs.length,
+    isLoading: false,
+  }),
+}))
+
+jest.mock('hooks/useGetUserFollows', () => ({
+  useGetUserFollows: () => ({
+    followList: mockedSongs,
+    nextURL: null,
+    fetchMoreFollows: jest.fn(),
+    totalCount: mockedSongs.length,
+    isLoading: false,
+  }),
+}))
+
 describe('Profile', () => {
-  it('renders Profile scene correctly', () => {
+  it('renders basic card information correctly', () => {
     render(
       <ThemeProvider theme={mainStyles}>
-        <Profile user={user} />
+        <BrowserRouter>
+          <Profile user={user} />
+        </BrowserRouter>
       </ThemeProvider>,
     )
 
