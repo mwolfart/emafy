@@ -1,31 +1,39 @@
-import { render, screen } from '@testing-library/react'
+import { fireEvent, render, screen } from '@testing-library/react'
 import { ProfileInfo } from './profileInfo'
-import faker from 'faker'
 import { ThemeProvider } from 'styled-components'
 import { mainStyles } from 'styles'
-import { BrowserRouter as Router } from 'react-router-dom'
+import { BrowserRouter, Router } from 'react-router-dom'
+import { user } from '../../fixtures/user'
+import { createMemoryHistory } from 'history'
+import { strings } from 'strings'
 
 describe('Profile Info', () => {
   it('renders component correctly', () => {
-    const userName = faker.name.findName()
-    const userImage = faker.image.abstract()
-    const userInfo = {
-      country: faker.address.countryCode(),
-      name: userName,
-      email: faker.internet.email(),
-      id: faker.random.alphaNumeric(),
-      images: [userImage],
-      followerCount: faker.datatype.number(100),
-    }
+    render(
+      <ThemeProvider theme={mainStyles}>
+        <BrowserRouter>
+          <ProfileInfo userInfo={user} />
+        </BrowserRouter>
+      </ThemeProvider>,
+    )
+    const element = screen.getByText(user.name)
+    expect(element).toBeInTheDocument()
+  })
+
+  it('redirects to profile page', () => {
+    const history = createMemoryHistory()
+    history.push = jest.fn()
+    const path = '/me/'
 
     render(
       <ThemeProvider theme={mainStyles}>
-        <Router>
-          <ProfileInfo userInfo={userInfo} />
+        <Router history={history}>
+          <ProfileInfo userInfo={user} />
         </Router>
       </ThemeProvider>,
     )
-    const element = screen.getByText(userName)
-    expect(element).toBeInTheDocument()
+
+    fireEvent.click(screen.getByText(strings.components.topbar.viewProfile))
+    expect(history.push).toHaveBeenCalledWith(path)
   })
 })

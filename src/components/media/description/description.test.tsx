@@ -1,5 +1,4 @@
 import { render, screen } from '@testing-library/react'
-
 import { Description } from './description'
 import { mainStyles } from 'styles'
 import { ThemeProvider } from 'styled-components'

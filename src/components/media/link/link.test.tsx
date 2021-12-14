@@ -1,5 +1,4 @@
 import { render, screen } from '@testing-library/react'
-
 import { Link } from './link'
 import { mainStyles } from 'styles'
 import { ThemeProvider } from 'styled-components'

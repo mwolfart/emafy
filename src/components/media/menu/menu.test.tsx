@@ -1,5 +1,4 @@
 import { render, screen } from '@testing-library/react'
-
 import { Menu } from './menu'
 import { albums } from 'fixtures/albums'
 import { Album, Media } from 'types/media'
