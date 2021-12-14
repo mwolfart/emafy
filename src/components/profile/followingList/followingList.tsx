@@ -1,4 +1,5 @@
 import { NextURL } from 'api/data'
+import { BeatLoader } from 'components/loader'
 import { Headline } from 'components/ui'
 import { VFC } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
@@ -35,7 +36,7 @@ export const FollowingList: VFC<Props> = ({
         dataLength={followList.length}
         next={fetchMoreFollows}
         hasMore={followList.length < followCount && nextURL !== null}
-        loader={'Loading...'}
+        loader={<BeatLoader />}
       >
         <Headline
           title={strings.components.profile.followedArtists}

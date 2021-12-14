@@ -4,10 +4,11 @@ import { useGetSavedMedia } from 'hooks/useGetSavedMedia'
 import { Page as MediaPage } from 'components/media/page/page'
 import { Song } from 'types/media'
 import { strings } from 'strings'
+import { BeatLoader } from 'components/loader'
 
 export const SavedSongs: VFC = () => {
   const savedMediaProps = useGetSavedMedia<Song>(getOwnSavedSongs)
-  const { totalCount } = savedMediaProps
+  const { totalCount, isLoading } = savedMediaProps
 
   const mediaTitle = strings.scenes.songs.mySavedSongs
   const mediaCountLabel =
@@ -15,7 +16,9 @@ export const SavedSongs: VFC = () => {
       ? strings.scenes.songs.subtextSong
       : strings.scenes.songs.subtextSongs
 
-  return (
+  return isLoading ? (
+    <BeatLoader />
+  ) : (
     <MediaPage
       {...savedMediaProps}
       pageTitle={mediaTitle}

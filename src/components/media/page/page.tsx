@@ -9,6 +9,7 @@ import { GlobalProps as StyledProps } from 'types/global'
 import { Media } from 'types/media'
 import { ToggleDescriptor } from '../../ui'
 import { SubtitleLarge, TitleLarge } from '../../ui/heading'
+import { BeatLoader } from 'components/loader'
 
 type MenuWrapperProps = {
   isTransitioning?: boolean
@@ -68,7 +69,7 @@ export const Page: VFC<Props> = ({
     dataLength={mediaList.length}
     next={fetchMoreMedia}
     hasMore={mediaList.length < totalCount && nextURL !== null}
-    loader={'Loading...'}
+    loader={<BeatLoader />}
   >
     <Header>
       <TitleWrapper>

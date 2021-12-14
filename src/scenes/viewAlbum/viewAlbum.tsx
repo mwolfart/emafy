@@ -1,17 +1,25 @@
-import { getAlbumTracks, NextURL } from 'api/data'
+import { getAlbum, getAlbumTracks, NextURL } from 'api/data'
+import { cancellableRequest } from 'api/utils'
+import { BeatLoader } from 'components/loader'
 import { Banner } from 'components/media/banner/banner'
 import { TrackList } from 'components/trackList/trackList'
-import { useCallback, useEffect, useState, VFC } from 'react'
+import { useEffect, useState, VFC } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
+import { RouteComponentProps } from 'react-router'
 import { strings } from 'strings'
 import styled from 'styled-components'
 import { mainStyles } from 'styles'
 import { GlobalProps as StyledProps } from 'types/global'
 import { Album, Song } from 'types/media'
 
+type MatchParams = {
+  id: string
+}
+
 type Props = {
   albumInfo: Album
-} & StyledProps
+} & RouteComponentProps<MatchParams> &
+  StyledProps
 
 type AlbumTracksResponse = {
   entities: Song[]
@@ -25,55 +33,67 @@ const MenuWrapper = styled.div`
   `}
 `
 
-export const ViewAlbum: VFC<Props> = ({ albumInfo }) => {
+export const ViewAlbum: VFC<Props> = ({ match }) => {
+  const [albumInfo, setAlbumInfo] = useState<Album | undefined>()
   const [albumTracks, setAlbumTracks] = useState<Song[]>([])
   const [nextURL, setNextURL] = useState<NextURL>(null)
   const [totalCount, setTotalCount] = useState<number>(0)
+  const [isLoading, setIsLoading] = useState<boolean>(true)
 
-  const storeMoreTracks = ({
-    entities,
-    next,
-    total,
-  }: AlbumTracksResponse): void => {
-    setAlbumTracks(albumTracks.concat(entities))
-    totalCount === 0 && setTotalCount(total)
-    setNextURL(next)
-  }
-
-  const storeFirstTracks = ({
-    entities,
-    next,
-    total,
-  }: AlbumTracksResponse): void => {
-    setAlbumTracks(entities)
-    setTotalCount(total)
-    setNextURL(next)
-  }
-
-  const fetchAlbumTracks = useCallback(
-    (
-      callback: (response: AlbumTracksResponse) => void,
-      nextURL?: NextURL,
-    ): void => {
-      getAlbumTracks(albumInfo, nextURL)
-        .then(callback)
+  useEffect(() => {
+    const fetchAlbumTracks = (album: Album): void => {
+      getAlbumTracks(album)
+        .then(({ entities, next, total }: AlbumTracksResponse) => {
+          setAlbumTracks(entities)
+          setTotalCount(total)
+          setNextURL(next)
+        })
         .catch(() => {
           alert(strings.scenes.albums.errorLoadingAlbumTracks)
         })
-    },
-    [albumInfo],
-  )
+        .finally(() => {
+          setIsLoading(false)
+        })
+    }
 
-  useEffect(() => {
-    fetchAlbumTracks(storeFirstTracks)
-  }, [fetchAlbumTracks])
+    const fetchAlbum = (): void => {
+      cancellableRequest(
+        () => getAlbum(match.params.id),
+        ({ entities: loadedAlbum }) => {
+          setAlbumInfo(loadedAlbum)
+          fetchAlbumTracks(loadedAlbum)
+        },
+        () => {
+          alert(strings.scenes.albums.errorLoadingAlbum)
+          setIsLoading(false)
+        },
+      )
+    }
 
-  return (
+    fetchAlbum()
+  }, [match.params.id])
+
+  const fetchMoreAlbumTracks = (): void => {
+    if (albumInfo) {
+      getAlbumTracks(albumInfo, nextURL)
+        .then(({ entities, next }: AlbumTracksResponse) => {
+          setAlbumTracks(albumTracks.concat(entities))
+          setNextURL(next)
+        })
+        .catch(() => {
+          alert(strings.scenes.albums.errorLoadingAlbumTracks)
+        })
+    }
+  }
+
+  return isLoading ? (
+    <BeatLoader />
+  ) : (
     <InfiniteScroll
       dataLength={albumTracks.length}
-      next={() => fetchAlbumTracks(storeMoreTracks, nextURL)}
+      next={fetchMoreAlbumTracks}
       hasMore={albumTracks.length < totalCount && nextURL != null}
-      loader={'Loading...'}
+      loader={<BeatLoader />}
     >
       <Banner mediaInfo={albumInfo} />
       <MenuWrapper>

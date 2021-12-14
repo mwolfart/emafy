@@ -1,6 +1,7 @@
 import { MediaListResponse, NextURL } from 'api/data'
 import { useEffect, useState } from 'react'
 import { strings } from 'strings'
+import { cancellableRequest } from '../api/utils'
 
 type UseGetSavedMediaHookReturn<T> = {
   changeView: (isGrid: boolean) => void
@@ -10,6 +11,7 @@ type UseGetSavedMediaHookReturn<T> = {
   mediaList: T[]
   nextURL: NextURL
   totalCount: number
+  isLoading: boolean
 }
 
 export function useGetSavedMedia<T>(
@@ -20,6 +22,7 @@ export function useGetSavedMedia<T>(
   const [nextURL, setNextURL] = useState<NextURL>(null)
   const [mediaList, setMediaList] = useState<T[]>([])
   const [totalCount, setTotalCount] = useState<number>(0)
+  const [isLoading, setIsLoading] = useState<boolean>(true)
   let transitionTimeout: NodeJS.Timeout
 
   const changeView = (isGrid: boolean): void => {
@@ -39,15 +42,21 @@ export function useGetSavedMedia<T>(
   }
 
   useEffect(() => {
-    getFunction()
-      .then(({ entities, next, total }) => {
+    return cancellableRequest(
+      getFunction,
+      ({ entities, next, total }) => {
         setMediaList(entities)
         setTotalCount(total)
         setNextURL(next)
-      })
-      .catch(() => {
+        setIsLoading(false)
+      },
+      () => {
         alert(strings.hooks.useGetSavedMedia.errorFetchingData)
-      })
+      },
+      () => {
+        setIsLoading(false)
+      },
+    )
   }, [getFunction])
 
   return {
@@ -58,5 +67,6 @@ export function useGetSavedMedia<T>(
     mediaList,
     nextURL,
     totalCount,
+    isLoading,
   }
 }
