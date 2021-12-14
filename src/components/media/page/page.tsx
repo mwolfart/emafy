@@ -21,7 +21,7 @@ type Props = {
   isViewList: boolean
   mediaCountLabel: string
   mediaList: Media[]
-  mediaTitle: string
+  pageTitle: string
   nextURL: NextURL
   totalCount: number
 }
@@ -53,14 +53,14 @@ const MenuWrapper = styled.div<MenuWrapperProps>`
     `}
 `
 
-export const SavedMedia: VFC<Props> = ({
+export const Page: VFC<Props> = ({
   changeView,
   fetchMoreMedia,
   isTransitioning,
   isViewList,
   mediaCountLabel,
   mediaList,
-  mediaTitle,
+  pageTitle,
   nextURL,
   totalCount,
 }: Props) => (
@@ -72,7 +72,7 @@ export const SavedMedia: VFC<Props> = ({
   >
     <Header>
       <TitleWrapper>
-        <TitleLarge>{mediaTitle}</TitleLarge>
+        <TitleLarge>{pageTitle}</TitleLarge>
         <SubtitleLarge>{`${totalCount} ${mediaCountLabel}`}</SubtitleLarge>
       </TitleWrapper>
       <ToggleDescriptor

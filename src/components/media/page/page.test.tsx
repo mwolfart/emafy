@@ -3,11 +3,11 @@ import { albums } from 'fixtures/albums'
 import { ThemeProvider } from 'styled-components'
 import { mainStyles } from 'styles'
 import { BrowserRouter as Router } from 'react-router-dom'
-import { SavedMedia } from './savedMedia'
+import { Page } from './page'
 import { strings } from 'strings'
 
-describe('SavedMedia', () => {
-  it('renders SavedMedia correctly', () => {
+describe('MediaPage', () => {
+  it('renders MediaPage correctly', () => {
     const albumList = albums
     const title = strings.scenes.albums.mySavedAlbums
     const countLabel = strings.scenes.albums.subtextAlbums
@@ -15,14 +15,14 @@ describe('SavedMedia', () => {
     render(
       <ThemeProvider theme={mainStyles}>
         <Router>
-          <SavedMedia
+          <Page
             changeView={() => {}}
             fetchMoreMedia={() => {}}
             isTransitioning={false}
             isViewList={true}
             mediaCountLabel={countLabel}
             mediaList={albumList}
-            mediaTitle={title}
+            pageTitle={title}
             nextURL={null}
             totalCount={albumList.length}
           />
@@ -35,7 +35,7 @@ describe('SavedMedia', () => {
       `${albumList.length} ${countLabel}`,
     )
     const toggleElement = screen.getByRole('checkbox', {
-      name: strings.components.toggleButton,
+      name: strings.components.media.toggleView,
     })
     expect(titleElement).toBeInTheDocument()
     expect(subtitleElement).toBeInTheDocument()
@@ -51,14 +51,14 @@ describe('SavedMedia', () => {
     render(
       <ThemeProvider theme={mainStyles}>
         <Router>
-          <SavedMedia
+          <Page
             changeView={changeViewFn}
             fetchMoreMedia={() => {}}
             isTransitioning={false}
             isViewList={true}
             mediaCountLabel={countLabel}
             mediaList={albumList}
-            mediaTitle={title}
+            pageTitle={title}
             nextURL={null}
             totalCount={albumList.length}
           />

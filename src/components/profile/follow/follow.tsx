@@ -1,5 +1,5 @@
 import { ContainerFlexRow, Headline, IconButton } from 'components/ui'
-import { UserAvatar } from 'components/ui/userAvatar'
+import { Avatar } from 'components/ui'
 import { VFC } from 'react'
 import { strings } from 'strings'
 import styled from 'styled-components'
@@ -29,7 +29,7 @@ export const Follow: VFC<Props> = ({ follow, isCurrentUserFollowing }) => {
 
   return (
     <Wrapper>
-      <UserAvatar imagePath={followImage} small={true} />
+      <Avatar imagePath={followImage} small={true} />
       <Headline
         title={follow.name}
         subtitle={strings.components.profile.follow.view}

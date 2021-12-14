@@ -2,14 +2,14 @@ import { render, screen } from '@testing-library/react'
 import { ThemeProvider } from 'styled-components'
 import { mainStyles } from 'styles'
 import faker from 'faker'
-import { UserAvatar } from './userAvatar'
+import { Avatar } from './avatar'
 
-describe('UserAvatar', () => {
-  it('renders UserAvatar correctly', () => {
+describe('Avatar', () => {
+  it('renders Avatar correctly', () => {
     const image = faker.image.abstract()
     render(
       <ThemeProvider theme={mainStyles}>
-        <UserAvatar imagePath={image} />
+        <Avatar imagePath={image} />
       </ThemeProvider>,
     )
     const canvasElement = screen.getByRole('img', { hidden: true })

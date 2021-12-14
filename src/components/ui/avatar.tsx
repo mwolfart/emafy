@@ -25,6 +25,6 @@ const Image = styled.img`
   `}
 `
 
-export const UserAvatar: VFC<Props> = ({ imagePath, small = false }) => (
+export const Avatar: VFC<Props> = ({ imagePath, small = false }) => (
   <Image src={imagePath} aria-hidden={true} small={small} />
 )

@@ -19,3 +19,5 @@ export { SubtitleNormal } from './heading'
 
 export { ContainerFlexCol } from './container'
 export { ContainerFlexRow } from './container'
+
+export { Avatar } from './avatar'
