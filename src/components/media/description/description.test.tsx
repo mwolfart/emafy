@@ -1,13 +1,13 @@
 import { render, screen } from '@testing-library/react'
 import { Description } from './description'
-import { mainStyles } from 'styles'
+import { defaultTheme } from 'theme'
 import { ThemeProvider } from 'styled-components'
 import { album } from 'fixtures/album'
 
 describe('Description', () => {
   it('renders Description correctly', () => {
     render(
-      <ThemeProvider theme={mainStyles}>
+      <ThemeProvider theme={defaultTheme}>
         <Description mediaInfo={album} />
       </ThemeProvider>,
     )

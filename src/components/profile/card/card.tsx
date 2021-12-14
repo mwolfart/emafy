@@ -9,8 +9,7 @@ import {
 import { ContainerFlexRow } from 'components/ui/container'
 import { VFC } from 'react'
 import styled from 'styled-components'
-import { mainStyles } from 'styles'
-import { GlobalProps } from 'types/global'
+
 import { User } from 'types/media'
 import { strings } from 'strings'
 
@@ -22,7 +21,7 @@ type Props = {
 }
 
 const Wrapper = styled(Rectangle)`
-  ${({ theme = mainStyles }: GlobalProps) => `
+  ${({ theme }) => `
     width: 50%;
     height: fit-content;
     box-shadow: ${theme?.shadowDimensionsDefault};
@@ -30,7 +29,7 @@ const Wrapper = styled(Rectangle)`
 `
 
 const Dash = styled.div`
-  ${({ theme = mainStyles }: GlobalProps) => `
+  ${({ theme }) => `
     border-bottom: 2px solid ${theme.palette.colorTextSubtitleLarge};
   `}
 `

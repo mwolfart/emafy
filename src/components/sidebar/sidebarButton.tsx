@@ -1,8 +1,6 @@
 import { VFC } from 'react'
 import styled from 'styled-components'
 import { Link as RouterLink } from 'react-router-dom'
-import { GlobalProps } from 'types/global'
-import { mainStyles } from 'styles'
 
 type Props = {
   title: string
@@ -10,12 +8,12 @@ type Props = {
   icon: string
 }
 
-type StyledProps = {
+interface IProps {
   iconSize: string
-} & GlobalProps
+}
 
 const Wrapper = styled.div`
-  ${({ theme = mainStyles }: GlobalProps) => `
+  ${({ theme }) => `
     display: flex;
     flex-direction: column;
     padding-left: ${theme.divSpacingSmall};
@@ -29,8 +27,8 @@ const Wrapper = styled.div`
   `}
 `
 
-const IconBackground = styled.div`
-  ${({ theme = mainStyles, iconSize }: StyledProps) => `
+const IconBackground = styled.div<IProps>`
+  ${({ theme, iconSize }) => `
     border-radius: ${iconSize};
     background-image: linear-gradient(
         45deg,
@@ -47,8 +45,8 @@ const IconBackground = styled.div`
   `}
 `
 
-const CenteredIcon = styled.i`
-  ${({ theme = mainStyles, iconSize }: StyledProps) => `
+const CenteredIcon = styled.i<IProps>`
+  ${({ theme, iconSize }) => `
     line-height: ${iconSize};
   `}
 `

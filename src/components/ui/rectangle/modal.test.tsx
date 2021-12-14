@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react'
 import { ThemeProvider } from 'styled-components'
-import { mainStyles } from 'styles'
+import { defaultTheme } from 'theme'
 import faker from 'faker'
 import { ModalRectangle } from '../index'
 
@@ -8,7 +8,7 @@ describe('ModalRectangle', () => {
   it('renders ModalRectangle correctly', () => {
     const text = faker.random.words()
     render(
-      <ThemeProvider theme={mainStyles}>
+      <ThemeProvider theme={defaultTheme}>
         <ModalRectangle>{text}</ModalRectangle>
       </ThemeProvider>,
     )

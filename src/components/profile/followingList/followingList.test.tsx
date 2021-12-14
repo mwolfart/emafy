@@ -1,13 +1,13 @@
 import { render, screen } from '@testing-library/react'
 import { ThemeProvider } from 'styled-components'
-import { mainStyles } from 'styles'
+import { defaultTheme } from 'theme'
 import { artists } from 'fixtures/artists'
 import { FollowingList } from './followingList'
 
 describe('FollowingList', () => {
   it('renders FollowingList correctly', () => {
     render(
-      <ThemeProvider theme={mainStyles}>
+      <ThemeProvider theme={defaultTheme}>
         <FollowingList
           followList={artists}
           followCount={10}

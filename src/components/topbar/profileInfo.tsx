@@ -1,8 +1,7 @@
 import { Avatar } from 'components/ui'
 import { VFC } from 'react'
 import styled from 'styled-components'
-import { mainStyles } from 'styles'
-import { GlobalProps } from 'types/global'
+
 import profile from 'images/profile.png'
 import { User } from 'types/media'
 import { strings } from 'strings'
@@ -13,7 +12,7 @@ type Props = {
 }
 
 const Wrapper = styled.div`
-  ${({ theme = mainStyles }: GlobalProps) => `
+  ${({ theme }) => `
     display: flex;
     flex-direction: row;
     padding-left: ${theme.divSpacingSmall};
@@ -35,7 +34,7 @@ const Description = styled.div`
 `
 
 const Name = styled.span`
-  ${({ theme = mainStyles }: GlobalProps) => `
+  ${({ theme }) => `
     font-family: ${theme.fontStyle};
     font-size: ${theme.fontSizeParagraph};
     font-weight: ${theme.fontBoldTwo};
@@ -46,7 +45,7 @@ const Name = styled.span`
 `
 
 const Subtitle = styled.span`
-  ${({ theme = mainStyles }: GlobalProps) => `
+  ${({ theme }) => `
     font-family: ${theme.fontStyle};
     font-size: ${theme.fontSizeTiny};
     font-weight: ${theme.fontBoldOne};

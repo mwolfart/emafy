@@ -1,8 +1,7 @@
 import styled from 'styled-components'
-import { GlobalProps } from 'types/global'
 
-export const Rectangle = styled.div<GlobalProps>`
-  ${({ theme }: GlobalProps) => `
+export const Rectangle = styled.div`
+  ${({ theme }) => `
     display: flex;
     flex-direction: column;
     background-color: ${theme?.palette.colorBackground};

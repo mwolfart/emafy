@@ -2,12 +2,12 @@ import { fireEvent, render, screen } from '@testing-library/react'
 import { strings } from 'strings'
 import { GrayIconButton } from './grayIcon'
 import { ThemeProvider } from 'styled-components'
-import { mainStyles } from 'styles'
+import { defaultTheme } from 'theme'
 
 describe('GrayIconButton', () => {
   it('renders GrayIconButton correctly', () => {
     render(
-      <ThemeProvider theme={mainStyles}>
+      <ThemeProvider theme={defaultTheme}>
         <GrayIconButton
           iconClass="fa-times"
           ariaLabel={strings.components.modal.closeModal}
@@ -24,7 +24,7 @@ describe('GrayIconButton', () => {
   it('calls onClickCallback on button click', () => {
     const onClick = jest.fn()
     render(
-      <ThemeProvider theme={mainStyles}>
+      <ThemeProvider theme={defaultTheme}>
         <GrayIconButton
           iconClass="fa-times"
           ariaLabel={strings.components.modal.closeModal}

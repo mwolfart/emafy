@@ -1,12 +1,11 @@
-import { GlobalProps } from 'types/global'
 import styled from 'styled-components'
 
-type StyledProps = {
+interface IProps {
   square?: boolean
-} & GlobalProps
+}
 
-export const Button = styled.button<StyledProps>`
-  ${({ square, theme }: StyledProps) => `
+export const Button = styled.button<IProps>`
+  ${({ square, theme }) => `
     background-image: linear-gradient(
       45deg,
       ${theme?.palette.colorPrimary},

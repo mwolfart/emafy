@@ -1,14 +1,12 @@
 import { fireEvent, render, screen } from '@testing-library/react'
-import React from 'react'
-import { strings } from 'strings'
 import { ThemeProvider } from 'styled-components'
-import { mainStyles } from 'styles'
+import { defaultTheme } from 'theme'
 import { IconButton } from './icon'
 
 describe('IconButton', () => {
   it('renders IconButton correctly', () => {
     render(
-      <ThemeProvider theme={mainStyles}>
+      <ThemeProvider theme={defaultTheme}>
         <IconButton icon="fa-times" onClickCallback={() => {}} />
       </ThemeProvider>,
     )
@@ -19,7 +17,7 @@ describe('IconButton', () => {
   it('calls onClickCallback on button click', () => {
     const onClick = jest.fn()
     render(
-      <ThemeProvider theme={mainStyles}>
+      <ThemeProvider theme={defaultTheme}>
         <IconButton icon="fa-times" onClickCallback={onClick} />
       </ThemeProvider>,
     )

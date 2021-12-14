@@ -1,7 +1,5 @@
 import { VFC } from 'react'
 import styled from 'styled-components'
-import { mainStyles } from 'styles'
-import { GlobalProps } from 'types/global'
 import { Button } from './default'
 
 type Props = {
@@ -11,7 +9,7 @@ type Props = {
 }
 
 const PaddedText = styled.div`
-  ${({ theme = mainStyles }: GlobalProps) => `
+  ${({ theme }) => `
     padding-left: ${theme.divSpacingSmall};
   `}
 `

@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react'
 import { ThemeProvider } from 'styled-components'
-import { mainStyles } from 'styles'
+import { defaultTheme } from 'theme'
 import faker from 'faker'
 import { Descriptor } from '../toggle/descriptor'
 
@@ -9,7 +9,7 @@ describe('Descriptor', () => {
     const labelFalse = faker.random.word()
     const labelTrue = faker.random.word()
     render(
-      <ThemeProvider theme={mainStyles}>
+      <ThemeProvider theme={defaultTheme}>
         <Descriptor
           toggleState={true}
           onChangeCallback={() => {}}

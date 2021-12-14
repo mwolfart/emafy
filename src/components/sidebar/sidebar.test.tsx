@@ -2,13 +2,13 @@ import { render, screen } from '@testing-library/react'
 import { strings } from 'strings'
 import { Sidebar } from './sidebar'
 import { ThemeProvider } from 'styled-components'
-import { mainStyles } from 'styles'
+import { defaultTheme } from 'theme'
 import { BrowserRouter as Router } from 'react-router-dom'
 
 describe('Sidebar', () => {
   it('renders component correctly', () => {
     render(
-      <ThemeProvider theme={mainStyles}>
+      <ThemeProvider theme={defaultTheme}>
         <Router>
           <Sidebar />
         </Router>

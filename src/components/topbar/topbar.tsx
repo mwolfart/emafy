@@ -1,7 +1,6 @@
 import { VFC } from 'react'
 import styled from 'styled-components'
-import { GlobalProps } from 'types/global'
-import { mainStyles } from 'styles'
+
 import { ProfileInfo } from './profileInfo'
 import { SearchField } from './searchField'
 import { GrayIconButton } from 'components/ui'
@@ -13,7 +12,7 @@ type Props = {
 }
 
 const Wrapper = styled.div`
-  ${({ theme = mainStyles }: GlobalProps) => `
+  ${({ theme }) => `
     display: flex;
     flex-direction: row;
     padding: ${theme.divSpacingMedium};
@@ -25,14 +24,14 @@ const Wrapper = styled.div`
 `
 
 const Dash = styled.div`
-  ${({ theme = mainStyles }: GlobalProps) => `
+  ${({ theme }) => `
     border-left: 2px solid ${theme.palette.colorTextSubtitleLarge};
     margin: 5px 0;
   `}
 `
 
 const ButtonsWrapper = styled.div`
-  ${({ theme = mainStyles }: GlobalProps) => `
+  ${({ theme }) => `
     flex-grow: 1;
     align-self: center;
     text-align: right;

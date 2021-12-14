@@ -3,7 +3,7 @@ import { albums as mockedAlbums } from 'fixtures/albums'
 import { BrowserRouter } from 'react-router-dom'
 import { strings } from 'strings'
 import { ThemeProvider } from 'styled-components'
-import { mainStyles } from 'styles'
+import { defaultTheme } from 'theme'
 import { SavedAlbums } from './savedAlbums'
 
 jest.mock('hooks/useGetSavedMedia', () => ({
@@ -22,7 +22,7 @@ jest.mock('hooks/useGetSavedMedia', () => ({
 describe('Saved Albums', () => {
   it('renders scene headers correctly', async () => {
     render(
-      <ThemeProvider theme={mainStyles}>
+      <ThemeProvider theme={defaultTheme}>
         <BrowserRouter>
           <SavedAlbums />
         </BrowserRouter>
@@ -41,7 +41,7 @@ describe('Saved Albums', () => {
 
   it('renders album list correctly', async () => {
     render(
-      <ThemeProvider theme={mainStyles}>
+      <ThemeProvider theme={defaultTheme}>
         <BrowserRouter>
           <SavedAlbums />
         </BrowserRouter>

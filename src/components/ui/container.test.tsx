@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react'
 import { ThemeProvider } from 'styled-components'
-import { mainStyles } from 'styles'
+import { defaultTheme } from 'theme'
 import faker from 'faker'
 import { ContainerFlexCol, ContainerFlexRow } from './container'
 
@@ -8,7 +8,7 @@ describe('Container', () => {
   it('renders ContainerFlexCol correctly', () => {
     const text = faker.random.words()
     render(
-      <ThemeProvider theme={mainStyles}>
+      <ThemeProvider theme={defaultTheme}>
         <ContainerFlexCol>{text}</ContainerFlexCol>
       </ThemeProvider>,
     )
@@ -19,7 +19,7 @@ describe('Container', () => {
   it('renders ContainerFlexRow correctly', () => {
     const text = faker.random.words()
     render(
-      <ThemeProvider theme={mainStyles}>
+      <ThemeProvider theme={defaultTheme}>
         <ContainerFlexRow>{text}</ContainerFlexRow>
       </ThemeProvider>,
     )

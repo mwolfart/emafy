@@ -4,7 +4,6 @@ import '@fortawesome/fontawesome-free/css/solid.min.css'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import { LoginScene } from 'scenes/login/login'
 import styled, { createGlobalStyle, ThemeProvider } from 'styled-components'
-import { mainStyles } from 'styles'
 import { SavedAlbums } from 'scenes/savedAlbums/savedAlbums'
 import createBrowserHistory from 'history/createBrowserHistory'
 import { useEffect, useState } from 'react'
@@ -14,55 +13,60 @@ import { SavedArtists } from 'scenes/savedArtists/savedArtists'
 import { SavedSongs } from 'scenes/savedSongs/savedSongs'
 import { Sidebar } from 'components/sidebar/sidebar'
 import { Topbar } from 'components/topbar/topbar'
-import { GlobalProps } from 'types/global'
 import { Profile } from 'scenes/profile/profile'
 import { User } from 'types/media'
 import { getOwnProfile } from 'api/data'
 import { cancellableRequest } from 'api/utils'
 import { BeatLoader } from 'components/loader'
 import { ViewAlbum } from 'scenes/viewAlbum/viewAlbum'
+import { defaultTheme } from 'theme'
 
-const App = (): JSX.Element => {
-  const GlobalLinkStyle = createGlobalStyle`
-    a {
-      text-decoration: unset;
-    }
-  `
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
+interface IProps {
+  isLoggedIn: boolean
+}
 
-  const Wrapper = styled.div`
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 100%;
-  `
+const GlobalLinkStyle = createGlobalStyle`
+a {
+  text-decoration: unset;
+}
+`
 
-  const HeaderWrapper = styled.div`
-    ${({ theme = mainStyles }: GlobalProps) => `
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+`
+
+const HeaderWrapper = styled.div<IProps>`
+  ${({ isLoggedIn, theme }) => `
       position: relative;
       width: 100vw;
       ${isLoggedIn && `height: ${theme.topbarHeight};`}
       z-index: 1;
     `}
-  `
+`
 
-  const ContentWrapper = styled.div`
-    ${({ theme = mainStyles }: GlobalProps) => `
+const ContentWrapper = styled.div`
+  ${({ theme }) => `
       display: flex;
       flex-direction: row;
       width: 100vw;
       height: calc(100% - ${theme.topbarHeight});
     `}
-  `
+`
 
-  const MainScreen = styled.div`
-    ${({ theme = mainStyles }: GlobalProps) => `
+const MainScreen = styled.div<IProps>`
+  ${({ isLoggedIn, theme }) => `
       ${isLoggedIn && `padding-left: ${theme.sidebarWidth};`}
       width: ${isLoggedIn ? `calc(100% - ${theme.sidebarWidth})` : `100%`};
       background-color: ${theme.palette.colorBackground};
       height: 100%;
     `}
-  `
+`
+
+const App = (): JSX.Element => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
 
   const { code, state } = getAuthParamsFromURI()
   const destinationPath = `/login${
@@ -98,19 +102,19 @@ const App = (): JSX.Element => {
   }, [isLoggedIn])
 
   return (
-    <ThemeProvider theme={mainStyles}>
+    <ThemeProvider theme={defaultTheme}>
       <GlobalLinkStyle />
       <BrowserRouter>
         {isLoading ? (
           <BeatLoader />
         ) : (
           <Wrapper>
-            <HeaderWrapper>
+            <HeaderWrapper isLoggedIn={isLoggedIn}>
               {isLoggedIn && <Topbar user={loggedUser} />}
             </HeaderWrapper>
             <ContentWrapper>
               {isLoggedIn && <Sidebar />}
-              <MainScreen>
+              <MainScreen isLoggedIn={isLoggedIn}>
                 <Switch>
                   <ProtectedRoute
                     isLoggedIn={isLoggedIn}

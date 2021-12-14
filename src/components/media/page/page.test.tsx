@@ -1,7 +1,7 @@
 import { fireEvent, render, screen } from '@testing-library/react'
 import { albums } from 'fixtures/albums'
 import { ThemeProvider } from 'styled-components'
-import { mainStyles } from 'styles'
+import { defaultTheme } from 'theme'
 import { BrowserRouter as Router } from 'react-router-dom'
 import { Page } from './page'
 import { strings } from 'strings'
@@ -13,7 +13,7 @@ describe('MediaPage', () => {
     const countLabel = strings.scenes.albums.subtextAlbums
 
     render(
-      <ThemeProvider theme={mainStyles}>
+      <ThemeProvider theme={defaultTheme}>
         <Router>
           <Page
             changeView={() => {}}
@@ -49,7 +49,7 @@ describe('MediaPage', () => {
     const countLabel = strings.scenes.albums.subtextAlbums
 
     render(
-      <ThemeProvider theme={mainStyles}>
+      <ThemeProvider theme={defaultTheme}>
         <Router>
           <Page
             changeView={changeViewFn}

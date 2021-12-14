@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react'
 import { ThemeProvider } from 'styled-components'
-import { mainStyles } from 'styles'
+import { defaultTheme } from 'theme'
 import faker from 'faker'
 import { ProfileCard } from './card'
 import { user } from 'fixtures/user'
@@ -12,7 +12,7 @@ describe('ProfileCard', () => {
     const playlistCount = faker.datatype.number(200)
 
     render(
-      <ThemeProvider theme={mainStyles}>
+      <ThemeProvider theme={defaultTheme}>
         <ProfileCard
           user={user}
           followingCount={followingCount}

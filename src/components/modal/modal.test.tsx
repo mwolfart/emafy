@@ -1,15 +1,15 @@
 import { fireEvent, render, screen } from '@testing-library/react'
 import { strings } from 'strings'
 import { ThemeProvider } from 'styled-components'
-import { mainStyles } from 'styles'
 import faker from 'faker'
 import { Modal } from './modal'
+import { defaultTheme } from 'theme'
 
 describe('Modal', () => {
   it('renders Modal correctly', () => {
     const text = faker.random.words()
     render(
-      <ThemeProvider theme={mainStyles}>
+      <ThemeProvider theme={defaultTheme}>
         <Modal closeModalCallback={() => {}}>{text}</Modal>
       </ThemeProvider>,
     )
@@ -21,7 +21,7 @@ describe('Modal', () => {
     const text = faker.random.words()
     const onClose = jest.fn()
     render(
-      <ThemeProvider theme={mainStyles}>
+      <ThemeProvider theme={defaultTheme}>
         <Modal closeModalCallback={onClose}>{text}</Modal>
       </ThemeProvider>,
     )

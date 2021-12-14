@@ -1,17 +1,16 @@
 import { TitleNormal, SubtitleNormal } from 'components/ui/index'
-import { GlobalProps } from 'types/global'
+
 import { VFC } from 'react'
 import styled from 'styled-components'
 import { Media } from 'types/media'
 import { renderSubTitle } from '../utils'
-import { mainStyles } from 'styles'
 
 type Props = {
   mediaInfo: Media
-} & GlobalProps
+}
 
-const Wrapper = styled.div<GlobalProps>`
-  ${({ theme = mainStyles }: GlobalProps) => `
+const Wrapper = styled.div`
+  ${({ theme }) => `
     display: flex;
     flex-direction: column;
     text-align: left;
@@ -20,14 +19,14 @@ const Wrapper = styled.div<GlobalProps>`
 `
 
 const PaddedTitle = styled(TitleNormal)`
-  ${({ theme = mainStyles }: GlobalProps) => `
+  ${({ theme }) => `
     padding-left: ${theme.divSpacingSmall};
     padding-bottom: ${theme.divSpacingSmall};
   `}
 `
 
 const PaddedSubtitle = styled(SubtitleNormal)`
-  ${({ theme = mainStyles }: GlobalProps) => `
+  ${({ theme }) => `
     padding-left: ${theme.divSpacingSmall};
   `}
 `

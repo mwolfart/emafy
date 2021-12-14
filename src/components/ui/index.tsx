@@ -10,7 +10,6 @@ export { IconHeadline } from './headline/icon'
 
 export { Rectangle } from './rectangle/default'
 export { ModalRectangle } from './rectangle/modal'
-export type { StyledProps as ModalRectProps } from './rectangle/modal'
 
 export { TitleLarge } from './heading'
 export { SubtitleLarge } from './heading'

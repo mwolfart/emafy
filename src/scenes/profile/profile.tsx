@@ -1,8 +1,7 @@
 import { getOwnSavedSongs } from 'api/data'
 import { VFC } from 'react'
 import styled from 'styled-components'
-import { mainStyles } from 'styles'
-import { GlobalProps } from 'types/global'
+
 import { Song, User } from 'types/media'
 import { ProfileCard } from 'components/profile/card/card'
 import { FollowingList } from 'components/profile/followingList/followingList'
@@ -16,7 +15,7 @@ type Props = {
 }
 
 const Wrapper = styled(ContainerFlexRow)`
-  ${({ theme = mainStyles }: GlobalProps) => `
+  ${({ theme }) => `
     padding: ${theme.divSpacingExtraBig};
   `}
 `

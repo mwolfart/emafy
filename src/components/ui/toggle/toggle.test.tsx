@@ -1,13 +1,13 @@
 import { fireEvent, render, screen } from '@testing-library/react'
 import { ThemeProvider } from 'styled-components'
-import { mainStyles } from 'styles'
+import { defaultTheme } from 'theme'
 import { strings } from 'strings'
 import { Toggle } from './toggle'
 
 describe('Toggle', () => {
   it('renders Toggle correctly', () => {
     render(
-      <ThemeProvider theme={mainStyles}>
+      <ThemeProvider theme={defaultTheme}>
         <Toggle toggleState={true} onChangeCallback={() => {}} />
       </ThemeProvider>,
     )
@@ -20,7 +20,7 @@ describe('Toggle', () => {
   it('calls Toggle change callback', () => {
     const onChangeCallback = jest.fn()
     render(
-      <ThemeProvider theme={mainStyles}>
+      <ThemeProvider theme={defaultTheme}>
         <Toggle toggleState={true} onChangeCallback={onChangeCallback} />
       </ThemeProvider>,
     )

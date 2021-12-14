@@ -1,16 +1,14 @@
 import { artistListToString, formatDuration } from 'components/media/utils'
 import { VFC } from 'react'
 import styled from 'styled-components'
-import { mainStyles } from 'styles'
-import { GlobalProps as StyledProps } from 'types/global'
 import { Song } from 'types/media'
 
 type Props = {
   track: Song
 }
 
-const Wrapper = styled.div<StyledProps>`
-  ${({ theme = mainStyles }: StyledProps) => `
+const Wrapper = styled.div`
+  ${({ theme }) => `
     display: flex;
     flex-direction: row;
     border-radius: ${theme.borderRadiusDefault};
@@ -30,18 +28,18 @@ const Wrapper = styled.div<StyledProps>`
   `}
 `
 
-const TextWithPadding = styled.div<StyledProps>`
-  ${({ theme = mainStyles }: StyledProps) => `
+const TextWithPadding = styled.div`
+  ${({ theme }) => `
     padding-right: ${theme.divSpacingSmall};
   `}
 `
 
-const TextName = styled.div<StyledProps>`
+const TextName = styled.div`
   flex-grow: 1;
 `
 
-const TextDuration = styled.div<StyledProps>`
-  ${({ theme = mainStyles }: StyledProps) => `
+const TextDuration = styled.div`
+  ${({ theme }) => `
     text-align: right;
 
     &:before {

@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react'
 import { ThemeProvider } from 'styled-components'
-import { mainStyles } from 'styles'
+import { defaultTheme } from 'theme'
 import faker from 'faker'
 import { Avatar } from './avatar'
 
@@ -8,7 +8,7 @@ describe('Avatar', () => {
   it('renders Avatar correctly', () => {
     const image = faker.image.abstract()
     render(
-      <ThemeProvider theme={mainStyles}>
+      <ThemeProvider theme={defaultTheme}>
         <Avatar imagePath={image} />
       </ThemeProvider>,
     )

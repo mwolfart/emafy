@@ -1,8 +1,7 @@
 import { VFC } from 'react'
 import styled from 'styled-components'
 import { SidebarButton } from './sidebarButton'
-import { GlobalProps as StyledProps } from 'types/global'
-import { mainStyles } from 'styles'
+
 import { strings } from 'strings'
 
 type ButtonProps = {
@@ -12,7 +11,7 @@ type ButtonProps = {
 }
 
 const Wrapper = styled.div`
-  ${({ theme = mainStyles }: StyledProps) => `
+  ${({ theme }) => `
     display: flex;
     flex-direction: column;
     background-color: ${theme.palette.colorBackgroundSidebar};

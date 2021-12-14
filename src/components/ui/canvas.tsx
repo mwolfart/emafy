@@ -1,8 +1,7 @@
-import { GlobalProps as StyledProps } from 'types/global'
 import styled from 'styled-components'
 
-export const Canvas = styled.div<StyledProps>`
-  ${({ theme }: StyledProps) => `
+export const Canvas = styled.div`
+  ${({ theme }) => `
     position: absolute;
     min-height: 100%;
     min-width: 100vw;

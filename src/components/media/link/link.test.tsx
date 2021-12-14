@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react'
 import { Link } from './link'
-import { mainStyles } from 'styles'
+import { defaultTheme } from 'theme'
 import { ThemeProvider } from 'styled-components'
 import { album } from 'fixtures/album'
 import { BrowserRouter as Router } from 'react-router-dom'
@@ -8,7 +8,7 @@ import { BrowserRouter as Router } from 'react-router-dom'
 describe('Link', () => {
   it('renders Link correctly', () => {
     render(
-      <ThemeProvider theme={mainStyles}>
+      <ThemeProvider theme={defaultTheme}>
         <Router>
           <Link mediaInfo={album} />
         </Router>
