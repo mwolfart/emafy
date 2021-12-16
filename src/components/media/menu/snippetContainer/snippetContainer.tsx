@@ -21,11 +21,11 @@ const FlexWrapper = styled.div`
 `
 
 const AbsoluteWrapper = styled.div<IProps>`
-  ${({ displayTop, displayLeft }) => `
+  ${({ displayTop, displayLeft, theme }) => `
     position: absolute;
     z-index: 1;
     width: 450px;
-    ${displayTop ? 'bottom: 80px;' : 'top: 0;'}
+    ${displayTop ? `bottom: ${theme.divSpacingSmall};` : 'top: 0;'}
     left: ${displayLeft ? '-480px' : '250px'};
 
     @media (max-width: 1100px) {
