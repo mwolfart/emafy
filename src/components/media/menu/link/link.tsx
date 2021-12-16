@@ -5,17 +5,19 @@ import { Description as MediaDescription } from '../description/description'
 import { Image as MediaImage } from '../image/image'
 import { strings } from 'strings'
 import { Link as RouterLink } from 'react-router-dom'
+import { MediaExtraProps } from 'types/mediaExtraProps'
 
 type Props = {
   mediaInfo: Media
   rowVariant?: boolean
+  extraProps?: MediaExtraProps
 }
 
 interface IProps {
   rowVariant?: boolean
 }
 
-const Wrapper = styled.div<IProps>`
+const TileWrapper = styled.div<IProps>`
   ${({ rowVariant, theme }) => `
     display: flex;
     flex-direction: ${rowVariant ? 'row' : 'column'};
@@ -49,7 +51,15 @@ const Wrapper = styled.div<IProps>`
   `}
 `
 
-export const Link: VFC<Props> = ({ mediaInfo, rowVariant: isRowVariant }) => {
+const SimpleLink = styled.div`
+  cursor: pointer;
+`
+
+export const Link: VFC<Props> = ({
+  mediaInfo,
+  rowVariant: isRowVariant,
+  extraProps,
+}) => {
   const imgSrc = mediaInfo.images?.[0]
   const faSize = isRowVariant ? 'fa-3x' : 'fa-6x'
   const linkRedirectURL = `/${mediaInfo.mediaType}/${mediaInfo.id}`
@@ -61,15 +71,22 @@ export const Link: VFC<Props> = ({ mediaInfo, rowVariant: isRowVariant }) => {
   )
 
   const mediaTile = (
-    <Wrapper rowVariant={isRowVariant}>
+    <TileWrapper rowVariant={isRowVariant}>
       <MediaImage src={imgSrc} small={isRowVariant} placeholder={placeholder} />
       <MediaDescription mediaInfo={mediaInfo} />
-    </Wrapper>
+    </TileWrapper>
   )
 
-  return mediaInfo.mediaType !== MediaType.song ? (
-    <RouterLink to={linkRedirectURL}>{mediaTile}</RouterLink>
-  ) : (
-    <>{mediaTile}</>
-  )
+  switch (mediaInfo.mediaType) {
+    case MediaType.artist:
+      return <RouterLink to={linkRedirectURL}>{mediaTile}</RouterLink>
+    case MediaType.album:
+      const clickCallback = (): void =>
+        extraProps &&
+        extraProps.mediaSnippetOpenCallback &&
+        extraProps.mediaSnippetOpenCallback(mediaInfo)
+      return <SimpleLink onClick={clickCallback}>{mediaTile}</SimpleLink>
+    default:
+      return <>{mediaTile}</>
+  }
 }

@@ -8,6 +8,7 @@ import { Media } from 'types/media'
 import { ToggleDescriptor } from '../../../ui'
 import { SubtitleLarge, TitleLarge } from '../../../ui/heading'
 import { BeatLoader } from 'components/loader'
+import { MediaExtraProps } from 'types/mediaExtraProps'
 
 type Props = {
   changeView: (isGrid: boolean) => void
@@ -19,6 +20,7 @@ type Props = {
   pageTitle: string
   nextURL: NextURL
   totalCount: number
+  extraProps?: MediaExtraProps
 }
 
 interface IProps {
@@ -62,6 +64,7 @@ export const Page: VFC<Props> = ({
   pageTitle,
   nextURL,
   totalCount,
+  extraProps,
 }: Props) => (
   <InfiniteScroll
     dataLength={mediaList.length}
@@ -82,7 +85,11 @@ export const Page: VFC<Props> = ({
       />
     </Header>
     <MenuWrapper isTransitioning={isTransitioning}>
-      <MediaGroup mediaList={mediaList} rowVariant={isViewList} />
+      <MediaGroup
+        mediaList={mediaList}
+        rowVariant={isViewList}
+        extraProps={extraProps}
+      />
     </MenuWrapper>
   </InfiniteScroll>
 )

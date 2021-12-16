@@ -1,16 +1,16 @@
 import { render, screen } from '@testing-library/react'
-import { Link } from './link'
+import { Item } from './item'
 import { defaultTheme } from 'theme'
 import { ThemeProvider } from 'styled-components'
 import { album } from 'fixtures/album'
 import { BrowserRouter as Router } from 'react-router-dom'
 
-describe('Link', () => {
-  it('renders Link correctly', () => {
+describe('Item', () => {
+  it('renders Item correctly', () => {
     render(
       <ThemeProvider theme={defaultTheme}>
         <Router>
-          <Link mediaInfo={album} />
+          <Item mediaInfo={album} />
         </Router>
       </ThemeProvider>,
     )
