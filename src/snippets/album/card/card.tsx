@@ -1,5 +1,5 @@
 import { Album } from 'types/media'
-import { VFC } from 'react'
+import { useCallback, VFC } from 'react'
 import {
   ContainerFlexRow,
   GrayIconButton,
@@ -53,12 +53,17 @@ const Footer = styled.div`
 `
 
 export const AlbumCard: VFC<Props> = ({ albumInfo, fnCloseSnippet }) => {
+  const getTracksCallback = useCallback(
+    (next?: NextURL) => getAlbumTracks(albumInfo, next),
+    [albumInfo],
+  )
+
   const {
     mediaList: trackList,
     fetchMoreMedia: fetchMoreTracks,
     nextURL,
     isLoading,
-  } = useGetSavedMedia((next?: NextURL) => getAlbumTracks(albumInfo, next))
+  } = useGetSavedMedia(getTracksCallback)
 
   return (
     <Rectangle>
