@@ -73,7 +73,7 @@ export const AlbumCard: VFC<Props> = ({ albumInfo, fnCloseSnippet }) => {
       {isLoading ? (
         <BeatLoader />
       ) : (
-        <ScrollWrapper>
+        <ScrollWrapper id="tracksScrollWrapper">
           <InfiniteScroll
             dataLength={trackList.length}
             next={fetchMoreTracks}
@@ -81,6 +81,7 @@ export const AlbumCard: VFC<Props> = ({ albumInfo, fnCloseSnippet }) => {
               trackList.length < albumInfo.totalTracks && nextURL !== null
             }
             loader={<BeatLoader />}
+            scrollableTarget="tracksScrollWrapper"
           >
             {trackList.map((track) => (
               <TrackWrapper>
