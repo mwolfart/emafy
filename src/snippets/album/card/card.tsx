@@ -12,10 +12,11 @@ import { BeatLoader } from 'components/loader'
 import { getAlbumTracks, NextURL } from 'api/data'
 import { formatDuration, formatTrackNumber } from 'utils/utils'
 import { useGetSavedMedia } from 'hooks/useGetSavedMedia'
+import { strings } from 'strings'
 
 type Props = {
   albumInfo: Album
-  fnCloseSnippet: () => void
+  fnCloseSnippet?: () => void
 }
 
 const Dash = styled.div`
@@ -67,7 +68,13 @@ export const AlbumCard: VFC<Props> = ({ albumInfo, fnCloseSnippet }) => {
 
   return (
     <Rectangle>
-      <GrayIconButton iconClass="fa-times" onClickCallback={fnCloseSnippet} />
+      {fnCloseSnippet && (
+        <GrayIconButton
+          iconClass="fa-times"
+          onClickCallback={fnCloseSnippet}
+          ariaLabel={strings.components.modal.closeModal}
+        />
+      )}
       <Headline title={albumInfo.name} subtitle={albumInfo.artists[0].name} />
       <Dash />
       {isLoading ? (
