@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { isAlbum, Media } from 'types/media'
 import { MediaExtraProps } from 'types/mediaExtraProps'
 import { AlbumCard } from 'snippets/album/card/card'
-import { SnippetContainer as AlbumSnippetContainer } from '../../album/snippetContainer/snippetContainer'
+import { SnippetContainer as AlbumSnippetContainer } from 'components/media/album/snippetContainer/snippetContainer'
 import { Link as MediaLink } from '../link/link'
 
 type Props = {
