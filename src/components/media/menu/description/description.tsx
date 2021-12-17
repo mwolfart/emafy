@@ -3,7 +3,7 @@ import { TitleNormal, SubtitleNormal } from 'components/ui/index'
 import { VFC } from 'react'
 import styled from 'styled-components'
 import { Media } from 'types/media'
-import { renderSubTitle } from '../../utils'
+import { renderSubTitle } from '../../../../utils/utils'
 
 type Props = {
   mediaInfo: Media

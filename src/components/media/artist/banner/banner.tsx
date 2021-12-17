@@ -3,7 +3,7 @@ import { SubtitleExtraLarge, TitleExtraLarge } from 'components/ui/heading'
 import { VFC } from 'react'
 import styled from 'styled-components'
 import { isAlbum, Media } from 'types/media'
-import { renderSubTitle } from '../../utils'
+import { renderSubTitle } from '../../../../utils/utils'
 
 type Props = {
   mediaInfo?: Media

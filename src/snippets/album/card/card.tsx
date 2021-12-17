@@ -10,7 +10,7 @@ import InfiniteScroll from 'react-infinite-scroll-component'
 import styled from 'styled-components'
 import { BeatLoader } from 'components/loader'
 import { getAlbumTracks, NextURL } from 'api/data'
-import { formatDuration, formatTrackNumber } from 'components/media/utils'
+import { formatDuration, formatTrackNumber } from 'utils/utils'
 import { useGetSavedMedia } from 'hooks/useGetSavedMedia'
 
 type Props = {

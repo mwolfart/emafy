@@ -1,4 +1,4 @@
-import { artistListToString, formatDuration } from 'components/media/utils'
+import { artistListToString, formatDuration } from 'utils/utils'
 import { VFC } from 'react'
 import styled from 'styled-components'
 import { Song } from 'types/media'
