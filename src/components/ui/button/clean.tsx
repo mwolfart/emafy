@@ -8,4 +8,5 @@ export const CleanButton = styled.button`
   color: unset;
   text-align: unset;
   display: contents;
+  cursor: pointer;
 `
