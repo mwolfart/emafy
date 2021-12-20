@@ -66,6 +66,8 @@ export const AlbumCard: VFC<Props> = ({ albumInfo, fnCloseSnippet }) => {
     isLoading,
   } = useGetSavedMedia(getTracksCallback)
 
+  const isMobile = window.innerWidth < 576
+
   return (
     <Rectangle>
       {fnCloseSnippet && (
@@ -94,7 +96,7 @@ export const AlbumCard: VFC<Props> = ({ albumInfo, fnCloseSnippet }) => {
               <TrackWrapper>
                 <p>{formatTrackNumber(track.trackNumber)}</p>
                 <span>{track.name}</span>
-                <p>{formatDuration(track.duration)}</p>
+                {!isMobile && <p>{formatDuration(track.duration)}</p>}
               </TrackWrapper>
             ))}
           </InfiniteScroll>

@@ -25,6 +25,9 @@ const Title = styled.span`
     @media (max-width: 576px) {
       font-size: ${theme?.fontSizeTitleResponsive};
     }
+    @media (max-width: 450px) {
+      font-size: ${theme?.fontSizeParagraph};
+    }
   `}
 `
 
