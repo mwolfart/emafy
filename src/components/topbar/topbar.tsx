@@ -27,6 +27,10 @@ const Dash = styled.div`
   ${({ theme }) => `
     border-left: 2px solid ${theme.palette.colorTextSubtitleLarge};
     margin: 5px 0;
+
+    @media (max-width: 576px) {
+      display: none;
+    }
   `}
 `
 
@@ -42,19 +46,17 @@ const ButtonsWrapper = styled.div`
   `}
 `
 
-export const Topbar: VFC<Props> = ({ user }) => {
-  return (
-    <Wrapper>
-      <ProfileInfo userInfo={user} />
-      <Dash />
-      <SearchField />
-      <ButtonsWrapper>
-        <GrayIconButton
-          iconClass="fa-chart-line"
-          ariaLabel={strings.components.topbar.viewStatistics}
-          onClickCallback={() => {}}
-        />
-      </ButtonsWrapper>
-    </Wrapper>
-  )
-}
+export const Topbar: VFC<Props> = ({ user }) => (
+  <Wrapper>
+    <ProfileInfo userInfo={user} />
+    <Dash />
+    <SearchField />
+    <ButtonsWrapper>
+      <GrayIconButton
+        iconClass="fa-chart-line"
+        ariaLabel={strings.components.topbar.viewStatistics}
+        onClickCallback={() => {}}
+      />
+    </ButtonsWrapper>
+  </Wrapper>
+)

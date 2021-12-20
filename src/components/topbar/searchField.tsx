@@ -14,7 +14,7 @@ const Wrapper = styled.div`
     transition: 0.5s;
 
     @media (max-width: 576px) {
-      width: 100%;
+      display: none;
     }
 
     &:hover {

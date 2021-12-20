@@ -62,6 +62,11 @@ const MainScreen = styled.div<IProps>`
     background-color: ${theme.palette.colorBackground};
     height: 100%;
     overflow: hidden;
+
+    @media (max-width: 576px) {
+      padding-left: 0;
+      width: 100%;
+    }
   `}
 `
 
