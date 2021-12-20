@@ -7,7 +7,7 @@ export const Rectangle = styled.div`
     background-color: ${theme?.palette.colorBackground};
     border-radius: ${theme?.borderRadiusDefault};
     border-width: 0;
-    box-shadow: ${theme?.shadowDimensionsLarge};
+    box-shadow: ${theme?.shadowDimensionsDefault};
     padding: ${theme?.divSpacingBig};
   `}
 `

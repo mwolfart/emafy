@@ -1,13 +1,14 @@
 import { NextURL } from 'api/data'
 import { VFC } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
-import { Menu as MediaMenu } from 'components/media/menu/menu'
+import { Group as MediaGroup } from 'components/media/menu/group/group'
 import { strings } from 'strings'
 import styled from 'styled-components'
 import { Media } from 'types/media'
-import { ToggleDescriptor } from '../../ui'
-import { SubtitleLarge, TitleLarge } from '../../ui/heading'
+import { ToggleDescriptor } from 'components/ui'
+import { SubtitleLarge, TitleLarge } from 'components/ui/heading'
 import { BeatLoader } from 'components/loader'
+import { MediaExtraProps } from 'types/mediaExtraProps'
 
 type Props = {
   changeView: (isGrid: boolean) => void
@@ -19,6 +20,7 @@ type Props = {
   pageTitle: string
   nextURL: NextURL
   totalCount: number
+  extraProps?: MediaExtraProps
 }
 
 interface IProps {
@@ -62,6 +64,7 @@ export const Page: VFC<Props> = ({
   pageTitle,
   nextURL,
   totalCount,
+  extraProps,
 }: Props) => (
   <InfiniteScroll
     dataLength={mediaList.length}
@@ -82,7 +85,11 @@ export const Page: VFC<Props> = ({
       />
     </Header>
     <MenuWrapper isTransitioning={isTransitioning}>
-      <MediaMenu mediaList={mediaList} rowVariant={isViewList} />
+      <MediaGroup
+        mediaList={mediaList}
+        rowVariant={isViewList}
+        extraProps={extraProps}
+      />
     </MenuWrapper>
   </InfiniteScroll>
 )

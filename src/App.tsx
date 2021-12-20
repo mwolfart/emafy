@@ -18,7 +18,6 @@ import { User } from 'types/media'
 import { getOwnProfile } from 'api/data'
 import { cancellableRequest } from 'api/utils'
 import { BeatLoader } from 'components/loader'
-import { ViewAlbum } from 'scenes/viewAlbum/viewAlbum'
 import { defaultTheme } from 'theme'
 
 interface IProps {
@@ -120,11 +119,6 @@ const App = (): JSX.Element => {
                     isLoggedIn={isLoggedIn}
                     path="/saved-albums"
                     component={SavedAlbums}
-                  />
-                  <ProtectedRoute
-                    isLoggedIn={isLoggedIn}
-                    path="/album/:id"
-                    component={ViewAlbum}
                   />
                   <ProtectedRoute
                     isLoggedIn={isLoggedIn}

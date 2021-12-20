@@ -3,7 +3,7 @@ import { Banner } from './banner'
 import { defaultTheme } from 'theme'
 import { ThemeProvider } from 'styled-components'
 import { album } from 'fixtures/album'
-import { renderSubTitle } from '../utils'
+import { renderSubTitle } from 'utils/utils'
 
 describe('Banner', () => {
   it('renders Banner correctly', () => {

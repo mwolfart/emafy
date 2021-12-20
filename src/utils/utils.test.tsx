@@ -4,6 +4,7 @@ import {
   artistListToString,
   capitalize,
   formatDuration,
+  formatTrackNumber,
   genreListToString,
   renderSubTitle,
 } from './utils'
@@ -42,5 +43,14 @@ describe('FormatDuration', () => {
   it('FormatDuration produces correct output', () => {
     const duration = formatDuration(4515000)
     expect(duration).toBe('01:15:15')
+  })
+})
+
+describe('FormatTrackNumber', () => {
+  it('FormatTrackNumber produces correct output', () => {
+    const trackNumberOneDigit = formatTrackNumber(2)
+    expect(trackNumberOneDigit).toBe('02')
+    const trackNumberTwoDigits = formatTrackNumber(12)
+    expect(trackNumberTwoDigits).toBe('12')
   })
 })

@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react'
 import { ThemeProvider } from 'styled-components'
 import { defaultTheme } from 'theme'
 import { BrowserRouter as Router } from 'react-router-dom'
-import { user } from '../../fixtures/user'
+import { user } from 'fixtures/user'
 import { strings } from 'strings'
 import { Topbar } from './topbar'
 

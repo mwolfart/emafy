@@ -66,3 +66,6 @@ export const formatDuration = (durationMs: number): string => {
     .join(':')
   return time
 }
+
+export const formatTrackNumber = (number: number): string =>
+  number.toString().padStart(2, '0')

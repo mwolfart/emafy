@@ -3,7 +3,7 @@ import { ProfileInfo } from './profileInfo'
 import { ThemeProvider } from 'styled-components'
 import { defaultTheme } from 'theme'
 import { BrowserRouter, Router } from 'react-router-dom'
-import { user } from '../../fixtures/user'
+import { user } from 'fixtures/user'
 import { createMemoryHistory } from 'history'
 import { strings } from 'strings'
 

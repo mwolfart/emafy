@@ -1,12 +1,13 @@
-import { Link as MediaLink } from 'components/media/link/link'
-
+import { Item as MediaMenuItem } from 'components/media/menu/item/item'
 import { VFC } from 'react'
 import styled from 'styled-components'
 import { Media } from 'types/media'
+import { MediaExtraProps } from 'types/mediaExtraProps'
 
 type Props = {
   mediaList: Media[]
   rowVariant?: boolean
+  extraProps?: MediaExtraProps
 }
 
 interface IProps {
@@ -22,10 +23,19 @@ const Wrapper = styled.div<IProps>`
   `}
 `
 
-export const Menu: VFC<Props> = ({ mediaList, rowVariant: isRowVariant }) => (
+export const Group: VFC<Props> = ({
+  mediaList,
+  rowVariant: isRowVariant,
+  extraProps,
+}) => (
   <Wrapper rowVariant={isRowVariant}>
     {mediaList.map((media: Media) => (
-      <MediaLink key={media.id} mediaInfo={media} rowVariant={isRowVariant} />
+      <MediaMenuItem
+        key={media.id}
+        mediaInfo={media}
+        rowVariant={isRowVariant}
+        extraProps={extraProps}
+      />
     ))}
   </Wrapper>
 )
