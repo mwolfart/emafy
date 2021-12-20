@@ -39,29 +39,30 @@ const Wrapper = styled.div`
 
 const HeaderWrapper = styled.div<IProps>`
   ${({ isLoggedIn, theme }) => `
-      position: relative;
-      width: 100vw;
-      ${isLoggedIn && `height: ${theme.topbarHeight};`}
-      z-index: 1;
-    `}
+    position: relative;
+    width: 100vw;
+    ${isLoggedIn && `height: ${theme.topbarHeight};`}
+    z-index: 1;
+  `}
 `
 
 const ContentWrapper = styled.div`
   ${({ theme }) => `
-      display: flex;
-      flex-direction: row;
-      width: 100vw;
-      height: calc(100% - ${theme.topbarHeight});
-    `}
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    height: calc(100% - ${theme.topbarHeight});
+  `}
 `
 
 const MainScreen = styled.div<IProps>`
   ${({ isLoggedIn, theme }) => `
-      ${isLoggedIn && `padding-left: ${theme.sidebarWidth};`}
-      width: ${isLoggedIn ? `calc(100% - ${theme.sidebarWidth})` : `100%`};
-      background-color: ${theme.palette.colorBackground};
-      height: 100%;
-    `}
+    ${isLoggedIn && `padding-left: ${theme.sidebarWidth};`}
+    width: ${isLoggedIn ? `calc(100% - ${theme.sidebarWidth})` : `100%`};
+    background-color: ${theme.palette.colorBackground};
+    height: 100%;
+    overflow: hidden;
+  `}
 `
 
 const App = (): JSX.Element => {
