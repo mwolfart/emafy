@@ -33,9 +33,17 @@ const ScrollWrapper = styled.div`
 const TrackWrapper = styled(ContainerFlexRow)`
   ${({ theme }) => `
     align-items: center;
+
     p {
       color: ${theme.palette.colorTextDisabled};
+
+      @media (max-width: 576px) {
+        &:last-child {
+          display: none;
+        }
+      }
     }
+
     span {
       flex-grow: 1;
       justify-content: center;
@@ -66,8 +74,6 @@ export const AlbumCard: VFC<Props> = ({ albumInfo, fnCloseSnippet }) => {
     isLoading,
   } = useGetSavedMedia(getTracksCallback)
 
-  const isMobile = window.innerWidth < 576
-
   return (
     <Rectangle>
       {fnCloseSnippet && (
@@ -96,7 +102,7 @@ export const AlbumCard: VFC<Props> = ({ albumInfo, fnCloseSnippet }) => {
               <TrackWrapper>
                 <p>{formatTrackNumber(track.trackNumber)}</p>
                 <span>{track.name}</span>
-                {!isMobile && <p>{formatDuration(track.duration)}</p>}
+                <p>{formatDuration(track.duration)}</p>
               </TrackWrapper>
             ))}
           </InfiniteScroll>

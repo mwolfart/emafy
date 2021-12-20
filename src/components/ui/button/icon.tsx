@@ -3,20 +3,38 @@ import styled from 'styled-components'
 import { Button } from './default'
 
 type Props = {
-  title?: string
   icon: string
   onClickCallback: () => void
+  title?: string
+  resolutionToHideTitle?: string
 }
 
-const PaddedText = styled.div`
-  ${({ theme }) => `
+type IProps = {
+  resolutionToHideTitle?: string
+}
+
+const PaddedText = styled.div<IProps>`
+  ${({ theme, resolutionToHideTitle = '576px' }) => `
     padding-left: ${theme.divSpacingSmall};
+
+    @media (max-width: ${resolutionToHideTitle}) {
+      display: none;
+    }
   `}
 `
 
-export const IconButton: VFC<Props> = ({ title, icon, onClickCallback }) => (
+export const IconButton: VFC<Props> = ({
+  title,
+  icon,
+  onClickCallback,
+  resolutionToHideTitle,
+}) => (
   <Button square={!title} onClick={onClickCallback}>
     <i className={'fa ' + icon} />
-    {title && <PaddedText>{title}</PaddedText>}
+    {title && (
+      <PaddedText resolutionToHideTitle={resolutionToHideTitle}>
+        {title}
+      </PaddedText>
+    )}
   </Button>
 )

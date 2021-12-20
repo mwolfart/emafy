@@ -24,7 +24,6 @@ export const Follow: VFC<Props> = ({ follow, isCurrentUserFollowing }) => {
     ? strings.components.profile.follow.following
     : ''
   const iconClass = isCurrentUserFollowing ? 'fa-user-minus' : 'fa-user-plus'
-  const isSmallerScreen = window.innerWidth <= 1200
 
   return (
     <Wrapper>
@@ -34,9 +33,10 @@ export const Follow: VFC<Props> = ({ follow, isCurrentUserFollowing }) => {
         subtitle={strings.components.profile.follow.view}
       />
       <IconButton
-        title={!isSmallerScreen ? iconLabel : undefined}
+        title={iconLabel}
         icon={iconClass}
         onClickCallback={() => {}}
+        resolutionToHideTitle="1200px"
       />
     </Wrapper>
   )
