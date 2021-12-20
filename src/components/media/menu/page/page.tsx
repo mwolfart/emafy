@@ -48,6 +48,12 @@ const TitleWrapper = styled.div`
   flex-grow: 1;
 `
 
+const ToggleWrapper = styled.div`
+  @media (max-width: 576px) {
+    display: none;
+  }
+`
+
 const MenuWrapper = styled.div<IProps>`
   ${({ isTransitioning, theme }) => `
     padding-left: ${theme.divSpacingMedium};
@@ -84,12 +90,14 @@ export const Page: VFC<Props> = ({
           <TitleLarge>{pageTitle}</TitleLarge>
           <SubtitleLarge>{`${totalCount} ${mediaCountLabel}`}</SubtitleLarge>
         </TitleWrapper>
-        <ToggleDescriptor
-          toggleState={isViewList}
-          onChangeCallback={changeView}
-          labelFalse={strings.scenes.albums.grid}
-          labelTrue={strings.scenes.albums.list}
-        />
+        <ToggleWrapper>
+          <ToggleDescriptor
+            toggleState={isViewList}
+            onChangeCallback={changeView}
+            labelFalse={strings.scenes.albums.grid}
+            labelTrue={strings.scenes.albums.list}
+          />
+        </ToggleWrapper>
       </Header>
       <MenuWrapper isTransitioning={isTransitioning}>
         <MediaGroup

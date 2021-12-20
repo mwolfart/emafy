@@ -20,6 +20,18 @@ const Wrapper = styled.div`
   ${({ theme }) => `
     padding: 0 ${theme.divSpacingExtraBig};
     width: 50%;
+    overflow-y: scroll;
+
+    @media (max-width: 999px) {
+      width: auto;
+      margin-top: ${theme.divSpacingExtraBig};
+      min-height: 800px;
+    }
+
+    @media (max-width: 576px) {
+      margin-top: ${theme.divSpacingMedium};
+      padding: 0 ${theme.divSpacingMedium};
+    }
   `}
 `
 
@@ -30,12 +42,13 @@ export const FollowingList: VFC<Props> = ({
   fetchMoreFollows,
 }) => {
   return (
-    <Wrapper>
+    <Wrapper id="followListWrapper">
       <InfiniteScroll
         dataLength={followList.length}
         next={fetchMoreFollows}
         hasMore={followList.length < followCount && nextURL !== null}
         loader={<BeatLoader />}
+        scrollableTarget="followListWrapper"
       >
         <Headline
           title={strings.components.profile.followedArtists}

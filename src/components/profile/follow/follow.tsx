@@ -36,6 +36,7 @@ export const Follow: VFC<Props> = ({ follow, isCurrentUserFollowing }) => {
         title={iconLabel}
         icon={iconClass}
         onClickCallback={() => {}}
+        resolutionToHideTitle="1200px"
       />
     </Wrapper>
   )

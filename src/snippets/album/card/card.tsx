@@ -33,9 +33,17 @@ const ScrollWrapper = styled.div`
 const TrackWrapper = styled(ContainerFlexRow)`
   ${({ theme }) => `
     align-items: center;
+
     p {
       color: ${theme.palette.colorTextDisabled};
+
+      @media (max-width: 576px) {
+        &:last-child {
+          display: none;
+        }
+      }
     }
+
     span {
       flex-grow: 1;
       justify-content: center;

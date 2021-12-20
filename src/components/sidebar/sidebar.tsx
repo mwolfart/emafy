@@ -18,6 +18,10 @@ const Wrapper = styled.div`
     height: 100%;
     width: ${theme.sidebarWidth};
     position: fixed;
+
+    @media (max-width: 576px) {
+      display: none;
+    }
  `}
 `
 

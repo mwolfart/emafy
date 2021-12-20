@@ -4,6 +4,8 @@ import { DefaultTheme } from 'styled-components'
 export const defaultTheme: DefaultTheme = {
   shadowDimensionsDefault: '0px 60px 80px',
   shadowDimensionsLarge: '0px 80px 100px',
+  shadowDimensionsSmall: '0px 40px 60px',
+  shadowDimensionsTiny: '0px 20px 40px',
   shadowDefault: '#0000002a',
   shadowAccent: '#00000045',
   borderRadiusDefault: '16px',
@@ -20,6 +22,8 @@ export const defaultTheme: DefaultTheme = {
   fontSizeIcon: '20px',
   fontSizeTitle: '24px',
   fontSizeGiant: '36px',
+  fontSizeTitleResponsive: '20px',
+  fontSizeParagraphResponsive: '14px',
   imageSizeIcon: '48px',
   imageSizeSmall: '100px',
   imageSizeMedium: '200px',
