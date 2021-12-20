@@ -20,6 +20,7 @@ const Wrapper = styled.div<IProps>`
     grid-template-columns: ${
       rowVariant ? '1fr' : 'repeat(auto-fill, minmax(max(240px, 100%/10), 1fr))'
     };
+    ${!rowVariant && 'justify-items: center;'}
   `}
 `
 
