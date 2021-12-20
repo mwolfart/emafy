@@ -42,6 +42,13 @@ export const Wrapper = styled.div<IProps>`
       overflow: hidden;
       object-fit: cover;
     }
+
+    @media (max-width: 576px) {
+      align-self: center;
+      width: 150px;
+      height: 150px;
+      ${small && `margin: ${theme.divSpacingSmall} 0;`}
+    }
   `}
 `
 

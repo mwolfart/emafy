@@ -34,6 +34,10 @@ const TileWrapper = styled.div<IProps>`
     max-width: 210px;`
     }
 
+    @media (max-width: 576px) {
+      flex-direction: column;
+    }
+
     &:hover {
       transition: ${theme?.transitionQuick};
       ${

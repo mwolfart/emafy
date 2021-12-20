@@ -70,34 +70,39 @@ export const Page: VFC<Props> = ({
   nextURL,
   totalCount,
   extraProps,
-}: Props) => (
-  <Wrapper id="mediaPageWrapper">
-    <InfiniteScroll
-      dataLength={mediaList.length}
-      next={fetchMoreMedia}
-      hasMore={mediaList.length < totalCount && nextURL !== null}
-      loader={<BeatLoader />}
-      scrollableTarget="mediaPageWrapper"
-    >
-      <Header>
-        <TitleWrapper>
-          <TitleLarge>{pageTitle}</TitleLarge>
-          <SubtitleLarge>{`${totalCount} ${mediaCountLabel}`}</SubtitleLarge>
-        </TitleWrapper>
-        <ToggleDescriptor
-          toggleState={isViewList}
-          onChangeCallback={changeView}
-          labelFalse={strings.scenes.albums.grid}
-          labelTrue={strings.scenes.albums.list}
-        />
-      </Header>
-      <MenuWrapper isTransitioning={isTransitioning}>
-        <MediaGroup
-          mediaList={mediaList}
-          rowVariant={isViewList}
-          extraProps={extraProps}
-        />
-      </MenuWrapper>
-    </InfiniteScroll>
-  </Wrapper>
-)
+}: Props) => {
+  const isMobile = window.innerWidth <= 576
+  return (
+    <Wrapper id="mediaPageWrapper">
+      <InfiniteScroll
+        dataLength={mediaList.length}
+        next={fetchMoreMedia}
+        hasMore={mediaList.length < totalCount && nextURL !== null}
+        loader={<BeatLoader />}
+        scrollableTarget="mediaPageWrapper"
+      >
+        <Header>
+          <TitleWrapper>
+            <TitleLarge>{pageTitle}</TitleLarge>
+            <SubtitleLarge>{`${totalCount} ${mediaCountLabel}`}</SubtitleLarge>
+          </TitleWrapper>
+          {!isMobile && (
+            <ToggleDescriptor
+              toggleState={isViewList}
+              onChangeCallback={changeView}
+              labelFalse={strings.scenes.albums.grid}
+              labelTrue={strings.scenes.albums.list}
+            />
+          )}
+        </Header>
+        <MenuWrapper isTransitioning={isTransitioning}>
+          <MediaGroup
+            mediaList={mediaList}
+            rowVariant={isViewList}
+            extraProps={extraProps}
+          />
+        </MenuWrapper>
+      </InfiniteScroll>
+    </Wrapper>
+  )
+}
