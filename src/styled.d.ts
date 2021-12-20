@@ -27,6 +27,8 @@ declare module 'styled-components' {
   export interface DefaultTheme {
     shadowDimensionsDefault: string
     shadowDimensionsLarge: string
+    shadowDimensionsSmall: string
+    shadowDimensionsTiny: string
     shadowDefault: string
     shadowAccent: string
     borderRadiusDefault: string
@@ -43,6 +45,8 @@ declare module 'styled-components' {
     fontSizeTitle: string
     fontSizeGiant: string
     fontSizeIcon: string
+    fontSizeTitleResponsive: string
+    fontSizeParagraphResponsive: string
     imageSizeIcon: string
     imageSizeSmall: string
     imageSizeMedium: string

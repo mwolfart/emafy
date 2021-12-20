@@ -17,6 +17,17 @@ type Props = {
 const Wrapper = styled(ContainerFlexRow)`
   ${({ theme }) => `
     padding: ${theme.divSpacingExtraBig};
+    overflow-y: scroll;
+    height: calc(100% - 2 * ${theme.divSpacingExtraBig});
+
+    @media (max-width: 999px) {
+      flex-direction: column;
+    }
+
+    @media (max-width: 576px) {
+      padding: ${theme.divSpacingMedium};
+      height: calc(100% - 2 * ${theme.divSpacingMedium});
+    }
   `}
 `
 

@@ -22,6 +22,9 @@ const Title = styled.span`
     font-size: ${theme?.fontSizeTitle};
     text-align: left;
     line-height: 1.5;
+    @media (max-width: 576px) {
+      font-size: ${theme?.fontSizeTitleResponsive};
+    }
   `}
 `
 
@@ -32,6 +35,9 @@ const Subtitle = styled.span`
     font-size: ${theme?.fontSizeParagraph};
     text-align: left;
     line-height: 1.5;
+    @media (max-width: 576px) {
+      font-size: ${theme?.fontSizeParagraphResponsive};
+    }
   `}
 `
 

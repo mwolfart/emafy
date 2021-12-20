@@ -24,7 +24,11 @@ const Wrapper = styled(Rectangle)`
   ${({ theme }) => `
     width: 50%;
     height: fit-content;
-    box-shadow: ${theme?.shadowDimensionsDefault};
+    box-shadow: ${theme?.shadowDimensionsTiny};
+
+    @media (max-width: 999px) {
+      width: auto;
+    }
   `}
 `
 

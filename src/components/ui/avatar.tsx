@@ -20,6 +20,16 @@ const Image = styled.img<IProps>`
     margin-right: ${theme.divSpacingMedium};
     object-fit: cover;
     align-self: center;
+
+    ${
+      !small &&
+      `
+      @media (max-width: 576px) {
+        width: ${theme.imageSizeSmall};
+        height: ${theme.imageSizeSmall};
+      }
+    `
+    }
   `}
 `
 
