@@ -31,7 +31,7 @@ const Wrapper = styled.div<IProps>`
 const CloseButtonWrapper = styled.div`
   ${({ theme }) => `
     padding-top: ${theme.divSpacingMedium};
-    padding-bottom: ${theme.divSpacingExtraBig};
+    padding-bottom: ${theme.divSpacingMedium};
     align-self: start;
   `}
 `
