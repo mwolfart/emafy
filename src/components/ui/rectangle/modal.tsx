@@ -34,5 +34,13 @@ export const ModalRectangle = styled.div<IProps>`
       color: ${theme?.palette.colorTextTitle};
       font-weight: ${theme?.fontBoldTwo};
     }
+
+    @media (max-width: 576px) {
+      height: 100%;
+      width: 100%;
+      padding: 0 ${theme?.divSpacingBig};
+      border-radius: 0;
+      place-content: center;
+    }
   `}
 `

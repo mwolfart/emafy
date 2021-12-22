@@ -50,11 +50,9 @@ export const LoginScene: VFC<Props> = ({ onLogin }) => {
   const history = useHistory()
   !isOnLoginProcess && isLoggedIn && history.push('/saved-artists')
 
-  const closeLoginModal = (): void => {}
-
   return (
     <Canvas>
-      <Modal closeModalCallback={closeLoginModal}>
+      <Modal>
         <div className="title">{strings.scenes.login.signin}</div>
         <p>{strings.scenes.login.instructions}</p>
         <Button onClick={apiAuth}>
