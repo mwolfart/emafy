@@ -25,6 +25,10 @@ export const strings = {
       viewStatistics: 'View statistics',
       searchFieldPlaceholder: 'Search for a song...',
     },
+    hamburger: {
+      open: 'Open navigation menu',
+      close: 'Close menu',
+    },
     profile: {
       card: {
         followers: 'Followers',

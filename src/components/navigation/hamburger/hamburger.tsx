@@ -1,5 +1,6 @@
 import { GrayIconButton } from 'components/ui'
 import { useState, VFC } from 'react'
+import { strings } from 'strings'
 import styled from 'styled-components'
 import { MobileMenu } from './mobileMenu'
 
@@ -21,7 +22,11 @@ export const Hamburger: VFC = () => {
 
   return (
     <Wrapper>
-      <GrayIconButton iconClass="fa-bars" onClickCallback={expandMenu} />
+      <GrayIconButton
+        iconClass="fa-bars"
+        onClickCallback={expandMenu}
+        ariaLabel={strings.components.hamburger.open}
+      />
       <MobileMenu closeMenu={closeMenu} isOpen={isMenuOpen} />
     </Wrapper>
   )

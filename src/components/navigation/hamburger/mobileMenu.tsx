@@ -3,6 +3,7 @@ import { ButtonProps, mediaButtons, miscButtons } from '../navigationButtons'
 import styled from 'styled-components'
 import { MobileMenuButton } from './mobileMenuButton'
 import { GrayIconButton } from 'components/ui'
+import { strings } from 'strings'
 
 type Props = {
   closeMenu: () => void
@@ -48,7 +49,11 @@ export const MobileMenu: VFC<Props> = ({ closeMenu, isOpen }) => {
   return (
     <Wrapper isOpen={isOpen}>
       <CloseButtonWrapper>
-        <GrayIconButton iconClass="fa-times" onClickCallback={closeMenu} />
+        <GrayIconButton
+          iconClass="fa-times"
+          onClickCallback={closeMenu}
+          ariaLabel={strings.components.hamburger.close}
+        />
       </CloseButtonWrapper>
       {mediaButtons.map(buttonGenerationFn)}
       {miscButtons.map(buttonGenerationFn)}
