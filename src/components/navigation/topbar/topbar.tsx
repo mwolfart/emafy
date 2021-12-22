@@ -6,6 +6,7 @@ import { SearchField } from './searchField'
 import { GrayIconButton } from 'components/ui'
 import { User } from 'types/media'
 import { strings } from 'strings'
+import { Hamburger } from '../hamburger/hamburger'
 
 type Props = {
   user: User
@@ -46,6 +47,15 @@ const ButtonsWrapper = styled.div`
   `}
 `
 
+const HamburgerWrapper = styled.div`
+  display: none;
+  flex-grow: 1;
+
+  @media (max-width: 576px) {
+    display: block;
+  }
+`
+
 export const Topbar: VFC<Props> = ({ user }) => (
   <Wrapper>
     <ProfileInfo userInfo={user} />
@@ -58,5 +68,8 @@ export const Topbar: VFC<Props> = ({ user }) => (
         onClickCallback={() => {}}
       />
     </ButtonsWrapper>
+    <HamburgerWrapper>
+      <Hamburger />
+    </HamburgerWrapper>
   </Wrapper>
 )
