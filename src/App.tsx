@@ -19,6 +19,7 @@ import { getOwnProfile } from 'api/data'
 import { cancellableRequest } from 'api/utils'
 import { BeatLoader } from 'components/loader'
 import { defaultTheme } from 'theme'
+import { MyPlaylists } from 'scenes/myPlaylists/myPlaylists'
 
 interface IProps {
   isLoggedIn: boolean
@@ -135,6 +136,11 @@ const App = (): JSX.Element => {
                     isLoggedIn={isLoggedIn}
                     path="/saved-songs"
                     component={SavedSongs}
+                  />
+                  <ProtectedRoute
+                    isLoggedIn={isLoggedIn}
+                    path="/my-playlists"
+                    component={MyPlaylists}
                   />
                   <ProtectedRoute
                     isLoggedIn={isLoggedIn}

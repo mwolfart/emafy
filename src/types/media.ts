@@ -53,7 +53,6 @@ export interface SimpleArtist extends Media {
 
 export interface Playlist extends Media {
   description: string
-  followers: number
   owner: string
   tracks: Array<Media>
   mediaType: MediaType.playlist

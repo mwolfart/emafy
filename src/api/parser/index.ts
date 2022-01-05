@@ -100,21 +100,18 @@ export const parsePlaylist = ({
   id,
   name,
   description,
-  followers: { total },
   images,
   owner: { display_name },
   tracks,
 }: RawPlaylist): Playlist => {
   const imagesLinks = parseImages(images)
-  const parsedTracks = tracks.items.map((track) => parseTrack(track))
   return {
     id,
     images: imagesLinks,
     name,
     description,
     owner: display_name,
-    followers: total,
-    tracks: parsedTracks,
+    tracks: [],
     mediaType: MediaType.playlist,
   }
 }
