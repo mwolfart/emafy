@@ -4,13 +4,18 @@ export enum MediaType {
   artist = 'artist',
   song = 'song',
   album = 'album',
+  playlist = 'playlist',
 }
 
 export type Media = {
   name: string
   images?: Array<string>
   id: string
-  mediaType: MediaType.album | MediaType.song | MediaType.artist
+  mediaType:
+    | MediaType.album
+    | MediaType.song
+    | MediaType.artist
+    | MediaType.playlist
 }
 
 export type User = {
@@ -44,6 +49,14 @@ export interface SimpleArtist extends Media {
   popularity: number
   isCurrentUserFollowing?: boolean
   mediaType: MediaType.artist
+}
+
+export interface Playlist extends Media {
+  description: string
+  followers: number
+  owner: string
+  tracks: Array<Media>
+  mediaType: MediaType.playlist
 }
 
 export const isAlbum = (media: Media | RawTracksAlbum): media is Album =>

@@ -46,6 +46,16 @@ export interface RawArtist extends BasicRawMedia {
   popularity: number
 }
 
+export interface RawPlaylist extends BasicRawMedia {
+  followers: { total: number }
+  owner: { display_name: string }
+  description: string
+  tracks: {
+    items: RawTrack[]
+    total: number
+  }
+}
+
 export type SavedAlbum = {
   added_at: string
   album: RawAlbum

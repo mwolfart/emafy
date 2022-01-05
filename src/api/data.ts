@@ -1,5 +1,5 @@
 import { spotifyInstance } from 'api/spotifyInstance'
-import { Album, Song, SimpleArtist, User } from 'types/media'
+import { Album, Song, SimpleArtist, User, Playlist } from 'types/media'
 import { Nullable } from 'types/global'
 import {
   parseAlbum,
@@ -8,6 +8,7 @@ import {
   parseSimpleArtists,
   parseAlbumTracks,
   parseUserData,
+  parsePlaylists,
 } from './parser'
 import { RawAlbum, RawAlbumTrack, RawArtist, RawUser } from 'types/apiMedia'
 import { SPOTIFY_ROUTE } from './spotifyRoute.enum'
@@ -115,6 +116,18 @@ export const getOwnTopArtists = (
   return getSpotifyData({
     route,
     parser: parseSimpleArtists,
+    next,
+    shouldGetInfoFromLoggedUser: true,
+  })
+}
+
+export const getOwnPlaylists = (
+  next?: NextURL,
+): Promise<MediaListResponse<Playlist>> => {
+  const route = SPOTIFY_ROUTE.PLAYLISTS
+  return getSpotifyData({
+    route,
+    parser: parsePlaylists,
     next,
     shouldGetInfoFromLoggedUser: true,
   })
