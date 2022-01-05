@@ -10,7 +10,7 @@ const Wrapper = styled.div`
     color: ${theme.palette.colorTextDisabled};
     padding: 0 ${theme.divSpacingBig};
     align-items: center;
-    width: 70%;
+    flex-grow: 1;
     transition: 0.5s;
 
     @media (max-width: 576px) {

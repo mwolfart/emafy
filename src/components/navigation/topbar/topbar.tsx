@@ -37,7 +37,6 @@ const Dash = styled.div`
 
 const ButtonsWrapper = styled.div`
   ${({ theme }) => `
-    flex-grow: 1;
     align-self: center;
     text-align: right;
 
