@@ -50,9 +50,7 @@ export const CustomSubtitleExtraLarge = styled(SubtitleExtraLarge)`
 `
 
 export const Banner: VFC<Props> = ({ mediaInfo }) => {
-  const countSubtitle =
-    mediaInfo && isAlbum(mediaInfo) ? `${mediaInfo.totalTracks} songs` : ''
-  const subtitle = mediaInfo && `${renderSubTitle(mediaInfo)}, ${countSubtitle}`
+  const subtitle = mediaInfo && `${renderSubTitle(mediaInfo)}`
 
   return (
     <Background mediaInfo={mediaInfo}>

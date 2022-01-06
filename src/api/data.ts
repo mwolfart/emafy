@@ -9,6 +9,7 @@ import {
   parseAlbumTracks,
   parseUserData,
   parsePlaylists,
+  parseSimpleArtist,
 } from './parser'
 import { RawAlbum, RawAlbumTrack, RawArtist, RawUser } from 'types/apiMedia'
 import { SPOTIFY_ROUTE } from './spotifyRoute.enum'
@@ -200,6 +201,15 @@ export const getAlbum = (id: string): Promise<{ entities: Album }> => {
   return spotifyInstance<RawAlbum>(route).then(({ data: album }) => {
     return {
       entities: parseAlbum(album),
+    }
+  })
+}
+
+export const getArtist = (id: string): Promise<{ entities: SimpleArtist }> => {
+  const route = SPOTIFY_ROUTE.ARTIST.replace(':id', id)
+  return spotifyInstance<RawArtist>(route).then(({ data: artist }) => {
+    return {
+      entities: parseSimpleArtist(artist),
     }
   })
 }

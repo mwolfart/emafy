@@ -8,4 +8,5 @@ export enum SPOTIFY_ROUTE {
   TRACKS = 'tracks',
   PLAYLISTS = 'playlists',
   TOP_ARTISTS = 'top/artists',
+  ARTIST = 'artists/:id',
 }
