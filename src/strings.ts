@@ -76,6 +76,11 @@ export const strings = {
       subtextArtist: 'artist',
       subtextArtists: 'artists',
     },
+    playlists: {
+      myPlaylists: 'My Public Playlists',
+      subtextPlaylist: 'playlist',
+      subtextPlaylists: 'playlists',
+    },
   },
   api: {
     credentials: {

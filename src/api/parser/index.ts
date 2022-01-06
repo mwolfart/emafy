@@ -5,6 +5,7 @@ import {
   MediaType,
   isAlbum,
   User,
+  Playlist,
 } from 'types/media'
 import {
   RawAlbum,
@@ -14,6 +15,7 @@ import {
   SavedTrack,
   RawAlbumTrack,
   RawUser,
+  RawPlaylist,
 } from 'types/apiMedia'
 
 interface AlbumTrack extends Omit<RawTrack, 'album'> {
@@ -94,6 +96,26 @@ export const parseSimpleArtist = ({
   }
 }
 
+export const parsePlaylist = ({
+  id,
+  name,
+  description,
+  images,
+  owner: { display_name },
+  tracks,
+}: RawPlaylist): Playlist => {
+  const imagesLinks = parseImages(images)
+  return {
+    id,
+    images: imagesLinks,
+    name,
+    description,
+    owner: display_name,
+    tracks: [],
+    mediaType: MediaType.playlist,
+  }
+}
+
 export const parseAlbums = (rawAlbums: Array<RawAlbum>): Array<Album> =>
   rawAlbums.map((item) => parseAlbum(item))
 
@@ -103,6 +125,10 @@ export const parseAlbumTracks = (
 ): Array<Song> => {
   return rawTracks.map((track) => parseTrack({ ...track, album: parsedAlbum }))
 }
+
+export const parsePlaylists = (
+  rawPlaylists: Array<RawPlaylist>,
+): Array<Playlist> => rawPlaylists.map((playlist) => parsePlaylist(playlist))
 
 export const parseSavedAlbums = (
   savedAlbums: Array<SavedAlbum>,

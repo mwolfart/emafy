@@ -24,7 +24,7 @@ export const mediaButtons: ButtonProps[] = [
   },
   {
     title: strings.components.sidebar.playlists,
-    path: '/saved-playlists/',
+    path: '/my-playlists/',
     icon: 'fa-list',
   },
   {

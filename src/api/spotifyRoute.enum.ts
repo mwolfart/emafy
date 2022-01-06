@@ -6,5 +6,6 @@ export enum SPOTIFY_ROUTE {
   FOLLOWING = 'following',
   FOLLOWING_CHECK = 'following/contains',
   TRACKS = 'tracks',
+  PLAYLISTS = 'playlists',
   TOP_ARTISTS = 'top/artists',
 }
