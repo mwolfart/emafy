@@ -1,9 +1,15 @@
-import { getArtist } from 'api/data'
+import {
+  getArtist,
+  getArtistAlbums,
+  getArtistRelatedArtists,
+  getArtistTopTracks,
+} from 'api/data'
 import { cancellableRequest } from 'api/utils'
 import { BeatLoader } from 'components/loader'
 import { Banner } from 'components/media/artist/banner/banner'
 import { useEffect, useState, VFC } from 'react'
 import { RouteComponentProps } from 'react-router'
+import { strings } from 'strings'
 import styled from 'styled-components'
 import { SimpleArtist } from 'types/media'
 
@@ -21,12 +27,29 @@ const Wrapper = styled.div`
 export const ViewArtist: VFC<Props> = ({ match }) => {
   const [isLoading, setIsLoading] = useState<boolean>(true)
   const [artistInfo, setArtistInfo] = useState<SimpleArtist | undefined>()
+  const [bannerSubtitle, setBannerSubtitle] = useState<string>('')
+  const [relatedArtists, setRelatedArtists] = useState<SimpleArtist[]>([])
 
   useEffect(() => {
     return cancellableRequest(
-      () => getArtist(match.params.id),
-      ({ entities: artistInfo }) => {
+      () =>
+        Promise.all([
+          getArtist(match.params.id),
+          getArtistAlbums(match.params.id),
+          getArtistTopTracks(match.params.id),
+          getArtistRelatedArtists(match.params.id),
+        ]),
+      ([
+        { entities: artistInfo },
+        { entities: albumList, total: totalAlbums },
+        { entities: topTracksList },
+        { entities: relatedArtists },
+      ]) => {
         setArtistInfo(artistInfo)
+        setBannerSubtitle(
+          `${totalAlbums} ${strings.scenes.artistDetail.albums}`,
+        )
+        setRelatedArtists(relatedArtists)
         setIsLoading(false)
       },
       () => {},
@@ -40,7 +63,11 @@ export const ViewArtist: VFC<Props> = ({ match }) => {
     <BeatLoader />
   ) : (
     <Wrapper>
-      <Banner mediaInfo={artistInfo} />
+      <Banner
+        mediaInfo={artistInfo}
+        subtitle={bannerSubtitle}
+        relatedArtists={relatedArtists}
+      />
     </Wrapper>
   )
 }
