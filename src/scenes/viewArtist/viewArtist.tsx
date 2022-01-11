@@ -7,6 +7,9 @@ import {
 import { cancellableRequest } from 'api/utils'
 import { BeatLoader } from 'components/loader'
 import { Banner } from 'components/media/artist/banner/banner'
+import { Page as MediaPage } from 'components/media/menu/page/page'
+import { Tab } from 'components/tab/tab'
+import { TabGroup } from 'components/tab/tabGroup'
 import { useEffect, useState, VFC } from 'react'
 import { RouteComponentProps } from 'react-router'
 import { strings } from 'strings'
@@ -68,6 +71,12 @@ export const ViewArtist: VFC<Props> = ({ match }) => {
         subtitle={bannerSubtitle}
         relatedArtists={relatedArtists}
       />
+      <TabGroup>
+        <Tab title="Albums"></Tab>
+        <Tab title="Top Songs">
+          <p>ASDSAD</p>
+        </Tab>
+      </TabGroup>
     </Wrapper>
   )
 }
