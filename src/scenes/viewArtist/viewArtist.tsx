@@ -1,20 +1,13 @@
-import {
-  getArtist,
-  getArtistAlbums,
-  getArtistRelatedArtists,
-  getArtistTopTracks,
-} from 'api/data'
-import { cancellableRequest } from 'api/utils'
 import { BeatLoader } from 'components/loader'
 import { Banner } from 'components/media/artist/banner/banner'
-import { Page as MediaPage } from 'components/media/menu/page/page'
+import { Group as MediaGroup } from 'components/media/menu/group/group'
 import { Tab } from 'components/tab/tab'
 import { TabGroup } from 'components/tab/tabGroup'
-import { useEffect, useState, VFC } from 'react'
+import { useGetArtistDetails } from 'hooks/useGetArtistDetails'
+import { VFC } from 'react'
 import { RouteComponentProps } from 'react-router'
 import { strings } from 'strings'
 import styled from 'styled-components'
-import { SimpleArtist } from 'types/media'
 
 interface MatchParams {
   id: string
@@ -25,42 +18,18 @@ type Props = RouteComponentProps<MatchParams>
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
+  overflow: scroll;
 `
 
 export const ViewArtist: VFC<Props> = ({ match }) => {
-  const [isLoading, setIsLoading] = useState<boolean>(true)
-  const [artistInfo, setArtistInfo] = useState<SimpleArtist | undefined>()
-  const [bannerSubtitle, setBannerSubtitle] = useState<string>('')
-  const [relatedArtists, setRelatedArtists] = useState<SimpleArtist[]>([])
-
-  useEffect(() => {
-    return cancellableRequest(
-      () =>
-        Promise.all([
-          getArtist(match.params.id),
-          getArtistAlbums(match.params.id),
-          getArtistTopTracks(match.params.id),
-          getArtistRelatedArtists(match.params.id),
-        ]),
-      ([
-        { entities: artistInfo },
-        { entities: albumList, total: totalAlbums },
-        { entities: topTracksList },
-        { entities: relatedArtists },
-      ]) => {
-        setArtistInfo(artistInfo)
-        setBannerSubtitle(
-          `${totalAlbums} ${strings.scenes.artistDetail.albums}`,
-        )
-        setRelatedArtists(relatedArtists)
-        setIsLoading(false)
-      },
-      () => {},
-      () => {
-        setIsLoading(false)
-      },
-    )
-  }, [match.params.id])
+  const {
+    isLoading,
+    artistInfo,
+    relatedArtists,
+    artistAlbums,
+    artistTotalAlbums,
+  } = useGetArtistDetails(match.params.id)
+  const bannerSubtitle = `${artistTotalAlbums} ${strings.scenes.artistDetail.albums}`
 
   return isLoading || !artistInfo ? (
     <BeatLoader />
@@ -72,7 +41,9 @@ export const ViewArtist: VFC<Props> = ({ match }) => {
         relatedArtists={relatedArtists}
       />
       <TabGroup>
-        <Tab title="Albums"></Tab>
+        <Tab title="Albums">
+          <MediaGroup mediaList={artistAlbums} />
+        </Tab>
         <Tab title="Top Songs">
           <p>ASDSAD</p>
         </Tab>
