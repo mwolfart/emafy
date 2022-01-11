@@ -62,8 +62,7 @@ const MainScreen = styled.div<IProps>`
     ${isLoggedIn && `padding-left: ${theme.sidebarWidth};`}
     width: ${isLoggedIn ? `calc(100% - ${theme.sidebarWidth})` : `100%`};
     background-color: ${theme.palette.colorBackground};
-    height: 100%;
-    overflow: hidden;
+    overflow-x: hidden;
 
     @media (max-width: 576px) {
       padding-left: 0;

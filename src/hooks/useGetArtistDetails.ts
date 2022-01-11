@@ -6,13 +6,14 @@ import {
 } from 'api/data'
 import { cancellableRequest } from 'api/utils'
 import { useEffect, useState } from 'react'
-import { Album, SimpleArtist } from 'types/media'
+import { Album, SimpleArtist, Song } from 'types/media'
 
 type UseGetArtistDetailsHookReturn = {
   artistInfo?: SimpleArtist
   relatedArtists: SimpleArtist[]
   artistAlbums: Album[]
   artistTotalAlbums: number
+  artistTopTracks: Song[]
   isLoading: boolean
 }
 
@@ -24,6 +25,7 @@ export function useGetArtistDetails(
   const [relatedArtists, setRelatedArtists] = useState<SimpleArtist[]>([])
   const [artistAlbums, setArtistAlbums] = useState<Album[]>([])
   const [artistTotalAlbums, setArtistTotalAlbums] = useState<number>(0)
+  const [artistTopTracks, setArtistTopTracks] = useState<Song[]>([])
 
   useEffect(() => {
     return cancellableRequest(
@@ -45,6 +47,7 @@ export function useGetArtistDetails(
         setIsLoading(false)
         setArtistAlbums(albumList)
         setArtistTotalAlbums(totalAlbums)
+        setArtistTopTracks(topTracksList)
       },
       () => {},
       () => {
@@ -58,6 +61,7 @@ export function useGetArtistDetails(
     relatedArtists,
     artistAlbums,
     artistTotalAlbums,
+    artistTopTracks,
     isLoading,
   }
 }

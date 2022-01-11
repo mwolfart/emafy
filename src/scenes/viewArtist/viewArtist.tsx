@@ -18,7 +18,6 @@ type Props = RouteComponentProps<MatchParams>
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  overflow: scroll;
 `
 
 export const ViewArtist: VFC<Props> = ({ match }) => {
@@ -28,6 +27,7 @@ export const ViewArtist: VFC<Props> = ({ match }) => {
     relatedArtists,
     artistAlbums,
     artistTotalAlbums,
+    artistTopTracks,
   } = useGetArtistDetails(match.params.id)
   const bannerSubtitle = `${artistTotalAlbums} ${strings.scenes.artistDetail.albums}`
 
@@ -45,7 +45,7 @@ export const ViewArtist: VFC<Props> = ({ match }) => {
           <MediaGroup mediaList={artistAlbums} />
         </Tab>
         <Tab title="Top Songs">
-          <p>ASDSAD</p>
+          <MediaGroup mediaList={artistTopTracks} />
         </Tab>
       </TabGroup>
     </Wrapper>
