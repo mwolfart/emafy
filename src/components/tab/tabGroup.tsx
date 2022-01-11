@@ -21,7 +21,8 @@ const TabMenu = styled.ul`
 `
 
 export const TabGroup: FC<Props> = ({ children }) => {
-  const [activeTab, setActiveTab] = useState<string>('')
+  const tabId = (children.length && children[0].props.id) || ''
+  const [activeTab, setActiveTab] = useState<string>(tabId)
 
   return (
     <Wrapper>
@@ -29,13 +30,14 @@ export const TabGroup: FC<Props> = ({ children }) => {
         {children.map((tab) => (
           <TabButton
             title={tab.props.title}
-            onClick={() => setActiveTab(tab.props.title)}
-            active={activeTab === tab.props.title}
+            id={tab.props.id}
+            onClick={() => setActiveTab(tab.props.id)}
+            active={activeTab === tab.props.id}
           />
         ))}
       </TabMenu>
       {children.map((tab) => {
-        const shouldShowContent = activeTab === tab.props.title
+        const shouldShowContent = activeTab === tab.props.id
         return <>{shouldShowContent && tab}</>
       })}
     </Wrapper>

@@ -3,6 +3,7 @@ import styled from 'styled-components'
 
 type Props = {
   title: string
+  id: string
   onClick: () => void
   active?: boolean
 }
@@ -31,8 +32,8 @@ const Button = styled.button<IProps>`
   `}
 `
 
-export const TabButton: VFC<Props> = ({ title, onClick, active }) => (
-  <li>
+export const TabButton: VFC<Props> = ({ title, id, onClick, active }) => (
+  <li key={id}>
     <Button onClick={onClick} active={active}>
       {title}
     </Button>

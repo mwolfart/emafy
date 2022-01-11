@@ -43,7 +43,7 @@ export const MobileMenu: VFC<Props> = ({ closeMenu, isOpen }) => {
     path,
     icon,
   }: ButtonProps): JSX.Element => (
-    <MobileMenuButton title={title} path={path} icon={icon} />
+    <MobileMenuButton title={title} key={path} path={path} icon={icon} />
   )
 
   return (

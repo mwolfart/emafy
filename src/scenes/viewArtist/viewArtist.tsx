@@ -41,10 +41,10 @@ export const ViewArtist: VFC<Props> = ({ match }) => {
         relatedArtists={relatedArtists}
       />
       <TabGroup>
-        <Tab title="Albums">
+        <Tab title="Albums" id="albums">
           <MediaGroup mediaList={artistAlbums} />
         </Tab>
-        <Tab title="Top Songs">
+        <Tab title="Top Songs" id="top-songs">
           <MediaGroup mediaList={artistTopTracks} />
         </Tab>
       </TabGroup>
