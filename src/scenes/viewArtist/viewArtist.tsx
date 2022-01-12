@@ -1,11 +1,12 @@
+import { getArtistAlbums } from 'api/data'
 import { BeatLoader } from 'components/loader'
 import { Banner } from 'components/media/artist/banner/banner'
-import { Group as MediaGroup } from 'components/media/menu/group/group'
+import { Page as MediaPage } from 'components/media/menu/page/page'
 import { Tab } from 'components/tab/tab'
 import { TabGroup } from 'components/tab/tabGroup'
-import { ToggleDescriptor } from 'components/ui'
 import { useGetArtistDetails } from 'hooks/useGetArtistDetails'
-import { useState, VFC } from 'react'
+import { useGetSavedMedia } from 'hooks/useGetSavedMedia'
+import { VFC } from 'react'
 import { RouteComponentProps } from 'react-router'
 import { strings } from 'strings'
 import styled from 'styled-components'
@@ -22,16 +23,14 @@ const Wrapper = styled.div`
 `
 
 export const ViewArtist: VFC<Props> = ({ match }) => {
-  const {
-    isLoading,
-    artistInfo,
-    relatedArtists,
-    artistAlbums,
-    artistTotalAlbums,
-    artistTopTracks,
-  } = useGetArtistDetails(match.params.id)
-  const bannerSubtitle = `${artistTotalAlbums} ${strings.scenes.artistDetail.albums}`
-  const [isGridView, setIsGridView] = useState<boolean>(false)
+  const { isLoading, artistInfo, relatedArtists, artistTopTracks } =
+    useGetArtistDetails(match.params.id)
+  const topTracksCount = artistTopTracks.length
+  const artistAlbumsProps = useGetSavedMedia(() =>
+    getArtistAlbums(match.params.id),
+  )
+  const { totalCount: totalAlbums } = artistAlbumsProps
+  const bannerSubtitle = `${totalAlbums} ${strings.scenes.artistDetail.albums}`
 
   return isLoading || !artistInfo ? (
     <BeatLoader />
@@ -44,10 +43,14 @@ export const ViewArtist: VFC<Props> = ({ match }) => {
       />
       <TabGroup>
         <Tab title="Albums" id="albums">
-          <MediaGroup mediaList={artistAlbums} rowVariant={isGridView} />
+          <MediaPage {...artistAlbumsProps} />
         </Tab>
         <Tab title="Top Songs" id="top-songs">
-          <MediaGroup mediaList={artistTopTracks} rowVariant={isGridView} />
+          <MediaPage
+            mediaList={artistTopTracks}
+            totalCount={topTracksCount}
+            nextURL={null}
+          />
         </Tab>
       </TabGroup>
     </Wrapper>

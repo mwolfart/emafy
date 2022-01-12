@@ -6,6 +6,14 @@ import { Album, isAlbum, Media } from 'types/media'
 import { strings } from 'strings'
 import { BeatLoader } from 'components/loader'
 import { MediaExtraProps } from 'types/mediaExtraProps'
+import { Headline } from 'components/ui'
+import styled from 'styled-components'
+
+const Wrapper = styled.div`
+  ${({ theme }) => `
+    padding: 0 ${theme.divSpacingBig};
+  `}
+`
 
 export const SavedAlbums: VFC = () => {
   const savedMediaProps = useGetSavedMedia<Album>(getOwnSavedAlbums)
@@ -18,6 +26,7 @@ export const SavedAlbums: VFC = () => {
     totalCount === 1
       ? strings.scenes.albums.subtextAlbum
       : strings.scenes.albums.subtextAlbums
+  const mediaSubtitle = `${totalCount} ${mediaCountLabel}`
 
   const mediaSnippetOpenCallback = (album: Media): void => {
     if (isAlbum(album)) {
@@ -38,11 +47,9 @@ export const SavedAlbums: VFC = () => {
   return isLoading ? (
     <BeatLoader />
   ) : (
-    <MediaPage
-      {...savedMediaProps}
-      pageTitle={mediaTitle}
-      mediaCountLabel={mediaCountLabel}
-      extraProps={extraProps}
-    />
+    <Wrapper>
+      <Headline title={mediaTitle} subtitle={mediaSubtitle} />
+      <MediaPage {...savedMediaProps} extraProps={extraProps} />
+    </Wrapper>
   )
 }

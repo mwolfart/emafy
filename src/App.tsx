@@ -120,7 +120,7 @@ const App = (): JSX.Element => {
             </HeaderWrapper>
             <ContentWrapper>
               {isLoggedIn && <Sidebar />}
-              <MainScreen isLoggedIn={isLoggedIn}>
+              <MainScreen isLoggedIn={isLoggedIn} id="mainScreenWrapper">
                 <Switch>
                   <ProtectedRoute
                     isLoggedIn={isLoggedIn}
