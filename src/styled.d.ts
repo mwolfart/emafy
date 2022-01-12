@@ -12,6 +12,7 @@ interface IPalette {
   colorTextButton: string
   colorTextDisabled: string
   colorTextSidebar: string
+  colorTextWhite: string
   colorBackground: string
   colorBackgroundSidebar: string
   colorBackgroundDisabled: string

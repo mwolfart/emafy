@@ -20,6 +20,7 @@ import { cancellableRequest } from 'api/utils'
 import { BeatLoader } from 'components/loader'
 import { defaultTheme } from 'theme'
 import { MyPlaylists } from 'scenes/myPlaylists/myPlaylists'
+import { ViewArtist } from 'scenes/viewArtist/viewArtist'
 
 interface IProps {
   isLoggedIn: boolean
@@ -61,8 +62,7 @@ const MainScreen = styled.div<IProps>`
     ${isLoggedIn && `padding-left: ${theme.sidebarWidth};`}
     width: ${isLoggedIn ? `calc(100% - ${theme.sidebarWidth})` : `100%`};
     background-color: ${theme.palette.colorBackground};
-    height: 100%;
-    overflow: hidden;
+    overflow-x: hidden;
 
     @media (max-width: 576px) {
       padding-left: 0;
@@ -120,7 +120,7 @@ const App = (): JSX.Element => {
             </HeaderWrapper>
             <ContentWrapper>
               {isLoggedIn && <Sidebar />}
-              <MainScreen isLoggedIn={isLoggedIn}>
+              <MainScreen isLoggedIn={isLoggedIn} id="mainScreenWrapper">
                 <Switch>
                   <ProtectedRoute
                     isLoggedIn={isLoggedIn}
@@ -146,6 +146,11 @@ const App = (): JSX.Element => {
                     isLoggedIn={isLoggedIn}
                     path="/me"
                     component={() => <Profile user={loggedUser} />}
+                  />
+                  <ProtectedRoute
+                    isLoggedIn={isLoggedIn}
+                    path="/artist/:id"
+                    component={ViewArtist}
                   />
                   <Route
                     path="/login"

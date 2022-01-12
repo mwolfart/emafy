@@ -116,6 +116,9 @@ export const parsePlaylist = ({
   }
 }
 
+export const parseTracks = (rawTracks: Array<RawTrack>): Array<Song> =>
+  rawTracks.map((item) => parseTrack(item))
+
 export const parseAlbums = (rawAlbums: Array<RawAlbum>): Array<Album> =>
   rawAlbums.map((item) => parseAlbum(item))
 

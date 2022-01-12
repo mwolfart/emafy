@@ -9,8 +9,17 @@ import {
   parseAlbumTracks,
   parseUserData,
   parsePlaylists,
+  parseSimpleArtist,
+  parseAlbums,
+  parseTracks,
 } from './parser'
-import { RawAlbum, RawAlbumTrack, RawArtist, RawUser } from 'types/apiMedia'
+import {
+  RawAlbum,
+  RawAlbumTrack,
+  RawArtist,
+  RawTrack,
+  RawUser,
+} from 'types/apiMedia'
 import { SPOTIFY_ROUTE } from './spotifyRoute.enum'
 import { extractNextFromNextURL } from './utils'
 
@@ -41,6 +50,7 @@ const getSpotifyData = <T, U>({
   parser,
   next,
   shouldGetInfoFromLoggedUser,
+  otherParams,
 }: SpotifyDataRequest<T, U>): Promise<{
   entities: U[]
   next: NextURL
@@ -51,6 +61,7 @@ const getSpotifyData = <T, U>({
   const requestLink = next ? `${baseLink}${next}` : baseLink
   return spotifyInstance<{ items: T[]; next?: string; total: number }>(
     requestLink,
+    otherParams,
   ).then(({ data: { items, next, total } }) => {
     return {
       entities: parser(items),
@@ -202,4 +213,51 @@ export const getAlbum = (id: string): Promise<{ entities: Album }> => {
       entities: parseAlbum(album),
     }
   })
+}
+
+export const getArtist = (id: string): Promise<{ entities: SimpleArtist }> => {
+  const route = SPOTIFY_ROUTE.ARTIST.replace(':id', id)
+  return spotifyInstance<RawArtist>(route).then(({ data: artist }) => {
+    return {
+      entities: parseSimpleArtist(artist),
+    }
+  })
+}
+
+export const getArtistAlbums = (
+  id: string,
+  next?: NextURL,
+): Promise<MediaListResponse<Album>> => {
+  const route = SPOTIFY_ROUTE.ARTIST_ALBUMS.replace(':id', id)
+  return getSpotifyData({
+    route,
+    parser: (items: RawAlbum[]) => parseAlbums(items),
+    next,
+  })
+}
+
+export const getArtistTopTracks = (
+  id: string,
+): Promise<{ entities: Song[] }> => {
+  const route = SPOTIFY_ROUTE.ARTIST_TRACKS.replace(':id', id)
+  return spotifyInstance<{ tracks: RawTrack[] }>(route, { market: 'US' }).then(
+    ({ data: { tracks } }) => {
+      return {
+        entities: parseTracks(tracks),
+      }
+    },
+  )
+}
+
+export const getArtistRelatedArtists = (
+  id: string,
+): Promise<{ entities: SimpleArtist[] }> => {
+  const route = SPOTIFY_ROUTE.ARTIST_RELATED.replace(':id', id)
+  return spotifyInstance<{ artists: RawArtist[] }>(route).then(
+    ({ data: { artists } }) => {
+      return {
+        entities: parseSimpleArtists(artists),
+      }
+    },
+  )
 }

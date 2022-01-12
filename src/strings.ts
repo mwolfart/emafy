@@ -76,6 +76,12 @@ export const strings = {
       subtextArtist: 'artist',
       subtextArtists: 'artists',
     },
+    artistDetail: {
+      albums: 'albums',
+      follow: 'Follow',
+      unfollow: 'Unfollow',
+      relatedArtists: 'Related artists',
+    },
     playlists: {
       myPlaylists: 'My Public Playlists',
       subtextPlaylist: 'playlist',

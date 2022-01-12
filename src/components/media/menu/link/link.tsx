@@ -27,7 +27,7 @@ const TileWrapper = styled.div<IProps>`
     ${
       rowVariant
         ? `
-    margin: ${theme?.divSpacingSmall}; 
+    margin: ${theme?.divSpacingSmall} 0; 
     border-radius: ${theme?.borderRadiusDefault};
     background-color: ${theme?.palette.colorLinkBackground};`
         : `

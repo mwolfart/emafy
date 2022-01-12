@@ -1,25 +1,19 @@
 import { NextURL } from 'api/data'
-import { VFC } from 'react'
+import { useState, VFC } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import { Group as MediaGroup } from 'components/media/menu/group/group'
 import { strings } from 'strings'
 import styled from 'styled-components'
 import { Media } from 'types/media'
 import { ToggleDescriptor } from 'components/ui'
-import { SubtitleLarge, TitleLarge } from 'components/ui/heading'
 import { BeatLoader } from 'components/loader'
 import { MediaExtraProps } from 'types/mediaExtraProps'
 
 type Props = {
-  changeView: (isGrid: boolean) => void
-  fetchMoreMedia: () => void
-  isTransitioning: boolean
-  isViewList: boolean
-  mediaCountLabel: string
   mediaList: Media[]
-  pageTitle: string
   nextURL: NextURL
   totalCount: number
+  fetchMoreMedia?: () => void
   extraProps?: MediaExtraProps
 }
 
@@ -28,8 +22,11 @@ interface IProps {
 }
 
 const Wrapper = styled.div`
-  height: 100%;
-  overflow-y: scroll;
+  ${({ theme }) => `
+    height: 100%;
+    overflow-y: scroll;
+    margin-top: -80px;
+  `}
 `
 
 const Header = styled.div`
@@ -37,27 +34,14 @@ const Header = styled.div`
     display: flex;
     flex-direction: row;
     height: 20%;
-    padding: ${theme.divSpacingMedium} ${theme.divSpacingBig};
+    padding: ${theme.divSpacingMedium} 0;
     font-family: ${theme.fontStyle};
+    justify-content: right;
   `}
-`
-
-const TitleWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-`
-
-const ToggleWrapper = styled.div`
-  @media (max-width: 576px) {
-    display: none;
-  }
 `
 
 const MenuWrapper = styled.div<IProps>`
   ${({ isTransitioning, theme }) => `
-    padding-left: ${theme.divSpacingMedium};
-    padding-right: ${theme.divSpacingMedium};
     opacity: ${isTransitioning ? '0' : '1'};
     transition: ${
       isTransitioning ? theme.transitionQuick : theme.transitionQuickDelayed
@@ -66,46 +50,52 @@ const MenuWrapper = styled.div<IProps>`
 `
 
 export const Page: VFC<Props> = ({
-  changeView,
   fetchMoreMedia,
-  isTransitioning,
-  isViewList,
-  mediaCountLabel,
   mediaList,
-  pageTitle,
   nextURL,
   totalCount,
   extraProps,
-}: Props) => (
-  <Wrapper id="mediaPageWrapper">
-    <InfiniteScroll
-      dataLength={mediaList.length}
-      next={fetchMoreMedia}
-      hasMore={mediaList.length < totalCount && nextURL !== null}
-      loader={<BeatLoader />}
-      scrollableTarget="mediaPageWrapper"
-    >
-      <Header>
-        <TitleWrapper>
-          <TitleLarge>{pageTitle}</TitleLarge>
-          <SubtitleLarge>{`${totalCount} ${mediaCountLabel}`}</SubtitleLarge>
-        </TitleWrapper>
-        <ToggleWrapper>
+}: Props) => {
+  const [isTransitioning, setTransitioning] = useState<boolean>(false)
+  const [isViewList, setIsViewList] = useState<boolean>(true)
+  let transitionTimeout: NodeJS.Timeout
+
+  const changeView = (isGrid: boolean): void => {
+    setTransitioning(true)
+    clearTimeout(transitionTimeout)
+    transitionTimeout = setTimeout((): void => {
+      setIsViewList(isGrid)
+      setTransitioning(false)
+    }, 250)
+  }
+
+  const nextFn = fetchMoreMedia || (() => {})
+
+  return (
+    <Wrapper>
+      <InfiniteScroll
+        dataLength={mediaList.length}
+        next={nextFn}
+        hasMore={mediaList.length < totalCount && nextURL !== null}
+        loader={<BeatLoader />}
+        scrollableTarget="mainScreenWrapper"
+      >
+        <Header>
           <ToggleDescriptor
             toggleState={isViewList}
             onChangeCallback={changeView}
             labelFalse={strings.scenes.albums.grid}
             labelTrue={strings.scenes.albums.list}
           />
-        </ToggleWrapper>
-      </Header>
-      <MenuWrapper isTransitioning={isTransitioning}>
-        <MediaGroup
-          mediaList={mediaList}
-          rowVariant={isViewList}
-          extraProps={extraProps}
-        />
-      </MenuWrapper>
-    </InfiniteScroll>
-  </Wrapper>
-)
+        </Header>
+        <MenuWrapper isTransitioning={isTransitioning}>
+          <MediaGroup
+            mediaList={mediaList}
+            rowVariant={isViewList}
+            extraProps={extraProps}
+          />
+        </MenuWrapper>
+      </InfiniteScroll>
+    </Wrapper>
+  )
+}

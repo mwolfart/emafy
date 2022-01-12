@@ -12,6 +12,7 @@ export const mainPalette: IPalette = {
   colorTextButton: '#eee',
   colorTextDisabled: '#888',
   colorTextSidebar: '#666',
+  colorTextWhite: '#EEE',
   colorBackground: '#f2f2f2',
   colorBackgroundSidebar: '#1a1a1a',
   colorBackgroundDisabled: '#aaa5',

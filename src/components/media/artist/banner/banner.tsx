@@ -1,12 +1,15 @@
-import { Button } from 'components/ui'
+import { IconButton } from 'components/ui'
 import { SubtitleExtraLarge, TitleExtraLarge } from 'components/ui/heading'
 import { VFC } from 'react'
+import { strings } from 'strings'
 import styled from 'styled-components'
-import { isAlbum, Media } from 'types/media'
-import { renderSubTitle } from 'utils/utils'
+import { Media, SimpleArtist } from 'types/media'
+import { RelatedArtists } from './relatedArtists'
 
 type Props = {
-  mediaInfo?: Media
+  mediaInfo: Media
+  subtitle: string
+  relatedArtists: SimpleArtist[]
 }
 
 interface IProps {
@@ -23,17 +26,11 @@ const Background = styled.div<IProps>`
     ${mediaInfo && mediaInfo.images && `url(${mediaInfo.images[0]})`};
     background-size: cover;
     background-position-y: center;
-    padding: 120px;
+    padding: 60px 120px;
   `}
 `
 
-const SaveButton = styled(Button)`
-  ${({ theme }) => `
-    margin: ${theme.divSpacingSmall};
-  `}
-`
-
-export const CustomTitleExtraLarge = styled(TitleExtraLarge)`
+const CustomTitleExtraLarge = styled(TitleExtraLarge)`
   ${({ theme }) => `
     color: ${theme.palette.colorTextTitleLarge};
     padding-top: ${theme.divSpacingSmall};
@@ -41,7 +38,7 @@ export const CustomTitleExtraLarge = styled(TitleExtraLarge)`
   `}
 `
 
-export const CustomSubtitleExtraLarge = styled(SubtitleExtraLarge)`
+const CustomSubtitleExtraLarge = styled(SubtitleExtraLarge)`
   ${({ theme }) => `
     color: ${theme.palette.colorTextSubtitleLarge};
     padding-left: ${theme.divSpacingSmall};
@@ -49,16 +46,15 @@ export const CustomSubtitleExtraLarge = styled(SubtitleExtraLarge)`
   `}
 `
 
-export const Banner: VFC<Props> = ({ mediaInfo }) => {
-  const countSubtitle =
-    mediaInfo && isAlbum(mediaInfo) ? `${mediaInfo.totalTracks} songs` : ''
-  const subtitle = mediaInfo && `${renderSubTitle(mediaInfo)}, ${countSubtitle}`
-
-  return (
-    <Background mediaInfo={mediaInfo}>
-      <CustomTitleExtraLarge>{mediaInfo?.name}</CustomTitleExtraLarge>
-      <CustomSubtitleExtraLarge>{subtitle}</CustomSubtitleExtraLarge>
-      <SaveButton>Save</SaveButton>
-    </Background>
-  )
-}
+export const Banner: VFC<Props> = ({ mediaInfo, subtitle, relatedArtists }) => (
+  <Background mediaInfo={mediaInfo}>
+    <CustomTitleExtraLarge>{mediaInfo?.name}</CustomTitleExtraLarge>
+    <CustomSubtitleExtraLarge>{subtitle}</CustomSubtitleExtraLarge>
+    <IconButton
+      icon="fa-user-plus"
+      onClickCallback={() => {}}
+      title={strings.scenes.artistDetail.follow}
+    />
+    <RelatedArtists artistList={relatedArtists} />
+  </Background>
+)
