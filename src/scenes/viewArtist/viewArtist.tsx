@@ -3,8 +3,9 @@ import { Banner } from 'components/media/artist/banner/banner'
 import { Group as MediaGroup } from 'components/media/menu/group/group'
 import { Tab } from 'components/tab/tab'
 import { TabGroup } from 'components/tab/tabGroup'
+import { ToggleDescriptor } from 'components/ui'
 import { useGetArtistDetails } from 'hooks/useGetArtistDetails'
-import { VFC } from 'react'
+import { useState, VFC } from 'react'
 import { RouteComponentProps } from 'react-router'
 import { strings } from 'strings'
 import styled from 'styled-components'
@@ -30,6 +31,7 @@ export const ViewArtist: VFC<Props> = ({ match }) => {
     artistTopTracks,
   } = useGetArtistDetails(match.params.id)
   const bannerSubtitle = `${artistTotalAlbums} ${strings.scenes.artistDetail.albums}`
+  const [isGridView, setIsGridView] = useState<boolean>(false)
 
   return isLoading || !artistInfo ? (
     <BeatLoader />
@@ -42,10 +44,10 @@ export const ViewArtist: VFC<Props> = ({ match }) => {
       />
       <TabGroup>
         <Tab title="Albums" id="albums">
-          <MediaGroup mediaList={artistAlbums} />
+          <MediaGroup mediaList={artistAlbums} rowVariant={isGridView} />
         </Tab>
         <Tab title="Top Songs" id="top-songs">
-          <MediaGroup mediaList={artistTopTracks} />
+          <MediaGroup mediaList={artistTopTracks} rowVariant={isGridView} />
         </Tab>
       </TabGroup>
     </Wrapper>

@@ -3,6 +3,7 @@ import { VFC } from 'react'
 import { strings } from 'strings'
 import styled from 'styled-components'
 import { SimpleArtist } from 'types/media'
+import { Link as RouterLink } from 'react-router-dom'
 
 type Props = {
   artistList: SimpleArtist[]
@@ -37,7 +38,12 @@ export const RelatedArtists: VFC<Props> = ({ artistList }) => {
         {shownArtists.map((artist) => {
           const imageSrc =
             artist.images && artist.images.length ? artist.images[0] : ''
-          return <Avatar imagePath={imageSrc} small={true} />
+          const artistLink = `/artist/${artist.id}`
+          return (
+            <RouterLink to={artistLink}>
+              <Avatar imagePath={imageSrc} small={true} />
+            </RouterLink>
+          )
         })}
       </ArtistsList>
     </Wrapper>
