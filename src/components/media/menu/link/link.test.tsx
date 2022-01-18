@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from '@testing-library/react'
-import { Link } from './link'
+import { MediaLink } from './link'
 import { defaultTheme } from 'theme'
 import { ThemeProvider } from 'styled-components'
 import { album } from 'fixtures/album'
@@ -11,7 +11,7 @@ describe('Media Link', () => {
     render(
       <ThemeProvider theme={defaultTheme}>
         <Router>
-          <Link mediaInfo={artist} />
+          <MediaLink mediaInfo={artist} />
         </Router>
       </ThemeProvider>,
     )
@@ -27,7 +27,7 @@ describe('Media Link', () => {
     render(
       <ThemeProvider theme={defaultTheme}>
         <Router>
-          <Link mediaInfo={album} extraProps={extraProps} />
+          <MediaLink mediaInfo={album} extraProps={extraProps} />
         </Router>
       </ThemeProvider>,
     )

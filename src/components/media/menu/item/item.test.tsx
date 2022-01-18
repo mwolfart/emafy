@@ -3,14 +3,14 @@ import { artist } from 'fixtures/artist'
 import { ThemeProvider } from 'styled-components'
 import { defaultTheme } from 'theme'
 import { BrowserRouter as Router } from 'react-router-dom'
-import { Item } from './item'
+import { MediaMenuItem } from './item'
 
 describe('Media Menu Item', () => {
   it('renders component and props correctly', () => {
     render(
       <ThemeProvider theme={defaultTheme}>
         <Router>
-          <Item mediaInfo={artist} />
+          <MediaMenuItem mediaInfo={artist} />
         </Router>
       </ThemeProvider>,
     )

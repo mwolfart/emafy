@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react'
-import { Description } from './description'
+import { MediaDescription } from './description'
 import { defaultTheme } from 'theme'
 import { ThemeProvider } from 'styled-components'
 import { album } from 'fixtures/album'
@@ -8,7 +8,7 @@ describe('Media Description', () => {
   it('renders component and props correctly', () => {
     render(
       <ThemeProvider theme={defaultTheme}>
-        <Description mediaInfo={album} />
+        <MediaDescription mediaInfo={album} />
       </ThemeProvider>,
     )
 
