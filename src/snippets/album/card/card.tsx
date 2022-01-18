@@ -11,7 +11,7 @@ import styled from 'styled-components'
 import { BeatLoader } from 'components/loader'
 import { getAlbumTracks, NextURL } from 'api/data'
 import { formatDuration, formatTrackNumber } from 'utils/utils'
-import { useGetSavedMedia } from 'hooks/useGetSavedMedia'
+import { useGetMediaList } from 'hooks/useGetMediaList'
 import { strings } from 'strings'
 
 type Props = {
@@ -72,7 +72,7 @@ export const AlbumCard: VFC<Props> = ({ albumInfo, fnCloseSnippet }) => {
     fetchMoreMedia: fetchMoreTracks,
     nextURL,
     isLoading,
-  } = useGetSavedMedia(getTracksCallback)
+  } = useGetMediaList(getTracksCallback)
 
   return (
     <Rectangle>

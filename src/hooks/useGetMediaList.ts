@@ -1,19 +1,12 @@
 import { MediaListResponse, NextURL } from 'api/data'
 import { useEffect, useState } from 'react'
 import { strings } from 'strings'
+import { MediaListQuery } from 'types/mediaListQuery'
 import { cancellableRequest } from '../api/utils'
 
-type UseGetSavedMediaHookReturn<T> = {
-  fetchMoreMedia: () => void
-  mediaList: T[]
-  nextURL: NextURL
-  totalCount: number
-  isLoading: boolean
-}
-
-export function useGetSavedMedia<T>(
+export function useGetMediaList<T>(
   getFunction: (next?: NextURL) => Promise<MediaListResponse<T>>,
-): UseGetSavedMediaHookReturn<T> {
+): MediaListQuery<T> {
   const [nextURL, setNextURL] = useState<NextURL>(null)
   const [mediaList, setMediaList] = useState<T[]>([])
   const [totalCount, setTotalCount] = useState<number>(0)

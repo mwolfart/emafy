@@ -5,7 +5,7 @@ import { MediaMenu } from 'components/media/menu/menu'
 import { Tab } from 'components/tab/tab'
 import { TabGroup } from 'components/tab/tabGroup'
 import { useGetArtistDetails } from 'hooks/useGetArtistDetails'
-import { useGetSavedMedia } from 'hooks/useGetSavedMedia'
+import { useGetMediaList } from 'hooks/useGetMediaList'
 import { useCallback, VFC } from 'react'
 import { RouteComponentProps } from 'react-router'
 import { strings } from 'strings'
@@ -32,7 +32,7 @@ export const ViewArtist: VFC<Props> = ({ match }) => {
     (next?: NextURL) => getArtistAlbums(match.params.id, next),
     [match.params.id],
   )
-  const artistAlbumsProps = useGetSavedMedia(getArtistAlbumsCallback)
+  const artistAlbumsProps = useGetMediaList(getArtistAlbumsCallback)
   const { totalCount: totalAlbums } = artistAlbumsProps
   const bannerSubtitle = `${totalAlbums} ${strings.scenes.artistDetail.albums}`
 

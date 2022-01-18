@@ -1,6 +1,6 @@
 import { useState, VFC } from 'react'
 import { getOwnSavedAlbums } from 'api/data'
-import { useGetSavedMedia } from 'hooks/useGetSavedMedia'
+import { useGetMediaList } from 'hooks/useGetMediaList'
 import { Album, isAlbum, Media } from 'types/media'
 import { strings } from 'strings'
 import { BeatLoader } from 'components/loader'
@@ -18,7 +18,7 @@ const Wrapper = styled.div`
 `
 
 export const SavedAlbums: VFC = () => {
-  const savedMediaProps = useGetSavedMedia<Album>(getOwnSavedAlbums)
+  const savedMediaProps = useGetMediaList<Album>(getOwnSavedAlbums)
   const { totalCount, isLoading } = savedMediaProps
   const [renderedAlbumSnippetId, setRenderedAlbumSnippetId] =
     useState<string>('')
