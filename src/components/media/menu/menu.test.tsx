@@ -27,5 +27,10 @@ describe('Media Menu', () => {
       name: strings.components.media.toggleView,
     })
     expect(toggleElement).toBeInTheDocument()
+
+    albumList.map((album) => {
+      const element = screen.getByText(album.name)
+      expect(element).toBeInTheDocument()
+    })
   })
 })
