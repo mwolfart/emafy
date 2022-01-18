@@ -3,7 +3,7 @@ import { albums } from 'fixtures/albums'
 import { ThemeProvider } from 'styled-components'
 import { defaultTheme } from 'theme'
 import { BrowserRouter as Router } from 'react-router-dom'
-import { Page } from './page'
+import { MediaMenu } from './menu'
 import { strings } from 'strings'
 
 describe('MediaPage', () => {
@@ -15,7 +15,7 @@ describe('MediaPage', () => {
     render(
       <ThemeProvider theme={defaultTheme}>
         <Router>
-          <Page
+          <MediaMenu
             changeView={() => {}}
             fetchMoreMedia={() => {}}
             isTransitioning={false}
@@ -51,7 +51,7 @@ describe('MediaPage', () => {
     render(
       <ThemeProvider theme={defaultTheme}>
         <Router>
-          <Page
+          <MediaMenu
             changeView={changeViewFn}
             fetchMoreMedia={() => {}}
             isTransitioning={false}
