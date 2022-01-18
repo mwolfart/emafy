@@ -6,7 +6,7 @@ import { Modal } from './modal'
 import { defaultTheme } from 'theme'
 
 describe('Modal', () => {
-  it('renders Modal correctly', () => {
+  it('renders component and props correctly', () => {
     const text = faker.random.words()
     render(
       <ThemeProvider theme={defaultTheme}>
@@ -17,7 +17,7 @@ describe('Modal', () => {
     expect(modalElement).toBeInTheDocument()
   })
 
-  it('calls closeModalCallback on Modal close', () => {
+  it('calls callback on Modal close', () => {
     const text = faker.random.words()
     const onClose = jest.fn()
     render(

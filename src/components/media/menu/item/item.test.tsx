@@ -5,8 +5,8 @@ import { defaultTheme } from 'theme'
 import { BrowserRouter as Router } from 'react-router-dom'
 import { Item } from './item'
 
-describe('Item', () => {
-  it('should render correctly', () => {
+describe('Media Menu Item', () => {
+  it('renders component and props correctly', () => {
     render(
       <ThemeProvider theme={defaultTheme}>
         <Router>

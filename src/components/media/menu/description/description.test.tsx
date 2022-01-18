@@ -4,8 +4,8 @@ import { defaultTheme } from 'theme'
 import { ThemeProvider } from 'styled-components'
 import { album } from 'fixtures/album'
 
-describe('Description', () => {
-  it('renders Description correctly', () => {
+describe('Media Description', () => {
+  it('renders component and props correctly', () => {
     render(
       <ThemeProvider theme={defaultTheme}>
         <Description mediaInfo={album} />

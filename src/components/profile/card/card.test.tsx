@@ -5,8 +5,8 @@ import faker from 'faker'
 import { ProfileCard } from './card'
 import { user } from 'fixtures/user'
 
-describe('ProfileCard', () => {
-  it('renders ProfileCard correctly', () => {
+describe('Profile Card', () => {
+  it('renders component and props correctly', () => {
     const followingCount = faker.datatype.number(200)
     const savedMusicCount = faker.datatype.number(200)
     const playlistCount = faker.datatype.number(200)

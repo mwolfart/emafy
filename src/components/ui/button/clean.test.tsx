@@ -4,7 +4,7 @@ import faker from 'faker'
 import { CleanButton } from '../index'
 
 describe('CleanButton', () => {
-  it('renders CleanButton correctly', () => {
+  it('renders component and props correctly', () => {
     const text = faker.random.words()
     render(<CleanButton>{text}</CleanButton>)
     const buttonElement = screen.getByRole('button')

@@ -5,7 +5,7 @@ import { artists } from 'fixtures/artists'
 import { FollowingList } from './followingList'
 
 describe('FollowingList', () => {
-  it('renders FollowingList correctly', () => {
+  it('renders component and props correctly', () => {
     render(
       <ThemeProvider theme={defaultTheme}>
         <FollowingList

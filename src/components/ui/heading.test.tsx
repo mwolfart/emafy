@@ -5,7 +5,7 @@ import faker from 'faker'
 import { SubtitleLarge, SubtitleNormal, TitleLarge, TitleNormal } from './index'
 
 describe('Heading', () => {
-  it('renders all Headings correctly', () => {
+  it('renders components and props correctly', () => {
     const texts = Array.from({ length: 4 }, () => faker.random.words())
     render(
       <ThemeProvider theme={defaultTheme}>

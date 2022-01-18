@@ -5,7 +5,7 @@ import { strings } from 'strings'
 import { Toggle } from './toggle'
 
 describe('Toggle', () => {
-  it('renders Toggle correctly', () => {
+  it('renders component and props correctly', () => {
     render(
       <ThemeProvider theme={defaultTheme}>
         <Toggle toggleState={true} onChangeCallback={() => {}} />
@@ -17,7 +17,7 @@ describe('Toggle', () => {
     expect(inputElement).toBeInTheDocument()
   })
 
-  it('calls Toggle change callback', () => {
+  it('calls change callback on toggle', () => {
     const onChangeCallback = jest.fn()
     render(
       <ThemeProvider theme={defaultTheme}>

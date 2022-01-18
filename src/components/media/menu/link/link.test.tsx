@@ -6,8 +6,8 @@ import { album } from 'fixtures/album'
 import { BrowserRouter as Router } from 'react-router-dom'
 import { artist } from 'fixtures/artist'
 
-describe('Link', () => {
-  it('renders Artist link correctly', () => {
+describe('Media Link', () => {
+  it('renders component and artist props correctly', () => {
     render(
       <ThemeProvider theme={defaultTheme}>
         <Router>
@@ -20,7 +20,7 @@ describe('Link', () => {
     expect(linkElement).toBeInTheDocument()
   })
 
-  it('renders Album link correctly', () => {
+  it('renders component and album props correctly', () => {
     const extraProps = {
       mediaSnippetOpenCallback: jest.fn(),
     }

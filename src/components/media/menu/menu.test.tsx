@@ -6,8 +6,8 @@ import { BrowserRouter as Router } from 'react-router-dom'
 import { MediaMenu } from './menu'
 import { strings } from 'strings'
 
-describe('MediaMenu', () => {
-  it('renders MediaMenu correctly', () => {
+describe('Media Menu', () => {
+  it('renders component and props correctly', () => {
     const albumList = albums
 
     render(

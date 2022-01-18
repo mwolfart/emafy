@@ -6,7 +6,7 @@ import { album } from 'fixtures/album'
 import { renderSubTitle } from 'utils/utils'
 
 describe('Banner', () => {
-  it('renders Banner correctly', () => {
+  it('renders component and props correctly', () => {
     const subtitle = `${renderSubTitle(album)}, ${album.totalTracks} songs`
     render(
       <ThemeProvider theme={defaultTheme}>

@@ -6,7 +6,7 @@ import faker from 'faker'
 import { Button } from '../index'
 
 describe('Button', () => {
-  it('renders Button correctly', () => {
+  it('renders component and props correctly', () => {
     const text = faker.random.words()
     render(
       <ThemeProvider theme={defaultTheme}>

@@ -7,7 +7,7 @@ import { strings } from 'strings'
 import { Topbar } from './topbar'
 
 describe('Topbar', () => {
-  it('renders Topbar correctly', () => {
+  it('renders component and props correctly', () => {
     render(
       <ThemeProvider theme={defaultTheme}>
         <Router>

@@ -4,8 +4,8 @@ import { defaultTheme } from 'theme'
 import faker from 'faker'
 import { SnippetContainer } from './snippetContainer'
 
-describe('SnippetContainer', () => {
-  it('renders SnippetContainer correctly', () => {
+describe('Snippet Container', () => {
+  it('renders component and props correctly', () => {
     const text = faker.random.words()
     render(
       <ThemeProvider theme={defaultTheme}>

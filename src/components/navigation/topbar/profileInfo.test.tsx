@@ -8,7 +8,7 @@ import { createMemoryHistory } from 'history'
 import { strings } from 'strings'
 
 describe('Profile Info', () => {
-  it('renders component correctly', () => {
+  it('renders component and props correctly', () => {
     render(
       <ThemeProvider theme={defaultTheme}>
         <BrowserRouter>

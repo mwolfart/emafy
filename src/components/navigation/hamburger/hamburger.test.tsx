@@ -6,7 +6,7 @@ import { Hamburger } from './hamburger'
 import { BrowserRouter as Router } from 'react-router-dom'
 
 describe('Hamburger', () => {
-  it('renders hamburger', () => {
+  it('renders component correctly', () => {
     render(
       <ThemeProvider theme={defaultTheme}>
         <Router>

@@ -4,8 +4,8 @@ import { defaultTheme } from 'theme'
 import { ThemeProvider } from 'styled-components'
 import { strings } from 'strings'
 
-describe('Image', () => {
-  it('renders Image correctly', () => {
+describe('Media Image', () => {
+  it('renders component correctly', () => {
     render(
       <ThemeProvider theme={defaultTheme}>
         <Image />
@@ -15,7 +15,7 @@ describe('Image', () => {
     expect(element).toBeInTheDocument()
   })
 
-  it('renders Image with placeholder correctly', () => {
+  it('renders component with placeholder correctly', () => {
     const placeholder = (
       <i
         className={`fas fa-times`}

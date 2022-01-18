@@ -5,8 +5,8 @@ import { defaultTheme } from 'theme'
 import { ThemeProvider } from 'styled-components'
 import { BrowserRouter as Router } from 'react-router-dom'
 
-describe('MobileMenu', () => {
-  it('renders menu', () => {
+describe('Mobile Menu', () => {
+  it('renders component and props correctly', () => {
     const closeFn = jest.fn()
     render(
       <ThemeProvider theme={defaultTheme}>

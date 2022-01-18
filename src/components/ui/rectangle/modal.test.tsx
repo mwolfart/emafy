@@ -5,7 +5,7 @@ import faker from 'faker'
 import { ModalRectangle } from '../index'
 
 describe('ModalRectangle', () => {
-  it('renders ModalRectangle correctly', () => {
+  it('renders component and props correctly', () => {
     const text = faker.random.words()
     render(
       <ThemeProvider theme={defaultTheme}>

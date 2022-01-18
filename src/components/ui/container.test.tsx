@@ -4,8 +4,8 @@ import { defaultTheme } from 'theme'
 import faker from 'faker'
 import { ContainerFlexCol, ContainerFlexRow } from './container'
 
-describe('Container', () => {
-  it('renders ContainerFlexCol correctly', () => {
+describe('Flex Container', () => {
+  it('renders component and props correctly', () => {
     const text = faker.random.words()
     render(
       <ThemeProvider theme={defaultTheme}>
@@ -16,7 +16,7 @@ describe('Container', () => {
     expect(canvasElement).toBeInTheDocument()
   })
 
-  it('renders ContainerFlexRow correctly', () => {
+  it('renders component and props correctly', () => {
     const text = faker.random.words()
     render(
       <ThemeProvider theme={defaultTheme}>

@@ -6,8 +6,8 @@ import { defaultTheme } from 'theme'
 import { ThemeProvider } from 'styled-components'
 import { Router } from 'react-router-dom'
 
-describe('MobileMenuButton', () => {
-  it('renders button and click works', () => {
+describe('Mobile Menu Button', () => {
+  it('renders component correctly and click works', () => {
     const text = faker.random.words()
     const path = text.split(' ').join('/')
     const history = createMemoryHistory()

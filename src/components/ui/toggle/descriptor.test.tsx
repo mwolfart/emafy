@@ -4,8 +4,8 @@ import { defaultTheme } from 'theme'
 import faker from 'faker'
 import { Descriptor } from '../toggle/descriptor'
 
-describe('Descriptor', () => {
-  it('renders Descriptor correctly', () => {
+describe('Toggle Descriptor', () => {
+  it('renders component and props correctly', () => {
     const labelFalse = faker.random.word()
     const labelTrue = faker.random.word()
     render(
