@@ -1,13 +1,13 @@
 import { render, screen } from '@testing-library/react'
 import { ThemeProvider } from 'styled-components'
 import { defaultTheme } from 'theme'
-import { BrowserRouter as Router } from 'react-router-dom'
+import { StaticRouter as Router } from 'react-router-dom'
 import { user } from 'fixtures/user'
 import { strings } from 'strings'
 import { Topbar } from './topbar'
 
 describe('Topbar', () => {
-  it('renders Topbar correctly', () => {
+  it('renders component and props correctly', () => {
     render(
       <ThemeProvider theme={defaultTheme}>
         <Router>

@@ -3,8 +3,8 @@ import { ThemeProvider } from 'styled-components'
 import { defaultTheme } from 'theme'
 import { IconButton } from './icon'
 
-describe('IconButton', () => {
-  it('renders IconButton correctly', () => {
+describe('Icon Button', () => {
+  it('renders component and props correctly', () => {
     render(
       <ThemeProvider theme={defaultTheme}>
         <IconButton icon="fa-times" onClickCallback={() => {}} />
@@ -14,7 +14,7 @@ describe('IconButton', () => {
     expect(buttonElement).toBeInTheDocument()
   })
 
-  it('calls onClickCallback on button click', () => {
+  it('calls callback on button click', () => {
     const onClick = jest.fn()
     render(
       <ThemeProvider theme={defaultTheme}>

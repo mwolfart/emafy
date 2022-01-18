@@ -1,21 +1,21 @@
 import { render, screen } from '@testing-library/react'
-import { Image } from './image'
+import { MediaImage } from './image'
 import { defaultTheme } from 'theme'
 import { ThemeProvider } from 'styled-components'
 import { strings } from 'strings'
 
-describe('Image', () => {
-  it('renders Image correctly', () => {
+describe('Media Image', () => {
+  it('renders component correctly', () => {
     render(
       <ThemeProvider theme={defaultTheme}>
-        <Image />
+        <MediaImage />
       </ThemeProvider>,
     )
     const element = screen.getByRole('img')
     expect(element).toBeInTheDocument()
   })
 
-  it('renders Image with placeholder correctly', () => {
+  it('renders component with placeholder correctly', () => {
     const placeholder = (
       <i
         className={`fas fa-times`}
@@ -25,7 +25,7 @@ describe('Image', () => {
 
     render(
       <ThemeProvider theme={defaultTheme}>
-        <Image placeholder={placeholder} />
+        <MediaImage placeholder={placeholder} />
       </ThemeProvider>,
     )
     const element = screen.getByLabelText(

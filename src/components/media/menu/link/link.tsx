@@ -1,8 +1,8 @@
 import { VFC } from 'react'
 import styled from 'styled-components'
 import { Media, MediaType } from 'types/media'
-import { Description as MediaDescription } from '../description/description'
-import { Image as MediaImage } from '../image/image'
+import { MediaDescription } from '../description/description'
+import { MediaImage } from '../image/image'
 import { strings } from 'strings'
 import { Link as RouterLink } from 'react-router-dom'
 import { MediaExtraProps } from 'types/mediaExtraProps'
@@ -59,7 +59,7 @@ const SimpleLink = styled.div`
   cursor: pointer;
 `
 
-export const Link: VFC<Props> = ({
+export const MediaLink: VFC<Props> = ({
   mediaInfo,
   rowVariant: isRowVariant,
   extraProps,

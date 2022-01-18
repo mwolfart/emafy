@@ -1,17 +1,17 @@
 import { fireEvent, render, screen } from '@testing-library/react'
-import { Link } from './link'
+import { MediaLink } from './link'
 import { defaultTheme } from 'theme'
 import { ThemeProvider } from 'styled-components'
 import { album } from 'fixtures/album'
-import { BrowserRouter as Router } from 'react-router-dom'
+import { StaticRouter as Router } from 'react-router-dom'
 import { artist } from 'fixtures/artist'
 
-describe('Link', () => {
-  it('renders Artist link correctly', () => {
+describe('Media Link', () => {
+  it('renders component and artist props correctly', () => {
     render(
       <ThemeProvider theme={defaultTheme}>
         <Router>
-          <Link mediaInfo={artist} />
+          <MediaLink mediaInfo={artist} />
         </Router>
       </ThemeProvider>,
     )
@@ -20,14 +20,14 @@ describe('Link', () => {
     expect(linkElement).toBeInTheDocument()
   })
 
-  it('renders Album link correctly', () => {
+  it('renders component and album props correctly', () => {
     const extraProps = {
       mediaSnippetOpenCallback: jest.fn(),
     }
     render(
       <ThemeProvider theme={defaultTheme}>
         <Router>
-          <Link mediaInfo={album} extraProps={extraProps} />
+          <MediaLink mediaInfo={album} extraProps={extraProps} />
         </Router>
       </ThemeProvider>,
     )

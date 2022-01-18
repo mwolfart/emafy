@@ -5,7 +5,7 @@ import faker from 'faker'
 import { Avatar } from './avatar'
 
 describe('Avatar', () => {
-  it('renders Avatar correctly', () => {
+  it('renders component and props correctly', () => {
     const image = faker.image.abstract()
     render(
       <ThemeProvider theme={defaultTheme}>

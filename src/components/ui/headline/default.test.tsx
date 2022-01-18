@@ -6,7 +6,7 @@ import faker from 'faker'
 import { Headline } from './default'
 
 describe('Headline', () => {
-  it('renders Headline correctly', () => {
+  it('renders component and props correctly', () => {
     const title = faker.random.words()
     const subtitle = faker.random.words()
     render(

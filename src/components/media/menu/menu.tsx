@@ -7,7 +7,7 @@ import { Media } from 'types/media'
 import { ToggleDescriptor } from 'components/ui'
 import { BeatLoader } from 'components/loader'
 import { MediaExtraProps } from 'types/mediaExtraProps'
-import { Item as MediaMenuItem } from 'components/media/menu/item/item'
+import { MediaMenuItem } from 'components/media/menu/item/item'
 
 type Props = {
   mediaList: Media[]

@@ -6,7 +6,7 @@ import faker from 'faker'
 import { IconHeadline } from './icon'
 
 describe('IconHeadline', () => {
-  it('renders IconHeadline correctly', () => {
+  it('renders component and props correctly', () => {
     const title = faker.random.words()
     const subtitle = faker.random.words()
     render(

@@ -5,7 +5,7 @@ import faker from 'faker'
 import { Rectangle } from './default'
 
 describe('Rectangle', () => {
-  it('renders Rectangle correctly', () => {
+  it('renders component and props correctly', () => {
     const text = faker.random.words()
     render(
       <ThemeProvider theme={defaultTheme}>

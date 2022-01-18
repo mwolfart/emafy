@@ -7,7 +7,7 @@ import { strings } from 'strings'
 import { defaultTheme } from 'theme'
 
 describe('Follow', () => {
-  it('renders Follow correctly', () => {
+  it('renders component and props correctly', () => {
     render(
       <ThemeProvider theme={defaultTheme}>
         <Follow follow={artist} isCurrentUserFollowing={true} />

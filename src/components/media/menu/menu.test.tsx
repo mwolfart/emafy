@@ -2,12 +2,12 @@ import { fireEvent, render, screen } from '@testing-library/react'
 import { albums } from 'fixtures/albums'
 import { ThemeProvider } from 'styled-components'
 import { defaultTheme } from 'theme'
-import { BrowserRouter as Router } from 'react-router-dom'
+import { StaticRouter as Router } from 'react-router-dom'
 import { MediaMenu } from './menu'
 import { strings } from 'strings'
 
-describe('MediaMenu', () => {
-  it('renders MediaMenu correctly', () => {
+describe('Media Menu', () => {
+  it('renders component and props correctly', () => {
     const albumList = albums
 
     render(
@@ -27,5 +27,10 @@ describe('MediaMenu', () => {
       name: strings.components.media.toggleView,
     })
     expect(toggleElement).toBeInTheDocument()
+
+    albumList.map((album) => {
+      const element = screen.getByText(album.name)
+      expect(element).toBeInTheDocument()
+    })
   })
 })

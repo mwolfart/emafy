@@ -1,16 +1,20 @@
 import { render, screen } from '@testing-library/react'
-import { Banner } from './banner'
+import { ArtistBanner } from './banner'
 import { defaultTheme } from 'theme'
 import { ThemeProvider } from 'styled-components'
 import { album } from 'fixtures/album'
 import { renderSubTitle } from 'utils/utils'
 
-describe('Banner', () => {
-  it('renders Banner correctly', () => {
+describe('Artist Banner', () => {
+  it('renders component and props correctly', () => {
     const subtitle = `${renderSubTitle(album)}, ${album.totalTracks} songs`
     render(
       <ThemeProvider theme={defaultTheme}>
-        <Banner mediaInfo={album} subtitle={subtitle} relatedArtists={[]} />
+        <ArtistBanner
+          mediaInfo={album}
+          subtitle={subtitle}
+          relatedArtists={[]}
+        />
       </ThemeProvider>,
     )
 

@@ -6,8 +6,8 @@ import { ThemeProvider } from 'styled-components'
 import { defaultTheme } from 'theme'
 import { BrowserRouter, Router } from 'react-router-dom'
 
-describe('Sidebar button', () => {
-  it('renders component correctly', () => {
+describe('Sidebar Button', () => {
+  it('renders component and props correctly', () => {
     const title = faker.random.word()
     const path = faker.random.words(3).split(' ').join('/')
     const icon = faker.random.word()

@@ -35,7 +35,7 @@ const AbsoluteWrapper = styled.div<IProps>`
   `}
 `
 
-export const SnippetContainer: FC<Props> = ({
+export const AlbumSnippetContainer: FC<Props> = ({
   rowVariant: isRowVariant,
   children,
 }) => {

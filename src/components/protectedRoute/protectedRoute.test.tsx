@@ -9,8 +9,8 @@ import { createMemoryHistory } from 'history'
 import { strings } from 'strings'
 import * as Hooks from 'hooks/useGetSavedMedia'
 
-describe('ProtectedRoute', () => {
-  it('redirects to login page correctly', () => {
+describe('Protected Route', () => {
+  it('redirects to login page if not logged in', () => {
     const history = createMemoryHistory()
     render(
       <ThemeProvider theme={defaultTheme}>
@@ -26,7 +26,7 @@ describe('ProtectedRoute', () => {
     expect(history.location.pathname).toEqual('/login')
   })
 
-  it('renders selected page correctly', () => {
+  it('renders selected page if logged in', () => {
     jest.spyOn(Hooks, 'useGetSavedMedia').mockImplementation(() => ({
       changeView: jest.fn(),
       fetchMoreMedia: jest.fn(),

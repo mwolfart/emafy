@@ -5,7 +5,7 @@ import faker from 'faker'
 import { Canvas } from './index'
 
 describe('Canvas', () => {
-  it('renders Canvas correctly', () => {
+  it('renders component and props correctly', () => {
     const text = faker.random.words()
     render(
       <ThemeProvider theme={defaultTheme}>

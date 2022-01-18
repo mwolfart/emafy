@@ -1,6 +1,6 @@
 import { getArtistAlbums, NextURL } from 'api/data'
 import { BeatLoader } from 'components/loader'
-import { Banner } from 'components/media/artist/banner/banner'
+import { ArtistBanner } from 'components/media/artist/banner/banner'
 import { MediaMenu } from 'components/media/menu/menu'
 import { Tab } from 'components/tab/tab'
 import { TabGroup } from 'components/tab/tabGroup'
@@ -40,7 +40,7 @@ export const ViewArtist: VFC<Props> = ({ match }) => {
     <BeatLoader />
   ) : (
     <Wrapper id="mainScreenWrapper">
-      <Banner
+      <ArtistBanner
         mediaInfo={artistInfo}
         subtitle={bannerSubtitle}
         relatedArtists={relatedArtists}

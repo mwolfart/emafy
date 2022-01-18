@@ -3,8 +3,8 @@ import { ThemeProvider } from 'styled-components'
 import { defaultTheme } from 'theme'
 import { LoginScene } from './login'
 
-describe('Login', () => {
-  it('renders Login scene correctly', () => {
+describe('Login Scene', () => {
+  it('renders scene correctly', () => {
     const onLogin = jest.fn()
     const { container } = render(
       <ThemeProvider theme={defaultTheme}>
