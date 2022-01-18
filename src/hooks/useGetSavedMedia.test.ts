@@ -47,23 +47,3 @@ test('should fetch more media', async () => {
   expect(result.current.mediaList).toEqual(albums)
   expect(result.current.nextURL).toBe(null)
 })
-
-test('should apply transitions correctly', async () => {
-  const getFunction = jest.fn((nextURL) =>
-    Promise.resolve({
-      entities: albums,
-      next: nextURL,
-      total: albums.length,
-    }),
-  )
-
-  const { result } = renderHook(() => useGetSavedMedia(getFunction))
-  act(() => {
-    result.current.changeView(false)
-  })
-
-  expect(result.current.isTransitioning).toBe(true)
-  await act(() => new Promise((resolve) => setTimeout(resolve, 250)))
-  expect(result.current.isTransitioning).toBe(false)
-  expect(result.current.isViewList).toBe(false)
-})
