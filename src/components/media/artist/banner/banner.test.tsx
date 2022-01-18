@@ -7,14 +7,14 @@ import { renderSubTitle } from 'utils/utils'
 
 describe('Banner', () => {
   it('renders Banner correctly', () => {
+    const subtitle = `${renderSubTitle(album)}, ${album.totalTracks} songs`
     render(
       <ThemeProvider theme={defaultTheme}>
-        <Banner mediaInfo={album} />
+        <Banner mediaInfo={album} subtitle={subtitle} relatedArtists={[]} />
       </ThemeProvider>,
     )
 
     const titleElement = screen.getByText(album.name)
-    const subtitle = `${renderSubTitle(album)}, ${album.totalTracks} songs`
     const subtitleElement = screen.getByText(subtitle)
     expect(titleElement).toBeInTheDocument()
     expect(subtitleElement).toBeInTheDocument()

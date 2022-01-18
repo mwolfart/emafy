@@ -30,7 +30,7 @@ export const TabGroup: FC<Props> = ({ children }) => {
         {children.map((tab) => (
           <TabButton
             title={tab.props.title}
-            id={tab.props.id}
+            key={tab.props.id}
             onClick={() => setActiveTab(tab.props.id)}
             active={activeTab === tab.props.id}
           />
@@ -38,7 +38,7 @@ export const TabGroup: FC<Props> = ({ children }) => {
       </TabMenu>
       {children.map((tab) => {
         const shouldShowContent = activeTab === tab.props.id
-        return <>{shouldShowContent && tab}</>
+        return shouldShowContent && tab
       })}
     </Wrapper>
   )

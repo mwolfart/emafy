@@ -40,7 +40,7 @@ export const RelatedArtists: VFC<Props> = ({ artistList }) => {
             artist.images && artist.images.length ? artist.images[0] : ''
           const artistLink = `/artist/${artist.id}`
           return (
-            <RouterLink to={artistLink}>
+            <RouterLink to={artistLink} key={artist.id}>
               <Avatar imagePath={imageSrc} small={true} />
             </RouterLink>
           )
