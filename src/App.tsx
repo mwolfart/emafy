@@ -5,7 +5,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import { LoginScene } from 'scenes/login/login'
 import styled, { createGlobalStyle, ThemeProvider } from 'styled-components'
 import { SavedAlbums } from 'scenes/savedAlbums/savedAlbums'
-import createBrowserHistory from 'history/createBrowserHistory'
+import { createBrowserHistory } from 'history'
 import { useEffect, useState } from 'react'
 import { ProtectedRoute } from 'components/protectedRoute/protectedRoute'
 import { getAuthParamsFromURI } from 'api/credentials'
@@ -62,7 +62,7 @@ const MainScreen = styled.div<IProps>`
     ${isLoggedIn && `padding-left: ${theme.sidebarWidth};`}
     width: ${isLoggedIn ? `calc(100% - ${theme.sidebarWidth})` : `100%`};
     background-color: ${theme.palette.colorBackground};
-    overflow-x: hidden;
+    overflow: hidden;
 
     @media (max-width: 576px) {
       padding-left: 0;
@@ -120,7 +120,7 @@ const App = (): JSX.Element => {
             </HeaderWrapper>
             <ContentWrapper>
               {isLoggedIn && <Sidebar />}
-              <MainScreen isLoggedIn={isLoggedIn} id="mainScreenWrapper">
+              <MainScreen isLoggedIn={isLoggedIn}>
                 <Switch>
                   <ProtectedRoute
                     isLoggedIn={isLoggedIn}

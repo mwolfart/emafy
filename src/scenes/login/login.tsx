@@ -9,7 +9,7 @@ import {
   requestValidToken,
 } from 'api/credentials'
 import { strings } from 'strings'
-import { useHistory } from 'react-router'
+import { Redirect } from 'react-router'
 
 type Props = {
   onLogin: (value: boolean) => void
@@ -47,10 +47,9 @@ export const LoginScene: VFC<Props> = ({ onLogin }) => {
     }
   }, [isOnLoginProcess, onLogin, isLoggedIn])
 
-  const history = useHistory()
-  !isOnLoginProcess && isLoggedIn && history.push('/saved-artists')
-
-  return (
+  return !isOnLoginProcess && isLoggedIn ? (
+    <Redirect to="/saved-artists" />
+  ) : (
     <Canvas>
       <Modal>
         <div className="title">{strings.scenes.login.signin}</div>
