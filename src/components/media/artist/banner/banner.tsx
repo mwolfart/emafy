@@ -46,7 +46,11 @@ const CustomSubtitleExtraLarge = styled(SubtitleExtraLarge)`
   `}
 `
 
-export const Banner: VFC<Props> = ({ mediaInfo, subtitle, relatedArtists }) => (
+export const ArtistBanner: VFC<Props> = ({
+  mediaInfo,
+  subtitle,
+  relatedArtists,
+}) => (
   <Background mediaInfo={mediaInfo}>
     <CustomTitleExtraLarge>{mediaInfo?.name}</CustomTitleExtraLarge>
     <CustomSubtitleExtraLarge>{subtitle}</CustomSubtitleExtraLarge>
