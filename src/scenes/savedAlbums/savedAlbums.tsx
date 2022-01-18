@@ -1,17 +1,19 @@
 import { useState, VFC } from 'react'
 import { getOwnSavedAlbums } from 'api/data'
 import { useGetSavedMedia } from 'hooks/useGetSavedMedia'
-import { Page as MediaPage } from 'components/media/menu/page/page'
 import { Album, isAlbum, Media } from 'types/media'
 import { strings } from 'strings'
 import { BeatLoader } from 'components/loader'
 import { MediaExtraProps } from 'types/mediaExtraProps'
 import { Headline } from 'components/ui'
 import styled from 'styled-components'
+import { MediaMenu } from 'components/media/menu/menu'
 
 const Wrapper = styled.div`
   ${({ theme }) => `
     padding: 0 ${theme.divSpacingBig};
+    overflow: auto;
+    height: 100%;
   `}
 `
 
@@ -47,9 +49,9 @@ export const SavedAlbums: VFC = () => {
   return isLoading ? (
     <BeatLoader />
   ) : (
-    <Wrapper>
+    <Wrapper id="mainScreenWrapper">
       <Headline title={mediaTitle} subtitle={mediaSubtitle} />
-      <MediaPage {...savedMediaProps} extraProps={extraProps} />
+      <MediaMenu {...savedMediaProps} extraProps={extraProps} />
     </Wrapper>
   )
 }
