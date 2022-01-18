@@ -3,7 +3,7 @@ import { MobileMenu } from './mobileMenu'
 import { strings } from 'strings'
 import { defaultTheme } from 'theme'
 import { ThemeProvider } from 'styled-components'
-import { BrowserRouter as Router } from 'react-router-dom'
+import { StaticRouter as Router } from 'react-router-dom'
 
 describe('Mobile Menu', () => {
   it('renders component and props correctly', () => {

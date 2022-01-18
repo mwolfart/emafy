@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react'
 import { artist } from 'fixtures/artist'
 import { ThemeProvider } from 'styled-components'
 import { defaultTheme } from 'theme'
-import { BrowserRouter as Router } from 'react-router-dom'
+import { StaticRouter as Router } from 'react-router-dom'
 import { MediaMenuItem } from './item'
 
 describe('Media Menu Item', () => {

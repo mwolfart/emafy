@@ -3,7 +3,7 @@ import { strings } from 'strings'
 import { ThemeProvider } from 'styled-components'
 import { defaultTheme } from 'theme'
 import { Hamburger } from './hamburger'
-import { BrowserRouter as Router } from 'react-router-dom'
+import { StaticRouter as Router } from 'react-router-dom'
 
 describe('Hamburger', () => {
   it('renders component correctly', () => {

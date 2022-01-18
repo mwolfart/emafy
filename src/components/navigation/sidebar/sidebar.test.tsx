@@ -3,7 +3,7 @@ import { strings } from 'strings'
 import { Sidebar } from './sidebar'
 import { ThemeProvider } from 'styled-components'
 import { defaultTheme } from 'theme'
-import { BrowserRouter as Router } from 'react-router-dom'
+import { StaticRouter as Router } from 'react-router-dom'
 
 describe('Sidebar', () => {
   it('renders component correctly', () => {

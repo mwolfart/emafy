@@ -3,7 +3,7 @@ import { MediaLink } from './link'
 import { defaultTheme } from 'theme'
 import { ThemeProvider } from 'styled-components'
 import { album } from 'fixtures/album'
-import { BrowserRouter as Router } from 'react-router-dom'
+import { StaticRouter as Router } from 'react-router-dom'
 import { artist } from 'fixtures/artist'
 
 describe('Media Link', () => {

@@ -2,7 +2,7 @@ import { fireEvent, render, screen } from '@testing-library/react'
 import { albums } from 'fixtures/albums'
 import { ThemeProvider } from 'styled-components'
 import { defaultTheme } from 'theme'
-import { BrowserRouter as Router } from 'react-router-dom'
+import { StaticRouter as Router } from 'react-router-dom'
 import { MediaMenu } from './menu'
 import { strings } from 'strings'
 
