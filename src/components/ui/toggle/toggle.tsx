@@ -8,7 +8,7 @@ type Props = {
   isOnOff?: boolean
 }
 
-interface IProps {
+type StyledProps = {
   isChecked: boolean
   isOnOff?: boolean
 }
@@ -20,7 +20,7 @@ const Wrapper = styled.label`
   height: 34px;
 `
 
-const Background = styled.div<IProps>`
+const Background = styled.div<StyledProps>`
   ${({ isOnOff, isChecked, theme }) => `
     position: absolute;
     top: 0;

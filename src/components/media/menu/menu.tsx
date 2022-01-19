@@ -17,7 +17,7 @@ type Props = {
   extraProps?: MediaExtraProps
 }
 
-interface IProps {
+type StyledProps = {
   isViewList: boolean
   isTransitioning?: boolean
 }
@@ -40,7 +40,7 @@ const ToggleButtonWrapper = styled.div`
   `}
 `
 
-const MenuWrapper = styled.div<IProps>`
+const MenuWrapper = styled.div<StyledProps>`
   ${({ isTransitioning, isViewList, theme }) => `
     opacity: ${isTransitioning ? '0' : '1'};
     transition: ${

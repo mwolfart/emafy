@@ -9,11 +9,11 @@ type Props = {
   resolutionToHideTitle?: string
 }
 
-type IProps = {
+type StyledProps = {
   resolutionToHideTitle?: string
 }
 
-const PaddedText = styled.div<IProps>`
+const PaddedText = styled.div<StyledProps>`
   ${({ theme, resolutionToHideTitle = '576px' }) => `
     padding-left: ${theme.divSpacingSmall};
 

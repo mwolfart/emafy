@@ -22,7 +22,7 @@ import { defaultTheme } from 'theme'
 import { MyPlaylists } from 'scenes/myPlaylists/myPlaylists'
 import { ViewArtist } from 'scenes/viewArtist/viewArtist'
 
-interface IProps {
+type StyledProps = {
   isLoggedIn: boolean
 }
 
@@ -39,7 +39,7 @@ const Wrapper = styled.div`
   height: 100%;
 `
 
-const HeaderWrapper = styled.div<IProps>`
+const HeaderWrapper = styled.div<StyledProps>`
   ${({ isLoggedIn, theme }) => `
     position: relative;
     width: 100vw;
@@ -57,7 +57,7 @@ const ContentWrapper = styled.div`
   `}
 `
 
-const MainScreen = styled.div<IProps>`
+const MainScreen = styled.div<StyledProps>`
   ${({ isLoggedIn, theme }) => `
     ${isLoggedIn && `padding-left: ${theme.sidebarWidth};`}
     width: ${isLoggedIn ? `calc(100% - ${theme.sidebarWidth})` : `100%`};

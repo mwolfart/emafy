@@ -7,11 +7,11 @@ type Props = {
   active?: boolean
 }
 
-interface IProps {
+type StyledProps = {
   active?: boolean
 }
 
-const Button = styled.button<IProps>`
+const Button = styled.button<StyledProps>`
   ${({ theme, active }) => `
     border: 0;
     border-bottom: 3px solid ${

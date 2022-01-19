@@ -7,7 +7,7 @@ type Props = {
   extraProps?: MediaExtraProps
 }
 
-interface IProps {
+type StyledProps = {
   displayLeft: boolean
   displayTop: boolean
 }
@@ -20,7 +20,7 @@ const FlexWrapper = styled.div`
   `}
 `
 
-const AbsoluteWrapper = styled.div<IProps>`
+const AbsoluteWrapper = styled.div<StyledProps>`
   ${({ displayTop, displayLeft, theme }) => `
     position: absolute;
     z-index: 1;

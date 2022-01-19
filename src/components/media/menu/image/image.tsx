@@ -8,11 +8,11 @@ type Props = {
   placeholder?: JSX.Element
 }
 
-interface IProps {
+type StyledProps = {
   small?: boolean
 }
 
-export const Wrapper = styled.div<IProps>`
+export const Wrapper = styled.div<StyledProps>`
   ${({ small, theme }) => `
     width: ${small ? '100px' : '200px'};
     height: ${small ? '100px' : '200px'};

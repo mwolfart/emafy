@@ -6,11 +6,11 @@ type Props = {
   small?: boolean
 }
 
-interface IProps {
+type StyledProps = {
   small: boolean
 }
 
-const Image = styled.img<IProps>`
+const Image = styled.img<StyledProps>`
   ${({ small, theme }) => `
     width: ${small ? theme.imageSizeIcon : theme.imageSizeMedium};
     height: ${small ? theme.imageSizeIcon : theme.imageSizeMedium};
