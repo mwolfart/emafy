@@ -51,6 +51,11 @@ export interface SimpleArtist extends Media {
   mediaType: MediaType.artist
 }
 
+export interface DetailedArtist extends SimpleArtist {
+  relatedArtists: SimpleArtist[]
+  topTracks: Song[]
+}
+
 export interface Playlist extends Media {
   description: string
   owner: string

@@ -1,6 +1,5 @@
 import { NextURL } from 'api/data'
-import { Album, Media, SimpleArtist, Song } from './media'
-import { MediaExtraProps } from './mediaExtraProps'
+import { DetailedArtist } from './media'
 
 export type MediaListQuery<T> = {
   fetchMoreMedia: () => void
@@ -11,10 +10,6 @@ export type MediaListQuery<T> = {
 }
 
 export type ArtistDetailsQuery = {
-  artistInfo?: SimpleArtist
-  relatedArtists: SimpleArtist[]
-  artistAlbums: Album[]
-  artistTotalAlbums: number
-  artistTopTracks: Song[]
+  artistInfo: DetailedArtist
   isLoading: boolean
 }

@@ -25,15 +25,16 @@ const Wrapper = styled.div`
 `
 
 export const ViewArtist: VFC<Props> = ({ match }) => {
-  const { isLoading, artistInfo, relatedArtists, artistTopTracks } =
-    useGetArtistDetails(match.params.id)
-  const topTracksCount = artistTopTracks.length
+  const { isLoading, artistInfo } = useGetArtistDetails(match.params.id)
+  const { topTracks, relatedArtists } = artistInfo
+  const topTracksCount = topTracks.length
+
   const getArtistAlbumsCallback = useCallback(
     (next?: NextURL) => getArtistAlbums(match.params.id, next),
     [match.params.id],
   )
-  const artistAlbumsProps = useGetMediaList(getArtistAlbumsCallback)
-  const { totalCount: totalAlbums } = artistAlbumsProps
+  const artistAlbumsQuery = useGetMediaList(getArtistAlbumsCallback)
+  const { totalCount: totalAlbums } = artistAlbumsQuery
   const bannerSubtitle = `${totalAlbums} ${strings.scenes.artistDetail.albums}`
 
   return isLoading || !artistInfo ? (
@@ -47,11 +48,11 @@ export const ViewArtist: VFC<Props> = ({ match }) => {
       />
       <TabGroup>
         <Tab title="Albums" id="albums">
-          <MediaMenu {...artistAlbumsProps} />
+          <MediaMenu {...artistAlbumsQuery} />
         </Tab>
         <Tab title="Top Songs" id="top-songs">
           <MediaMenu
-            mediaList={artistTopTracks}
+            mediaList={topTracks}
             totalCount={topTracksCount}
             nextURL={null}
           />
