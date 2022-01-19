@@ -1,6 +1,6 @@
 import { VFC } from 'react'
 import { getOwnFollowedUsers } from 'api/data'
-import { useGetSavedMedia } from 'hooks/useGetSavedMedia'
+import { useGetMediaList } from 'hooks/useGetMediaList'
 import { SimpleArtist } from 'types/media'
 import { strings } from 'strings'
 import { BeatLoader } from 'components/loader'
@@ -17,7 +17,7 @@ const Wrapper = styled.div`
 `
 
 export const SavedArtists: VFC = () => {
-  const savedMediaProps = useGetSavedMedia<SimpleArtist>(getOwnFollowedUsers)
+  const savedMediaProps = useGetMediaList<SimpleArtist>(getOwnFollowedUsers)
   const { totalCount, isLoading } = savedMediaProps
 
   const mediaTitle = strings.scenes.artists.mySavedArtists

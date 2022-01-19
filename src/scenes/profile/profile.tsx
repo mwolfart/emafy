@@ -6,7 +6,7 @@ import { Song, User } from 'types/media'
 import { ProfileCard } from 'components/profile/card/card'
 import { FollowingList } from 'components/profile/followingList/followingList'
 import { ContainerFlexRow } from 'components/ui'
-import { useGetSavedMedia } from 'hooks/useGetSavedMedia'
+import { useGetMediaList } from 'hooks/useGetMediaList'
 import { BeatLoader } from 'components/loader'
 import { useGetUserFollows } from 'hooks/useGetUserFollows'
 
@@ -33,14 +33,14 @@ const Wrapper = styled(ContainerFlexRow)`
 
 export const Profile: VFC<Props> = ({ user }) => {
   const {
-    followList,
+    mediaList: followList,
     nextURL,
-    fetchMoreFollows,
+    fetchMoreMedia: fetchMoreFollows,
     totalCount: userFollowingCount,
     isLoading: isLoadingFollows,
   } = useGetUserFollows()
 
-  const savedMusic = useGetSavedMedia<Song>(getOwnSavedSongs)
+  const savedMusic = useGetMediaList<Song>(getOwnSavedSongs)
   const userSavedMusicCount = savedMusic.totalCount
   const playlistCount = 0
 

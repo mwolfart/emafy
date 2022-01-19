@@ -1,7 +1,7 @@
 import { act, renderHook } from '@testing-library/react-hooks'
 import faker from 'faker'
 import { albums } from 'fixtures/albums'
-import { useGetSavedMedia } from './useGetSavedMedia'
+import { useGetMediaList } from './useGetMediaList'
 
 test('should init hook correctly', async () => {
   const next = faker.internet.url()
@@ -13,7 +13,7 @@ test('should init hook correctly', async () => {
     }),
   )
 
-  const { result } = renderHook(() => useGetSavedMedia(getFunction))
+  const { result } = renderHook(() => useGetMediaList(getFunction))
   await act(() => new Promise(setImmediate))
 
   expect(result.current.mediaList).toBe(albums)
@@ -34,7 +34,7 @@ test('should fetch more media', async () => {
     }),
   )
 
-  const { result } = renderHook(() => useGetSavedMedia(getFunction))
+  const { result } = renderHook(() => useGetMediaList(getFunction))
   await act(() => new Promise(setImmediate))
 
   expect(result.current.totalCount).toBe(albums.length)

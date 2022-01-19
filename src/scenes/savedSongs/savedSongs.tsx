@@ -1,6 +1,6 @@
 import { VFC } from 'react'
 import { getOwnSavedSongs } from 'api/data'
-import { useGetSavedMedia } from 'hooks/useGetSavedMedia'
+import { useGetMediaList } from 'hooks/useGetMediaList'
 import { Song } from 'types/media'
 import { strings } from 'strings'
 import { BeatLoader } from 'components/loader'
@@ -17,7 +17,7 @@ const Wrapper = styled.div`
 `
 
 export const SavedSongs: VFC = () => {
-  const savedMediaProps = useGetSavedMedia<Song>(getOwnSavedSongs)
+  const savedMediaProps = useGetMediaList<Song>(getOwnSavedSongs)
   const { totalCount, isLoading } = savedMediaProps
 
   const mediaTitle = strings.scenes.songs.mySavedSongs

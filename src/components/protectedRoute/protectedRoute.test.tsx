@@ -7,7 +7,7 @@ import { SavedAlbums } from 'scenes/savedAlbums/savedAlbums'
 import { artists as mockedArtists } from 'fixtures/artists'
 import { createMemoryHistory } from 'history'
 import { strings } from 'strings'
-import * as Hooks from 'hooks/useGetSavedMedia'
+import * as Hooks from 'hooks/useGetMediaList'
 
 describe('Protected Route', () => {
   it('redirects to login page if not logged in', () => {
@@ -27,7 +27,7 @@ describe('Protected Route', () => {
   })
 
   it('renders selected page if logged in', () => {
-    jest.spyOn(Hooks, 'useGetSavedMedia').mockImplementation(() => ({
+    jest.spyOn(Hooks, 'useGetMediaList').mockImplementation(() => ({
       changeView: jest.fn(),
       fetchMoreMedia: jest.fn(),
       isTransitioning: false,

@@ -7,19 +7,9 @@ import {
 import { cancellableRequest } from 'api/utils'
 import { useEffect, useState } from 'react'
 import { Album, SimpleArtist, Song } from 'types/media'
+import { ArtistDetailsQuery } from 'types/mediaQuery'
 
-type UseGetArtistDetailsHookReturn = {
-  artistInfo?: SimpleArtist
-  relatedArtists: SimpleArtist[]
-  artistAlbums: Album[]
-  artistTotalAlbums: number
-  artistTopTracks: Song[]
-  isLoading: boolean
-}
-
-export function useGetArtistDetails(
-  artistId: string,
-): UseGetArtistDetailsHookReturn {
+export function useGetArtistDetails(artistId: string): ArtistDetailsQuery {
   const [isLoading, setIsLoading] = useState<boolean>(true)
   const [artistInfo, setArtistInfo] = useState<SimpleArtist | undefined>()
   const [relatedArtists, setRelatedArtists] = useState<SimpleArtist[]>([])
