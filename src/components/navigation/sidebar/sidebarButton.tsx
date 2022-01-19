@@ -8,7 +8,7 @@ type Props = {
   icon: string
 }
 
-interface IProps {
+type StyledProps = {
   iconSize: string
 }
 
@@ -27,7 +27,7 @@ const Wrapper = styled.div`
   `}
 `
 
-const IconBackground = styled.div<IProps>`
+const IconBackground = styled.div<StyledProps>`
   ${({ theme, iconSize }) => `
     border-radius: ${iconSize};
     background-image: linear-gradient(
@@ -45,7 +45,7 @@ const IconBackground = styled.div<IProps>`
   `}
 `
 
-const CenteredIcon = styled.i<IProps>`
+const CenteredIcon = styled.i<StyledProps>`
   ${({ theme, iconSize }) => `
     line-height: ${iconSize};
   `}

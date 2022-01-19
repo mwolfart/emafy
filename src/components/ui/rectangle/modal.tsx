@@ -1,10 +1,10 @@
 import styled from 'styled-components'
 
-interface IProps {
+type StyledProps = {
   large?: boolean
 }
 
-export const ModalRectangle = styled.div<IProps>`
+export const ModalRectangle = styled.div<StyledProps>`
   ${({ large, theme }) => ` 
     height: ${large ? '500px' : '250px'};
     width: ${large ? '800px' : '400px'};

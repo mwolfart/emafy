@@ -1,10 +1,10 @@
 import styled from 'styled-components'
 
-interface IProps {
+type StyledProps = {
   square?: boolean
 }
 
-export const Button = styled.button<IProps>`
+export const Button = styled.button<StyledProps>`
   ${({ square, theme }) => `
     background-image: linear-gradient(
       45deg,

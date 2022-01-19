@@ -12,11 +12,11 @@ type Props = {
   relatedArtists: SimpleArtist[]
 }
 
-interface IProps {
+type StyledProps = {
   mediaInfo?: Media
 }
 
-const Background = styled.div<IProps>`
+const Background = styled.div<StyledProps>`
   ${({ theme, mediaInfo }) => `
     background-image: linear-gradient(
       to bottom, 

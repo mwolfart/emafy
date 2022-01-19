@@ -13,11 +13,11 @@ type Props = {
   extraProps?: MediaExtraProps
 }
 
-interface IProps {
+type StyledProps = {
   rowVariant?: boolean
 }
 
-const TileWrapper = styled.div<IProps>`
+const TileWrapper = styled.div<StyledProps>`
   ${({ rowVariant, theme }) => `
     display: flex;
     flex-direction: ${rowVariant ? 'row' : 'column'};

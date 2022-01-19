@@ -10,11 +10,11 @@ type Props = {
   isOpen: boolean
 }
 
-interface IProps {
+type StyledProps = {
   isOpen: boolean
 }
 
-const Wrapper = styled.div<IProps>`
+const Wrapper = styled.div<StyledProps>`
   ${({ isOpen, theme }) => `
     display: flex;
     flex-direction: column;
