@@ -1,7 +1,7 @@
 import { checkIfOwnFollowsArtist, getOwnFollowedUsers, NextURL } from 'api/data'
 import { useEffect, useState } from 'react'
 import { SimpleArtist } from 'types/media'
-import { MediaListQuery } from 'types/mediaListQuery'
+import { MediaListQuery } from 'types/mediaQuery'
 
 export function useGetUserFollows(): MediaListQuery<SimpleArtist> {
   const [nextURL, setNextURL] = useState<NextURL>(null)
