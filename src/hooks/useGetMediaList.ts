@@ -1,7 +1,7 @@
 import { MediaListResponse, NextURL } from 'api/data'
 import { useEffect, useState } from 'react'
 import { strings } from 'strings'
-import { MediaListQuery } from 'types/mediaListQuery'
+import { MediaListQuery } from 'types/mediaQuery'
 import { cancellableRequest } from '../api/utils'
 
 export function useGetMediaList<T>(
