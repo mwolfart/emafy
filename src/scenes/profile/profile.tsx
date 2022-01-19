@@ -33,9 +33,9 @@ const Wrapper = styled(ContainerFlexRow)`
 
 export const Profile: VFC<Props> = ({ user }) => {
   const {
-    followList,
+    mediaList: followList,
     nextURL,
-    fetchMoreFollows,
+    fetchMoreMedia: fetchMoreFollows,
     totalCount: userFollowingCount,
     isLoading: isLoadingFollows,
   } = useGetUserFollows()

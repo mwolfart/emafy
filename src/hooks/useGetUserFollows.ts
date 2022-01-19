@@ -1,16 +1,9 @@
 import { checkIfOwnFollowsArtist, getOwnFollowedUsers, NextURL } from 'api/data'
 import { useEffect, useState } from 'react'
 import { SimpleArtist } from 'types/media'
+import { MediaListQuery } from 'types/mediaListQuery'
 
-type UseGetUserFollowsHookReturn = {
-  fetchMoreFollows: () => void
-  followList: SimpleArtist[]
-  nextURL: NextURL
-  totalCount: number
-  isLoading: boolean
-}
-
-export function useGetUserFollows(): UseGetUserFollowsHookReturn {
+export function useGetUserFollows(): MediaListQuery<SimpleArtist> {
   const [nextURL, setNextURL] = useState<NextURL>(null)
   const [followList, setFollowList] = useState<SimpleArtist[]>([])
   const [totalCount, setTotalCount] = useState<number>(0)
@@ -44,8 +37,8 @@ export function useGetUserFollows(): UseGetUserFollowsHookReturn {
   }, [])
 
   return {
-    fetchMoreFollows,
-    followList,
+    fetchMoreMedia: fetchMoreFollows,
+    mediaList: followList,
     nextURL,
     totalCount,
     isLoading,
