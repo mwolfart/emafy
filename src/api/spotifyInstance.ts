@@ -11,6 +11,12 @@ type RequestProps = {
   params: { [key: string]: string }
 } & HeaderProps
 
+export enum Method {
+  GET,
+  PUT,
+  DELETE,
+}
+
 const createHeader = (): HeaderProps => {
   const accessToken = localStorage.getItem(LOCAL_STORAGE.ACCESS_TOKEN)
   return {
@@ -33,8 +39,18 @@ const instance = axios.create({
 
 const spotifyInstance = <T>(
   url: string,
+  method: Method,
   otherParams?: { [key: string]: string },
-): Promise<AxiosResponse<T>> =>
-  instance.get(url, createRequestParams(otherParams))
+): Promise<AxiosResponse<T>> => {
+  switch (method) {
+    case Method.PUT:
+      return instance.put(url, createRequestParams(otherParams))
+    case Method.DELETE:
+      return instance.delete(url, createRequestParams(otherParams))
+    case Method.GET:
+    default:
+      return instance.get(url, createRequestParams(otherParams))
+  }
+}
 
 export { spotifyInstance, createHeader }

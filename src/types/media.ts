@@ -54,6 +54,7 @@ export interface SimpleArtist extends Media {
 export interface DetailedArtist extends SimpleArtist {
   relatedArtists: SimpleArtist[]
   topTracks: Song[]
+  currentUserFollows: boolean
 }
 
 export interface Playlist extends Media {

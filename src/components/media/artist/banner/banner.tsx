@@ -1,29 +1,29 @@
+import { unfollowArtist, followArtist } from 'api/data'
 import { IconButton } from 'components/ui'
 import { SubtitleExtraLarge, TitleExtraLarge } from 'components/ui/heading'
 import { VFC } from 'react'
 import { strings } from 'strings'
 import styled from 'styled-components'
-import { Media, SimpleArtist } from 'types/media'
+import { DetailedArtist } from 'types/media'
 import { RelatedArtists } from './relatedArtists'
 
 type Props = {
-  mediaInfo: Media
+  artistInfo: DetailedArtist
   subtitle: string
-  relatedArtists: SimpleArtist[]
 }
 
 type StyledProps = {
-  mediaInfo?: Media
+  artistInfo?: DetailedArtist
 }
 
 const Background = styled.div<StyledProps>`
-  ${({ theme, mediaInfo }) => `
+  ${({ theme, artistInfo }) => `
     background-image: linear-gradient(
       to bottom, 
       ${theme.palette.colorBackgroundBannerEdge},
       ${theme.palette.colorBackgroundBannerCenter} 50%, 
       ${theme.palette.colorBackgroundBannerEdge}),
-    ${mediaInfo && mediaInfo.images && `url(${mediaInfo.images[0]})`};
+    ${artistInfo && artistInfo.images && `url(${artistInfo.images[0]})`};
     background-size: cover;
     background-position-y: center;
     padding: 60px 120px;
@@ -46,19 +46,27 @@ const CustomSubtitleExtraLarge = styled(SubtitleExtraLarge)`
   `}
 `
 
-export const ArtistBanner: VFC<Props> = ({
-  mediaInfo,
-  subtitle,
-  relatedArtists,
-}) => (
-  <Background mediaInfo={mediaInfo}>
-    <CustomTitleExtraLarge>{mediaInfo?.name}</CustomTitleExtraLarge>
-    <CustomSubtitleExtraLarge>{subtitle}</CustomSubtitleExtraLarge>
-    <IconButton
-      icon="fa-user-plus"
-      onClickCallback={() => {}}
-      title={strings.scenes.artistDetail.follow}
-    />
-    <RelatedArtists artistList={relatedArtists} />
-  </Background>
-)
+export const ArtistBanner: VFC<Props> = ({ artistInfo, subtitle }) => {
+  const buttonIcon = artistInfo.currentUserFollows
+    ? 'fa-user-minus'
+    : 'fa-user-plus'
+  const buttonLabel = artistInfo.currentUserFollows
+    ? strings.scenes.artistDetail.unfollow
+    : strings.scenes.artistDetail.follow
+  const buttonCallback = artistInfo.currentUserFollows
+    ? () => unfollowArtist(artistInfo.id, 'artist')
+    : () => followArtist(artistInfo.id, 'artist')
+
+  return (
+    <Background artistInfo={artistInfo}>
+      <CustomTitleExtraLarge>{artistInfo?.name}</CustomTitleExtraLarge>
+      <CustomSubtitleExtraLarge>{subtitle}</CustomSubtitleExtraLarge>
+      <IconButton
+        icon={buttonIcon}
+        onClickCallback={buttonCallback}
+        title={buttonLabel}
+      />
+      <RelatedArtists artistList={artistInfo.relatedArtists} />
+    </Background>
+  )
+}

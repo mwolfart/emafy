@@ -2,6 +2,7 @@ import {
   getArtist,
   getArtistTopTracks,
   getArtistRelatedArtists,
+  checkIfOwnFollowsArtist,
 } from 'api/data'
 import { cancellableRequest } from 'api/utils'
 import { useEffect, useState } from 'react'
@@ -18,6 +19,7 @@ export function useGetArtistDetails(artistId: string): ArtistDetailsQuery {
     popularity: 0,
     relatedArtists: [],
     topTracks: [],
+    currentUserFollows: false,
     mediaType: MediaType.artist,
   })
 
@@ -28,16 +30,19 @@ export function useGetArtistDetails(artistId: string): ArtistDetailsQuery {
           getArtist(artistId),
           getArtistTopTracks(artistId),
           getArtistRelatedArtists(artistId),
+          checkIfOwnFollowsArtist(artistId, 'artist'),
         ]),
       ([
         { entities: artistInfo },
         { entities: topTracksList },
         { entities: relatedArtists },
+        currentUserFollows,
       ]) => {
         setArtistInfo({
           ...artistInfo,
           relatedArtists,
           topTracks: topTracksList,
+          currentUserFollows,
         })
         setIsLoading(false)
       },

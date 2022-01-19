@@ -26,7 +26,7 @@ const Wrapper = styled.div`
 
 export const ViewArtist: VFC<Props> = ({ match }) => {
   const { isLoading, artistInfo } = useGetArtistDetails(match.params.id)
-  const { topTracks, relatedArtists } = artistInfo
+  const { topTracks } = artistInfo
   const topTracksCount = topTracks.length
 
   const getArtistAlbumsCallback = useCallback(
@@ -41,11 +41,7 @@ export const ViewArtist: VFC<Props> = ({ match }) => {
     <BeatLoader />
   ) : (
     <Wrapper id="mainScreenWrapper">
-      <ArtistBanner
-        mediaInfo={artistInfo}
-        subtitle={bannerSubtitle}
-        relatedArtists={relatedArtists}
-      />
+      <ArtistBanner artistInfo={artistInfo} subtitle={bannerSubtitle} />
       <TabGroup>
         <Tab title="Albums" id="albums">
           <MediaMenu {...artistAlbumsQuery} />
