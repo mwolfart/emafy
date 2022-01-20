@@ -59,7 +59,7 @@ export const ArtistBanner: VFC<Props> = ({ artistInfo, subtitle }) => {
 
   return (
     <Background artistInfo={artistInfo}>
-      <CustomTitleExtraLarge>{artistInfo?.name}</CustomTitleExtraLarge>
+      <CustomTitleExtraLarge>{artistInfo.name}</CustomTitleExtraLarge>
       <CustomSubtitleExtraLarge>{subtitle}</CustomSubtitleExtraLarge>
       <IconButton
         icon={buttonIcon}

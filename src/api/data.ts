@@ -160,8 +160,8 @@ export const checkIfOwnFollowsArtist = (
   type: string,
 ): Promise<boolean> => {
   const route = SPOTIFY_ROUTE.OWN + SPOTIFY_ROUTE.FOLLOWING_CHECK
-  return spotifyInstance<boolean>(route, Method.GET, { ids: id, type }).then(
-    ({ data }) => data,
+  return spotifyInstance<boolean[]>(route, Method.GET, { ids: id, type }).then(
+    ({ data }) => data[0],
   )
 }
 
