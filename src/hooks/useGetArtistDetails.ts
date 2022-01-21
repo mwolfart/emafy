@@ -55,6 +55,7 @@ export function useGetArtistDetails(artistId: string): ArtistDetailsQuery {
 
   return {
     artistInfo,
+    setArtistInfo,
     isLoading,
   }
 }

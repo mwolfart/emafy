@@ -25,7 +25,9 @@ const Wrapper = styled.div`
 `
 
 export const ViewArtist: VFC<Props> = ({ match }) => {
-  const { isLoading, artistInfo } = useGetArtistDetails(match.params.id)
+  const { isLoading, artistInfo, setArtistInfo } = useGetArtistDetails(
+    match.params.id,
+  )
   const { topTracks } = artistInfo
   const topTracksCount = topTracks.length
 
@@ -41,7 +43,11 @@ export const ViewArtist: VFC<Props> = ({ match }) => {
     <BeatLoader />
   ) : (
     <Wrapper id="mainScreenWrapper">
-      <ArtistBanner artistInfo={artistInfo} subtitle={bannerSubtitle} />
+      <ArtistBanner
+        artistInfo={artistInfo}
+        subtitle={bannerSubtitle}
+        setArtistInfo={setArtistInfo}
+      />
       <TabGroup>
         <Tab title="Albums" id="albums">
           <MediaMenu {...artistAlbumsQuery} />

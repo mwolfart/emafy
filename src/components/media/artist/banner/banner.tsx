@@ -9,6 +9,7 @@ import { RelatedArtists } from './relatedArtists'
 
 type Props = {
   artistInfo: DetailedArtist
+  setArtistInfo: (artistInfo: DetailedArtist) => void
   subtitle: string
 }
 
@@ -46,16 +47,29 @@ const CustomSubtitleExtraLarge = styled(SubtitleExtraLarge)`
   `}
 `
 
-export const ArtistBanner: VFC<Props> = ({ artistInfo, subtitle }) => {
+export const ArtistBanner: VFC<Props> = ({
+  artistInfo,
+  setArtistInfo,
+  subtitle,
+}) => {
   const buttonIcon = artistInfo.currentUserFollows
     ? 'fa-user-minus'
     : 'fa-user-plus'
   const buttonLabel = artistInfo.currentUserFollows
     ? strings.scenes.artistDetail.unfollow
     : strings.scenes.artistDetail.follow
+  const updateArtist = (isFollowing: boolean): void => {
+    setArtistInfo(
+      Object.assign({}, artistInfo, { currentUserFollows: isFollowing }),
+    )
+  }
   const buttonCallback = artistInfo.currentUserFollows
-    ? () => unfollowArtist(artistInfo.id, 'artist')
-    : () => followArtist(artistInfo.id, 'artist')
+    ? () => {
+        unfollowArtist(artistInfo.id, 'artist').then(() => updateArtist(false))
+      }
+    : () => {
+        followArtist(artistInfo.id, 'artist').then(() => updateArtist(true))
+      }
 
   return (
     <Background artistInfo={artistInfo}>

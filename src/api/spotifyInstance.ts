@@ -44,7 +44,7 @@ const spotifyInstance = <T>(
 ): Promise<AxiosResponse<T>> => {
   switch (method) {
     case Method.PUT:
-      return instance.put(url, createRequestParams(otherParams))
+      return instance.put(url, {}, createRequestParams(otherParams))
     case Method.DELETE:
       return instance.delete(url, createRequestParams(otherParams))
     case Method.GET:

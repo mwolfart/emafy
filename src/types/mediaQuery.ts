@@ -11,5 +11,6 @@ export type MediaListQuery<T> = {
 
 export type ArtistDetailsQuery = {
   artistInfo: DetailedArtist
+  setArtistInfo: (artistInfo: DetailedArtist) => void
   isLoading: boolean
 }
