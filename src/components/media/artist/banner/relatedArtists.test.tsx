@@ -18,7 +18,7 @@ describe('Related Artists', () => {
 
     const elements = screen.getAllByRole('link')
     const hrefs = elements.map((el) => el.getAttribute('href'))
-    hrefs.map((href, idx) => {
+    hrefs.forEach((href, idx) => {
       const url = `/artist/${artists[idx].id}`
       expect(url).toEqual(href)
     })
