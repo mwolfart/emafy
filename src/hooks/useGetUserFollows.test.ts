@@ -4,52 +4,54 @@ import { useGetUserFollows } from './useGetUserFollows'
 import * as Api from 'api/data'
 import faker from 'faker'
 
-test('should init hook correctly', async () => {
-  jest.spyOn(Api, 'getOwnFollowedUsers').mockResolvedValue({
-    entities: mockedArtists,
-    next: null,
-    total: mockedArtists.length,
-  })
-  jest.spyOn(Api, 'checkIfOwnFollowsArtist').mockResolvedValue(true)
-
-  const { result } = renderHook(() => useGetUserFollows())
-  expect(result.current.isLoading).toBe(true)
-
-  await act(() => new Promise(setImmediate))
-
-  expect(result.current.mediaList).toEqual(mockedArtists)
-  expect(result.current.totalCount).toBe(mockedArtists.length)
-  expect(result.current.nextURL).toBe(null)
-  expect(result.current.isLoading).toBe(false)
-})
-
-test('should fetch more follows', async () => {
-  const next = faker.internet.url()
-  const artistsHalfLength = mockedArtists.length / 2
-  const artistsFirstHalf = mockedArtists.slice(0, artistsHalfLength)
-  const artistsSecondHalf = mockedArtists.slice(artistsHalfLength)
-
-  jest.spyOn(Api, 'getOwnFollowedUsers').mockImplementation((nextURL) =>
-    Promise.resolve({
-      entities: nextURL ? artistsSecondHalf : artistsFirstHalf,
-      next: nextURL ? null : next,
+describe('Get User Follows hook', () => {
+  test('should init hook correctly', async () => {
+    jest.spyOn(Api, 'getOwnFollowedUsers').mockResolvedValue({
+      entities: mockedArtists,
+      next: null,
       total: mockedArtists.length,
-    }),
-  )
-  jest.spyOn(Api, 'checkIfOwnFollowsArtist').mockResolvedValue(true)
+    })
+    jest.spyOn(Api, 'checkIfOwnFollowsArtist').mockResolvedValue(true)
 
-  const { result } = renderHook(() => useGetUserFollows())
-  await act(() => new Promise(setImmediate))
+    const { result } = renderHook(() => useGetUserFollows())
+    expect(result.current.isLoading).toBe(true)
 
-  expect(result.current.mediaList).toEqual(artistsFirstHalf)
-  expect(result.current.totalCount).toBe(mockedArtists.length)
-  expect(result.current.nextURL).toBe(next)
-  expect(result.current.isLoading).toBe(false)
+    await act(() => new Promise(setImmediate))
 
-  await act(async () => {
-    await result.current.fetchMoreMedia()
+    expect(result.current.mediaList).toEqual(mockedArtists)
+    expect(result.current.totalCount).toBe(mockedArtists.length)
+    expect(result.current.nextURL).toBe(null)
+    expect(result.current.isLoading).toBe(false)
   })
 
-  expect(result.current.mediaList).toEqual(mockedArtists)
-  expect(result.current.nextURL).toBe(null)
+  test('should fetch more follows', async () => {
+    const next = faker.internet.url()
+    const artistsHalfLength = mockedArtists.length / 2
+    const artistsFirstHalf = mockedArtists.slice(0, artistsHalfLength)
+    const artistsSecondHalf = mockedArtists.slice(artistsHalfLength)
+
+    jest.spyOn(Api, 'getOwnFollowedUsers').mockImplementation((nextURL) =>
+      Promise.resolve({
+        entities: nextURL ? artistsSecondHalf : artistsFirstHalf,
+        next: nextURL ? null : next,
+        total: mockedArtists.length,
+      }),
+    )
+    jest.spyOn(Api, 'checkIfOwnFollowsArtist').mockResolvedValue(true)
+
+    const { result } = renderHook(() => useGetUserFollows())
+    await act(() => new Promise(setImmediate))
+
+    expect(result.current.mediaList).toEqual(artistsFirstHalf)
+    expect(result.current.totalCount).toBe(mockedArtists.length)
+    expect(result.current.nextURL).toBe(next)
+    expect(result.current.isLoading).toBe(false)
+
+    await act(async () => {
+      await result.current.fetchMoreMedia()
+    })
+
+    expect(result.current.mediaList).toEqual(mockedArtists)
+    expect(result.current.nextURL).toBe(null)
+  })
 })
