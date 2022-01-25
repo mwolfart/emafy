@@ -99,7 +99,7 @@ export const AlbumCard: VFC<Props> = ({ albumInfo, fnCloseSnippet }) => {
             scrollableTarget="tracksScrollWrapper"
           >
             {trackList.map((track) => (
-              <TrackWrapper>
+              <TrackWrapper key={track.id}>
                 <p>{formatTrackNumber(track.trackNumber)}</p>
                 <span>{track.name}</span>
                 <p>{formatDuration(track.duration)}</p>
