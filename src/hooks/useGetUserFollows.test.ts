@@ -17,7 +17,7 @@ test('should init hook correctly', async () => {
 
   await act(() => new Promise(setImmediate))
 
-  expect(result.current.followList).toEqual(mockedArtists)
+  expect(result.current.mediaList).toEqual(mockedArtists)
   expect(result.current.totalCount).toBe(mockedArtists.length)
   expect(result.current.nextURL).toBe(null)
   expect(result.current.isLoading).toBe(false)
@@ -41,15 +41,15 @@ test('should fetch more follows', async () => {
   const { result } = renderHook(() => useGetUserFollows())
   await act(() => new Promise(setImmediate))
 
-  expect(result.current.followList).toEqual(artistsFirstHalf)
+  expect(result.current.mediaList).toEqual(artistsFirstHalf)
   expect(result.current.totalCount).toBe(mockedArtists.length)
   expect(result.current.nextURL).toBe(next)
   expect(result.current.isLoading).toBe(false)
 
   await act(async () => {
-    await result.current.fetchMoreFollows()
+    await result.current.fetchMoreMedia()
   })
 
-  expect(result.current.followList).toEqual(mockedArtists)
+  expect(result.current.mediaList).toEqual(mockedArtists)
   expect(result.current.nextURL).toBe(null)
 })
