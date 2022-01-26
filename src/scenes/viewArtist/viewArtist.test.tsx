@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react'
+import { fireEvent, render, screen } from '@testing-library/react'
 import { albums as mockedAlbums } from 'fixtures/albums'
 import { StaticRouter } from 'react-router-dom'
 import { ThemeProvider } from 'styled-components'
@@ -6,6 +6,8 @@ import { defaultTheme } from 'theme'
 import { ViewArtist } from './viewArtist'
 import { createMemoryHistory, createLocation } from 'history'
 import { detailedArtist as mockedDetailedArtist } from 'fixtures/detailedArtist'
+import { strings } from 'strings'
+import * as Api from 'api/data'
 
 jest.mock('hooks/useGetMediaList', () => ({
   useGetMediaList: () => ({
@@ -26,7 +28,7 @@ jest.mock('hooks/useGetArtistDetails', () => ({
 }))
 
 describe('View Artist', () => {
-  it('renders scene correctly', () => {
+  beforeEach(() => {
     const history = createMemoryHistory()
     const path = '/artist/:id'
     const match = {
@@ -43,7 +45,9 @@ describe('View Artist', () => {
         </StaticRouter>
       </ThemeProvider>,
     )
+  })
 
+  it('renders scene correctly', () => {
     expect(screen.getByText(mockedDetailedArtist.name)).toBeInTheDocument()
     mockedAlbums.forEach((album) => {
       expect(screen.getAllByText(album.name).length).toBeGreaterThanOrEqual(1)
@@ -51,5 +55,14 @@ describe('View Artist', () => {
     mockedDetailedArtist.topTracks.forEach((track) => {
       expect(screen.getAllByText(track.name).length).toBeGreaterThanOrEqual(1)
     })
+  })
+
+  it('clicking in follow button should toggle following artist', () => {
+    const spy = jest.spyOn(Api, 'unfollowArtist').mockResolvedValue('1')
+    const btnElement = screen.getByRole('button', {
+      name: strings.scenes.artistDetail.unfollow,
+    })
+    fireEvent.click(btnElement)
+    expect(spy).toHaveBeenCalled()
   })
 })
