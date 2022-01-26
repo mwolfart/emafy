@@ -6,12 +6,9 @@ import { ThemeProvider } from 'styled-components'
 import { defaultTheme } from 'theme'
 import { SavedAlbums } from './savedAlbums'
 
-jest.mock('hooks/useGetSavedMedia', () => ({
-  useGetSavedMedia: () => ({
-    changeView: jest.fn(),
+jest.mock('hooks/useGetMediaList', () => ({
+  useGetMediaList: () => ({
     fetchMoreMedia: jest.fn(),
-    isTransitioning: false,
-    isViewList: false,
     mediaList: mockedAlbums,
     nextURL: null,
     totalCount: mockedAlbums.length,

@@ -2,23 +2,26 @@ import { render, screen } from '@testing-library/react'
 import { ArtistBanner } from './banner'
 import { defaultTheme } from 'theme'
 import { ThemeProvider } from 'styled-components'
-import { album } from 'fixtures/album'
-import { renderSubTitle } from 'utils/utils'
+import { detailedArtist } from 'fixtures/detailedArtist'
+import faker from 'faker'
+import { StaticRouter } from 'react-router'
 
 describe('Artist Banner', () => {
   it('renders component and props correctly', () => {
-    const subtitle = `${renderSubTitle(album)}, ${album.totalTracks} songs`
+    const subtitle = faker.random.words()
     render(
       <ThemeProvider theme={defaultTheme}>
-        <ArtistBanner
-          mediaInfo={album}
-          subtitle={subtitle}
-          relatedArtists={[]}
-        />
+        <StaticRouter>
+          <ArtistBanner
+            artistInfo={detailedArtist}
+            setArtistInfo={() => {}}
+            subtitle={subtitle}
+          />
+        </StaticRouter>
       </ThemeProvider>,
     )
 
-    const titleElement = screen.getByText(album.name)
+    const titleElement = screen.getByText(detailedArtist.name)
     const subtitleElement = screen.getByText(subtitle)
     expect(titleElement).toBeInTheDocument()
     expect(subtitleElement).toBeInTheDocument()

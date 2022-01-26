@@ -1,18 +1,14 @@
 import { fireEvent, render, screen } from '@testing-library/react'
 import { album } from 'fixtures/album'
 import { albumTracks as mockedAlbumTracks } from 'fixtures/albumTracks'
-import { BrowserRouter } from 'react-router-dom'
 import { strings } from 'strings'
 import { ThemeProvider } from 'styled-components'
 import { defaultTheme } from 'theme'
 import { AlbumCard } from './card'
 
-jest.mock('hooks/useGetSavedMedia', () => ({
-  useGetSavedMedia: () => ({
-    changeView: jest.fn(),
+jest.mock('hooks/useGetMediaList', () => ({
+  useGetMediaList: () => ({
     fetchMoreMedia: jest.fn(),
-    isTransitioning: false,
-    isViewList: false,
     mediaList: mockedAlbumTracks,
     nextURL: null,
     totalCount: mockedAlbumTracks.length,

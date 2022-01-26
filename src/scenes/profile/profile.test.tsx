@@ -6,12 +6,9 @@ import { ThemeProvider } from 'styled-components'
 import { defaultTheme } from 'theme'
 import { Profile } from './profile'
 
-jest.mock('hooks/useGetSavedMedia', () => ({
-  useGetSavedMedia: () => ({
-    changeView: jest.fn(),
+jest.mock('hooks/useGetMediaList', () => ({
+  useGetMediaList: () => ({
     fetchMoreMedia: jest.fn(),
-    isTransitioning: false,
-    isViewList: false,
     mediaList: mockedSongs,
     nextURL: null,
     totalCount: mockedSongs.length,
@@ -21,9 +18,9 @@ jest.mock('hooks/useGetSavedMedia', () => ({
 
 jest.mock('hooks/useGetUserFollows', () => ({
   useGetUserFollows: () => ({
-    followList: mockedSongs,
+    mediaList: mockedSongs,
     nextURL: null,
-    fetchMoreFollows: jest.fn(),
+    fetchMoreMedia: jest.fn(),
     totalCount: mockedSongs.length,
     isLoading: false,
   }),
@@ -41,6 +38,8 @@ describe('Profile', () => {
 
     expect(screen.getByText(user.name)).toBeInTheDocument()
     expect(screen.getByText(user.country)).toBeInTheDocument()
-    expect(screen.getByText(user.followerCount)).toBeInTheDocument()
+    expect(
+      screen.getAllByText(user.followerCount).length,
+    ).toBeGreaterThanOrEqual(1)
   })
 })
