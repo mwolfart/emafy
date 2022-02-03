@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from 'axios'
-import { LOCAL_STORAGE } from './localStorage.enum'
+import { LOCAL_STORAGE } from './enum/localStorage.enum'
 
 type HeaderProps = {
   headers: {

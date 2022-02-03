@@ -1,5 +1,4 @@
 import { VFC } from 'react'
-import { getOwnPlaylists } from 'api/data'
 import { useGetMediaList } from 'hooks/useGetMediaList'
 import { Playlist } from 'types/media'
 import { strings } from 'strings'
@@ -7,6 +6,7 @@ import { BeatLoader } from 'components/loader'
 import { Headline } from 'components/ui'
 import styled from 'styled-components'
 import { MediaMenu } from 'components/media/menu/menu'
+import { getOwnPlaylists } from 'api/data/own'
 
 const Wrapper = styled.div`
   ${({ theme }) => `

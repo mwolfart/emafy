@@ -1,4 +1,4 @@
-import { getArtistAlbums, NextURL } from 'api/data'
+import { getArtistAlbums } from 'api/data/artists'
 import { BeatLoader } from 'components/loader'
 import { ArtistBanner } from 'components/media/artist/banner/banner'
 import { MediaMenu } from 'components/media/menu/menu'
@@ -10,6 +10,7 @@ import { useCallback, VFC } from 'react'
 import { RouteComponentProps } from 'react-router'
 import { strings } from 'strings'
 import styled from 'styled-components'
+import { NextURL } from 'types/api/apiData'
 
 interface MatchParams {
   id: string

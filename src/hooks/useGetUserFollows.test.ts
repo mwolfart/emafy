@@ -1,17 +1,17 @@
 import { act, renderHook } from '@testing-library/react-hooks'
 import { artists as mockedArtists } from 'fixtures/artists'
 import { useGetUserFollows } from './useGetUserFollows'
-import * as Api from 'api/data'
+import * as ApiOwn from 'api/data/own'
 import faker from 'faker'
 
 describe('Get User Follows hook', () => {
   test('should init hook correctly', async () => {
-    jest.spyOn(Api, 'getOwnFollowedUsers').mockResolvedValue({
+    jest.spyOn(ApiOwn, 'getOwnFollowedUsers').mockResolvedValue({
       entities: mockedArtists,
       next: null,
       total: mockedArtists.length,
     })
-    jest.spyOn(Api, 'checkIfOwnFollowsArtist').mockResolvedValue(true)
+    jest.spyOn(ApiOwn, 'checkIfOwnFollowsArtist').mockResolvedValue(true)
 
     const { result } = renderHook(() => useGetUserFollows())
     expect(result.current.isLoading).toBe(true)
@@ -30,14 +30,14 @@ describe('Get User Follows hook', () => {
     const artistsFirstHalf = mockedArtists.slice(0, artistsHalfLength)
     const artistsSecondHalf = mockedArtists.slice(artistsHalfLength)
 
-    jest.spyOn(Api, 'getOwnFollowedUsers').mockImplementation((nextURL) =>
+    jest.spyOn(ApiOwn, 'getOwnFollowedUsers').mockImplementation((nextURL) =>
       Promise.resolve({
         entities: nextURL ? artistsSecondHalf : artistsFirstHalf,
         next: nextURL ? null : next,
         total: mockedArtists.length,
       }),
     )
-    jest.spyOn(Api, 'checkIfOwnFollowsArtist').mockResolvedValue(true)
+    jest.spyOn(ApiOwn, 'checkIfOwnFollowsArtist').mockResolvedValue(true)
 
     const { result } = renderHook(() => useGetUserFollows())
     await act(() => new Promise(setImmediate))

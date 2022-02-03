@@ -7,7 +7,7 @@ import { ViewArtist } from './viewArtist'
 import { createMemoryHistory, createLocation } from 'history'
 import { detailedArtist as mockedDetailedArtist } from 'fixtures/detailedArtist'
 import { strings } from 'strings'
-import * as Api from 'api/data'
+import * as ApiOwn from 'api/data/own'
 
 jest.mock('hooks/useGetMediaList', () => ({
   useGetMediaList: () => ({
@@ -58,7 +58,7 @@ describe('View Artist', () => {
   })
 
   it('clicking in follow button should toggle following artist', () => {
-    const spy = jest.spyOn(Api, 'unfollowArtist').mockResolvedValue('1')
+    const spy = jest.spyOn(ApiOwn, 'unfollowArtist').mockResolvedValue('1')
     const btnElement = screen.getByRole('button', {
       name: strings.scenes.artistDetail.unfollow,
     })

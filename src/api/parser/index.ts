@@ -1,4 +1,14 @@
 import {
+  RawAlbum,
+  RawAlbumTrack,
+  RawArtist,
+  RawPlaylist,
+  RawTrack,
+  RawUser,
+  SavedAlbum,
+  SavedTrack,
+} from 'types/api/apiMedia'
+import {
   Album,
   Song,
   SimpleArtist,
@@ -7,16 +17,6 @@ import {
   User,
   Playlist,
 } from 'types/media'
-import {
-  RawAlbum,
-  RawTrack,
-  RawArtist,
-  SavedAlbum,
-  SavedTrack,
-  RawAlbumTrack,
-  RawUser,
-  RawPlaylist,
-} from 'types/apiMedia'
 
 interface AlbumTrack extends Omit<RawTrack, 'album'> {
   album: Album

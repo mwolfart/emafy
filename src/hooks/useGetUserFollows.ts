@@ -1,5 +1,6 @@
-import { checkIfOwnFollowsArtist, getOwnFollowedUsers, NextURL } from 'api/data'
+import { checkIfOwnFollowsArtist, getOwnFollowedUsers } from 'api/data/own'
 import { useEffect, useState } from 'react'
+import { NextURL } from 'types/api/apiData'
 import { SimpleArtist } from 'types/media'
 import { MediaListQuery } from 'types/mediaQuery'
 

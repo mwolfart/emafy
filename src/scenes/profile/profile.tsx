@@ -1,7 +1,5 @@
-import { getOwnSavedSongs } from 'api/data'
 import { VFC } from 'react'
 import styled from 'styled-components'
-
 import { Song, User } from 'types/media'
 import { ProfileCard } from 'components/profile/card/card'
 import { FollowingList } from 'components/profile/followingList/followingList'
@@ -9,6 +7,7 @@ import { ContainerFlexRow } from 'components/ui'
 import { useGetMediaList } from 'hooks/useGetMediaList'
 import { BeatLoader } from 'components/loader'
 import { useGetUserFollows } from 'hooks/useGetUserFollows'
+import { getOwnSavedSongs } from 'api/data/own'
 
 type Props = {
   user: User

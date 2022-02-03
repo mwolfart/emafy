@@ -2,8 +2,8 @@ import {
   getArtist,
   getArtistTopTracks,
   getArtistRelatedArtists,
-  checkIfOwnFollowsArtist,
-} from 'api/data'
+} from 'api/data/artists'
+import { checkIfOwnFollowsArtist } from 'api/data/own'
 import { cancellableRequest } from 'api/utils'
 import { useEffect, useState } from 'react'
 import { DetailedArtist, MediaType } from 'types/media'
