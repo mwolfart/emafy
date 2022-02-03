@@ -1,6 +1,6 @@
-import { MediaListResponse, NextURL } from 'api/data'
 import { useEffect, useState } from 'react'
 import { strings } from 'strings'
+import { NextURL, MediaListResponse } from 'types/api/apiData'
 import { MediaListQuery } from 'types/mediaQuery'
 import { cancellableRequest } from '../api/utils'
 

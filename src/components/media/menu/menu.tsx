@@ -1,4 +1,3 @@
-import { NextURL } from 'api/data'
 import { useState, VFC } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import { strings } from 'strings'
@@ -8,6 +7,7 @@ import { ToggleDescriptor } from 'components/ui'
 import { BeatLoader } from 'components/loader'
 import { MediaExtraProps } from 'types/mediaExtraProps'
 import { MediaMenuItem } from 'components/media/menu/item/item'
+import { NextURL } from 'types/api/apiData'
 
 type Props = {
   mediaList: Media[]

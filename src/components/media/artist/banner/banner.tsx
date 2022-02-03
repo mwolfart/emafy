@@ -1,4 +1,4 @@
-import { unfollowArtist, followArtist } from 'api/data'
+import { unfollowArtist, followArtist } from 'api/data/own'
 import { IconButton } from 'components/ui'
 import { SubtitleExtraLarge, TitleExtraLarge } from 'components/ui/heading'
 import { VFC } from 'react'

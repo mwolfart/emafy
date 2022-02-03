@@ -1,4 +1,3 @@
-import { Album } from 'types/media'
 import { useCallback, VFC } from 'react'
 import {
   ContainerFlexRow,
@@ -9,10 +8,12 @@ import {
 import InfiniteScroll from 'react-infinite-scroll-component'
 import styled from 'styled-components'
 import { BeatLoader } from 'components/loader'
-import { getAlbumTracks, NextURL } from 'api/data'
 import { formatDuration, formatTrackNumber } from 'utils/utils'
 import { useGetMediaList } from 'hooks/useGetMediaList'
 import { strings } from 'strings'
+import { getAlbumTracks } from 'api/data/albums'
+import { NextURL } from 'types/api/apiData'
+import { Album } from 'types/media'
 
 type Props = {
   albumInfo: Album

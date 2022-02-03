@@ -15,12 +15,12 @@ import { Sidebar } from 'components/navigation/sidebar/sidebar'
 import { Topbar } from 'components/navigation/topbar/topbar'
 import { Profile } from 'scenes/profile/profile'
 import { User } from 'types/media'
-import { getOwnProfile } from 'api/data'
 import { cancellableRequest } from 'api/utils'
 import { BeatLoader } from 'components/loader'
 import { defaultTheme } from 'theme'
 import { MyPlaylists } from 'scenes/myPlaylists/myPlaylists'
 import { ViewArtist } from 'scenes/viewArtist/viewArtist'
+import { getOwnProfile } from 'api/data/own'
 
 type StyledProps = {
   isLoggedIn: boolean

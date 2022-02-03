@@ -2,8 +2,8 @@ import axios, { AxiosResponse } from 'axios'
 import querystring from 'querystring'
 import { strings } from 'strings'
 import { Nullable } from 'types/global'
-import { GRANT_TYPE } from './grantType.enum'
-import { LOCAL_STORAGE } from './localStorage.enum'
+import { GRANT_TYPE } from './enum/grantType.enum'
+import { LOCAL_STORAGE } from './enum/localStorage.enum'
 
 type AuthorizeResponse = {
   code: Nullable<string>

@@ -1,5 +1,4 @@
 import { useState, VFC } from 'react'
-import { getOwnSavedAlbums } from 'api/data'
 import { useGetMediaList } from 'hooks/useGetMediaList'
 import { Album, isAlbum, Media } from 'types/media'
 import { strings } from 'strings'
@@ -8,6 +7,7 @@ import { MediaExtraProps } from 'types/mediaExtraProps'
 import { Headline } from 'components/ui'
 import styled from 'styled-components'
 import { MediaMenu } from 'components/media/menu/menu'
+import { getOwnSavedAlbums } from 'api/data/own'
 
 const Wrapper = styled.div`
   ${({ theme }) => `
