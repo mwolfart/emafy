@@ -1,26 +1,20 @@
 import './App.css'
 import '@fortawesome/fontawesome-free/css/fontawesome.min.css'
 import '@fortawesome/fontawesome-free/css/solid.min.css'
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
-import { LoginScene } from 'scenes/login/login'
+import { BrowserRouter } from 'react-router-dom'
 import styled, { createGlobalStyle, ThemeProvider } from 'styled-components'
-import { SavedAlbums } from 'scenes/savedAlbums/savedAlbums'
 import { createBrowserHistory } from 'history'
 import { useEffect, useState } from 'react'
-import { ProtectedRoute } from 'components/protectedRoute/protectedRoute'
 import { getAuthParamsFromURI } from 'api/credentials'
-import { SavedArtists } from 'scenes/savedArtists/savedArtists'
-import { SavedSongs } from 'scenes/savedSongs/savedSongs'
 import { Sidebar } from 'components/navigation/sidebar/sidebar'
 import { Topbar } from 'components/navigation/topbar/topbar'
-import { Profile } from 'scenes/profile/profile'
 import { User } from 'types/media'
 import { cancellableRequest } from 'api/utils'
 import { BeatLoader } from 'components/loader'
 import { defaultTheme } from 'theme'
-import { MyPlaylists } from 'scenes/myPlaylists/myPlaylists'
-import { ViewArtist } from 'scenes/viewArtist/viewArtist'
 import { getOwnProfile } from 'api/data/own'
+import { PageDisplayer } from 'components/routing/pageDisplayer/pageDisplayer'
+import { emptyUser } from 'utils/constants'
 
 type StyledProps = {
   isLoggedIn: boolean
@@ -57,20 +51,6 @@ const ContentWrapper = styled.div`
   `}
 `
 
-const MainScreen = styled.div<StyledProps>`
-  ${({ isLoggedIn, theme }) => `
-    ${isLoggedIn && `padding-left: ${theme.sidebarWidth};`}
-    width: ${isLoggedIn ? `calc(100% - ${theme.sidebarWidth})` : `100%`};
-    background-color: ${theme.palette.colorBackground};
-    overflow: hidden;
-
-    @media (max-width: 576px) {
-      padding-left: 0;
-      width: 100%;
-    }
-  `}
-`
-
 const App = (): JSX.Element => {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
 
@@ -82,14 +62,6 @@ const App = (): JSX.Element => {
   const history = createBrowserHistory()
   !isLoggedIn && history.push(destinationPath)
 
-  const emptyUser = {
-    country: '',
-    name: '',
-    email: '',
-    id: '',
-    images: [],
-    followerCount: 0,
-  }
   const [loggedUser, setLoggedUser] = useState<User>(emptyUser)
   const [isLoading, setIsLoading] = useState<boolean>(true)
 
@@ -120,44 +92,11 @@ const App = (): JSX.Element => {
             </HeaderWrapper>
             <ContentWrapper>
               {isLoggedIn && <Sidebar />}
-              <MainScreen isLoggedIn={isLoggedIn}>
-                <Switch>
-                  <ProtectedRoute
-                    isLoggedIn={isLoggedIn}
-                    path="/saved-albums"
-                    component={SavedAlbums}
-                  />
-                  <ProtectedRoute
-                    isLoggedIn={isLoggedIn}
-                    path="/saved-artists"
-                    component={SavedArtists}
-                  />
-                  <ProtectedRoute
-                    isLoggedIn={isLoggedIn}
-                    path="/saved-songs"
-                    component={SavedSongs}
-                  />
-                  <ProtectedRoute
-                    isLoggedIn={isLoggedIn}
-                    path="/my-playlists"
-                    component={MyPlaylists}
-                  />
-                  <ProtectedRoute
-                    isLoggedIn={isLoggedIn}
-                    path="/me"
-                    component={() => <Profile user={loggedUser} />}
-                  />
-                  <ProtectedRoute
-                    isLoggedIn={isLoggedIn}
-                    path="/artist/:id"
-                    component={ViewArtist}
-                  />
-                  <Route
-                    path="/login"
-                    component={() => <LoginScene onLogin={setIsLoggedIn} />}
-                  />
-                </Switch>
-              </MainScreen>
+              <PageDisplayer
+                isLoggedIn={isLoggedIn}
+                setIsLoggedIn={setIsLoggedIn}
+                loggedUser={loggedUser}
+              />
             </ContentWrapper>
           </Wrapper>
         )}
