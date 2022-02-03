@@ -3,7 +3,7 @@ import { MediaType, Playlist } from 'types/media'
 
 let nextId = 0
 
-export let playlists: Playlist[] = []
+export const playlists: Playlist[] = []
 for (let i = 0; i < 10; i++) {
   playlists.push({
     id: (nextId++).toString(),

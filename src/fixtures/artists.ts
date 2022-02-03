@@ -3,7 +3,7 @@ import { MediaType, SimpleArtist } from 'types/media'
 
 let nextId = 0
 
-export let artists: SimpleArtist[] = []
+export const artists: SimpleArtist[] = []
 for (let i = 0; i < 10; i++) {
   artists.push({
     id: (nextId++).toString(),

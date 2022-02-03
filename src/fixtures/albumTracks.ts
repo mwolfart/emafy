@@ -5,7 +5,7 @@ let nextId = 0
 const artistId = faker.datatype.number().toString()
 const artistName = faker.name.findName()
 
-export let albumTracks: Song[] = []
+export const albumTracks: Song[] = []
 for (let i = 0; i < 10; i++) {
   albumTracks.push({
     id: (nextId++).toString(),
