@@ -6,7 +6,7 @@ import {
   Rectangle,
   IconButton,
 } from 'components/ui'
-import { ContainerFlexRow } from 'components/ui/container'
+import { ContainerFlexRow } from 'components/ui/container/container'
 import { VFC } from 'react'
 import styled from 'styled-components'
 

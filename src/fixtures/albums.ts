@@ -3,7 +3,7 @@ import faker from 'faker'
 
 let nextId = 0
 
-export let albums: Album[] = []
+export const albums: Album[] = []
 for (let i = 0; i < 10; i++) {
   const noImageRandomSelector = Math.random() * 10 <= 1
 

@@ -2,7 +2,12 @@ import { render, screen } from '@testing-library/react'
 import { ThemeProvider } from 'styled-components'
 import { defaultTheme } from 'theme'
 import faker from 'faker'
-import { SubtitleLarge, SubtitleNormal, TitleLarge, TitleNormal } from './index'
+import {
+  SubtitleLarge,
+  SubtitleNormal,
+  TitleLarge,
+  TitleNormal,
+} from '../index'
 
 describe('Heading', () => {
   it('renders components and props correctly', () => {

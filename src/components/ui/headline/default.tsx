@@ -1,7 +1,7 @@
 import { VFC } from 'react'
 import styled from 'styled-components'
 
-import { ContainerFlexCol } from '../container'
+import { ContainerFlexCol } from '../container/container'
 
 type Props = {
   title: string
