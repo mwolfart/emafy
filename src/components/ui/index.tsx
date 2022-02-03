@@ -1,4 +1,4 @@
-export { Canvas } from './canvas'
+export { Canvas } from './canvas/canvas'
 
 export { Button } from './button/default'
 export { CleanButton } from './button/clean'
@@ -11,12 +11,12 @@ export { IconHeadline } from './headline/icon'
 export { Rectangle } from './rectangle/default'
 export { ModalRectangle } from './rectangle/modal'
 
-export { TitleLarge } from './heading'
-export { SubtitleLarge } from './heading'
-export { TitleNormal } from './heading'
-export { SubtitleNormal } from './heading'
+export { TitleLarge } from './heading/heading'
+export { SubtitleLarge } from './heading/heading'
+export { TitleNormal } from './heading/heading'
+export { SubtitleNormal } from './heading/heading'
 
-export { ContainerFlexCol } from './container'
-export { ContainerFlexRow } from './container'
+export { ContainerFlexCol } from './container/container'
+export { ContainerFlexRow } from './container/container'
 
-export { Avatar } from './avatar'
+export { Avatar } from './avatar/avatar'

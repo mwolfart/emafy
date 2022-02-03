@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react'
 import { ThemeProvider } from 'styled-components'
 import { defaultTheme } from 'theme'
 import faker from 'faker'
-import { Canvas } from './index'
+import { Canvas } from '../index'
 
 describe('Canvas', () => {
   it('renders component and props correctly', () => {

@@ -1,6 +1,9 @@
 import { unfollowArtist, followArtist } from 'api/data/own'
 import { IconButton } from 'components/ui'
-import { SubtitleExtraLarge, TitleExtraLarge } from 'components/ui/heading'
+import {
+  SubtitleExtraLarge,
+  TitleExtraLarge,
+} from 'components/ui/heading/heading'
 import { VFC } from 'react'
 import { strings } from 'strings'
 import styled from 'styled-components'
