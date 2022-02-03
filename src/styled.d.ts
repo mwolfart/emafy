@@ -51,6 +51,9 @@ declare module 'styled-components' {
     imageSizeIcon: string
     imageSizeSmall: string
     imageSizeMedium: string
+    sidebarIconBig: string
+    sidebarIconMedium: string
+    sidebarIconSmall: string
     lineHeightSimple: string
     divSpacingSmall: string
     divSpacingMedium: string

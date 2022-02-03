@@ -8,10 +8,6 @@ type Props = {
   icon: string
 }
 
-type StyledProps = {
-  iconSize: string
-}
-
 const Wrapper = styled.div`
   ${({ theme }) => `
     display: flex;
@@ -27,38 +23,51 @@ const Wrapper = styled.div`
   `}
 `
 
-const IconBackground = styled.div<StyledProps>`
-  ${({ theme, iconSize }) => `
-    border-radius: ${iconSize};
+const IconBackground = styled.div`
+  ${({ theme }) => `
+    border-radius: ${theme.sidebarIconBig};
     background-image: linear-gradient(
         45deg,
         ${theme?.palette.colorPrimary},
         ${theme?.palette.colorButtonIntermed} 66%,
         ${theme?.palette.colorSecondary}
       );
-    text-align: center;
-    vertical-aling: middle;
+    justify-content: center;
+    place-self: center;
+    align-items: center;
+    display: flex;
     padding: ${theme.divSpacingSmall};
     color: ${theme.palette.colorBackground};
-    width: ${iconSize};
-    height: ${iconSize};
+    width: ${theme.sidebarIconBig};
+    height: ${theme.sidebarIconBig};
+
+    @media (max-height: 900px) {
+      border-radius: ${theme.sidebarIconMedium};
+      width: ${theme.sidebarIconMedium};
+      height: ${theme.sidebarIconMedium};
+    }
+
+    @media (max-height: 800px) {
+      border-radius: ${theme.sidebarIconSmall};
+      width: ${theme.sidebarIconSmall};
+      height: ${theme.sidebarIconSmall};
+    }
   `}
 `
 
-const CenteredIcon = styled.i<StyledProps>`
-  ${({ theme, iconSize }) => `
-    line-height: ${iconSize};
+const CenteredIcon = styled.i`
+  ${({ theme }) => `
+    line-height: ${theme.sidebarIconBig};
   `}
 `
 
 export const SidebarButton: VFC<Props> = ({ title, path, icon }) => {
   const iconClass = `fa fa-lg fa-fw ${icon}`
-  const iconSize = '27px'
   return (
     <RouterLink to={path}>
       <Wrapper>
-        <IconBackground iconSize={iconSize}>
-          <CenteredIcon className={iconClass} iconSize={iconSize} />
+        <IconBackground>
+          <CenteredIcon className={iconClass} />
         </IconBackground>
         {title}
       </Wrapper>
