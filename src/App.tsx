@@ -15,6 +15,7 @@ import { defaultTheme } from 'theme'
 import { getOwnProfile } from 'api/data/own'
 import { PageDisplayer } from 'components/routing/pageDisplayer/pageDisplayer'
 import { emptyUser } from 'utils/constants'
+import { Player } from 'components/player/player'
 
 type StyledProps = {
   isLoggedIn: boolean
@@ -48,6 +49,13 @@ const ContentWrapper = styled.div`
     flex-direction: row;
     width: 100vw;
     height: calc(100% - ${theme.topbarHeight});
+  `}
+`
+
+const FooterWrapper = styled.div`
+  ${({ theme }) => `
+    position: relative;
+    width: 100vw;
   `}
 `
 
@@ -98,6 +106,9 @@ const App = (): JSX.Element => {
                 loggedUser={loggedUser}
               />
             </ContentWrapper>
+            <FooterWrapper>
+              <Player />
+            </FooterWrapper>
           </Wrapper>
         )}
       </BrowserRouter>
