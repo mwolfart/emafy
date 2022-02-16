@@ -15,7 +15,7 @@ import { defaultTheme } from 'theme'
 import { getOwnProfile } from 'api/data/own'
 import { PageDisplayer } from 'components/routing/pageDisplayer/pageDisplayer'
 import { emptyUser } from 'utils/constants'
-import { Player } from 'components/player/player'
+import { PlayerComponent } from 'components/player/player'
 
 type StyledProps = {
   isLoggedIn: boolean
@@ -106,9 +106,7 @@ const App = (): JSX.Element => {
                 loggedUser={loggedUser}
               />
             </ContentWrapper>
-            <FooterWrapper>
-              <Player />
-            </FooterWrapper>
+            <FooterWrapper>{isLoggedIn && <PlayerComponent />}</FooterWrapper>
           </Wrapper>
         )}
       </BrowserRouter>

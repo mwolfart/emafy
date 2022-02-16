@@ -17,7 +17,7 @@ export const renderSubTitle = (mediaInfo: Media): string => {
     return artistListToString(mediaInfo.artists)
   }
   if (isArtist(mediaInfo) && mediaInfo.genres.length > 0) {
-    return genreListToString(mediaInfo.genres)
+    return nameListToString(mediaInfo.genres)
   }
   return ''
 }
@@ -27,10 +27,10 @@ export const artistListToString = (artistList: Media[]): string =>
     .map((artist: Media) => artist.name)
     .reduce((accum: string, name: string) => `${accum}, ${name}`)
 
-export const genreListToString = (genreList: string[]): string => {
-  const capitalizedGenres = genreList.map((genre: string) => capitalize(genre))
-  return capitalizedGenres.reduce(
-    (accum: string, genre: string) => `${accum}, ${genre}`,
+export const nameListToString = (nameList: string[]): string => {
+  const capitalizedNames = nameList.map((name: string) => capitalize(name))
+  return capitalizedNames.reduce(
+    (accum: string, name: string) => `${accum}, ${name}`,
   )
 }
 

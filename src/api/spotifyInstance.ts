@@ -40,16 +40,21 @@ const instance = axios.create({
 const spotifyInstance = <T>(
   url: string,
   method: Method,
-  otherParams?: { [key: string]: string },
+  otherQueryParams?: { [key: string]: string },
+  bodyParams?: unknown,
 ): Promise<AxiosResponse<T>> => {
   switch (method) {
     case Method.PUT:
-      return instance.put(url, {}, createRequestParams(otherParams))
+      return instance.put(
+        url,
+        bodyParams || {},
+        createRequestParams(otherQueryParams),
+      )
     case Method.DELETE:
-      return instance.delete(url, createRequestParams(otherParams))
+      return instance.delete(url, createRequestParams(otherQueryParams))
     case Method.GET:
     default:
-      return instance.get(url, createRequestParams(otherParams))
+      return instance.get(url, createRequestParams(otherQueryParams))
   }
 }
 

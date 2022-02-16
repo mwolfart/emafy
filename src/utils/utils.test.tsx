@@ -5,7 +5,7 @@ import {
   capitalize,
   formatDuration,
   formatTrackNumber,
-  genreListToString,
+  nameListToString,
   renderSubTitle,
 } from './utils'
 
@@ -25,7 +25,7 @@ describe('ArtistListToString', () => {
 
 describe('GenreListToString', () => {
   it('GenreListToString produces correct output for artist', () => {
-    const result = genreListToString(artist.genres)
+    const result = nameListToString(artist.genres)
     expect(result).toBe(
       `${artist.genres[0]}, ${artist.genres[1]}, ${artist.genres[2]}`,
     )

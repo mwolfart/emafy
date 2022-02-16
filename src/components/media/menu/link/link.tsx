@@ -91,6 +91,6 @@ export const MediaLink: VFC<Props> = ({
         extraProps.mediaSnippetOpenCallback(mediaInfo)
       return <SimpleLink onClick={clickCallback}>{mediaTile}</SimpleLink>
     default:
-      return <>{mediaTile}</>
+      return <div onClick={() => {}}>{mediaTile}</div>
   }
 }
