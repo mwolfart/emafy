@@ -11,13 +11,29 @@ import { PlayerButton } from './playerButton'
 
 type Props = {}
 
-const Wrapper = styled.div`
+type StyledProps = {
+  trackProgress: number
+}
+
+const Wrapper = styled.div.attrs<StyledProps>(({ trackProgress }) => ({
+  style: {},
+}))`
   ${({ theme }) => `
     display: flex;
     flex-direction: row;
     background-color: white;
     align-items: center;
     justify-content: center;
+
+    &:after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: ${trackProgress * 100}%;
+      height: 3px;
+      background-color: red;
+    } 
   `}
 `
 
@@ -40,6 +56,8 @@ export const PlayerComponent: VFC<Props> = () => {
   const [isLoading, setIsLoading] = useState(true)
   const [currentTrack, setCurrentTrack] = useState('')
   const [currentArtist, setCurrentArtist] = useState('')
+  const [trackProgress, setTrackProgress] = useState(0)
+  const [trackDuration, setTrackDuration] = useState(0)
 
   useEffect(() => {
     const stateChangeCallback = (state: Nullable<WebPlaybackState>): void => {
@@ -51,10 +69,21 @@ export const PlayerComponent: VFC<Props> = () => {
           (artist) => artist.name,
         )
         setCurrentArtist(nameListToString(artistNames))
+        setTrackDuration(state.duration)
+        setTrackProgress(state.position)
       }
     }
     setPlaybackSDK(initPlaybackSDK(stateChangeCallback))
   }, [])
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (isPlaying) {
+        setTrackProgress(trackProgress + 1000)
+      }
+    }, 1000)
+    return () => clearInterval(interval)
+  }, [trackProgress, isPlaying])
 
   const skipToPrevious = (): void => {
     playbackSDK.previousTrack()
@@ -74,11 +103,11 @@ export const PlayerComponent: VFC<Props> = () => {
   }
 
   return isLoading ? (
-    <Wrapper>
+    <Wrapper trackProgress={0}>
       <BeatLoader />
     </Wrapper>
   ) : (
-    <Wrapper>
+    <Wrapper trackProgress={trackProgress / trackDuration}>
       <PlayerButton iconClass="fa-list" onClick={() => {}} isLarge={false} />
       <TrackInfoContainer>
         <FooterHeadline title={currentTrack} subtitle={currentArtist} />

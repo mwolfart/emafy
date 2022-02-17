@@ -25,6 +25,7 @@ export type WebPlaybackState = {
   }
   paused: boolean
   position: number
+  duration: number
   repeat_mode: number
   shuffle: boolean
   track_window: {
