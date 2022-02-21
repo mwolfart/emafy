@@ -22,6 +22,7 @@ interface IPalette {
   colorLinkBackground: string
   colorLinkBackgroundHover: string
   colorImageBackground: string
+  colorTrackProgress: string
 }
 
 declare module 'styled-components' {

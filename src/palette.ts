@@ -22,4 +22,5 @@ export const mainPalette: IPalette = {
   colorLinkBackground: '#e5e5e5',
   colorLinkBackgroundHover: '#dadada',
   colorImageBackground: '#cccccc',
+  colorTrackProgress: '#F43738',
 }

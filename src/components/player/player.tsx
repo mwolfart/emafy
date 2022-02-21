@@ -8,6 +8,7 @@ import { emptyPlackbackSDK } from 'utils/constants'
 import { initPlaybackSDK } from 'utils/initPlaybackSDK'
 import { nameListToString } from 'utils/utils'
 import { PlayerButton } from './playerButton'
+import { VolumeSlider } from './volumeSlider'
 
 type Props = {}
 
@@ -15,10 +16,8 @@ type StyledProps = {
   trackProgress: number
 }
 
-const Wrapper = styled.div.attrs<StyledProps>(({ trackProgress }) => ({
-  style: {},
-}))`
-  ${({ theme }) => `
+const Wrapper = styled.div<StyledProps>`
+  ${({ trackProgress, theme }) => `
     display: flex;
     flex-direction: row;
     background-color: white;
@@ -26,13 +25,17 @@ const Wrapper = styled.div.attrs<StyledProps>(({ trackProgress }) => ({
     justify-content: center;
 
     &:after {
+      transition: width 0.5s;
       content: "";
       position: absolute;
       top: 0;
       left: 0;
       width: ${trackProgress * 100}%;
       height: 3px;
-      background-color: red;
+      background: linear-gradient(50deg, 
+        ${theme.palette.colorPrimary} 60%, 
+        ${theme.palette.colorSecondary} 100%), 
+        ${theme.palette.colorTrackProgress};
     } 
   `}
 `
@@ -50,6 +53,21 @@ const TrackInfoContainer = styled.div`
   left: 80px;
 `
 
+type PlayerVolumeSnippetProps = {
+  shown: boolean
+}
+
+const PlayerVolumeSnippet = styled.div<PlayerVolumeSnippetProps>`
+  ${({ shown, theme }) => `
+    display: ${shown ? 'block' : 'none'};
+    position: absolute;
+    right: 100px;
+    box-shadow: ${theme?.shadowDimensionsDefault};
+    padding: ${theme?.divSpacingMedium} ${theme.divSpacingBig};
+    border-radius: 30px;
+  `}
+`
+
 export const PlayerComponent: VFC<Props> = () => {
   const [playbackSDK, setPlaybackSDK] = useState(emptyPlackbackSDK)
   const [isPlaying, setIsPlaying] = useState(false)
@@ -58,6 +76,7 @@ export const PlayerComponent: VFC<Props> = () => {
   const [currentArtist, setCurrentArtist] = useState('')
   const [trackProgress, setTrackProgress] = useState(0)
   const [trackDuration, setTrackDuration] = useState(0)
+  const [showVolumeControls, setShowVolumeControls] = useState(false)
 
   useEffect(() => {
     const stateChangeCallback = (state: Nullable<WebPlaybackState>): void => {
@@ -86,7 +105,11 @@ export const PlayerComponent: VFC<Props> = () => {
   }, [trackProgress, isPlaying])
 
   const skipToPrevious = (): void => {
-    playbackSDK.previousTrack()
+    if (trackProgress < 2000) {
+      playbackSDK.previousTrack()
+    } else {
+      playbackSDK.seek(0)
+    }
   }
   const skipToNext = (): void => {
     playbackSDK.nextTrack()
@@ -95,11 +118,8 @@ export const PlayerComponent: VFC<Props> = () => {
     setIsPlaying(!isPlaying)
     playbackSDK.togglePlay()
   }
-  const increaseVolume = async (): Promise<void> => {
-    const currentVolume = await playbackSDK.getVolume()
-    const volumeStep = 0.05
-    const newVolume = Math.min(currentVolume + volumeStep, 1.0)
-    playbackSDK.setVolume(newVolume)
+  const setVolume = (value: number): void => {
+    playbackSDK.setVolume(value)
   }
 
   return isLoading ? (
@@ -131,9 +151,12 @@ export const PlayerComponent: VFC<Props> = () => {
       </MusicControlWrapper>
       <PlayerButton
         iconClass="fa-volume-up"
-        onClick={increaseVolume}
+        onClick={() => setShowVolumeControls(!showVolumeControls)}
         isLarge={false}
       />
+      <PlayerVolumeSnippet shown={showVolumeControls}>
+        <VolumeSlider setVolume={setVolume} />
+      </PlayerVolumeSnippet>
     </Wrapper>
   )
 }
