@@ -69,3 +69,10 @@ export const formatDuration = (durationMs: number): string => {
 
 export const formatTrackNumber = (number: number): string =>
   number.toString().padStart(2, '0')
+
+export const abbreviateText = (text: string, maxChars: number): string => {
+  if (text.length <= maxChars) {
+    return text
+  }
+  return text.substring(0, maxChars - 3).concat('...')
+}

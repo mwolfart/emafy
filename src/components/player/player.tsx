@@ -6,7 +6,7 @@ import { Nullable } from 'types/global'
 import { WebPlaybackState } from 'types/playbackSDK'
 import { emptyPlackbackSDK } from 'utils/constants'
 import { initPlaybackSDK } from 'utils/initPlaybackSDK'
-import { nameListToString } from 'utils/utils'
+import { abbreviateText, nameListToString } from 'utils/utils'
 import { PlayerButton } from './playerButton'
 import { PlayerVolumeSnippet } from './playerVolumeSnippet'
 
@@ -68,11 +68,19 @@ export const PlayerComponent: VFC<Props> = () => {
       if (state != null) {
         setIsLoading(false)
         setIsPlaying(!state.paused)
-        setCurrentTrack(state.track_window.current_track.name)
+        const displayedTrackName = abbreviateText(
+          state.track_window.current_track.name,
+          50,
+        )
+        setCurrentTrack(displayedTrackName)
         const artistNames = state.track_window.current_track.artists.map(
           (artist) => artist.name,
         )
-        setCurrentArtist(nameListToString(artistNames))
+        const displayedArtist = abbreviateText(
+          nameListToString(artistNames),
+          50,
+        )
+        setCurrentArtist(displayedArtist)
         setTrackDuration(state.duration)
         setTrackProgress(state.position)
       }

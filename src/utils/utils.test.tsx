@@ -1,6 +1,7 @@
 import { album } from 'fixtures/album'
 import { artist } from 'fixtures/artist'
 import {
+  abbreviateText,
   artistListToString,
   capitalize,
   formatDuration,
@@ -52,5 +53,15 @@ describe('FormatTrackNumber', () => {
     expect(trackNumberOneDigit).toBe('02')
     const trackNumberTwoDigits = formatTrackNumber(12)
     expect(trackNumberTwoDigits).toBe('12')
+  })
+})
+
+describe('AbbreviateText', () => {
+  it('AbbreviateText produces correct output', () => {
+    const longText = 'this is a long text'
+    const unabbreviatedText = abbreviateText(longText, 50)
+    expect(unabbreviatedText).toEqual(longText)
+    const abbreviatedText = abbreviateText(longText, 10)
+    expect(abbreviatedText).toEqual('this is...')
   })
 })
