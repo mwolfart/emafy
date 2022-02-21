@@ -8,7 +8,7 @@ import { emptyPlackbackSDK } from 'utils/constants'
 import { initPlaybackSDK } from 'utils/initPlaybackSDK'
 import { nameListToString } from 'utils/utils'
 import { PlayerButton } from './playerButton'
-import { VolumeSlider } from './volumeSlider'
+import { PlayerVolumeSnippet } from './playerVolumeSnippet'
 
 type Props = {}
 
@@ -51,21 +51,6 @@ const MusicControlWrapper = styled.div`
 const TrackInfoContainer = styled.div`
   position: absolute;
   left: 80px;
-`
-
-type PlayerVolumeSnippetProps = {
-  shown: boolean
-}
-
-const PlayerVolumeSnippet = styled.div<PlayerVolumeSnippetProps>`
-  ${({ shown, theme }) => `
-    display: ${shown ? 'block' : 'none'};
-    position: absolute;
-    right: 100px;
-    box-shadow: ${theme?.shadowDimensionsDefault};
-    padding: ${theme?.divSpacingMedium} ${theme.divSpacingBig};
-    border-radius: 30px;
-  `}
 `
 
 export const PlayerComponent: VFC<Props> = () => {
@@ -154,9 +139,7 @@ export const PlayerComponent: VFC<Props> = () => {
         onClick={() => setShowVolumeControls(!showVolumeControls)}
         isLarge={false}
       />
-      <PlayerVolumeSnippet shown={showVolumeControls}>
-        <VolumeSlider setVolume={setVolume} />
-      </PlayerVolumeSnippet>
+      <PlayerVolumeSnippet shown={showVolumeControls} setVolume={setVolume} />
     </Wrapper>
   )
 }

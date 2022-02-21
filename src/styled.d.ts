@@ -4,6 +4,7 @@ interface IPalette {
   colorPrimary: string
   colorSecondary: string
   colorTertiary: string
+  colorGray: string
   colorButtonIntermed: string
   colorTextParagraph: string
   colorTextTitle: string

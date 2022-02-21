@@ -2,10 +2,26 @@ import React, { VFC } from 'react'
 import styled from 'styled-components'
 
 type Props = {
+  shown: boolean
   setVolume: (value: number) => void
 }
 
-const Wrapper = styled.div`
+type StyledProps = {
+  shown: boolean
+}
+
+const Wrapper = styled.div<StyledProps>`
+  ${({ shown, theme }) => `
+    display: ${shown ? 'block' : 'none'};
+    position: absolute;
+    right: 100px;
+    box-shadow: ${theme?.shadowDimensionsDefault};
+    padding: ${theme?.divSpacingMedium} ${theme.divSpacingBig};
+    border-radius: 30px;
+  `}
+`
+
+const SliderContainer = styled.div`
   width: 100%;
   margin: 0;
   display: flex;
@@ -28,7 +44,7 @@ const InputSlider = styled.input`
     &::-webkit-slider-runnable-track {
       width: 100%;
       height: 5px;
-      background: grey;
+      background: ${theme.palette.colorGray};
       border: none;
       border-radius: 3px;
       overflow: hidden;
@@ -46,7 +62,7 @@ const InputSlider = styled.input`
     }
 
     &::-moz-range-track {  
-      background-color: grey;
+      background-color: ${theme.palette.colorGray};
     }
 
     &::-moz-range-thumb {
@@ -64,19 +80,21 @@ const InputSlider = styled.input`
     }
 
     &::-ms-fill-upper {  
-      background-color: grey;
+      background-color: ${theme.palette.colorGray};
     }
   `}
 `
 
-export const VolumeSlider: VFC<Props> = ({ setVolume }) => {
+export const PlayerVolumeSnippet: VFC<Props> = ({ shown, setVolume }) => {
   const sliderChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     const newValue = parseFloat(event.target.value) / 100
     setVolume(newValue)
   }
   return (
-    <Wrapper>
-      <InputSlider min="0" max="100" type="range" onChange={sliderChange} />
+    <Wrapper shown={shown}>
+      <SliderContainer>
+        <InputSlider min="0" max="100" type="range" onChange={sliderChange} />
+      </SliderContainer>
     </Wrapper>
   )
 }
