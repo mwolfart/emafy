@@ -1,6 +1,8 @@
 import { SPOTIFY_ROUTE } from 'api/enum/spotifyRoute.enum'
 import { spotifyInstance, Method } from 'api/spotifyInstance'
 import { AxiosResponse } from 'axios'
+import { RawDevice, RawDeviceList } from 'types/api/apiData'
+import { Nullable } from 'types/global'
 
 export const transferPlaybackHere = (deviceId?: string): Promise<boolean> => {
   const route = SPOTIFY_ROUTE.OWN + SPOTIFY_ROUTE.PLAYER
@@ -30,4 +32,25 @@ export const playMedia = (
       uris: [mediaUri],
     },
   )
+}
+
+export const getAvailableDevices = (): Promise<RawDeviceList> => {
+  const route = SPOTIFY_ROUTE.OWN + SPOTIFY_ROUTE.PLAYER_DEVICES
+  return spotifyInstance<RawDeviceList>(route, Method.GET).then(
+    ({ data }) => data,
+  )
+}
+
+export const getActiveDevice = (): Promise<Nullable<RawDevice>> => {
+  return getAvailableDevices().then(({ devices }) => {
+    let activeDevice = null,
+      i = 0
+    while (i < devices.length && !activeDevice) {
+      if (devices[i].is_active) {
+        activeDevice = devices[i]
+      }
+      i++
+    }
+    return activeDevice
+  })
 }

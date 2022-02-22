@@ -14,4 +14,5 @@ export enum SPOTIFY_ROUTE {
   ARTIST_RELATED = 'artists/:id/related-artists',
   PLAYER = 'player',
   PLAYER_PLAY = 'player/play',
+  PLAYER_DEVICES = 'player/devices',
 }

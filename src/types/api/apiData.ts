@@ -21,3 +21,17 @@ export type MediaListResponse<T> = {
   next: NextURL
   total: number
 }
+
+export type RawDevice = {
+  id: string
+  is_active: boolean
+  is_private_session: boolean
+  is_restricted: boolean
+  name: string
+  type: string
+  volume_percent: boolean
+}
+
+export type RawDeviceList = {
+  devices: RawDevice[]
+}
