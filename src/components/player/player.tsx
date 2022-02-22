@@ -5,11 +5,12 @@ import { PlayerContext } from 'contexts/player'
 import { useContext, useEffect, useState, VFC } from 'react'
 import styled from 'styled-components'
 import { Nullable } from 'types/global'
-import { WebPlaybackState } from 'types/playbackSDK'
+import { WebPlaybackState, WebPlaybackTrack } from 'types/playbackSDK'
 import { emptyPlackbackSDK } from 'utils/constants'
 import { initPlaybackSDK } from 'utils/initPlaybackSDK'
 import { abbreviateText, nameListToString } from 'utils/utils'
 import { PlayerButton } from './playerButton'
+import { PlayerUpcomingTracksSnippet } from './playerUpcomingTracksSnippet'
 import { PlayerVolumeSnippet } from './playerVolumeSnippet'
 
 type Props = {}
@@ -59,32 +60,23 @@ export const PlayerComponent: VFC<Props> = () => {
   const [playbackSDK, setPlaybackSDK] = useState(emptyPlackbackSDK)
   const [isPlaying, setIsPlaying] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
-  const [currentTrack, setCurrentTrack] = useState('')
-  const [currentArtist, setCurrentArtist] = useState('')
+  const [currentTrack, setCurrentTrack] =
+    useState<Nullable<WebPlaybackTrack>>(null)
   const [trackProgress, setTrackProgress] = useState(0)
   const [trackDuration, setTrackDuration] = useState(0)
   const [showVolumeControls, setShowVolumeControls] = useState(false)
+  const [upcomingTracks, setUpcomingTracks] = useState<WebPlaybackTrack[]>([])
+  const [showUpcomingTracks, setShowUpcomingTracks] = useState(false)
 
   useEffect(() => {
     const stateChangeCallback = (state: Nullable<WebPlaybackState>): void => {
       if (state != null) {
         setIsLoading(false)
         setIsPlaying(!state.paused)
-        const displayedTrackName = abbreviateText(
-          state.track_window.current_track.name,
-          50,
-        )
-        setCurrentTrack(displayedTrackName)
-        const artistNames = state.track_window.current_track.artists.map(
-          (artist) => artist.name,
-        )
-        const displayedArtist = abbreviateText(
-          nameListToString(artistNames),
-          50,
-        )
-        setCurrentArtist(displayedArtist)
+        setCurrentTrack(state.track_window.current_track)
         setTrackDuration(state.duration)
         setTrackProgress(state.position)
+        setUpcomingTracks(state.track_window.next_tracks)
       }
     }
     setPlaybackSDK(initPlaybackSDK(stateChangeCallback))
@@ -128,15 +120,34 @@ export const PlayerComponent: VFC<Props> = () => {
     }
   }, [playerContext, playbackSDK])
 
+  const displayedTrackName = currentTrack
+    ? abbreviateText(currentTrack.name, 50)
+    : ''
+  const artistNames = currentTrack
+    ? currentTrack.artists.map((artist) => artist.name)
+    : []
+  const displayedArtist = abbreviateText(nameListToString(artistNames), 50)
+
   return isLoading ? (
     <Wrapper trackProgress={0}>
       <BeatLoader />
     </Wrapper>
   ) : (
     <Wrapper trackProgress={trackProgress / trackDuration}>
-      <PlayerButton iconClass="fa-list" onClick={() => {}} isLarge={false} />
+      <PlayerButton
+        iconClass="fa-list"
+        onClick={() => setShowUpcomingTracks(!showUpcomingTracks)}
+        isLarge={false}
+        disabled={currentTrack === null}
+      />
+      {showUpcomingTracks && currentTrack && (
+        <PlayerUpcomingTracksSnippet
+          currentTrack={currentTrack}
+          tracks={upcomingTracks}
+        />
+      )}
       <TrackInfoContainer>
-        <FooterHeadline title={currentTrack} subtitle={currentArtist} />
+        <FooterHeadline title={displayedTrackName} subtitle={displayedArtist} />
       </TrackInfoContainer>
       <MusicControlWrapper>
         <PlayerButton
@@ -160,7 +171,7 @@ export const PlayerComponent: VFC<Props> = () => {
         onClick={() => setShowVolumeControls(!showVolumeControls)}
         isLarge={false}
       />
-      <PlayerVolumeSnippet shown={showVolumeControls} setVolume={setVolume} />
+      {showVolumeControls && <PlayerVolumeSnippet setVolume={setVolume} />}
     </Wrapper>
   )
 }

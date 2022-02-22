@@ -28,6 +28,9 @@ export const artistListToString = (artistList: Media[]): string =>
     .reduce((accum: string, name: string) => `${accum}, ${name}`)
 
 export const nameListToString = (nameList: string[]): string => {
+  if (!nameList.length) {
+    return ''
+  }
   const capitalizedNames = nameList.map((name: string) => capitalize(name))
   return capitalizedNames.reduce(
     (accum: string, name: string) => `${accum}, ${name}`,

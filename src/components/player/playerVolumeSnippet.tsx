@@ -2,17 +2,11 @@ import React, { VFC } from 'react'
 import styled from 'styled-components'
 
 type Props = {
-  shown: boolean
   setVolume: (value: number) => void
 }
 
-type StyledProps = {
-  shown: boolean
-}
-
-const Wrapper = styled.div<StyledProps>`
-  ${({ shown, theme }) => `
-    display: ${shown ? 'block' : 'none'};
+const Wrapper = styled.div`
+  ${({ theme }) => `
     position: absolute;
     right: 100px;
     box-shadow: ${theme?.shadowDimensionsDefault};
@@ -85,13 +79,13 @@ const InputSlider = styled.input`
   `}
 `
 
-export const PlayerVolumeSnippet: VFC<Props> = ({ shown, setVolume }) => {
+export const PlayerVolumeSnippet: VFC<Props> = ({ setVolume }) => {
   const sliderChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     const newValue = parseFloat(event.target.value) / 100
     setVolume(newValue)
   }
   return (
-    <Wrapper shown={shown}>
+    <Wrapper>
       <SliderContainer>
         <InputSlider min="0" max="100" type="range" onChange={sliderChange} />
       </SliderContainer>

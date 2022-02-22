@@ -1,6 +1,11 @@
 import { Nullable } from './global'
 
-type WebPlaybackTrack = {
+export type ArtistReference = {
+  uri: string
+  name: string
+}
+
+export type WebPlaybackTrack = {
   uri: string
   id: string
   type: string
@@ -12,7 +17,7 @@ type WebPlaybackTrack = {
     name: string
     images: Array<{ url: string }>
   }
-  artists: Array<{ uri: string; name: string }>
+  artists: ArtistReference[]
 }
 
 export type WebPlaybackState = {

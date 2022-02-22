@@ -24,8 +24,12 @@ describe('ArtistListToString', () => {
   })
 })
 
-describe('GenreListToString', () => {
-  it('GenreListToString produces correct output for artist', () => {
+describe('NameListToString', () => {
+  it('NameListToString produces correct output for empty array', () => {
+    const result = nameListToString([])
+    expect(result).toBe('')
+  })
+  it('NameListToString produces correct output for artists', () => {
     const result = nameListToString(artist.genres)
     expect(result).toBe(
       `${artist.genres[0]}, ${artist.genres[1]}, ${artist.genres[2]}`,
