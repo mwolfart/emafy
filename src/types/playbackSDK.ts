@@ -36,6 +36,7 @@ export type WebPlaybackState = {
 }
 
 export type PlaybackSDK = {
+  deviceId?: string
   togglePlay: () => Promise<void>
   resume: () => Promise<void>
   pause: () => Promise<void>

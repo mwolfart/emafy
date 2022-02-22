@@ -10,6 +10,7 @@ const initListeners = (
 ): void => {
   playbackSDK.addListener('ready', ({ device_id }) => {
     transferPlaybackHere(device_id)
+    playbackSDK.deviceId = device_id
   })
   playbackSDK.addListener('player_state_changed', (state) => {
     stateChangeCallback(state)

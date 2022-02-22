@@ -1,6 +1,8 @@
+import { playMedia } from 'api/data/playback'
 import { BeatLoader } from 'components/loader'
 import { FooterHeadline } from 'components/ui'
-import { useEffect, useState, VFC } from 'react'
+import { PlayerContext } from 'contexts/player'
+import { useContext, useEffect, useState, VFC } from 'react'
 import styled from 'styled-components'
 import { Nullable } from 'types/global'
 import { WebPlaybackState } from 'types/playbackSDK'
@@ -114,6 +116,17 @@ export const PlayerComponent: VFC<Props> = () => {
   const setVolume = (value: number): void => {
     playbackSDK.setVolume(value)
   }
+
+  const playerContext = useContext(PlayerContext)
+  useEffect(() => {
+    playerContext.playSong = (songId: string) => {
+      if (playbackSDK.deviceId) {
+        const uri = `spotify:track:${songId}`
+        setIsPlaying(true)
+        playMedia(playbackSDK.deviceId, uri)
+      }
+    }
+  }, [playerContext, playbackSDK])
 
   return isLoading ? (
     <Wrapper trackProgress={0}>
