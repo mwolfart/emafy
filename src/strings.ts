@@ -42,6 +42,16 @@ export const strings = {
       },
       followedArtists: 'Followed artists',
     },
+    player: {
+      play: 'Play',
+      pause: 'Pause',
+      next: 'Next track',
+      previous: 'Previous track',
+      queue: 'View songs in queue',
+      volume: 'Adjust volume',
+      nowPlaying: 'Now playing',
+      nextInQueue: 'Songs in queue',
+    },
   },
   hooks: {
     useGetSavedMedia: {

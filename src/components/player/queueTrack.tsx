@@ -26,7 +26,7 @@ const Wrapper = styled.div`
   `}
 `
 
-export const PlayingTrack: VFC<Props> = ({ title, artists }) => {
+export const QueueTrack: VFC<Props> = ({ title, artists }) => {
   const trackName = abbreviateText(title, 50)
   const artistNameList = artists.map((artist) => artist.name)
   const currentTrackArtists = abbreviateText(

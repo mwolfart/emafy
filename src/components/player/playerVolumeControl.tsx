@@ -8,10 +8,10 @@ type Props = {
 const Wrapper = styled.div`
   ${({ theme }) => `
     position: absolute;
-    right: 100px;
-    box-shadow: ${theme?.shadowDimensionsDefault};
-    padding: ${theme?.divSpacingMedium} ${theme.divSpacingBig};
-    border-radius: 30px;
+    right: ${theme.divDistanceMedium};
+    box-shadow: ${theme.shadowDimensionsDefault};
+    padding: ${theme.divSpacingMedium} ${theme.divSpacingBig};
+    border-radius: ${theme.borderRadiusLarge};
   `}
 `
 
@@ -24,11 +24,11 @@ const SliderContainer = styled.div`
 const InputSlider = styled.input`
   ${({ theme }) => `
     width: 100%;
-    height: 5px;
+    height: ${theme.inputSliderHeight};
     outline: none;
     opacity: 0.7;
     overflow: hidden;
-    transition: opacity 0.2s;
+    transition: opacity ${theme.transitionQuick};
     -webkit-appearance: none;
 
     &:hover {
@@ -37,18 +37,18 @@ const InputSlider = styled.input`
 
     &::-webkit-slider-runnable-track {
       width: 100%;
-      height: 5px;
+      height: ${theme.inputSliderHeight};
       background: ${theme.palette.colorGray};
       border: none;
-      border-radius: 3px;
+      border-radius: ${theme.inputSliderBorderRadius};
       overflow: hidden;
     }
 
     &::-webkit-slider-thumb {
       width: 0;
       -webkit-appearance: none;
-      height: 5px;
-      box-shadow: -80px 0 0 80px ${theme.palette.colorPrimary};
+      height: ${theme.inputSliderHeight};
+      box-shadow: ${theme.inputSliderShadow} ${theme.palette.colorPrimary};
     }
 
     &::-moz-range-progress {
@@ -62,9 +62,9 @@ const InputSlider = styled.input`
     &::-moz-range-thumb {
       -webkit-appearance: none;
       -moz-appearance: none;
-      -moz-border-radius: 5px;
-      height: 14px;
-      width: 14px;
+      -moz-border-radius: ${theme.inputSliderHeight};
+      height: ${theme.inputSliderThumbSize};
+      width: ${theme.inputSliderThumbSize};
       background: ${theme.palette.colorPrimary};
       border: none;
     }
@@ -79,7 +79,7 @@ const InputSlider = styled.input`
   `}
 `
 
-export const PlayerVolumeSnippet: VFC<Props> = ({ setVolume }) => {
+export const PlayerVolumeControl: VFC<Props> = ({ setVolume }) => {
   const sliderChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     const newValue = parseFloat(event.target.value) / 100
     setVolume(newValue)

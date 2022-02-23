@@ -3,6 +3,7 @@ import { BeatLoader } from 'components/loader'
 import { FooterHeadline } from 'components/ui'
 import { PlayerContext } from 'contexts/player'
 import { useContext, useEffect, useState, VFC } from 'react'
+import { strings } from 'strings'
 import styled from 'styled-components'
 import { Nullable } from 'types/global'
 import { WebPlaybackState, WebPlaybackTrack } from 'types/playbackSDK'
@@ -10,8 +11,8 @@ import { emptyPlackbackSDK } from 'utils/constants'
 import { initPlaybackSDK } from 'utils/initPlaybackSDK'
 import { abbreviateText, nameListToString } from 'utils/utils'
 import { PlayerButton } from './playerButton'
-import { PlayerUpcomingTracksSnippet } from './playerUpcomingTracksSnippet'
-import { PlayerVolumeSnippet } from './playerVolumeSnippet'
+import { PlayerQueue } from './playerQueue'
+import { PlayerVolumeControl } from './playerVolumeControl'
 
 type Props = {}
 
@@ -23,18 +24,18 @@ const Wrapper = styled.div<StyledProps>`
   ${({ trackProgress, theme }) => `
     display: flex;
     flex-direction: row;
-    background-color: white;
+    background-color: ${theme.palette.colorWhite};
     align-items: center;
     justify-content: center;
 
     &:after {
-      transition: width 0.5s;
       content: "";
+      transition: width ${theme.transitionQuick};
       position: absolute;
       top: 0;
       left: 0;
       width: ${trackProgress * 100}%;
-      height: 3px;
+      height: ${theme.progressBarSize};
       background: linear-gradient(50deg, 
         ${theme.palette.colorPrimary} 60%, 
         ${theme.palette.colorSecondary} 100%), 
@@ -52,8 +53,10 @@ const MusicControlWrapper = styled.div`
 `
 
 const TrackInfoContainer = styled.div`
-  position: absolute;
-  left: 80px;
+  ${({ theme }) => `
+    position: absolute;
+    left: ${theme.divDistanceSmall};
+  `}
 `
 
 export const PlayerComponent: VFC<Props> = () => {
@@ -65,8 +68,8 @@ export const PlayerComponent: VFC<Props> = () => {
   const [trackProgress, setTrackProgress] = useState(0)
   const [trackDuration, setTrackDuration] = useState(0)
   const [showVolumeControls, setShowVolumeControls] = useState(false)
-  const [upcomingTracks, setUpcomingTracks] = useState<WebPlaybackTrack[]>([])
-  const [showUpcomingTracks, setShowUpcomingTracks] = useState(false)
+  const [queueTracks, setQueueTracks] = useState<WebPlaybackTrack[]>([])
+  const [showQueue, setShowQueue] = useState(false)
 
   useEffect(() => {
     const stateChangeCallback = (state: Nullable<WebPlaybackState>): void => {
@@ -76,18 +79,18 @@ export const PlayerComponent: VFC<Props> = () => {
         setCurrentTrack(state.track_window.current_track)
         setTrackDuration(state.duration)
         setTrackProgress(state.position)
-        setUpcomingTracks(state.track_window.next_tracks)
+        setQueueTracks(state.track_window.next_tracks)
       }
     }
     setPlaybackSDK(initPlaybackSDK(stateChangeCallback))
   }, [])
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      if (isPlaying) {
-        setTrackProgress(trackProgress + 1000)
-      }
-    }, 1000)
+    const progressBarUpdateFn = (): void => {
+      isPlaying && setTrackProgress(trackProgress + 1000)
+    }
+
+    const interval = setInterval(progressBarUpdateFn, 1000)
     return () => clearInterval(interval)
   }, [trackProgress, isPlaying])
 
@@ -111,13 +114,15 @@ export const PlayerComponent: VFC<Props> = () => {
 
   const playerContext = useContext(PlayerContext)
   useEffect(() => {
-    playerContext.playSong = (songId: string) => {
+    const playSong = (songId: string): void => {
       if (playbackSDK.deviceId) {
         const uri = `spotify:track:${songId}`
         setIsPlaying(true)
         playMedia(playbackSDK.deviceId, uri)
       }
     }
+
+    playerContext.playSong = playSong
   }, [playerContext, playbackSDK])
 
   const displayedTrackName = currentTrack
@@ -127,24 +132,23 @@ export const PlayerComponent: VFC<Props> = () => {
     ? currentTrack.artists.map((artist) => artist.name)
     : []
   const displayedArtist = abbreviateText(nameListToString(artistNames), 50)
+  const trackProgressPercent = trackProgress / trackDuration
 
   return isLoading ? (
     <Wrapper trackProgress={0}>
       <BeatLoader />
     </Wrapper>
   ) : (
-    <Wrapper trackProgress={trackProgress / trackDuration}>
+    <Wrapper trackProgress={trackProgressPercent}>
       <PlayerButton
         iconClass="fa-list"
-        onClick={() => setShowUpcomingTracks(!showUpcomingTracks)}
+        onClick={() => setShowQueue(!showQueue)}
         isLarge={false}
         disabled={currentTrack === null}
+        ariaLabel={strings.components.player.queue}
       />
-      {showUpcomingTracks && currentTrack && (
-        <PlayerUpcomingTracksSnippet
-          currentTrack={currentTrack}
-          tracks={upcomingTracks}
-        />
+      {showQueue && currentTrack && (
+        <PlayerQueue currentTrack={currentTrack} tracks={queueTracks} />
       )}
       <TrackInfoContainer>
         <FooterHeadline title={displayedTrackName} subtitle={displayedArtist} />
@@ -154,24 +158,32 @@ export const PlayerComponent: VFC<Props> = () => {
           iconClass="fa-step-backward"
           onClick={skipToPrevious}
           isLarge={false}
+          ariaLabel={strings.components.player.previous}
         />
         <PlayerButton
           iconClass={isPlaying ? 'fa-pause' : 'fa-play'}
           onClick={togglePlay}
           isLarge={true}
+          ariaLabel={
+            isPlaying
+              ? strings.components.player.pause
+              : strings.components.player.play
+          }
         />
         <PlayerButton
           iconClass="fa-step-forward"
           onClick={skipToNext}
           isLarge={false}
+          ariaLabel={strings.components.player.next}
         />
       </MusicControlWrapper>
       <PlayerButton
         iconClass="fa-volume-up"
         onClick={() => setShowVolumeControls(!showVolumeControls)}
         isLarge={false}
+        ariaLabel={strings.components.player.volume}
       />
-      {showVolumeControls && <PlayerVolumeSnippet setVolume={setVolume} />}
+      {showVolumeControls && <PlayerVolumeControl setVolume={setVolume} />}
     </Wrapper>
   )
 }

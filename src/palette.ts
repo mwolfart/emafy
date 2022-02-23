@@ -5,7 +5,6 @@ export const mainPalette: IPalette = {
   colorSecondary: '#ee7321',
   colorTertiary: '#d4256240',
   colorButtonIntermed: '#e4305d',
-  colorGray: '#999',
   colorTextParagraph: '#757575',
   colorTextTitle: '#222',
   colorTextTitleLarge: '#eee',
@@ -24,4 +23,6 @@ export const mainPalette: IPalette = {
   colorLinkBackgroundHover: '#dadada',
   colorImageBackground: '#cccccc',
   colorTrackProgress: '#f43738',
+  colorGray: '#999',
+  colorWhite: '#FFF',
 }
