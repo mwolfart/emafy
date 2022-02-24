@@ -14,8 +14,6 @@ import { PlayerButton } from './playerButton'
 import { PlayerQueue } from './playerQueue'
 import { PlayerVolumeControl } from './playerVolumeControl'
 
-type Props = {}
-
 type StyledProps = {
   trackProgress: number
 }
@@ -59,7 +57,7 @@ const TrackInfoContainer = styled.div`
   `}
 `
 
-export const PlayerComponent: VFC<Props> = () => {
+export const PlayerComponent: VFC = () => {
   const [playbackSDK, setPlaybackSDK] = useState(emptyPlackbackSDK)
   const [isPlaying, setIsPlaying] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
@@ -107,9 +105,6 @@ export const PlayerComponent: VFC<Props> = () => {
   const togglePlay = (): void => {
     setIsPlaying(!isPlaying)
     playbackSDK.togglePlay()
-  }
-  const setVolume = (value: number): void => {
-    playbackSDK.setVolume(value)
   }
 
   const playerContext = useContext(PlayerContext)
@@ -183,7 +178,12 @@ export const PlayerComponent: VFC<Props> = () => {
         isLarge={false}
         ariaLabel={strings.components.player.volume}
       />
-      {showVolumeControls && <PlayerVolumeControl setVolume={setVolume} />}
+      {showVolumeControls && (
+        <PlayerVolumeControl
+          setVolume={playbackSDK.setVolume}
+          getVolume={() => playbackSDK.getVolume()}
+        />
+      )}
     </Wrapper>
   )
 }

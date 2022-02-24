@@ -1,8 +1,9 @@
-import React, { VFC } from 'react'
+import React, { useState, VFC } from 'react'
 import styled from 'styled-components'
 
 type Props = {
   setVolume: (value: number) => void
+  getVolume: () => Promise<number>
 }
 
 const Wrapper = styled.div`
@@ -79,15 +80,23 @@ const InputSlider = styled.input`
   `}
 `
 
-export const PlayerVolumeControl: VFC<Props> = ({ setVolume }) => {
+export const PlayerVolumeControl: VFC<Props> = ({ setVolume, getVolume }) => {
+  const [currentVolume, setCurrentVolume] = useState(0)
   const sliderChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     const newValue = parseFloat(event.target.value) / 100
     setVolume(newValue)
   }
+  getVolume().then((value) => setCurrentVolume(value))
   return (
     <Wrapper>
       <SliderContainer>
-        <InputSlider min="0" max="100" type="range" onChange={sliderChange} />
+        <InputSlider
+          min="0"
+          max="100"
+          type="range"
+          value={currentVolume * 100}
+          onChange={sliderChange}
+        />
       </SliderContainer>
     </Wrapper>
   )
