@@ -14,7 +14,7 @@ type StyledProps = {
   disabled?: boolean
 }
 
-const Button = styled.div<StyledProps>`
+const Button = styled.button<StyledProps>`
   ${({ isLarge, disabled, theme }) => `
     margin: ${theme.divSpacingSmall};
     padding: ${
@@ -26,6 +26,9 @@ const Button = styled.div<StyledProps>`
     };
     cursor: ${disabled ? 'auto' : 'pointer'};
     display: flex;
+    outline: none;
+    border: none;
+    background: ${theme.palette.colorWhite};
   `}
 `
 

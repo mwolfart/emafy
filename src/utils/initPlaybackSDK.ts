@@ -34,7 +34,6 @@ export const initPlaybackSDK = (
 ): PlaybackSDK => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const windowNoType = window as any
-
   let playbackSDK: PlaybackSDK = emptyPlackbackSDK
 
   if (windowNoType.Spotify && windowNoType.Spotify.Player) {
