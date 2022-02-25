@@ -7,8 +7,8 @@ import { abbreviateText, nameListToString } from 'utils/utils'
 
 describe('Player Queue', () => {
   it('renders component correctly', () => {
-    const currentTrack = mockPlaybackState.track_window.current_track
-    const nextTracks = mockPlaybackState.track_window.next_tracks
+    const { currentTrack } = mockPlaybackState.trackWindow
+    const { nextTracks } = mockPlaybackState.trackWindow
     render(
       <ThemeProvider theme={defaultTheme}>
         <PlayerQueue currentTrack={currentTrack} tracks={nextTracks} />
@@ -18,8 +18,7 @@ describe('Player Queue', () => {
     const tracks = [currentTrack, ...nextTracks]
     tracks.forEach((track) => {
       const trackName = abbreviateText(track.name, 50)
-      const artistNames = track.artists.map((artist) => artist.name)
-      const artistName = abbreviateText(nameListToString(artistNames), 50)
+      const artistName = abbreviateText(nameListToString(track.artists), 50)
 
       const trackNameElement = screen.getByText(trackName)
       const artistNameElement = screen.getByText(artistName)

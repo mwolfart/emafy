@@ -6,9 +6,10 @@ import {
   parseSimpleArtists,
 } from 'api/parser'
 import { spotifyInstance, Method } from 'api/spotifyInstance'
-import { NextURL, MediaListResponse } from 'types/api/apiData'
+import { NextURL } from 'types/api/apiData'
 import { RawArtist, RawAlbum, RawTrack } from 'types/api/apiMedia'
 import { SimpleArtist, Album, Song } from 'types/media'
+import { MediaListResponse } from 'types/mediaQuery'
 import { getSpotifyData } from './base'
 
 export const getArtist = (id: string): Promise<{ entities: SimpleArtist }> => {

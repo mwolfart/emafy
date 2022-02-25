@@ -1,7 +1,7 @@
 import { SPOTIFY_ROUTE } from 'api/enum/spotifyRoute.enum'
 import { spotifyInstance, Method } from 'api/spotifyInstance'
 import { AxiosResponse } from 'axios'
-import { RawDevice, RawDeviceList } from 'types/api/apiData'
+import { RawDevice, RawDeviceList } from 'types/api/apiPlayback'
 import { Nullable } from 'types/global'
 
 export const transferPlaybackHere = (deviceId?: string): Promise<boolean> => {

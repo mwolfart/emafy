@@ -1,20 +1,27 @@
 import { getToken } from 'api/credentials'
 import { transferPlaybackHere } from 'api/data/playback'
+import { parsePlaybackState } from 'api/parser'
+import { WebPlaybackState } from 'types/api/apiPlayback'
 import { Nullable } from 'types/global'
-import { PlaybackSDK, WebPlaybackState } from 'types/playbackSDK'
+import { PlaybackSDK, PlaybackState } from 'types/playbackSDK'
 import { emptyPlackbackSDK } from './constants'
 
 const initListeners = (
   playbackSDK: PlaybackSDK,
-  stateChangeCallback: (state: Nullable<WebPlaybackState>) => void,
+  stateChangeCallback: (state: PlaybackState) => void,
 ): void => {
   playbackSDK.addListener('ready', ({ device_id }) => {
     transferPlaybackHere(device_id)
     playbackSDK.deviceId = device_id
   })
-  playbackSDK.addListener('player_state_changed', (state) => {
-    stateChangeCallback(state)
-  })
+  playbackSDK.addListener(
+    'player_state_changed',
+    (state: Nullable<WebPlaybackState>) => {
+      if (state != null) {
+        stateChangeCallback(parsePlaybackState(state))
+      }
+    },
+  )
   playbackSDK.addListener('initialization_error', ({ message }) => {
     // eslint-disable-next-line no-console
     console.error(message)
@@ -30,7 +37,7 @@ const initListeners = (
 }
 
 export const initPlaybackSDK = (
-  stateChangeCallback: (state: Nullable<WebPlaybackState>) => void,
+  stateChangeCallback: (state: PlaybackState) => void,
 ): PlaybackSDK => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const windowNoType = window as any

@@ -1,11 +1,10 @@
 import { VFC } from 'react'
 import styled from 'styled-components'
-import { ArtistReference } from 'types/playbackSDK'
 import { abbreviateText, nameListToString } from 'utils/utils'
 
 type Props = {
   title: string
-  artists: ArtistReference[]
+  artists: string[]
 }
 
 const Wrapper = styled.div`
@@ -28,11 +27,7 @@ const Wrapper = styled.div`
 
 export const QueueTrack: VFC<Props> = ({ title, artists }) => {
   const trackName = abbreviateText(title, 50)
-  const artistNameList = artists.map((artist) => artist.name)
-  const currentTrackArtists = abbreviateText(
-    nameListToString(artistNameList),
-    50,
-  )
+  const currentTrackArtists = abbreviateText(nameListToString(artists), 50)
   return (
     <Wrapper>
       <p>{trackName}</p>

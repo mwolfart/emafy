@@ -1,28 +1,14 @@
-type Image = {
-  url: string
-}
+import { RawImage } from './apiData'
 
 export type BasicRawMedia = {
-  images?: Image[]
+  images?: RawImage[]
   id: string
   name: string
 }
 
 export type RawTracksAlbum = {
-  images: Image[]
+  images: RawImage[]
   id: string
-}
-
-export type RawUser = {
-  country: string
-  display_name: string
-  email: string
-  id: string
-  images: Image[]
-  followers: {
-    href: string
-    total: number
-  }
 }
 
 export interface RawAlbum extends BasicRawMedia {
@@ -54,14 +40,4 @@ export interface RawPlaylist extends BasicRawMedia {
     items: RawTrack[]
     total: number
   }
-}
-
-export type SavedAlbum = {
-  added_at: string
-  album: RawAlbum
-}
-
-export type SavedTrack = {
-  added_at: string
-  track: RawTrack
 }

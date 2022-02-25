@@ -1,42 +1,25 @@
 import { Nullable } from './global'
 
-export type ArtistReference = {
-  uri: string
-  name: string
-}
-
-export type WebPlaybackTrack = {
-  uri: string
+export type PlaybackTrack = {
   id: string
-  type: string
-  media_type: string
   name: string
-  is_playable: boolean
   album: {
-    uri: string
     name: string
-    images: Array<{ url: string }>
+    images: string[]
   }
-  artists: ArtistReference[]
+  artists: string[]
 }
 
-export type WebPlaybackState = {
-  context: {
-    uri: Nullable<string>
-    metadata: unknown
-  }
-  disallows: {
-    [key: string]: boolean
-  }
+export type PlaybackState = {
   paused: boolean
   position: number
   duration: number
-  repeat_mode: number
+  repeatMode: number
   shuffle: boolean
-  track_window: {
-    current_track: WebPlaybackTrack
-    previous_track: WebPlaybackTrack[]
-    next_tracks: WebPlaybackTrack[]
+  trackWindow: {
+    currentTrack: PlaybackTrack
+    previousTracks: PlaybackTrack[]
+    nextTracks: PlaybackTrack[]
   }
 }
 
@@ -51,7 +34,7 @@ export type PlaybackSDK = {
   seek: (value: number) => Promise<void>
   previousTrack: () => Promise<void>
   nextTrack: () => Promise<void>
-  getCurrentState: () => Promise<Nullable<WebPlaybackState>>
+  getCurrentState: () => Promise<Nullable<PlaybackState>>
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   addListener: (name: string, foo: (params: any) => void) => boolean
 }

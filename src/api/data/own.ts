@@ -7,9 +7,10 @@ import {
   parsePlaylists,
 } from 'api/parser'
 import { spotifyInstance, Method } from 'api/spotifyInstance'
-import { NextURL, MediaListResponse } from 'types/api/apiData'
-import { RawUser } from 'types/api/apiMedia'
+import { NextURL } from 'types/api/apiData'
+import { RawUser } from 'types/api/apiUser'
 import { User, Album, Song, SimpleArtist, Playlist } from 'types/media'
+import { MediaListResponse } from 'types/mediaQuery'
 import { getSpotifyData, getArtistListData } from './base'
 
 export const getOwnProfile = (): Promise<User> => {

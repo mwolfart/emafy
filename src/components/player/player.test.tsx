@@ -2,7 +2,7 @@ import { fireEvent, render, screen } from '@testing-library/react'
 import { ThemeProvider } from 'styled-components'
 import { defaultTheme } from 'theme'
 import { PlayerComponent } from './player'
-import { PlaybackSDK, WebPlaybackState } from 'types/playbackSDK'
+import { PlaybackSDK, PlaybackState } from 'types/playbackSDK'
 import { PlayerContext } from 'contexts/player'
 import { Nullable } from 'types/global'
 import { playbackState as mockPlaybackState } from 'fixtures/playback'
@@ -28,7 +28,7 @@ const mockPlayerContext = {
 }
 
 jest.mock('utils/initPlaybackSDK', () => ({
-  initPlaybackSDK: (callback: (state: Nullable<WebPlaybackState>) => void) => {
+  initPlaybackSDK: (callback: (state: Nullable<PlaybackState>) => void) => {
     callback(mockPlaybackState)
     return mockPlaybackSDK
   },
@@ -61,10 +61,12 @@ describe('Player Component', () => {
       expect(el).toBeInTheDocument()
     })
 
-    const currentTrack = mockPlaybackState.track_window.current_track
+    const { currentTrack } = mockPlaybackState.trackWindow
     const trackName = abbreviateText(currentTrack.name, 50)
-    const artistNames = currentTrack.artists.map((artist) => artist.name)
-    const artistName = abbreviateText(nameListToString(artistNames), 50)
+    const artistName = abbreviateText(
+      nameListToString(currentTrack.artists),
+      50,
+    )
 
     const trackNameElement = screen.getByText(trackName)
     const artistNameElement = screen.getByText(artistName)

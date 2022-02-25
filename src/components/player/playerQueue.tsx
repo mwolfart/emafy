@@ -1,12 +1,12 @@
 import { VFC } from 'react'
 import { strings } from 'strings'
 import styled from 'styled-components'
-import { WebPlaybackTrack } from 'types/playbackSDK'
+import { PlaybackTrack } from 'types/playbackSDK'
 import { QueueTrack } from './queueTrack'
 
 type Props = {
-  currentTrack: WebPlaybackTrack
-  tracks: WebPlaybackTrack[]
+  currentTrack: PlaybackTrack
+  tracks: PlaybackTrack[]
 }
 
 const Wrapper = styled.div`

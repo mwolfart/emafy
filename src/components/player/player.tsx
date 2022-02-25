@@ -6,7 +6,7 @@ import { useContext, useEffect, useState, VFC } from 'react'
 import { strings } from 'strings'
 import styled from 'styled-components'
 import { Nullable } from 'types/global'
-import { WebPlaybackState, WebPlaybackTrack } from 'types/playbackSDK'
+import { PlaybackState, PlaybackTrack } from 'types/playbackSDK'
 import { emptyPlackbackSDK } from 'utils/constants'
 import { initPlaybackSDK } from 'utils/initPlaybackSDK'
 import { abbreviateText, nameListToString } from 'utils/utils'
@@ -62,26 +62,29 @@ export const PlayerComponent: VFC = () => {
   const [isPlaying, setIsPlaying] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
   const [currentTrack, setCurrentTrack] =
-    useState<Nullable<WebPlaybackTrack>>(null)
+    useState<Nullable<PlaybackTrack>>(null)
   const [trackProgress, setTrackProgress] = useState(0)
   const [trackDuration, setTrackDuration] = useState(0)
   const [showVolumeControls, setShowVolumeControls] = useState(false)
-  const [queueTracks, setQueueTracks] = useState<WebPlaybackTrack[]>([])
+  const [queueTracks, setQueueTracks] = useState<PlaybackTrack[]>([])
   const [showQueue, setShowQueue] = useState(false)
+  const [volume, setVolume] = useState(0.5)
 
   useEffect(() => {
-    const stateChangeCallback = (state: Nullable<WebPlaybackState>): void => {
-      if (state != null) {
-        setIsLoading(false)
-        setIsPlaying(!state.paused)
-        setCurrentTrack(state.track_window.current_track)
-        setTrackDuration(state.duration)
-        setTrackProgress(state.position)
-        setQueueTracks(state.track_window.next_tracks)
-      }
+    const stateChangeCallback = (state: PlaybackState): void => {
+      setIsLoading(false)
+      setIsPlaying(!state.paused)
+      setCurrentTrack(state.trackWindow.currentTrack)
+      setTrackDuration(state.duration)
+      setTrackProgress(state.position)
+      setQueueTracks(state.trackWindow.nextTracks)
     }
     setPlaybackSDK(initPlaybackSDK(stateChangeCallback))
   }, [])
+
+  useEffect(() => {
+    playbackSDK.getVolume().then((volume) => setVolume(volume))
+  }, [playbackSDK])
 
   useEffect(() => {
     const progressBarUpdateFn = (): void => {
@@ -106,6 +109,10 @@ export const PlayerComponent: VFC = () => {
     setIsPlaying(!isPlaying)
     playbackSDK.togglePlay()
   }
+  const updateVolume = (newValue: number): void => {
+    setVolume(newValue)
+    playbackSDK.setVolume(newValue)
+  }
 
   const playerContext = useContext(PlayerContext)
   useEffect(() => {
@@ -123,10 +130,9 @@ export const PlayerComponent: VFC = () => {
   const displayedTrackName = currentTrack
     ? abbreviateText(currentTrack.name, 50)
     : ''
-  const artistNames = currentTrack
-    ? currentTrack.artists.map((artist) => artist.name)
-    : []
-  const displayedArtist = abbreviateText(nameListToString(artistNames), 50)
+  const displayedArtist = currentTrack
+    ? abbreviateText(nameListToString(currentTrack.artists), 50)
+    : ''
   const trackProgressPercent = trackProgress / trackDuration
 
   return isLoading ? (
@@ -179,10 +185,7 @@ export const PlayerComponent: VFC = () => {
         ariaLabel={strings.components.player.volume}
       />
       {showVolumeControls && (
-        <PlayerVolumeControl
-          setVolume={playbackSDK.setVolume}
-          getVolume={() => playbackSDK.getVolume()}
-        />
+        <PlayerVolumeControl setVolume={updateVolume} currentVolume={volume} />
       )}
     </Wrapper>
   )
