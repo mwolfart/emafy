@@ -11,7 +11,6 @@ const Wrapper = styled.div`
     height: 100%;
     width: ${theme.sidebarWidth};
     position: fixed;
-    top: ${theme.topbarHeight};
 
     @media (max-width: 576px) {
       display: none;

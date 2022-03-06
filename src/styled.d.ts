@@ -75,6 +75,7 @@ declare module 'styled-components' {
     transitionQuickDelayed: string
     sidebarWidth: string
     topbarHeight: string
+    playerHeight: string
     playerQueueWidth: string
     progressBarSize: string
     palette: Palette

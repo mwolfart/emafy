@@ -48,6 +48,7 @@ export const defaultTheme: DefaultTheme = {
   transitionQuickDelayed: '0.3s ease 0.2s',
   sidebarWidth: '67px',
   topbarHeight: '90px',
+  playerHeight: '90px',
   playerQueueWidth: '300px',
   progressBarSize: '3px',
   palette: mainPalette,

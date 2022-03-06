@@ -49,7 +49,7 @@ const ContentWrapper = styled.div`
     display: flex;
     flex-direction: row;
     width: 100vw;
-    height: calc(100% - ${theme.topbarHeight});
+    height: calc(100% - ${theme.topbarHeight} - ${theme.playerHeight});
   `}
 `
 

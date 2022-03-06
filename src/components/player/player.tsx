@@ -25,6 +25,7 @@ const Wrapper = styled.div<StyledProps>`
     background-color: ${theme.palette.colorWhite};
     align-items: center;
     justify-content: center;
+    height: ${theme.playerHeight};
 
     &:after {
       content: "";
