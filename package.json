@@ -1,25 +1,27 @@
 {
   "name": "emafy",
+  "source": "src/index.html",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.1.1",
     "@fortawesome/free-solid-svg-icons": "^6.1.1",
     "axios": "^0.27.2",
+    "parcel": "^2.5.0",
     "querystring": "^0.2.1",
     "react": "^18.1.0",
     "react-infinite-scroll-component": "^6.1.0",
     "react-router": "^6.3.0",
+    "react-router-dom": "^6.3.0",
     "react-spinners": "^0.12.0",
     "styled-components": "^5.3.5",
     "typescript": "^4.6.4",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts --openssl-legacy-provider start",
-    "build": "react-scripts --openssl-legacy-provider build",
-    "test": "react-scripts --openssl-legacy-provider test",
-    "eject": "react-scripts --openssl-legacy-provider eject"
+    "start": "parcel",
+    "build": "parcel build",
+    "test": "parcel test"
   },
   "eslintConfig": {
     "extends": [
@@ -41,12 +43,21 @@
   },
   "devDependencies": {
     "@faker-js/faker": "^6.3.1",
+    "@parcel/plugin": "^2.5.0",
+    "@types/node": "^17.0.34",
+    "@types/react": "^18.0.9",
+    "@types/react-dom": "^18.0.4",
+    "@types/styled-components": "^5.1.25",
     "@typescript-eslint/eslint-plugin": "^5.25.0",
     "@typescript-eslint/parser": "^5.25.0",
+    "buffer": "^6.0.3",
     "eslint": "^8.15.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-jest": "^26.2.2",
     "eslint-plugin-prettier": "^4.0.0",
-    "prettier": "^2.6.2"
+    "parcel-resolver-ts-base-url": "^1.1.5",
+    "prettier": "^2.6.2",
+    "process": "^0.11.10",
+    "querystring-es3": "^0.2.1"
   }
 }

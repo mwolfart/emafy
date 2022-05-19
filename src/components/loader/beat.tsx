@@ -1,5 +1,5 @@
 import { mainPalette } from 'palette'
-import { VFC } from 'react'
+import { FC } from 'react'
 import { BeatLoader } from 'react-spinners'
 import styled from 'styled-components'
 
@@ -13,7 +13,7 @@ const Wrapper = styled.div`
   `}
 `
 
-export const CustomBeatLoader: VFC = () => {
+export const CustomBeatLoader: FC = () => {
   return (
     <Wrapper>
       <BeatLoader color={mainPalette.colorPrimary} loading={true} />

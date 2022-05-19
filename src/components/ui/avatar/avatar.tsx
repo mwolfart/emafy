@@ -1,4 +1,4 @@
-import { VFC } from 'react'
+import { FC } from 'react'
 import styled from 'styled-components'
 
 type Props = {
@@ -33,6 +33,6 @@ const Image = styled.img<StyledProps>`
   `}
 `
 
-export const Avatar: VFC<Props> = ({ imagePath, small = false }) => (
+export const Avatar: FC<Props> = ({ imagePath, small = false }) => (
   <Image src={imagePath} aria-hidden={true} small={small} />
 )

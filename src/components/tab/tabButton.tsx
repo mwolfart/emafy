@@ -1,4 +1,4 @@
-import { VFC } from 'react'
+import { FC } from 'react'
 import styled from 'styled-components'
 
 type Props = {
@@ -31,7 +31,7 @@ const Button = styled.button<StyledProps>`
   `}
 `
 
-export const TabButton: VFC<Props> = ({ title, onClick, active }) => (
+export const TabButton: FC<Props> = ({ title, onClick, active }) => (
   <li>
     <Button onClick={onClick} active={active}>
       {title}

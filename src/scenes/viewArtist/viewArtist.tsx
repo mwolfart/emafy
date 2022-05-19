@@ -6,7 +6,7 @@ import { Tab } from 'components/tab/tab'
 import { TabGroup } from 'components/tab/tabGroup'
 import { useGetArtistDetails } from 'hooks/useGetArtistDetails'
 import { useGetMediaList } from 'hooks/useGetMediaList'
-import { useCallback, VFC } from 'react'
+import { useCallback, FC } from 'react'
 import { RouteComponentProps } from 'react-router'
 import { strings } from 'strings'
 import styled from 'styled-components'
@@ -25,7 +25,7 @@ const Wrapper = styled.div`
   height: 100%;
 `
 
-export const ViewArtist: VFC<Props> = ({ match }) => {
+export const ViewArtist: FC<Props> = ({ match }) => {
   const { isLoading, artistInfo, setArtistInfo } = useGetArtistDetails(
     match.params.id,
   )

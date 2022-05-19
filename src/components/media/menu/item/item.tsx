@@ -1,4 +1,4 @@
-import { VFC } from 'react'
+import { FC } from 'react'
 import styled from 'styled-components'
 import { isAlbum, Media } from 'types/media'
 import { MediaExtraProps } from 'types/mediaExtraProps'
@@ -16,7 +16,7 @@ const Wrapper = styled.div`
   position: relative;
 `
 
-export const MediaMenuItem: VFC<Props> = ({
+export const MediaMenuItem: FC<Props> = ({
   mediaInfo,
   rowVariant,
   extraProps,

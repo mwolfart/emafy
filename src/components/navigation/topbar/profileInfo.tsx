@@ -1,8 +1,6 @@
 import { Avatar } from 'components/ui'
-import { VFC } from 'react'
+import { FC } from 'react'
 import styled from 'styled-components'
-
-import profile from 'images/profile.png'
 import { User } from 'types/media'
 import { strings } from 'strings'
 import { Link as RouterLink } from 'react-router-dom'
@@ -55,8 +53,8 @@ const Subtitle = styled.span`
   `}
 `
 
-export const ProfileInfo: VFC<Props> = ({ userInfo }) => {
-  const imagePath = (userInfo.images?.length && userInfo.images[0]) || profile
+export const ProfileInfo: FC<Props> = ({ userInfo }) => {
+  const imagePath = (userInfo.images?.length && userInfo.images[0]) || 'images/profile.png'
   const viewProfileText = strings.components.topbar.viewProfile
 
   return (

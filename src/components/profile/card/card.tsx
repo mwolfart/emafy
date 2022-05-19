@@ -7,7 +7,7 @@ import {
   IconButton,
 } from 'components/ui'
 import { ContainerFlexRow } from 'components/ui/container/container'
-import { VFC } from 'react'
+import { FC } from 'react'
 import styled from 'styled-components'
 
 import { User } from 'types/media'
@@ -42,7 +42,7 @@ const FlexRowAlignRight = styled(ContainerFlexRow)`
   justify-content: right;
 `
 
-export const ProfileCard: VFC<Props> = ({
+export const ProfileCard: FC<Props> = ({
   user,
   followingCount,
   savedMusicCount,
