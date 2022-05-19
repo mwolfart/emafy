@@ -1,4 +1,4 @@
-import { VFC } from 'react'
+import { FC } from 'react'
 import { strings } from 'strings'
 import styled from 'styled-components'
 
@@ -52,7 +52,7 @@ export const Wrapper = styled.div<StyledProps>`
   `}
 `
 
-export const MediaImage: VFC<Props> = ({ src, small, placeholder }) => (
+export const MediaImage: FC<Props> = ({ src, small, placeholder }) => (
   <Wrapper small={small}>
     {src || !placeholder ? (
       <img src={src} alt={strings.components.media.image.description} />

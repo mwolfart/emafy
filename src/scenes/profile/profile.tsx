@@ -1,4 +1,4 @@
-import { VFC } from 'react'
+import { FC } from 'react'
 import styled from 'styled-components'
 import { Song, User } from 'types/media'
 import { ProfileCard } from 'components/profile/card/card'
@@ -30,7 +30,7 @@ const Wrapper = styled(ContainerFlexRow)`
   `}
 `
 
-export const Profile: VFC<Props> = ({ user }) => {
+export const Profile: FC<Props> = ({ user }) => {
   const {
     mediaList: followList,
     nextURL,

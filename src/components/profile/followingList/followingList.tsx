@@ -1,7 +1,7 @@
 import { NextURL } from 'types/api/apiData'
 import { BeatLoader } from 'components/loader'
 import { Headline } from 'components/ui'
-import { VFC } from 'react'
+import { FC } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import { strings } from 'strings'
 import styled from 'styled-components'
@@ -35,7 +35,7 @@ const Wrapper = styled.div`
   `}
 `
 
-export const FollowingList: VFC<Props> = ({
+export const FollowingList: FC<Props> = ({
   followList,
   followCount,
   nextURL,

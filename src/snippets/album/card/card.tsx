@@ -1,4 +1,4 @@
-import { useCallback, VFC } from 'react'
+import { useCallback, FC } from 'react'
 import {
   ContainerFlexRow,
   GrayIconButton,
@@ -62,7 +62,7 @@ const Footer = styled.div`
   `}
 `
 
-export const AlbumCard: VFC<Props> = ({ albumInfo, fnCloseSnippet }) => {
+export const AlbumCard: FC<Props> = ({ albumInfo, fnCloseSnippet }) => {
   const getTracksCallback = useCallback(
     (next?: NextURL) => getAlbumTracks(albumInfo, next),
     [albumInfo],

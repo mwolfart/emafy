@@ -1,4 +1,4 @@
-import { useState, VFC } from 'react'
+import { useState, FC } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import { strings } from 'strings'
 import styled from 'styled-components'
@@ -54,7 +54,7 @@ const MenuWrapper = styled.div<StyledProps>`
   `}
 `
 
-export const MediaMenu: VFC<Props> = ({
+export const MediaMenu: FC<Props> = ({
   fetchMoreMedia,
   mediaList,
   nextURL,

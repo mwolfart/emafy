@@ -4,7 +4,7 @@ import {
   SubtitleExtraLarge,
   TitleExtraLarge,
 } from 'components/ui/heading/heading'
-import { VFC } from 'react'
+import { FC } from 'react'
 import { strings } from 'strings'
 import styled from 'styled-components'
 import { DetailedArtist } from 'types/media'
@@ -50,7 +50,7 @@ const CustomSubtitleExtraLarge = styled(SubtitleExtraLarge)`
   `}
 `
 
-export const ArtistBanner: VFC<Props> = ({
+export const ArtistBanner: FC<Props> = ({
   artistInfo,
   setArtistInfo,
   subtitle,

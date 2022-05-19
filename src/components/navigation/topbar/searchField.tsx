@@ -1,5 +1,5 @@
 import { GrayIconButton } from 'components/ui'
-import { VFC } from 'react'
+import { FC } from 'react'
 import { strings } from 'strings'
 import styled from 'styled-components'
 
@@ -36,7 +36,7 @@ const SearchInput = styled.input`
   `}
 `
 
-export const SearchField: VFC = () => {
+export const SearchField: FC = () => {
   const onSearchSong = (): void => {}
 
   return (

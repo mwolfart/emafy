@@ -1,4 +1,4 @@
-import { VFC } from 'react'
+import { FC } from 'react'
 import { useGetMediaList } from 'hooks/useGetMediaList'
 import { Playlist } from 'types/media'
 import { strings } from 'strings'
@@ -16,7 +16,7 @@ const Wrapper = styled.div`
   `}
 `
 
-export const MyPlaylists: VFC = () => {
+export const MyPlaylists: FC = () => {
   const savedMediaProps = useGetMediaList<Playlist>(getOwnPlaylists)
   const { totalCount, isLoading } = savedMediaProps
 

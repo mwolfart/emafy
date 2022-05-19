@@ -1,6 +1,6 @@
 import { ContainerFlexRow, Headline, IconButton } from 'components/ui'
 import { Avatar } from 'components/ui'
-import { VFC } from 'react'
+import { FC } from 'react'
 import { strings } from 'strings'
 import styled from 'styled-components'
 import { SimpleArtist } from 'types/media'
@@ -18,7 +18,7 @@ const Wrapper = styled(ContainerFlexRow)`
   `}
 `
 
-export const Follow: VFC<Props> = ({ follow, isCurrentUserFollowing }) => {
+export const Follow: FC<Props> = ({ follow, isCurrentUserFollowing }) => {
   const followImage = (follow.images?.length && follow.images[0]) || ''
   const iconLabel = isCurrentUserFollowing
     ? strings.components.profile.follow.following
