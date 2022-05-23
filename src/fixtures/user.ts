@@ -1,5 +1,5 @@
 import { User } from 'types/media'
-import faker from 'faker'
+import { faker } from '@faker-js/faker'
 
 export const user: User = {
   country: faker.address.countryCode(),

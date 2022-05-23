@@ -1,5 +1,4 @@
-import { act, renderHook } from '@testing-library/react-hooks'
-import faker from 'faker'
+import { faker } from '@faker-js/faker'
 import { useGetArtistDetails } from './useGetArtistDetails'
 import * as ApiArtist from 'api/data/artists'
 import * as ApiOwn from 'api/data/own'
@@ -7,6 +6,7 @@ import { artist as mockedArtist } from 'fixtures/artist'
 import { songs as mockedSongs } from 'fixtures/songs'
 import { artists as mockedArtists } from 'fixtures/artists'
 import { DetailedArtist } from 'types/media'
+import { act, renderHook, waitFor } from '@testing-library/react'
 
 describe('Get Artist Details hook', () => {
   test('should init hook correctly', async () => {
@@ -24,7 +24,6 @@ describe('Get Artist Details hook', () => {
     jest.spyOn(ApiOwn, 'checkIfOwnFollowsArtist').mockResolvedValue(true)
 
     const { result } = renderHook(() => useGetArtistDetails(artistId))
-    await act(() => new Promise(setImmediate))
 
     let detailedArtist: DetailedArtist = {
       ...mockedArtist,
@@ -32,7 +31,9 @@ describe('Get Artist Details hook', () => {
       relatedArtists: mockedArtists,
       currentUserFollows: true,
     }
-    expect(result.current.artistInfo).toEqual(detailedArtist)
+    await waitFor(() =>
+      expect(result.current.artistInfo).toEqual(detailedArtist),
+    )
 
     act(() => {
       result.current.setArtistInfo(detailedArtist)

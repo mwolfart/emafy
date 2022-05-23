@@ -1,10 +1,10 @@
 import { fireEvent, render, screen } from '@testing-library/react'
 import { albums as mockedAlbums } from 'fixtures/albums'
-import { StaticRouter } from 'react-router-dom'
+import { Router } from 'react-router-dom'
 import { ThemeProvider } from 'styled-components'
 import { defaultTheme } from 'theme'
 import { ViewArtist } from './viewArtist'
-import { createMemoryHistory, createLocation } from 'history'
+import { createMemoryHistory } from 'history'
 import { detailedArtist as mockedDetailedArtist } from 'fixtures/detailedArtist'
 import { strings } from 'strings'
 import * as ApiOwn from 'api/data/own'
@@ -37,12 +37,11 @@ describe('View Artist', () => {
       path,
       url: path.replace(':id', '1'),
     }
-    const location = createLocation(match.url)
     render(
       <ThemeProvider theme={defaultTheme}>
-        <StaticRouter>
-          <ViewArtist match={match} history={history} location={location} />
-        </StaticRouter>
+        <Router location={history.location} navigator={history}>
+          <ViewArtist match={match} history={history} />
+        </Router>
       </ThemeProvider>,
     )
   })
