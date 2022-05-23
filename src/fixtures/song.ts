@@ -1,5 +1,5 @@
 import { Song, MediaType } from 'types/media'
-import faker from 'faker'
+import { faker } from '@faker-js/faker'
 
 export const song: Song = {
   id: '1',

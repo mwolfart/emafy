@@ -1,4 +1,4 @@
-import faker from 'faker'
+import { faker } from '@faker-js/faker'
 import { MediaType, SimpleArtist } from 'types/media'
 
 let nextId = 0

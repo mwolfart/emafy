@@ -1,5 +1,5 @@
 import { MediaType, DetailedArtist } from 'types/media'
-import faker from 'faker'
+import { faker } from '@faker-js/faker'
 import { artists } from './artists'
 
 export const detailedArtist: DetailedArtist = {

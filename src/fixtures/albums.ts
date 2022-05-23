@@ -1,5 +1,5 @@
 import { Album, MediaType } from 'types/media'
-import faker from 'faker'
+import { faker } from '@faker-js/faker'
 
 let nextId = 0
 

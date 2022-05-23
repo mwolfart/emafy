@@ -3,13 +3,15 @@ import { strings } from 'strings'
 import { ThemeProvider } from 'styled-components'
 import { defaultTheme } from 'theme'
 import { Hamburger } from './hamburger'
-import { StaticRouter as Router } from 'react-router-dom'
+import { Router } from 'react-router-dom'
+import { createMemoryHistory } from 'history'
 
 describe('Hamburger', () => {
   it('renders component correctly', () => {
+    const history = createMemoryHistory()
     render(
       <ThemeProvider theme={defaultTheme}>
-        <Router>
+        <Router location={history.location} navigator={history}>
           <Hamburger />
         </Router>
       </ThemeProvider>,
