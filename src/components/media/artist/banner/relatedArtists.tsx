@@ -1,5 +1,5 @@
 import { Avatar } from 'components/ui'
-import { VFC } from 'react'
+import { FC } from 'react'
 import { strings } from 'strings'
 import styled from 'styled-components'
 import { SimpleArtist } from 'types/media'
@@ -29,7 +29,7 @@ const ArtistsList = styled.div`
 `}
 `
 
-export const RelatedArtists: VFC<Props> = ({ artistList }) => {
+export const RelatedArtists: FC<Props> = ({ artistList }) => {
   const shownArtists = artistList.slice(0, 5)
   return (
     <Wrapper>

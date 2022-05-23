@@ -2,14 +2,16 @@ import { render, screen } from '@testing-library/react'
 import { strings } from 'strings'
 import { Sidebar } from './sidebar'
 import { ThemeProvider } from 'styled-components'
+import { createMemoryHistory } from 'history'
 import { defaultTheme } from 'theme'
-import { StaticRouter as Router } from 'react-router-dom'
+import { Router } from 'react-router-dom'
 
 describe('Sidebar', () => {
   it('renders component correctly', () => {
+    const history = createMemoryHistory()
     render(
       <ThemeProvider theme={defaultTheme}>
-        <Router>
+        <Router location={history.location} navigator={history}>
           <Sidebar />
         </Router>
       </ThemeProvider>,

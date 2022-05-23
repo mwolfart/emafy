@@ -1,4 +1,4 @@
-import { VFC } from 'react'
+import { FC } from 'react'
 import styled from 'styled-components'
 import { Button } from './default'
 
@@ -23,7 +23,7 @@ const PaddedText = styled.div<StyledProps>`
   `}
 `
 
-export const IconButton: VFC<Props> = ({
+export const IconButton: FC<Props> = ({
   title,
   icon,
   onClickCallback,

@@ -1,5 +1,5 @@
 import { CleanButton } from 'components/ui'
-import { VFC } from 'react'
+import { FC } from 'react'
 import styled from 'styled-components'
 
 type Props = {
@@ -24,7 +24,7 @@ const PaddedText = styled.div`
   `}
 `
 
-export const GrayIconButton: VFC<Props> = ({
+export const GrayIconButton: FC<Props> = ({
   iconClass,
   onClickCallback,
   ariaLabel,

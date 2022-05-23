@@ -5,6 +5,7 @@ import { MediaExtraProps } from 'types/mediaExtraProps'
 type Props = {
   rowVariant?: boolean
   extraProps?: MediaExtraProps
+  children: unknown
 }
 
 type StyledProps = {

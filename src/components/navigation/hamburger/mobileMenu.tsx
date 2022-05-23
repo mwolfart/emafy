@@ -1,4 +1,4 @@
-import { VFC } from 'react'
+import { FC } from 'react'
 import { ButtonProps, mediaButtons, miscButtons } from '../navigationButtons'
 import styled from 'styled-components'
 import { MobileMenuButton } from './mobileMenuButton'
@@ -37,7 +37,7 @@ const CloseButtonWrapper = styled.div`
   `}
 `
 
-export const MobileMenu: VFC<Props> = ({ closeMenu, isOpen }) => {
+export const MobileMenu: FC<Props> = ({ closeMenu, isOpen }) => {
   const buttonGenerationFn = ({
     title,
     path,

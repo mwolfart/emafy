@@ -1,5 +1,5 @@
 import { TitleNormal, SubtitleNormal } from 'components/ui/index'
-import { VFC } from 'react'
+import { FC } from 'react'
 import styled from 'styled-components'
 import { Media } from 'types/media'
 import { renderSubTitle } from 'utils/utils'
@@ -30,7 +30,7 @@ const PaddedSubtitle = styled(SubtitleNormal)`
   `}
 `
 
-export const MediaDescription: VFC<Props> = ({ mediaInfo }) => (
+export const MediaDescription: FC<Props> = ({ mediaInfo }) => (
   <Wrapper>
     <PaddedTitle>{mediaInfo.name}</PaddedTitle>
     <PaddedSubtitle>{renderSubTitle(mediaInfo)}</PaddedSubtitle>

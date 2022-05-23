@@ -1,4 +1,4 @@
-import { VFC } from 'react'
+import { FC } from 'react'
 import styled from 'styled-components'
 import { Link as RouterLink } from 'react-router-dom'
 
@@ -61,7 +61,7 @@ const CenteredIcon = styled.i`
   `}
 `
 
-export const SidebarButton: VFC<Props> = ({ title, path, icon }) => {
+export const SidebarButton: FC<Props> = ({ title, path, icon }) => {
   const iconClass = `fa fa-lg fa-fw ${icon}`
   return (
     <RouterLink to={path}>

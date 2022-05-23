@@ -1,4 +1,4 @@
-import { useEffect, useState, VFC } from 'react'
+import { useEffect, useState, FC } from 'react'
 import { Modal } from 'components/modal/modal'
 import { Button, Canvas } from 'components/ui'
 import {
@@ -9,13 +9,13 @@ import {
   requestValidToken,
 } from 'api/credentials'
 import { strings } from 'strings'
-import { Redirect } from 'react-router'
+import { Navigate } from 'react-router'
 
 type Props = {
   onLogin: (value: boolean) => void
 }
 
-export const LoginScene: VFC<Props> = ({ onLogin }) => {
+export const LoginScene: FC<Props> = ({ onLogin }) => {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(hasValidToken())
   const [isOnLoginProcess, setIsOnLoginProcess] = useState<boolean>(
     !isLoggedIn && (hasAuthCode() || hasToken()),
@@ -48,7 +48,7 @@ export const LoginScene: VFC<Props> = ({ onLogin }) => {
   }, [isOnLoginProcess, onLogin, isLoggedIn])
 
   return !isOnLoginProcess && isLoggedIn ? (
-    <Redirect to="/saved-artists" />
+    <Navigate to="/saved-artists" />
   ) : (
     <Canvas>
       <Modal>

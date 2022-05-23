@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from '@testing-library/react'
-import faker from 'faker'
+import { faker } from '@faker-js/faker'
 import { MobileMenuButton } from './mobileMenuButton'
 import { createMemoryHistory } from 'history'
 import { defaultTheme } from 'theme'
@@ -9,13 +9,14 @@ import { Router } from 'react-router-dom'
 describe('Mobile Menu Button', () => {
   it('renders component correctly and click works', () => {
     const text = faker.random.words()
-    const path = text.split(' ').join('/')
+    const path = `/${text.split(' ').join('/')}`
+    const pushParams = { hash: '', pathname: path, search: '' }
     const history = createMemoryHistory()
     history.push = jest.fn()
 
     render(
       <ThemeProvider theme={defaultTheme}>
-        <Router history={history}>
+        <Router location={history.location} navigator={history}>
           <MobileMenuButton icon="fa-times" title={text} path={path} />
         </Router>
       </ThemeProvider>,
@@ -24,6 +25,6 @@ describe('Mobile Menu Button', () => {
     expect(buttonElement).toBeInTheDocument()
 
     fireEvent.click(buttonElement)
-    expect(history.push).toHaveBeenCalledWith(path)
+    expect(history.push).toHaveBeenCalledWith(pushParams, undefined)
   })
 })

@@ -1,4 +1,4 @@
-import { VFC } from 'react'
+import { FC } from 'react'
 import styled from 'styled-components'
 import { SidebarButton } from './sidebarButton'
 import { ButtonProps, mediaButtons, miscButtons } from '../navigationButtons'
@@ -22,7 +22,7 @@ const SidebarPause = styled.div`
   height: 10%;
 `
 
-export const Sidebar: VFC = () => {
+export const Sidebar: FC = () => {
   const buttonGenerationFn = ({
     title,
     path,

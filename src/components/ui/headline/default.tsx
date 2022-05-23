@@ -1,4 +1,4 @@
-import { VFC } from 'react'
+import { FC } from 'react'
 import styled from 'styled-components'
 
 import { ContainerFlexCol } from '../container/container'
@@ -44,7 +44,7 @@ const Subtitle = styled.span`
   `}
 `
 
-export const Headline: VFC<Props> = ({ title, subtitle }) => (
+export const Headline: FC<Props> = ({ title, subtitle }) => (
   <Wrapper>
     <Title>{title}</Title>
     <Subtitle>{subtitle}</Subtitle>

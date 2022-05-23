@@ -1,4 +1,4 @@
-import React, { VFC } from 'react'
+import React, { FC } from 'react'
 import styled from 'styled-components'
 
 import { ContainerFlexRow, Headline } from '..'
@@ -22,7 +22,7 @@ const Icon = styled.i`
   `}
 `
 
-export const IconHeadline: VFC<Props> = ({ title, icon, subtitle }) => (
+export const IconHeadline: FC<Props> = ({ title, icon, subtitle }) => (
   <ContainerFlexRow>
     <Icon className={'fa ' + icon} />
     <Headline title={title} subtitle={subtitle} />

@@ -6,6 +6,7 @@ import { strings } from 'strings'
 type Props = {
   closeModalCallback?: () => void
   large?: boolean
+  children: unknown
 }
 
 export const Modal: FC<Props> = ({ children, closeModalCallback, large }) => (

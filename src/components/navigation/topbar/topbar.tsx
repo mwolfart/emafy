@@ -1,6 +1,5 @@
-import { VFC } from 'react'
+import { FC } from 'react'
 import styled from 'styled-components'
-
 import { ProfileInfo } from './profileInfo'
 import { SearchField } from './searchField'
 import { GrayIconButton } from 'components/ui'
@@ -55,7 +54,7 @@ const HamburgerWrapper = styled.div`
   }
 `
 
-export const Topbar: VFC<Props> = ({ user }) => (
+export const Topbar: FC<Props> = ({ user }) => (
   <Wrapper>
     <ProfileInfo userInfo={user} />
     <Dash />

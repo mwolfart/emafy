@@ -1,5 +1,5 @@
 import { GrayIconButton } from 'components/ui'
-import { useState, VFC } from 'react'
+import { useState, FC } from 'react'
 import { strings } from 'strings'
 import styled from 'styled-components'
 import { MobileMenu } from './mobileMenu'
@@ -10,7 +10,7 @@ const Wrapper = styled.div`
   height: 100%;
 `
 
-export const Hamburger: VFC = () => {
+export const Hamburger: FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false)
   const expandMenu = (): void => {
     setIsMenuOpen(true)

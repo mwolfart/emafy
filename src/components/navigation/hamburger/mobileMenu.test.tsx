@@ -3,14 +3,16 @@ import { MobileMenu } from './mobileMenu'
 import { strings } from 'strings'
 import { defaultTheme } from 'theme'
 import { ThemeProvider } from 'styled-components'
-import { StaticRouter as Router } from 'react-router-dom'
+import { Router } from 'react-router-dom'
+import { createMemoryHistory } from 'history'
 
 describe('Mobile Menu', () => {
   it('renders component and props correctly', () => {
     const closeFn = jest.fn()
+    const history = createMemoryHistory()
     render(
       <ThemeProvider theme={defaultTheme}>
-        <Router>
+        <Router location={history.location} navigator={history}>
           <MobileMenu closeMenu={closeFn} isOpen={true} />
         </Router>
       </ThemeProvider>,

@@ -1,8 +1,8 @@
-import { act, renderHook } from '@testing-library/react-hooks'
 import { artists as mockedArtists } from 'fixtures/artists'
 import { useGetUserFollows } from './useGetUserFollows'
 import * as ApiOwn from 'api/data/own'
-import faker from 'faker'
+import { faker } from '@faker-js/faker'
+import { act, renderHook, waitFor } from '@testing-library/react'
 
 describe('Get User Follows hook', () => {
   test('should init hook correctly', async () => {
@@ -16,10 +16,10 @@ describe('Get User Follows hook', () => {
     const { result } = renderHook(() => useGetUserFollows())
     expect(result.current.isLoading).toBe(true)
 
-    await act(() => new Promise(setImmediate))
-
+    await waitFor(() =>
+      expect(result.current.totalCount).toBe(mockedArtists.length),
+    )
     expect(result.current.mediaList).toEqual(mockedArtists)
-    expect(result.current.totalCount).toBe(mockedArtists.length)
     expect(result.current.nextURL).toBe(null)
     expect(result.current.isLoading).toBe(false)
   })
@@ -40,10 +40,11 @@ describe('Get User Follows hook', () => {
     jest.spyOn(ApiOwn, 'checkIfOwnFollowsArtist').mockResolvedValue(true)
 
     const { result } = renderHook(() => useGetUserFollows())
-    await act(() => new Promise(setImmediate))
 
+    await waitFor(() =>
+      expect(result.current.totalCount).toBe(mockedArtists.length),
+    )
     expect(result.current.mediaList).toEqual(artistsFirstHalf)
-    expect(result.current.totalCount).toBe(mockedArtists.length)
     expect(result.current.nextURL).toBe(next)
     expect(result.current.isLoading).toBe(false)
 
@@ -51,7 +52,7 @@ describe('Get User Follows hook', () => {
       await result.current.fetchMoreMedia()
     })
 
-    expect(result.current.mediaList).toEqual(mockedArtists)
-    expect(result.current.nextURL).toBe(null)
+    expect(result.current.nextURL).toEqual(null)
+    expect(result.current.mediaList).toStrictEqual(mockedArtists)
   })
 })

@@ -1,5 +1,5 @@
-import { VFC } from 'react'
-import { Switch, Route } from 'react-router'
+import { FC } from 'react'
+import { Navigate, Route, Router, Routes } from 'react-router'
 import { LoginScene } from 'scenes/login/login'
 import { MyPlaylists } from 'scenes/myPlaylists/myPlaylists'
 import { Profile } from 'scenes/profile/profile'
@@ -9,7 +9,6 @@ import { SavedSongs } from 'scenes/savedSongs/savedSongs'
 import { ViewArtist } from 'scenes/viewArtist/viewArtist'
 import styled from 'styled-components'
 import { User } from 'types/media'
-import { ProtectedRoute } from '../protectedRoute/protectedRoute'
 
 type Props = {
   isLoggedIn: boolean
@@ -35,49 +34,41 @@ const Wrapper = styled.div<StyledProps>`
   `}
 `
 
-export const PageDisplayer: VFC<Props> = ({
+export const PageDisplayer: FC<Props> = ({
   isLoggedIn,
   setIsLoggedIn,
   loggedUser,
 }) => {
+  const redirect = <Navigate to="/login" />
   return (
     <Wrapper isLoggedIn={isLoggedIn}>
-      <Switch>
-        <ProtectedRoute
-          isLoggedIn={isLoggedIn}
+      <Routes>
+        <Route
           path="/saved-albums"
-          component={SavedAlbums}
-        />
-        <ProtectedRoute
-          isLoggedIn={isLoggedIn}
-          path="/saved-artists"
-          component={SavedArtists}
-        />
-        <ProtectedRoute
-          isLoggedIn={isLoggedIn}
-          path="/saved-songs"
-          component={SavedSongs}
-        />
-        <ProtectedRoute
-          isLoggedIn={isLoggedIn}
-          path="/my-playlists"
-          component={MyPlaylists}
-        />
-        <ProtectedRoute
-          isLoggedIn={isLoggedIn}
-          path="/me"
-          component={() => <Profile user={loggedUser} />}
-        />
-        <ProtectedRoute
-          isLoggedIn={isLoggedIn}
-          path="/artist/:id"
-          component={ViewArtist}
+          element={isLoggedIn ? <SavedAlbums /> : redirect}
         />
         <Route
-          path="/login"
-          component={() => <LoginScene onLogin={setIsLoggedIn} />}
+          path="/saved-artists"
+          element={isLoggedIn ? <SavedArtists /> : redirect}
         />
-      </Switch>
+        <Route
+          path="/saved-songs"
+          element={isLoggedIn ? <SavedSongs /> : redirect}
+        />
+        <Route
+          path="/my-playlists"
+          element={isLoggedIn ? <MyPlaylists /> : redirect}
+        />
+        <Route
+          path="/me"
+          element={isLoggedIn ? <Profile user={loggedUser} /> : redirect}
+        />
+        <Route
+          path="/artist/:id"
+          element={isLoggedIn ? <ViewArtist /> : redirect}
+        />
+        <Route path="/login" element={<LoginScene onLogin={setIsLoggedIn} />} />
+      </Routes>
     </Wrapper>
   )
 }

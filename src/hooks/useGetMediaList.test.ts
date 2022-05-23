@@ -1,5 +1,5 @@
-import { act, renderHook } from '@testing-library/react-hooks'
-import faker from 'faker'
+import { act, renderHook, waitFor } from '@testing-library/react'
+import { faker } from '@faker-js/faker'
 import { albums } from 'fixtures/albums'
 import { useGetMediaList } from './useGetMediaList'
 
@@ -15,10 +15,9 @@ describe('Get Media List hook', () => {
     )
 
     const { result } = renderHook(() => useGetMediaList(getFunction))
-    await act(() => new Promise(setImmediate))
 
+    await waitFor(() => expect(result.current.totalCount).toBe(albums.length))
     expect(result.current.mediaList).toBe(albums)
-    expect(result.current.totalCount).toBe(albums.length)
     expect(result.current.nextURL).toBe(next)
   })
 
@@ -36,16 +35,15 @@ describe('Get Media List hook', () => {
     )
 
     const { result } = renderHook(() => useGetMediaList(getFunction))
-    await act(() => new Promise(setImmediate))
 
-    expect(result.current.totalCount).toBe(albums.length)
+    await waitFor(() => expect(result.current.totalCount).toBe(albums.length))
     expect(result.current.mediaList).toEqual(albums.slice(0, albumsHalf))
 
     await act(async () => {
       await result.current.fetchMoreMedia()
     })
 
+    expect(result.current.nextURL).toEqual(null)
     expect(result.current.mediaList).toEqual(albums)
-    expect(result.current.nextURL).toBe(null)
   })
 })

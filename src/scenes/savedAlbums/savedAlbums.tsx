@@ -1,4 +1,4 @@
-import { useState, VFC } from 'react'
+import { useState, FC } from 'react'
 import { useGetMediaList } from 'hooks/useGetMediaList'
 import { Album, isAlbum, Media } from 'types/media'
 import { strings } from 'strings'
@@ -17,7 +17,7 @@ const Wrapper = styled.div`
   `}
 `
 
-export const SavedAlbums: VFC = () => {
+export const SavedAlbums: FC = () => {
   const savedMediaProps = useGetMediaList<Album>(getOwnSavedAlbums)
   const { totalCount, isLoading } = savedMediaProps
   const [renderedAlbumSnippetId, setRenderedAlbumSnippetId] =

@@ -1,4 +1,4 @@
-import { useContext, VFC } from 'react'
+import { useContext, FC } from 'react'
 import styled from 'styled-components'
 import { Media, MediaType } from 'types/media'
 import { MediaDescription } from '../description/description'
@@ -60,7 +60,7 @@ const SimpleLink = styled.div`
   cursor: pointer;
 `
 
-export const MediaLink: VFC<Props> = ({
+export const MediaLink: FC<Props> = ({
   mediaInfo,
   rowVariant: isRowVariant,
   extraProps,

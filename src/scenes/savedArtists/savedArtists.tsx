@@ -1,4 +1,4 @@
-import { VFC } from 'react'
+import { FC } from 'react'
 import { useGetMediaList } from 'hooks/useGetMediaList'
 import { SimpleArtist } from 'types/media'
 import { strings } from 'strings'
@@ -16,7 +16,7 @@ const Wrapper = styled.div`
   `}
 `
 
-export const SavedArtists: VFC = () => {
+export const SavedArtists: FC = () => {
   const savedMediaProps = useGetMediaList<SimpleArtist>(getOwnFollowedUsers)
   const { totalCount, isLoading } = savedMediaProps
 

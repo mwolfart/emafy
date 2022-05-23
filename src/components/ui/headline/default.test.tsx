@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import { ThemeProvider } from 'styled-components'
 import { defaultTheme } from 'theme'
-import faker from 'faker'
+import { faker } from '@faker-js/faker'
 
 import { Headline } from './default'
 

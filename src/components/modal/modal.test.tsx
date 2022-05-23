@@ -1,7 +1,7 @@
 import { fireEvent, render, screen } from '@testing-library/react'
 import { strings } from 'strings'
 import { ThemeProvider } from 'styled-components'
-import faker from 'faker'
+import { faker } from '@faker-js/faker'
 import { Modal } from './modal'
 import { defaultTheme } from 'theme'
 

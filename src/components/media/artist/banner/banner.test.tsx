@@ -3,21 +3,23 @@ import { ArtistBanner } from './banner'
 import { defaultTheme } from 'theme'
 import { ThemeProvider } from 'styled-components'
 import { detailedArtist } from 'fixtures/detailedArtist'
-import faker from 'faker'
-import { StaticRouter } from 'react-router'
+import { faker } from '@faker-js/faker'
+import { Router } from 'react-router-dom'
+import { createMemoryHistory } from 'history'
 
 describe('Artist Banner', () => {
   it('renders component and props correctly', () => {
     const subtitle = faker.random.words()
+    const history = createMemoryHistory()
     render(
       <ThemeProvider theme={defaultTheme}>
-        <StaticRouter>
+        <Router location={history.location} navigator={history}>
           <ArtistBanner
             artistInfo={detailedArtist}
             setArtistInfo={() => {}}
             subtitle={subtitle}
           />
-        </StaticRouter>
+        </Router>
       </ThemeProvider>,
     )
 

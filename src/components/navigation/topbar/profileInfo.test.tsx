@@ -24,16 +24,17 @@ describe('Profile Info', () => {
     const history = createMemoryHistory()
     history.push = jest.fn()
     const path = '/me/'
+    const pushParams = { hash: '', pathname: path, search: '' }
 
     render(
       <ThemeProvider theme={defaultTheme}>
-        <Router history={history}>
+        <Router location={history.location} navigator={history}>
           <ProfileInfo userInfo={user} />
         </Router>
       </ThemeProvider>,
     )
 
     fireEvent.click(screen.getByText(strings.components.topbar.viewProfile))
-    expect(history.push).toHaveBeenCalledWith(path)
+    expect(history.push).toHaveBeenCalledWith(pushParams, undefined)
   })
 })
