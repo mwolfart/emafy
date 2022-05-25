@@ -1,6 +1,6 @@
 import { getToken } from 'api/credentials'
 import { transferPlaybackHere } from 'api/data/playback'
-import { parsePlaybackState } from 'api/parser'
+import { parsePlaybackState } from 'api/parser/playback'
 import { WebPlaybackState } from 'types/api/apiPlayback'
 import { Nullable } from 'types/global'
 import { PlaybackSDK, PlaybackState } from 'types/playbackSDK'

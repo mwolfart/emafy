@@ -1,6 +1,6 @@
 import { RawPlaylist } from 'types/api/apiMedia'
 import { Playlist, MediaType } from 'types/media'
-import { parseImages } from '.'
+import { parseImages } from './images'
 
 export const parsePlaylist = ({
   id,

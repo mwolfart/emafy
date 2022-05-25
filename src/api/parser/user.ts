@@ -1,6 +1,6 @@
 import { RawUser } from 'types/api/apiUser'
 import { User } from 'types/media'
-import { parseImages } from '.'
+import { parseImages } from './images'
 
 export const parseUserData = ({
   country,

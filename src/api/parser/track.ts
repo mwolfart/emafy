@@ -1,6 +1,6 @@
 import { RawTrack } from 'types/api/apiMedia'
 import { Song, isAlbum, MediaType, Album } from 'types/media'
-import { parseImages } from '.'
+import { parseImages } from './images'
 
 interface AlbumTrack extends Omit<RawTrack, 'album'> {
   album: Album

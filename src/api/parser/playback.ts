@@ -1,6 +1,6 @@
 import { WebPlaybackState, WebPlaybackTrack } from 'types/api/apiPlayback'
 import { PlaybackState, PlaybackTrack } from 'types/playbackSDK'
-import { parseImages } from '.'
+import { parseImages } from './images'
 
 export const parsePlaybackState = ({
   paused,

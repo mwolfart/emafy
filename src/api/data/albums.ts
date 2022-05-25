@@ -1,5 +1,5 @@
 import { SPOTIFY_ROUTE } from 'api/enum/spotifyRoute.enum'
-import { parseAlbumTracks, parseAlbum } from 'api/parser'
+import { parseAlbum, parseAlbumTracks } from 'api/parser/album'
 import { spotifyInstance, Method } from 'api/spotifyInstance'
 import { NextURL } from 'types/api/apiData'
 import { RawAlbumTrack, RawAlbum } from 'types/api/apiMedia'

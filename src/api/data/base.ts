@@ -1,5 +1,5 @@
 import { SPOTIFY_ROUTE } from 'api/enum/spotifyRoute.enum'
-import { parseSimpleArtists } from 'api/parser'
+import { parseSimpleArtists } from 'api/parser/artist'
 import { spotifyInstance, Method } from 'api/spotifyInstance'
 import { extractNextFromNextURL } from 'api/utils'
 import { SpotifyDataRequest, NextURL } from 'types/api/apiData'

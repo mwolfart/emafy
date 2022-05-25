@@ -1,6 +1,6 @@
 import { RawArtist } from 'types/api/apiMedia'
 import { SimpleArtist, MediaType } from 'types/media'
-import { parseImages } from '.'
+import { parseImages } from './images'
 
 export const parseSimpleArtist = ({
   followers: { total },

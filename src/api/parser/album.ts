@@ -1,6 +1,7 @@
 import { RawAlbum, RawAlbumTrack } from 'types/api/apiMedia'
 import { Album, MediaType, Song } from 'types/media'
-import { parseImages, parseTrack } from '.'
+import { parseImages } from './images'
+import { parseTrack } from './track'
 
 export const parseAlbum = ({
   artists,

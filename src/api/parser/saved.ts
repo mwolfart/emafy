@@ -1,6 +1,7 @@
 import { SavedAlbum, SavedTrack } from 'types/api/apiSavedMedia'
 import { Album, Song } from 'types/media'
-import { parseAlbum, parseTrack } from '.'
+import { parseAlbum } from './album'
+import { parseTrack } from './track'
 
 export const parseSavedAlbums = (
   savedAlbums: Array<SavedAlbum>,

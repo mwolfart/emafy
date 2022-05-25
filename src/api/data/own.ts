@@ -1,11 +1,8 @@
 import { SPOTIFY_ROUTE } from 'api/enum/spotifyRoute.enum'
-import {
-  parseUserData,
-  parseSavedAlbums,
-  parseSavedTracks,
-  parseSimpleArtists,
-  parsePlaylists,
-} from 'api/parser'
+import { parseSimpleArtists } from 'api/parser/artist'
+import { parsePlaylists } from 'api/parser/playlist'
+import { parseSavedAlbums, parseSavedTracks } from 'api/parser/saved'
+import { parseUserData } from 'api/parser/user'
 import { spotifyInstance, Method } from 'api/spotifyInstance'
 import { NextURL } from 'types/api/apiData'
 import { RawUser } from 'types/api/apiUser'
