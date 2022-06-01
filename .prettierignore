@@ -1,0 +1,8 @@
+
+*.json
+*.config.js
+dist
+.babelrc
+.eslintrc
+.prettierrc
+*.md

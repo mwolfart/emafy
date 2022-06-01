@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 import { albums } from 'fixtures/albums'
 import { ThemeProvider } from 'styled-components'
 import { defaultTheme } from 'theme'

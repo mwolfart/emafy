@@ -25,7 +25,7 @@ describe('Get Artist Details hook', () => {
 
     const { result } = renderHook(() => useGetArtistDetails(artistId))
 
-    let detailedArtist: DetailedArtist = {
+    const detailedArtist: DetailedArtist = {
       ...mockedArtist,
       topTracks: mockedSongs,
       relatedArtists: mockedArtists,

@@ -35,14 +35,12 @@ const Dash = styled.div`
 `
 
 const ButtonsWrapper = styled.div`
-  ${({ theme }) => `
-    align-self: center;
-    text-align: right;
+  align-self: center;
+  text-align: right;
 
-    @media (max-width: 576px) {
-      display: none;
-    }
-  `}
+  @media (max-width: 576px) {
+    display: none;
+  }
 `
 
 const HamburgerWrapper = styled.div`

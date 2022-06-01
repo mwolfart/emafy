@@ -29,7 +29,7 @@ const Wrapper = styled.div`
 
 export const PlayerQueue: FC<Props> = ({ currentTrack, tracks }) => {
   const queue = tracks.map((track) => (
-    <QueueTrack title={track.name} artists={track.artists} />
+    <QueueTrack key={track.id} title={track.name} artists={track.artists} />
   ))
   const renderedQueue = tracks.length ? queue : ''
   return (

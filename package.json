@@ -21,7 +21,8 @@
   "scripts": {
     "start": "parcel",
     "build": "parcel build",
-    "test": "jest"
+    "test": "jest",
+    "lint": "eslint . --ext .ts --ext .tsx"
   },
   "eslintConfig": {
     "extends": [
@@ -63,6 +64,7 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-jest": "^26.2.2",
     "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react": "^7.30.0",
     "jest": "^28.1.0",
     "jest-environment-jsdom": "^28.1.0",
     "parcel-resolver-ts-base-url": "^1.1.5",

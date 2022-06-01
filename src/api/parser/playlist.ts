@@ -8,7 +8,6 @@ export const parsePlaylist = ({
   description,
   images,
   owner: { display_name },
-  tracks,
 }: RawPlaylist): Playlist => {
   const imagesLinks = parseImages(images)
   return {

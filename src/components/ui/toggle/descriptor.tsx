@@ -11,15 +11,13 @@ type Props = {
 }
 
 const Wrapper = styled.div`
-  ${({ theme }) => `
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    
-    @media (max-width: 576px) {
-      display: none;
-    }
-  `}
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  @media (max-width: 576px) {
+    display: none;
+  }
 `
 
 const Label = styled.div`

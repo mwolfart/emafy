@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { Navigate, Route, Router, Routes } from 'react-router'
+import { Navigate, Route, Routes } from 'react-router'
 import { LoginScene } from 'scenes/login/login'
 import { MyPlaylists } from 'scenes/myPlaylists/myPlaylists'
 import { Profile } from 'scenes/profile/profile'

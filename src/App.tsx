@@ -54,10 +54,8 @@ const ContentWrapper = styled.div`
 `
 
 const FooterWrapper = styled.div`
-  ${({ theme }) => `
-    position: relative;
-    width: 100vw;
-  `}
+  position: relative;
+  width: 100vw;
 `
 
 const App = (): JSX.Element => {
@@ -75,7 +73,7 @@ const App = (): JSX.Element => {
   const [isLoading, setIsLoading] = useState<boolean>(true)
 
   const initialPlayerContext = {
-    playSong: (songId: string) => {},
+    playSong: () => {},
   }
 
   useEffect(() => {

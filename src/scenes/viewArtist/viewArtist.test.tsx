@@ -20,7 +20,7 @@ jest.mock('hooks/useGetMediaList', () => ({
 }))
 
 jest.mock('hooks/useGetArtistDetails', () => ({
-  useGetArtistDetails: (id: number) => ({
+  useGetArtistDetails: () => ({
     artistInfo: mockedDetailedArtist,
     setArtistInfo: jest.fn(),
     isLoading: false,

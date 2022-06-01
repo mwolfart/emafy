@@ -44,7 +44,7 @@ const redirect_uri = process.env.REACT_APP_API_URI ?? ''
 
 const generateRandomString = (length: number): string => {
   let text = ''
-  let possible =
+  const possible =
     'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
   for (let i = 0; i < length; i++) {
     text += possible.charAt(Math.floor(Math.random() * possible.length))
@@ -183,15 +183,15 @@ const updateToken = (
 }
 
 export const getAuthParamsFromURI = (): AuthorizeResponse => {
-  let hashParams = {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const hashParams: any = {
     code: null,
     state: null,
   }
-  let e,
-    r = /([^&;=]+)=?([^&;]*)/g,
-    q = window.location.search.substring(1)
+  let e
+  const r = /([^&;=]+)=?([^&;]*)/g
+  const q = window.location.search.substring(1)
   while ((e = r.exec(q))) {
-    /* @ts-ignore */
     hashParams[e[1]] = decodeURIComponent(e[2])
   }
   return hashParams

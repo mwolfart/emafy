@@ -1,6 +1,5 @@
 {
   "arrowParens": "always",
-  "eslintIntegration": true,
   "printWidth": 80,
   "proseWrap": "always",
   "semi": false,
