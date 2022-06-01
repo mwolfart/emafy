@@ -1,4 +1,4 @@
-import faker from 'faker'
+import { faker } from '@faker-js/faker'
 import { PlaybackTrack, PlaybackState } from 'types/playbackSDK'
 
 export const playbackTrack: PlaybackTrack = {
