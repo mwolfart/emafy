@@ -1,10 +1,17 @@
 {
   "extends": [
-    "react-app",
-    "prettier/@typescript-eslint",
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react/recommended",
     "plugin:prettier/recommended"
   ],
   "plugins": ["react", "@typescript-eslint", "jest", "prettier"],
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
   "env": {
     "browser": true,
     "es6": true,
@@ -40,6 +47,8 @@
         "array": false
       }
     ],
-    "react/destructuring-assignment": ["error", "always"]
+    "react/destructuring-assignment": ["error", "always"],
+    "react/react-in-jsx-scope": ["off"],
+    "@typescript-eslint/no-empty-function": ["off"]
   }
 }
