@@ -15,7 +15,7 @@ const mockPlaybackSDK: PlaybackSDK = {
   pause: jest.fn(),
   connect: jest.fn(),
   getCurrentState: jest.fn(),
-  getVolume: jest.fn(),
+  getVolume: jest.fn(() => Promise.resolve(1)),
   setVolume: jest.fn(),
   seek: jest.fn(),
   previousTrack: jest.fn(),
