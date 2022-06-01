@@ -1,4 +1,4 @@
-import { VFC } from 'react'
+import { FC } from 'react'
 import styled from 'styled-components'
 import { abbreviateText, nameListToString } from 'utils/utils'
 
@@ -25,7 +25,7 @@ const Wrapper = styled.div`
   `}
 `
 
-export const QueueTrack: VFC<Props> = ({ title, artists }) => {
+export const QueueTrack: FC<Props> = ({ title, artists }) => {
   const trackName = abbreviateText(title, 50)
   const currentTrackArtists = abbreviateText(nameListToString(artists), 50)
   return (

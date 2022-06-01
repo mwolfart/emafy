@@ -1,4 +1,4 @@
-import { VFC } from 'react'
+import { FC } from 'react'
 import { strings } from 'strings'
 import styled from 'styled-components'
 import { PlaybackTrack } from 'types/playbackSDK'
@@ -27,7 +27,7 @@ const Wrapper = styled.div`
   `}
 `
 
-export const PlayerQueue: VFC<Props> = ({ currentTrack, tracks }) => {
+export const PlayerQueue: FC<Props> = ({ currentTrack, tracks }) => {
   const queue = tracks.map((track) => (
     <QueueTrack title={track.name} artists={track.artists} />
   ))

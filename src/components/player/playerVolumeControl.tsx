@@ -1,4 +1,4 @@
-import React, { VFC } from 'react'
+import { FC } from 'react'
 import styled from 'styled-components'
 
 type Props = {
@@ -80,7 +80,7 @@ const InputSlider = styled.input`
   `}
 `
 
-export const PlayerVolumeControl: VFC<Props> = ({
+export const PlayerVolumeControl: FC<Props> = ({
   setVolume,
   currentVolume,
 }) => {

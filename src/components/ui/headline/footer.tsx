@@ -1,4 +1,4 @@
-import { VFC } from 'react'
+import { FC } from 'react'
 import styled from 'styled-components'
 
 type Props = {
@@ -37,7 +37,7 @@ const Subtitle = styled.span`
   `}
 `
 
-export const FooterHeadline: VFC<Props> = ({ title, subtitle }) => (
+export const FooterHeadline: FC<Props> = ({ title, subtitle }) => (
   <Wrapper>
     <Title>{title}</Title>
     <Subtitle>{subtitle}</Subtitle>

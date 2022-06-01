@@ -8,7 +8,7 @@ import { abbreviateText } from 'utils/utils'
 describe('Queue Track', () => {
   it('renders component correctly', () => {
     const title = faker.random.words()
-    const artists = [{ uri: faker.internet.url(), name: faker.name.findName() }]
+    const artists = [faker.name.findName()]
     render(
       <ThemeProvider theme={defaultTheme}>
         <QueueTrack title={title} artists={artists} />
@@ -16,7 +16,7 @@ describe('Queue Track', () => {
     )
 
     const titleElement = screen.getByText(abbreviateText(title, 50))
-    const artistElement = screen.getByText(abbreviateText(artists[0].name, 50))
+    const artistElement = screen.getByText(abbreviateText(artists[0], 50))
     expect(titleElement).toBeInTheDocument()
     expect(artistElement).toBeInTheDocument()
   })

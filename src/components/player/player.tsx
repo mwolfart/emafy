@@ -2,7 +2,7 @@ import { playMedia } from 'api/data/playback'
 import { BeatLoader } from 'components/loader'
 import { FooterHeadline } from 'components/ui'
 import { PlayerContext } from 'contexts/player'
-import { useContext, useEffect, useState, VFC } from 'react'
+import { useContext, useEffect, useState, FC } from 'react'
 import { strings } from 'strings'
 import styled from 'styled-components'
 import { Nullable } from 'types/global'
@@ -58,7 +58,7 @@ const TrackInfoContainer = styled.div`
   `}
 `
 
-export const PlayerComponent: VFC = () => {
+export const PlayerComponent: FC = () => {
   const [playbackSDK, setPlaybackSDK] = useState(emptyPlackbackSDK)
   const [isPlaying, setIsPlaying] = useState(false)
   const [isLoading, setIsLoading] = useState(true)

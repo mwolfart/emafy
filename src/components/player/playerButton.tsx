@@ -1,4 +1,4 @@
-import { VFC } from 'react'
+import { FC } from 'react'
 import styled from 'styled-components'
 
 type Props = {
@@ -42,7 +42,7 @@ const Icon = styled.i<StyledProps>`
   `}
 `
 
-export const PlayerButton: VFC<Props> = ({
+export const PlayerButton: FC<Props> = ({
   iconClass,
   isLarge,
   onClick,
