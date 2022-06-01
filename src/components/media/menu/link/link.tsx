@@ -86,14 +86,16 @@ export const MediaLink: FC<Props> = ({
   switch (mediaInfo.mediaType) {
     case MediaType.artist:
       return <RouterLink to={linkRedirectURL}>{mediaTile}</RouterLink>
-    case MediaType.album:
+    case MediaType.album: {
       const albumClickCallback = (): void =>
         extraProps &&
         extraProps.mediaSnippetOpenCallback &&
         extraProps.mediaSnippetOpenCallback(mediaInfo)
       return <SimpleLink onClick={albumClickCallback}>{mediaTile}</SimpleLink>
-    default:
+    }
+    default: {
       const songClickCallback = (): void => playerContext.playSong(mediaInfo.id)
       return <SimpleLink onClick={songClickCallback}>{mediaTile}</SimpleLink>
+    }
   }
 }

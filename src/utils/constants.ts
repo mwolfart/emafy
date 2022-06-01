@@ -17,10 +17,9 @@ export const emptyPlackbackSDK: PlaybackSDK = {
   connect: () => new Promise(() => true),
   getCurrentState: () => new Promise(() => {}),
   getVolume: () => new Promise(() => 0),
-  setVolume: (value: number) => new Promise(() => {}),
-  seek: (value: number) => new Promise(() => {}),
+  setVolume: () => new Promise(() => {}),
+  seek: () => new Promise(() => {}),
   previousTrack: () => new Promise(() => {}),
   nextTrack: () => new Promise(() => {}),
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  addListener: (name: string, foo: (params: any) => void) => true,
+  addListener: () => true,
 }

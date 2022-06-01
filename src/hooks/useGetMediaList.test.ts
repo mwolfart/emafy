@@ -6,7 +6,7 @@ import { useGetMediaList } from './useGetMediaList'
 describe('Get Media List hook', () => {
   test('should init hook correctly', async () => {
     const next = faker.internet.url()
-    const getFunction = jest.fn((nextURL) =>
+    const getFunction = jest.fn(() =>
       Promise.resolve({
         entities: albums,
         next: next,

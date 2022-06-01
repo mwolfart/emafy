@@ -1,7 +1,6 @@
 import { render, screen } from '@testing-library/react'
 import { defaultTheme } from 'theme'
 import { ThemeProvider } from 'styled-components'
-import { album } from 'fixtures/album'
 import { createMemoryHistory } from 'history'
 import { RelatedArtists } from './relatedArtists'
 import { artists } from 'fixtures/artists'

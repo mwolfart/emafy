@@ -23,10 +23,8 @@ type StyledProps = {
 }
 
 const Wrapper = styled.div`
-  ${({ theme }) => `
-    height: 100%;
-    margin-top: -80px;
-  `}
+  height: 100%;
+  margin-top: -80px;
 `
 
 const ToggleButtonWrapper = styled.div`
