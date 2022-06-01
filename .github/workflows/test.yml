@@ -9,7 +9,7 @@ jobs:
         with:
           node-version: '17'
       - run: npm install
-      - run: npm build
+      - run: npm run build
       - run: npx prettier --check .
       - run: npm run lint
       - run: npm test
