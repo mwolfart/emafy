@@ -1,14 +1,12 @@
 import { SPOTIFY_ROUTE } from 'api/enum/spotifyRoute.enum'
-import {
-  parseSimpleArtist,
-  parseAlbums,
-  parseTracks,
-  parseSimpleArtists,
-} from 'api/parser'
+import { parseAlbums } from 'api/parser/album'
+import { parseSimpleArtist, parseSimpleArtists } from 'api/parser/artist'
+import { parseTracks } from 'api/parser/track'
 import { spotifyInstance, Method } from 'api/spotifyInstance'
-import { NextURL, MediaListResponse } from 'types/api/apiData'
+import { NextURL } from 'types/api/apiData'
 import { RawArtist, RawAlbum, RawTrack } from 'types/api/apiMedia'
 import { SimpleArtist, Album, Song } from 'types/media'
+import { MediaListResponse } from 'types/mediaQuery'
 import { getSpotifyData } from './base'
 
 export const getArtist = (id: string): Promise<{ entities: SimpleArtist }> => {

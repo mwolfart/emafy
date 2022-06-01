@@ -1,8 +1,9 @@
 import { SPOTIFY_ROUTE } from 'api/enum/spotifyRoute.enum'
 import { parseSavedTracks } from 'api/parser'
 import { spotifyInstance, Method } from 'api/spotifyInstance'
-import { NextURL, MediaListResponse } from 'types/api/apiData'
+import { NextURL } from 'types/api/apiData'
 import { SimpleArtist, Song } from 'types/media'
+import { MediaListResponse } from 'types/mediaQuery'
 import { getArtistListData, getSpotifyData } from './base'
 
 export const getUserFollowedUsers = (

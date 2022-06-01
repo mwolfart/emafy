@@ -22,6 +22,9 @@ interface IPalette {
   colorLinkBackground: string
   colorLinkBackgroundHover: string
   colorImageBackground: string
+  colorTrackProgress: string
+  colorGray: string
+  colorWhite: string
 }
 
 declare module 'styled-components' {
@@ -36,6 +39,7 @@ declare module 'styled-components' {
     borderRadiusSmall: string
     borderRadiusMedium: string
     borderRadiusLarge: string
+    borderRadiusExtraLarge: string
     borderRadiusImage: string
     fontStyle: string
     fontBoldOne: string
@@ -59,10 +63,21 @@ declare module 'styled-components' {
     divSpacingMedium: string
     divSpacingBig: string
     divSpacingExtraBig: string
+    divSpacingPlayerButton: string
+    divSpacingPlayerButtonLarge: string
+    divDistanceSmall: string
+    divDistanceMedium: string
+    inputSliderHeight: string
+    inputSliderBorderRadius: string
+    inputSliderShadow: string
+    inputSliderThumbSize: string
     transitionQuick: string
     transitionQuickDelayed: string
     sidebarWidth: string
     topbarHeight: string
+    playerHeight: string
+    playerQueueWidth: string
+    progressBarSize: string
     palette: Palette
   }
 }

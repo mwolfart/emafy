@@ -7,6 +7,7 @@ export { GrayIconButton } from './button/grayIcon'
 export { Descriptor as ToggleDescriptor } from './toggle/descriptor'
 export { Headline } from './headline/default'
 export { IconHeadline } from './headline/icon'
+export { FooterHeadline } from './headline/footer'
 
 export { Rectangle } from './rectangle/default'
 export { ModalRectangle } from './rectangle/modal'

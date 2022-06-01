@@ -14,3 +14,9 @@ export type ArtistDetailsQuery = {
   setArtistInfo: (artistInfo: DetailedArtist) => void
   isLoading: boolean
 }
+
+export type MediaListResponse<T> = {
+  entities: Array<T>
+  next: NextURL
+  total: number
+}

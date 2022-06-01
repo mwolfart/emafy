@@ -12,4 +12,7 @@ export enum SPOTIFY_ROUTE {
   ARTIST_ALBUMS = 'artists/:id/albums',
   ARTIST_TRACKS = 'artists/:id/top-tracks',
   ARTIST_RELATED = 'artists/:id/related-artists',
+  PLAYER = 'player',
+  PLAYER_PLAY = 'player/play',
+  PLAYER_DEVICES = 'player/devices',
 }

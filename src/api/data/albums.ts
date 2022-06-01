@@ -1,9 +1,10 @@
 import { SPOTIFY_ROUTE } from 'api/enum/spotifyRoute.enum'
-import { parseAlbumTracks, parseAlbum } from 'api/parser'
+import { parseAlbum, parseAlbumTracks } from 'api/parser/album'
 import { spotifyInstance, Method } from 'api/spotifyInstance'
-import { NextURL, MediaListResponse } from 'types/api/apiData'
+import { NextURL } from 'types/api/apiData'
 import { RawAlbumTrack, RawAlbum } from 'types/api/apiMedia'
 import { Album, Song } from 'types/media'
+import { MediaListResponse } from 'types/mediaQuery'
 import { getSpotifyData } from './base'
 
 export const getAlbumTracks = (

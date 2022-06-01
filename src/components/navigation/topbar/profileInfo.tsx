@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import { User } from 'types/media'
 import { strings } from 'strings'
 import { Link as RouterLink } from 'react-router-dom'
+import { FooterHeadline } from 'components/ui'
 
 type Props = {
   userInfo: User
@@ -22,49 +23,17 @@ const Wrapper = styled.div`
   `}
 `
 
-const Description = styled.div`
-  display: flex;
-  flex-direction: column;
-
-  @media (max-width: 576px) {
-    display: none;
-  }
-`
-
-const Name = styled.span`
-  ${({ theme }) => `
-    font-family: ${theme.fontStyle};
-    font-size: ${theme.fontSizeParagraph};
-    font-weight: ${theme.fontBoldTwo};
-    line-height: ${theme.lineHeightSimple};
-    color: ${theme.palette.colorTextTitle};
-    white-space: nowrap;
-  `}
-`
-
-const Subtitle = styled.span`
-  ${({ theme }) => `
-    font-family: ${theme.fontStyle};
-    font-size: ${theme.fontSizeTiny};
-    font-weight: ${theme.fontBoldOne};
-    color: ${theme.palette.colorTextDisabled};
-    text-transform: uppercase;
-    white-space: nowrap;
-  `}
-`
-
 export const ProfileInfo: FC<Props> = ({ userInfo }) => {
-  const imagePath = (userInfo.images?.length && userInfo.images[0]) || 'images/profile.png'
+  const imagePath =
+    (userInfo.images?.length && userInfo.images[0]) ||
+    'assets/images/profile.png'
   const viewProfileText = strings.components.topbar.viewProfile
 
   return (
     <RouterLink to="/me/">
       <Wrapper>
         <Avatar imagePath={imagePath} small={true} />
-        <Description>
-          <Name>{userInfo.name}</Name>
-          <Subtitle>{viewProfileText}</Subtitle>
-        </Description>
+        <FooterHeadline title={userInfo.name} subtitle={viewProfileText} />
       </Wrapper>
     </RouterLink>
   )

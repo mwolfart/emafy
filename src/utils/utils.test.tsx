@@ -1,11 +1,12 @@
 import { album } from 'fixtures/album'
 import { artist } from 'fixtures/artist'
 import {
+  abbreviateText,
   artistListToString,
   capitalize,
   formatDuration,
   formatTrackNumber,
-  genreListToString,
+  nameListToString,
   renderSubTitle,
 } from './utils'
 
@@ -23,9 +24,13 @@ describe('ArtistListToString', () => {
   })
 })
 
-describe('GenreListToString', () => {
-  it('GenreListToString produces correct output for artist', () => {
-    const result = genreListToString(artist.genres)
+describe('NameListToString', () => {
+  it('NameListToString produces correct output for empty array', () => {
+    const result = nameListToString([])
+    expect(result).toBe('')
+  })
+  it('NameListToString produces correct output for artists', () => {
+    const result = nameListToString(artist.genres)
     expect(result).toBe(
       `${artist.genres[0]}, ${artist.genres[1]}, ${artist.genres[2]}`,
     )
@@ -52,5 +57,15 @@ describe('FormatTrackNumber', () => {
     expect(trackNumberOneDigit).toBe('02')
     const trackNumberTwoDigits = formatTrackNumber(12)
     expect(trackNumberTwoDigits).toBe('12')
+  })
+})
+
+describe('AbbreviateText', () => {
+  it('AbbreviateText produces correct output', () => {
+    const longText = 'this is a long text'
+    const unabbreviatedText = abbreviateText(longText, 50)
+    expect(unabbreviatedText).toEqual(longText)
+    const abbreviatedText = abbreviateText(longText, 10)
+    expect(abbreviatedText).toEqual('this is...')
   })
 })

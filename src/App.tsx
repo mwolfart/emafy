@@ -15,6 +15,8 @@ import { defaultTheme } from 'theme'
 import { getOwnProfile } from 'api/data/own'
 import { PageDisplayer } from 'components/routing/pageDisplayer/pageDisplayer'
 import { emptyUser } from 'utils/constants'
+import { PlayerComponent } from 'components/player/player'
+import { PlayerContext } from 'contexts/player'
 
 type StyledProps = {
   isLoggedIn: boolean
@@ -47,7 +49,14 @@ const ContentWrapper = styled.div`
     display: flex;
     flex-direction: row;
     width: 100vw;
-    height: calc(100% - ${theme.topbarHeight});
+    height: calc(100% - ${theme.topbarHeight} - ${theme.playerHeight});
+  `}
+`
+
+const FooterWrapper = styled.div`
+  ${({ theme }) => `
+    position: relative;
+    width: 100vw;
   `}
 `
 
@@ -65,6 +74,10 @@ const App = (): JSX.Element => {
   const [loggedUser, setLoggedUser] = useState<User>(emptyUser)
   const [isLoading, setIsLoading] = useState<boolean>(true)
 
+  const initialPlayerContext = {
+    playSong: (songId: string) => {},
+  }
+
   useEffect(() => {
     return cancellableRequest(
       getOwnProfile,
@@ -81,26 +94,29 @@ const App = (): JSX.Element => {
 
   return (
     <ThemeProvider theme={defaultTheme}>
-      <GlobalLinkStyle />
-      <BrowserRouter>
-        {isLoading ? (
-          <BeatLoader />
-        ) : (
-          <Wrapper>
-            <HeaderWrapper isLoggedIn={isLoggedIn}>
-              {isLoggedIn && <Topbar user={loggedUser} />}
-            </HeaderWrapper>
-            <ContentWrapper>
-              {isLoggedIn && <Sidebar />}
-              <PageDisplayer
-                isLoggedIn={isLoggedIn}
-                setIsLoggedIn={setIsLoggedIn}
-                loggedUser={loggedUser}
-              />
-            </ContentWrapper>
-          </Wrapper>
-        )}
-      </BrowserRouter>
+      <PlayerContext.Provider value={initialPlayerContext}>
+        <GlobalLinkStyle />
+        <BrowserRouter>
+          {isLoading ? (
+            <BeatLoader />
+          ) : (
+            <Wrapper>
+              <HeaderWrapper isLoggedIn={isLoggedIn}>
+                {isLoggedIn && <Topbar user={loggedUser} />}
+              </HeaderWrapper>
+              <ContentWrapper>
+                {isLoggedIn && <Sidebar />}
+                <PageDisplayer
+                  isLoggedIn={isLoggedIn}
+                  setIsLoggedIn={setIsLoggedIn}
+                  loggedUser={loggedUser}
+                />
+              </ContentWrapper>
+              <FooterWrapper>{isLoggedIn && <PlayerComponent />}</FooterWrapper>
+            </Wrapper>
+          )}
+        </BrowserRouter>
+      </PlayerContext.Provider>
     </ThemeProvider>
   )
 }

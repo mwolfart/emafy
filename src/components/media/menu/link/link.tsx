@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { useContext, FC } from 'react'
 import styled from 'styled-components'
 import { Media, MediaType } from 'types/media'
 import { MediaDescription } from '../description/description'
@@ -6,6 +6,7 @@ import { MediaImage } from '../image/image'
 import { strings } from 'strings'
 import { Link as RouterLink } from 'react-router-dom'
 import { MediaExtraProps } from 'types/mediaExtraProps'
+import { PlayerContext } from 'contexts/player'
 
 type Props = {
   mediaInfo: Media
@@ -73,6 +74,7 @@ export const MediaLink: FC<Props> = ({
       aria-label={strings.components.media.image.unavailable}
     />
   )
+  const playerContext = useContext(PlayerContext)
 
   const mediaTile = (
     <TileWrapper rowVariant={isRowVariant}>
@@ -85,12 +87,13 @@ export const MediaLink: FC<Props> = ({
     case MediaType.artist:
       return <RouterLink to={linkRedirectURL}>{mediaTile}</RouterLink>
     case MediaType.album:
-      const clickCallback = (): void =>
+      const albumClickCallback = (): void =>
         extraProps &&
         extraProps.mediaSnippetOpenCallback &&
         extraProps.mediaSnippetOpenCallback(mediaInfo)
-      return <SimpleLink onClick={clickCallback}>{mediaTile}</SimpleLink>
+      return <SimpleLink onClick={albumClickCallback}>{mediaTile}</SimpleLink>
     default:
-      return <>{mediaTile}</>
+      const songClickCallback = (): void => playerContext.playSong(mediaInfo.id)
+      return <SimpleLink onClick={songClickCallback}>{mediaTile}</SimpleLink>
   }
 }

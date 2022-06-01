@@ -1,15 +1,12 @@
 import { SPOTIFY_ROUTE } from 'api/enum/spotifyRoute.enum'
-import { parseSimpleArtists } from 'api/parser'
+import { parseSimpleArtists } from 'api/parser/artist'
 import { spotifyInstance, Method } from 'api/spotifyInstance'
 import { extractNextFromNextURL } from 'api/utils'
-import {
-  SpotifyDataRequest,
-  NextURL,
-  MediaListResponse,
-  RawMediaListResponse,
-} from 'types/api/apiData'
+import { SpotifyDataRequest, NextURL } from 'types/api/apiData'
 import { RawArtist } from 'types/api/apiMedia'
+import { RawMediaListResponse } from 'types/api/apiQuery'
 import { SimpleArtist } from 'types/media'
+import { MediaListResponse } from 'types/mediaQuery'
 
 export const getSpotifyData = <T, U>({
   route,

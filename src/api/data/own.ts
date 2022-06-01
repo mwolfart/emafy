@@ -1,15 +1,13 @@
 import { SPOTIFY_ROUTE } from 'api/enum/spotifyRoute.enum'
-import {
-  parseUserData,
-  parseSavedAlbums,
-  parseSavedTracks,
-  parseSimpleArtists,
-  parsePlaylists,
-} from 'api/parser'
+import { parseSimpleArtists } from 'api/parser/artist'
+import { parsePlaylists } from 'api/parser/playlist'
+import { parseSavedAlbums, parseSavedTracks } from 'api/parser/saved'
+import { parseUserData } from 'api/parser/user'
 import { spotifyInstance, Method } from 'api/spotifyInstance'
-import { NextURL, MediaListResponse } from 'types/api/apiData'
-import { RawUser } from 'types/api/apiMedia'
+import { NextURL } from 'types/api/apiData'
+import { RawUser } from 'types/api/apiUser'
 import { User, Album, Song, SimpleArtist, Playlist } from 'types/media'
+import { MediaListResponse } from 'types/mediaQuery'
 import { getSpotifyData, getArtistListData } from './base'
 
 export const getOwnProfile = (): Promise<User> => {
