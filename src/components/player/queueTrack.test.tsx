@@ -2,7 +2,7 @@ import { defaultTheme } from 'theme'
 import { render, screen } from '@testing-library/react'
 import { ThemeProvider } from 'styled-components'
 import { QueueTrack } from './queueTrack'
-import faker from 'faker'
+import { faker } from '@faker-js/faker'
 import { abbreviateText } from 'utils/utils'
 
 describe('Queue Track', () => {

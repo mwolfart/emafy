@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from '@testing-library/react'
-import faker from 'faker'
+import { faker } from '@faker-js/faker'
 import { ThemeProvider } from 'styled-components'
 import { defaultTheme } from 'theme'
 import { PlayerButton } from './playerButton'
