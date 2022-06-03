@@ -144,7 +144,7 @@ const isTokenExpired = (): boolean => {
   return tokenExpired
 }
 
-const getFirstToken = (
+const initToken = (
   onSuccessCallback?: () => void,
   onErrorCallback?: () => void,
 ): void => {
@@ -220,7 +220,7 @@ export const hasAuthCode = (): boolean => {
   return !!code
 }
 
-export const getToken = (): Nullable<string> =>
+export const getLocalToken = (): Nullable<string> =>
   localStorage.getItem(LOCAL_STORAGE.ACCESS_TOKEN)
 
 export const requestValidToken = ({
@@ -229,7 +229,7 @@ export const requestValidToken = ({
 }: CallbackFunction): void => {
   const hasToken = !!localStorage.getItem(LOCAL_STORAGE.ACCESS_TOKEN)
   if (!hasToken) {
-    getFirstToken(onSuccessCallback, onErrorCallback)
+    initToken(onSuccessCallback, onErrorCallback)
   } else {
     updateToken(onSuccessCallback, onErrorCallback)
   }
