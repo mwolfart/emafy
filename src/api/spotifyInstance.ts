@@ -1,15 +1,9 @@
-import axios, { AxiosResponse } from 'axios'
+import axios, {
+  AxiosRequestConfig,
+  AxiosRequestHeaders,
+  AxiosResponse,
+} from 'axios'
 import { LOCAL_STORAGE } from './enum/localStorage.enum'
-
-type HeaderProps = {
-  headers: {
-    Authorization: string
-  }
-}
-
-type RequestProps = {
-  params: { [key: string]: string }
-} & HeaderProps
 
 export enum Method {
   GET,
@@ -17,20 +11,18 @@ export enum Method {
   DELETE,
 }
 
-const createHeader = (): HeaderProps => {
+const createHeader = (): AxiosRequestHeaders => {
   const accessToken = localStorage.getItem(LOCAL_STORAGE.ACCESS_TOKEN)
   return {
-    headers: {
-      Authorization: 'Bearer ' + accessToken,
-    },
+    Authorization: 'Bearer ' + accessToken,
   }
 }
 
-const createRequestParams = (params?: {
-  [key: string]: string
-}): RequestProps => {
-  const header = createHeader()
-  return { ...header, params: { ...params } }
+const createRequestParams = (
+  props?: AxiosRequestConfig,
+): AxiosRequestConfig => {
+  const headers = createHeader()
+  return { headers, ...props }
 }
 
 const instance = axios.create({
@@ -40,21 +32,21 @@ const instance = axios.create({
 const spotifyInstance = <T>(
   url: string,
   method: Method,
-  otherQueryParams?: { [key: string]: string },
-  bodyParams?: unknown,
+  configProps?: AxiosRequestConfig,
+  bodyProps?: unknown,
 ): Promise<AxiosResponse<T>> => {
   switch (method) {
     case Method.PUT:
       return instance.put(
         url,
-        bodyParams || {},
-        createRequestParams(otherQueryParams),
+        bodyProps || {},
+        createRequestParams(configProps),
       )
     case Method.DELETE:
-      return instance.delete(url, createRequestParams(otherQueryParams))
+      return instance.delete(url, createRequestParams(configProps))
     case Method.GET:
     default:
-      return instance.get(url, createRequestParams(otherQueryParams))
+      return instance.get(url, createRequestParams(configProps))
   }
 }
 

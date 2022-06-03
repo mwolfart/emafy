@@ -1,4 +1,4 @@
-import { getToken } from 'api/credentials'
+import { getLocalToken } from 'api/credentials'
 import { transferPlaybackHere } from 'api/data/playback'
 import { parsePlaybackState } from 'api/parser/playback'
 import { WebPlaybackState } from 'types/api/apiPlayback'
@@ -47,7 +47,7 @@ export const initPlaybackSDK = (
     playbackSDK = new windowNoType.Spotify.Player({
       name: 'Emafy Spotify',
       getOAuthToken: (OAuthCallBack: (token: Nullable<string>) => void) => {
-        OAuthCallBack(getToken())
+        OAuthCallBack(getLocalToken())
       },
       volume: 0.3,
     })

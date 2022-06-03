@@ -37,7 +37,7 @@ export const getArtistTopTracks = (
 ): Promise<{ entities: Song[] }> => {
   const route = SPOTIFY_ROUTE.ARTIST_TRACKS.replace(':id', id)
   return spotifyInstance<{ tracks: RawTrack[] }>(route, Method.GET, {
-    market: 'US',
+    params: { market: 'US' },
   }).then(({ data: { tracks } }) => {
     return {
       entities: parseTracks(tracks),
