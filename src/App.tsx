@@ -9,7 +9,6 @@ import { getAuthParamsFromURI } from 'api/credentials'
 import { Sidebar } from 'components/navigation/sidebar/sidebar'
 import { Topbar } from 'components/navigation/topbar/topbar'
 import { User } from 'types/media'
-import { cancellableRequest } from 'api/utils'
 import { BeatLoader } from 'components/loader'
 import { defaultTheme } from 'theme'
 import { getOwnProfile } from 'api/data/own'
@@ -77,17 +76,18 @@ const App = (): JSX.Element => {
   }
 
   useEffect(() => {
-    return cancellableRequest(
-      getOwnProfile,
-      (userData) => {
-        setLoggedUser(userData)
-        setIsLoading(false)
-      },
-      () => {},
-      () => {
-        setIsLoading(false)
-      },
-    )
+    let aborted = false
+    getOwnProfile()
+      .then((userData) => {
+        if (!aborted) {
+          setLoggedUser(userData)
+          setIsLoading(false)
+        }
+      })
+      .finally(() => !aborted && setIsLoading(false))
+    return () => {
+      aborted = true
+    }
   }, [isLoggedIn])
 
   return (

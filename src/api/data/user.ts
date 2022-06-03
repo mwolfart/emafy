@@ -34,7 +34,6 @@ export const checkIfUserFollowsArtist = (
 ): Promise<boolean> => {
   const route = '/' + userId + '/' + SPOTIFY_ROUTE.FOLLOWING_CHECK
   return spotifyInstance<boolean>(route, Method.GET, {
-    ids: artistId,
-    type,
+    params: { ids: artistId, type },
   }).then(({ data }) => data)
 }

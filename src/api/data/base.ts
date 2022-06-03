@@ -25,7 +25,7 @@ export const getSpotifyData = <T, U>({
   return spotifyInstance<{ items: T[]; next?: string; total: number }>(
     requestLink,
     Method.GET,
-    otherParams,
+    { params: otherParams },
   ).then(({ data: { items, next, total } }) => {
     return {
       entities: parser(items),
@@ -40,7 +40,7 @@ export const getArtistListData = (
 ): Promise<MediaListResponse<SimpleArtist>> => {
   return spotifyInstance<{
     artists: RawMediaListResponse<RawArtist>
-  }>(route, Method.GET, { type: 'artist' }).then(
+  }>(route, Method.GET, { params: { type: 'artist' } }).then(
     ({
       data: {
         artists: { items, next, total },

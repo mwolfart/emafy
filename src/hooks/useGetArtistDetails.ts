@@ -4,7 +4,6 @@ import {
   getArtistRelatedArtists,
 } from 'api/data/artists'
 import { checkIfOwnFollowsArtist } from 'api/data/own'
-import { cancellableRequest } from 'api/utils'
 import { useEffect, useState } from 'react'
 import { DetailedArtist, MediaType } from 'types/media'
 import { ArtistDetailsQuery } from 'types/mediaQuery'
@@ -24,33 +23,37 @@ export function useGetArtistDetails(artistId: string): ArtistDetailsQuery {
   })
 
   useEffect(() => {
-    return cancellableRequest(
-      () =>
-        Promise.all([
-          getArtist(artistId),
-          getArtistTopTracks(artistId),
-          getArtistRelatedArtists(artistId),
-          checkIfOwnFollowsArtist(artistId, 'artist'),
-        ]),
-      ([
-        { entities: artistInfo },
-        { entities: topTracksList },
-        { entities: relatedArtists },
-        currentUserFollows,
-      ]) => {
-        setArtistInfo({
-          ...artistInfo,
-          relatedArtists,
-          topTracks: topTracksList,
-          currentUserFollows,
-        })
-        setIsLoading(false)
-      },
-      () => {},
-      () => {
-        setIsLoading(false)
-      },
-    )
+    let aborted = false
+    const fetch = async (): Promise<void> => {
+      try {
+        const artistRequest = getArtist(artistId)
+        const topTracksRequest = getArtistTopTracks(artistId)
+        const relatedArtistsRequest = getArtistRelatedArtists(artistId)
+        const checkFollowingRequest = checkIfOwnFollowsArtist(
+          artistId,
+          'artist',
+        )
+        const { entities: artistInfo } = await artistRequest
+        const { entities: topTracksList } = await topTracksRequest
+        const { entities: relatedArtists } = await relatedArtistsRequest
+        const currentUserFollows = await checkFollowingRequest
+
+        if (!aborted) {
+          setArtistInfo({
+            ...artistInfo,
+            relatedArtists,
+            topTracks: topTracksList,
+            currentUserFollows,
+          })
+        }
+      } finally {
+        !aborted && setIsLoading(false)
+      }
+    }
+    fetch()
+    return () => {
+      aborted = true
+    }
   }, [artistId])
 
   return {

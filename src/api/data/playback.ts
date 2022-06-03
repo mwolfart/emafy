@@ -25,12 +25,8 @@ export const playMedia = (
   return spotifyInstance<void>(
     route,
     Method.PUT,
-    {
-      device_id: deviceId,
-    },
-    {
-      uris: [mediaUri],
-    },
+    { params: { device_id: deviceId } },
+    { uris: [mediaUri] },
   )
 }
 

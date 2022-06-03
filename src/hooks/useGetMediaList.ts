@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import { strings } from 'strings'
 import { NextURL } from 'types/api/apiData'
 import { MediaListQuery, MediaListResponse } from 'types/mediaQuery'
-import { cancellableRequest } from '../api/utils'
 
 export function useGetMediaList<T>(
   getFunction: (next?: NextURL) => Promise<MediaListResponse<T>>,
@@ -20,21 +19,24 @@ export function useGetMediaList<T>(
   }
 
   useEffect(() => {
-    return cancellableRequest(
-      getFunction,
-      ({ entities, next, total }) => {
-        setMediaList(entities)
-        setTotalCount(total)
-        setNextURL(next)
-        setIsLoading(false)
-      },
-      () => {
-        alert(strings.hooks.useGetSavedMedia.errorFetchingData)
-      },
-      () => {
-        setIsLoading(false)
-      },
-    )
+    let aborted = false
+    const fetch = async (): Promise<void> => {
+      try {
+        const { entities, next, total } = await getFunction()
+        if (!aborted) {
+          setMediaList(entities)
+          setTotalCount(total)
+          setNextURL(next)
+        }
+      } catch (error) {
+        !aborted && alert(strings.hooks.useGetSavedMedia.errorFetchingData)
+      }
+      !aborted && setIsLoading(false)
+    }
+    fetch()
+    return () => {
+      aborted = true
+    }
   }, [getFunction])
 
   return {
