@@ -7,16 +7,12 @@ import { TabGroup } from 'components/tab/tabGroup'
 import { useGetArtistDetails } from 'hooks/useGetArtistDetails'
 import { useGetMediaList } from 'hooks/useGetMediaList'
 import { useCallback, FC } from 'react'
-import { RouteComponentProps } from 'react-router'
+import { useParams } from 'react-router'
 import { strings } from 'strings'
 import styled from 'styled-components'
 import { NextURL } from 'types/api/apiData'
 
-interface MatchParams {
-  id: string
-}
-
-type Props = RouteComponentProps<MatchParams>
+type RouteProps = { id: string }
 
 const Wrapper = styled.div`
   display: flex;
@@ -25,16 +21,16 @@ const Wrapper = styled.div`
   height: 100%;
 `
 
-export const ViewArtist: FC<Props> = ({ match }) => {
-  const { isLoading, artistInfo, setArtistInfo } = useGetArtistDetails(
-    match.params.id,
-  )
+export const ViewArtist: FC = () => {
+  const params = useParams<RouteProps>()
+  const id = params.id || ''
+  const { isLoading, artistInfo, setArtistInfo } = useGetArtistDetails(id)
   const { topTracks } = artistInfo
   const topTracksCount = topTracks.length
 
   const getArtistAlbumsCallback = useCallback(
-    (next?: NextURL) => getArtistAlbums(match.params.id, next),
-    [match.params.id],
+    (next?: NextURL) => getArtistAlbums(id, next),
+    [params.id],
   )
   const artistAlbumsQuery = useGetMediaList(getArtistAlbumsCallback)
   const { totalCount: totalAlbums } = artistAlbumsQuery

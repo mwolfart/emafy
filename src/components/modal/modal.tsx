@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, ReactNode } from 'react'
 import { ModalRectangle } from 'components/ui/'
 import { GrayIconButton } from 'components/ui'
 import { strings } from 'strings'
@@ -6,7 +6,7 @@ import { strings } from 'strings'
 type Props = {
   closeModalCallback?: () => void
   large?: boolean
-  children: unknown
+  children: ReactNode
 }
 
 export const Modal: FC<Props> = ({ children, closeModalCallback, large }) => (

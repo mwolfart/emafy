@@ -1,11 +1,11 @@
-import { FC, useEffect, useRef, useState } from 'react'
+import { FC, ReactNode, useEffect, useRef, useState } from 'react'
 import styled from 'styled-components'
 import { MediaExtraProps } from 'types/mediaExtraProps'
 
 type Props = {
   rowVariant?: boolean
   extraProps?: MediaExtraProps
-  children: unknown
+  children: ReactNode
 }
 
 type StyledProps = {
