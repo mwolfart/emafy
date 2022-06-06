@@ -27,20 +27,20 @@ jest.mock('hooks/useGetArtistDetails', () => ({
   }),
 }))
 
+jest.mock('react-router-dom', () => ({
+  ...jest.requireActual('react-router-dom'),
+  useParams: () => ({
+    id: '1',
+  }),
+}))
+
 describe('View Artist', () => {
   beforeEach(() => {
     const history = createMemoryHistory()
-    const path = '/artist/:id'
-    const match = {
-      params: { id: '1' },
-      isExact: true,
-      path,
-      url: path.replace(':id', '1'),
-    }
     render(
       <ThemeProvider theme={defaultTheme}>
         <Router location={history.location} navigator={history}>
-          <ViewArtist match={match} history={history} />
+          <ViewArtist />
         </Router>
       </ThemeProvider>,
     )

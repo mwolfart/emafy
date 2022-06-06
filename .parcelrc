@@ -3,5 +3,10 @@
   "resolvers": [
     "parcel-resolver-ts-base-url",
     "..."
-  ]
+  ],
+  "validators": {
+    "*.{ts,tsx}": [
+      "@parcel/validator-typescript"
+    ]
+  }
 }

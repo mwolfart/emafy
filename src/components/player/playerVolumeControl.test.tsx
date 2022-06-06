@@ -6,10 +6,9 @@ import { PlayerVolumeControl } from './playerVolumeControl'
 describe('Volume Control', () => {
   it('renders component and sets volume correctly', () => {
     const setVolume = jest.fn()
-    const getVolume = jest.fn(() => new Promise<number>(() => 0.5))
     render(
       <ThemeProvider theme={defaultTheme}>
-        <PlayerVolumeControl setVolume={setVolume} getVolume={getVolume} />
+        <PlayerVolumeControl setVolume={setVolume} currentVolume={0.5} />
       </ThemeProvider>,
     )
 
