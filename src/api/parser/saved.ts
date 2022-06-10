@@ -1,4 +1,4 @@
-import { SavedAlbum, SavedTrack } from 'types/api/apiSavedMedia'
+import { SavedAlbum, SavedTrack } from 'api/types/savedMedia'
 import { Album, Song } from 'types/media'
 import { parseAlbum } from './album'
 import { parseTrack } from './track'

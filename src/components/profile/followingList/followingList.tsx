@@ -1,4 +1,4 @@
-import { NextURL } from 'types/api/apiData'
+import { NextURL } from 'types/global'
 import { BeatLoader } from 'components/loader'
 import { Headline } from 'components/ui'
 import { FC } from 'react'

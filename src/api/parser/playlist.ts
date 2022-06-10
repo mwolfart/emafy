@@ -1,4 +1,4 @@
-import { RawPlaylist } from 'types/api/apiMedia'
+import { RawPlaylist } from 'api/types/media'
 import { Playlist, MediaType } from 'types/media'
 import { parseImages } from './images'
 

@@ -1,4 +1,4 @@
-import { RawArtist } from 'types/api/apiMedia'
+import { RawArtist } from 'api/types/media'
 import { SimpleArtist, MediaType } from 'types/media'
 import { parseImages } from './images'
 

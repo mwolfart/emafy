@@ -1,4 +1,4 @@
-import { RawAlbum, RawAlbumTrack } from 'types/api/apiMedia'
+import { RawAlbum, RawAlbumTrack } from 'api/types/media'
 import { Album, MediaType, Song } from 'types/media'
 import { parseImages } from './images'
 import { parseTrack } from './track'

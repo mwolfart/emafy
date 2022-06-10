@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { strings } from 'strings'
-import { NextURL } from 'types/api/apiData'
+import { NextURL } from 'types/global'
 import { MediaListQuery, MediaListResponse } from 'types/mediaQuery'
 
 export function useGetMediaList<T>(

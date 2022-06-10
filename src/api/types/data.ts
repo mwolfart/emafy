@@ -1,6 +1,4 @@
-import { Nullable } from 'types/global'
-
-export type NextURL = Nullable<string>
+import { NextURL } from 'types/global'
 
 export type RawImage = {
   url: string

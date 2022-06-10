@@ -9,7 +9,7 @@ import { useCallback, FC } from 'react'
 import { useParams } from 'react-router'
 import { strings } from 'strings'
 import styled from 'styled-components'
-import { NextURL } from 'types/api/apiData'
+import { NextURL } from 'types/global'
 
 type RouteProps = { id: string }
 

@@ -1,4 +1,4 @@
-import { WebPlaybackState, WebPlaybackTrack } from 'types/api/apiPlayback'
+import { WebPlaybackState, WebPlaybackTrack } from 'api/types/playback'
 import { PlaybackState, PlaybackTrack } from 'types/playbackSDK'
 import { parseImages } from './images'
 

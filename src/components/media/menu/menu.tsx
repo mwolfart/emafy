@@ -7,7 +7,7 @@ import { ToggleDescriptor } from 'components/ui'
 import { BeatLoader } from 'components/loader'
 import { MediaExtraProps } from 'types/mediaExtraProps'
 import { MediaMenuItem } from 'components/media/menu/item/item'
-import { NextURL } from 'types/api/apiData'
+import { NextURL } from 'types/global'
 
 interface Props {
   mediaList: Media[]
