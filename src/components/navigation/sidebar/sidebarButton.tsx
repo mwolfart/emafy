@@ -2,7 +2,7 @@ import { FC } from 'react'
 import styled from 'styled-components'
 import { Link as RouterLink } from 'react-router-dom'
 
-type Props = {
+interface Props {
   title: string
   path: string
   icon: string

@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 import { ContainerFlexCol } from '../container/container'
 
-type Props = {
+interface Props {
   title: string
   subtitle?: string
 }

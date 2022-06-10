@@ -6,7 +6,7 @@ import { AlbumCard } from 'snippets/album/card/card'
 import { AlbumSnippetContainer } from 'components/media/album/snippetContainer/snippetContainer'
 import { MediaLink } from '../link/link'
 
-type Props = {
+interface Props {
   mediaInfo: Media
   rowVariant?: boolean
   extraProps?: MediaExtraProps

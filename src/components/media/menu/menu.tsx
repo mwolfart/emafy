@@ -9,7 +9,7 @@ import { MediaExtraProps } from 'types/mediaExtraProps'
 import { MediaMenuItem } from 'components/media/menu/item/item'
 import { NextURL } from 'types/api/apiData'
 
-type Props = {
+interface Props {
   mediaList: Media[]
   nextURL: NextURL
   totalCount: number
@@ -17,7 +17,7 @@ type Props = {
   extraProps?: MediaExtraProps
 }
 
-type StyledProps = {
+interface StyledProps {
   isViewList: boolean
   isTransitioning?: boolean
 }
@@ -44,11 +44,10 @@ const MenuWrapper = styled.div<StyledProps>`
     transition: ${
       isTransitioning ? theme.transitionQuick : theme.transitionQuickDelayed
     };
-    display: grid;
-    grid-template-columns: ${
-      isViewList ? '1fr' : 'repeat(auto-fill, minmax(max(240px, 100%/10), 1fr))'
-    };
-    ${!isViewList ? 'justify-items: center;' : ''}
+    display: flex;
+    flex-direction: ${isViewList ? 'column' : 'row'};
+    flex-wrap: ${isViewList ? 'nowrap' : 'wrap'};
+    justify-content: ${isViewList ? 'inherit' : 'space-between'};
   `}
 `
 

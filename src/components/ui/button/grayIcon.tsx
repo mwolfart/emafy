@@ -2,7 +2,7 @@ import { CleanButton } from 'components/ui'
 import { FC } from 'react'
 import styled from 'styled-components'
 
-type Props = {
+interface Props {
   iconClass: string
   onClickCallback: () => void
   ariaLabel?: string

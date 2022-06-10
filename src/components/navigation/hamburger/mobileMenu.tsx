@@ -5,12 +5,12 @@ import { MobileMenuButton } from './mobileMenuButton'
 import { GrayIconButton } from 'components/ui'
 import { strings } from 'strings'
 
-type Props = {
+interface Props {
   closeMenu: () => void
   isOpen: boolean
 }
 
-type StyledProps = {
+interface StyledProps {
   isOpen: boolean
 }
 

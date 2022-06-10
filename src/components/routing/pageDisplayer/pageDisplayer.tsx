@@ -10,13 +10,13 @@ import { ViewArtist } from 'scenes/viewArtist/viewArtist'
 import styled from 'styled-components'
 import { User } from 'types/media'
 
-type Props = {
+interface Props {
   isLoggedIn: boolean
   setIsLoggedIn: (value: boolean) => void
   loggedUser: User
 }
 
-type StyledProps = {
+interface StyledProps {
   isLoggedIn: boolean
 }
 

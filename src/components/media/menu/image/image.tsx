@@ -2,13 +2,13 @@ import { FC } from 'react'
 import { strings } from 'strings'
 import styled from 'styled-components'
 
-type Props = {
+interface Props {
   src?: string
   small?: boolean
   placeholder?: JSX.Element
 }
 
-type StyledProps = {
+interface StyledProps {
   small?: boolean
 }
 

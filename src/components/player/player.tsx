@@ -14,7 +14,7 @@ import { PlayerButton } from './playerButton'
 import { PlayerQueue } from './playerQueue'
 import { PlayerVolumeControl } from './playerVolumeControl'
 
-type StyledProps = {
+interface StyledProps {
   trackProgress: number
 }
 

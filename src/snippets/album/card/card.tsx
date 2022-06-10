@@ -15,7 +15,7 @@ import { getAlbumTracks } from 'api/data/albums'
 import { NextURL } from 'types/api/apiData'
 import { Album } from 'types/media'
 
-type Props = {
+interface Props {
   albumInfo: Album
   fnCloseSnippet?: () => void
 }

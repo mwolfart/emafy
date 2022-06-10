@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { Media } from 'types/media'
 import { renderSubTitle } from 'utils/utils'
 
-type Props = {
+interface Props {
   mediaInfo: Media
 }
 
@@ -14,6 +14,7 @@ const Wrapper = styled.div`
     flex-direction: column;
     text-align: left;
     font-weight: ${theme?.fontBoldTwo};
+    width: 100%;
   `}
 `
 

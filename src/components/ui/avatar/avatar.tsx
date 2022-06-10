@@ -1,12 +1,12 @@
 import { FC } from 'react'
 import styled from 'styled-components'
 
-type Props = {
+interface Props {
   imagePath: string
   small?: boolean
 }
 
-type StyledProps = {
+interface StyledProps {
   small: boolean
 }
 

@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-type StyledProps = {
+interface StyledProps {
   square?: boolean
 }
 

@@ -1,9 +1,15 @@
-import { FC, ReactElement, useState } from 'react'
+import { FC, ReactElement, ReactNode, useState } from 'react'
 import styled from 'styled-components'
 import { TabButton } from './tabButton'
-import { TabProps } from './tab'
+interface TabProps {
+  id: string
+  title: string
+  children: ReactNode
+}
 
-type Props = {
+export const Tab: FC<TabProps> = ({ children }) => <>{children}</>
+
+interface Props {
   children: ReactElement<TabProps>[]
 }
 

@@ -3,7 +3,7 @@ import { ModalRectangle } from 'components/ui/'
 import { GrayIconButton } from 'components/ui'
 import { strings } from 'strings'
 
-type Props = {
+interface Props {
   closeModalCallback?: () => void
   large?: boolean
   children: ReactNode

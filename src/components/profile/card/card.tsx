@@ -13,7 +13,7 @@ import styled from 'styled-components'
 import { User } from 'types/media'
 import { strings } from 'strings'
 
-type Props = {
+interface Props {
   user: User
   followingCount: number
   savedMusicCount: number

@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 import { ContainerFlexRow, Headline } from '..'
 
-type Props = {
+interface Props {
   title: string
   icon: string
   subtitle?: string

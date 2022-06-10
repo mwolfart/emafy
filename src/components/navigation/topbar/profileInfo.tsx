@@ -6,7 +6,7 @@ import { strings } from 'strings'
 import { Link as RouterLink } from 'react-router-dom'
 import { FooterHeadline } from 'components/ui'
 
-type Props = {
+interface Props {
   userInfo: User
 }
 

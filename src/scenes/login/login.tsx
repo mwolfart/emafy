@@ -11,7 +11,7 @@ import {
 import { strings } from 'strings'
 import { Navigate } from 'react-router'
 
-type Props = {
+interface Props {
   onLogin: (value: boolean) => void
 }
 

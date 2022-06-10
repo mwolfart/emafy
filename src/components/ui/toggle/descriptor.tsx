@@ -2,7 +2,7 @@ import { FC } from 'react'
 import styled from 'styled-components'
 import { Toggle } from './toggle'
 
-type Props = {
+interface Props {
   toggleState: boolean
   onChangeCallback: (value: boolean) => void
   isOnOff?: boolean

@@ -17,7 +17,7 @@ import { emptyUser } from 'utils/constants'
 import { PlayerComponent } from 'components/player/player'
 import { PlayerContext } from 'contexts/player'
 
-type StyledProps = {
+interface StyledProps {
   isLoggedIn: boolean
 }
 

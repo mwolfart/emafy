@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import styled from 'styled-components'
 
-type Props = {
+interface Props {
   setVolume: (value: number) => void
   currentVolume: number
 }

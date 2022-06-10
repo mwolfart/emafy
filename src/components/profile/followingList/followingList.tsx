@@ -9,7 +9,7 @@ import styled from 'styled-components'
 import { SimpleArtist } from 'types/media'
 import { Follow } from '../follow/follow'
 
-type Props = {
+interface Props {
   followList: SimpleArtist[]
   followCount: number
   nextURL: NextURL

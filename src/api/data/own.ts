@@ -83,16 +83,17 @@ export const checkIfOwnFollowsArtist = (
   }).then(({ data }) => data[0])
 }
 
-export const followArtist = (id: string, type: string): Promise<string> => {
+export const setFollowingArtist = (
+  id: string,
+  type: string,
+  isFollowing: boolean,
+): Promise<string> => {
   const route = SPOTIFY_ROUTE.OWN + SPOTIFY_ROUTE.FOLLOWING
-  return spotifyInstance<string[]>(route, Method.PUT, {
-    params: { ids: id, type },
-  }).then(({ data }) => data[0])
-}
-
-export const unfollowArtist = (id: string, type: string): Promise<string> => {
-  const route = SPOTIFY_ROUTE.OWN + SPOTIFY_ROUTE.FOLLOWING
-  return spotifyInstance<string[]>(route, Method.DELETE, {
-    params: { ids: id, type },
-  }).then(({ data }) => data[0])
+  return spotifyInstance<string[]>(
+    route,
+    isFollowing ? Method.PUT : Method.DELETE,
+    {
+      params: { ids: id, type },
+    },
+  ).then(({ data }) => data[0])
 }
