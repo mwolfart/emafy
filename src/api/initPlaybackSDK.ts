@@ -4,7 +4,7 @@ import { parsePlaybackState } from 'api/parser/playback'
 import { WebPlaybackState } from 'api/types/playback'
 import { Nullable } from 'types/global'
 import { PlaybackSDK, PlaybackState } from 'types/playbackSDK'
-import { emptyPlackbackSDK } from './constants'
+import { emptyPlackbackSDK } from '../utils/constants'
 
 const initListeners = (
   playbackSDK: PlaybackSDK,
