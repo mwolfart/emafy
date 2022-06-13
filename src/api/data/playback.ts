@@ -5,7 +5,7 @@ import { RawDevice, RawDeviceList } from 'api/types/playback'
 import { Nullable } from 'types/global'
 
 export const transferPlaybackHere = (deviceId?: string): Promise<boolean> => {
-  const route = SPOTIFY_ROUTE.OWN + SPOTIFY_ROUTE.PLAYER + 'test/'
+  const route = SPOTIFY_ROUTE.OWN + SPOTIFY_ROUTE.PLAYER
   return spotifyInstance<boolean>(
     route,
     Method.PUT,
