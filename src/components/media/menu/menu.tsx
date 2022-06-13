@@ -44,10 +44,11 @@ const MenuWrapper = styled.div<StyledProps>`
     transition: ${
       isTransitioning ? theme.transitionQuick : theme.transitionQuickDelayed
     };
-    display: flex;
-    flex-direction: ${isViewList ? 'column' : 'row'};
-    flex-wrap: ${isViewList ? 'nowrap' : 'wrap'};
-    justify-content: ${isViewList ? 'inherit' : 'space-between'};
+    display: ${isViewList ? 'flex' : 'grid'};
+    flex-direction: ${isViewList ? 'column' : 'unset'};
+    grid-template-columns: ${
+      isViewList ? 'unset' : 'repeat(auto-fit, minmax(250px, 1fr))'
+    };
   `}
 `
 
