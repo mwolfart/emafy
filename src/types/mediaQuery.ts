@@ -1,4 +1,4 @@
-import { NextURL } from 'types/api/apiData'
+import { NextURL } from 'types/global'
 import { DetailedArtist } from './media'
 
 export type MediaListQuery<T> = {

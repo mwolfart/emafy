@@ -12,10 +12,10 @@ import { formatDuration, formatTrackNumber } from 'utils/utils'
 import { useGetMediaList } from 'hooks/useGetMediaList'
 import { strings } from 'strings'
 import { getAlbumTracks } from 'api/data/albums'
-import { NextURL } from 'types/api/apiData'
+import { NextURL } from 'types/global'
 import { Album } from 'types/media'
 
-type Props = {
+interface Props {
   albumInfo: Album
   fnCloseSnippet?: () => void
 }

@@ -8,13 +8,13 @@ import styled from 'styled-components'
 import { Nullable } from 'types/global'
 import { PlaybackState, PlaybackTrack } from 'types/playbackSDK'
 import { emptyPlackbackSDK } from 'utils/constants'
-import { initPlaybackSDK } from 'utils/initPlaybackSDK'
+import { initPlaybackSDK } from 'api/initPlaybackSDK'
 import { abbreviateText, nameListToString } from 'utils/utils'
 import { PlayerButton } from './playerButton'
 import { PlayerQueue } from './playerQueue'
 import { PlayerVolumeControl } from './playerVolumeControl'
 
-type StyledProps = {
+interface StyledProps {
   trackProgress: number
 }
 

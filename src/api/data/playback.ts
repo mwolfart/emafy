@@ -1,20 +1,28 @@
 import { SPOTIFY_ROUTE } from 'api/enum/spotifyRoute.enum'
 import { spotifyInstance, Method } from 'api/spotifyInstance'
-import { AxiosResponse } from 'axios'
-import { RawDevice, RawDeviceList } from 'types/api/apiPlayback'
+import { AxiosError, AxiosResponse } from 'axios'
+import { RawDevice, RawDeviceList } from 'api/types/playback'
 import { Nullable } from 'types/global'
 
-export const transferPlaybackHere = (deviceId?: string): Promise<boolean> => {
+export const transferPlaybackHere = async (
+  deviceId?: string,
+): Promise<void> => {
   const route = SPOTIFY_ROUTE.OWN + SPOTIFY_ROUTE.PLAYER
-  return spotifyInstance<boolean>(
-    route,
-    Method.PUT,
-    {},
-    {
-      device_ids: [deviceId || ''],
-      play: 'false',
-    },
-  ).then(({ data }) => data)
+  try {
+    await spotifyInstance<boolean>(
+      route,
+      Method.PUT,
+      {},
+      {
+        device_ids: [deviceId || ''],
+        play: 'false',
+      },
+    )
+  } catch (error) {
+    if ((error as AxiosError).response?.status === 502) {
+      await transferPlaybackHere(deviceId)
+    }
+  }
 }
 
 export const playMedia = (

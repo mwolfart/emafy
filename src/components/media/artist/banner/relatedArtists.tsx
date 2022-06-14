@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import { SimpleArtist } from 'types/media'
 import { Link as RouterLink } from 'react-router-dom'
 
-type Props = {
+interface Props {
   artistList: SimpleArtist[]
 }
 

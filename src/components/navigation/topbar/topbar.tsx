@@ -7,7 +7,7 @@ import { User } from 'types/media'
 import { strings } from 'strings'
 import { Hamburger } from '../hamburger/hamburger'
 
-type Props = {
+interface Props {
   user: User
 }
 

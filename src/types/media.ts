@@ -1,4 +1,4 @@
-import { RawTracksAlbum } from './api/apiMedia'
+import { RawTracksAlbum } from '../api/types/media'
 
 export enum MediaType {
   artist = 'artist',

@@ -2,15 +2,14 @@ import { getArtistAlbums } from 'api/data/artists'
 import { BeatLoader } from 'components/loader'
 import { ArtistBanner } from 'components/media/artist/banner/banner'
 import { MediaMenu } from 'components/media/menu/menu'
-import { Tab } from 'components/tab/tab'
-import { TabGroup } from 'components/tab/tabGroup'
+import { Tab, TabGroup } from 'components/tab/tabGroup'
 import { useGetArtistDetails } from 'hooks/useGetArtistDetails'
 import { useGetMediaList } from 'hooks/useGetMediaList'
 import { useCallback, FC } from 'react'
 import { useParams } from 'react-router'
 import { strings } from 'strings'
 import styled from 'styled-components'
-import { NextURL } from 'types/api/apiData'
+import { NextURL } from 'types/global'
 
 type RouteProps = { id: string }
 

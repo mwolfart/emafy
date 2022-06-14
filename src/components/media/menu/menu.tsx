@@ -7,9 +7,9 @@ import { ToggleDescriptor } from 'components/ui'
 import { BeatLoader } from 'components/loader'
 import { MediaExtraProps } from 'types/mediaExtraProps'
 import { MediaMenuItem } from 'components/media/menu/item/item'
-import { NextURL } from 'types/api/apiData'
+import { NextURL } from 'types/global'
 
-type Props = {
+interface Props {
   mediaList: Media[]
   nextURL: NextURL
   totalCount: number
@@ -17,7 +17,7 @@ type Props = {
   extraProps?: MediaExtraProps
 }
 
-type StyledProps = {
+interface StyledProps {
   isViewList: boolean
   isTransitioning?: boolean
 }
@@ -44,11 +44,11 @@ const MenuWrapper = styled.div<StyledProps>`
     transition: ${
       isTransitioning ? theme.transitionQuick : theme.transitionQuickDelayed
     };
-    display: grid;
+    display: ${isViewList ? 'flex' : 'grid'};
+    flex-direction: ${isViewList ? 'column' : 'unset'};
     grid-template-columns: ${
-      isViewList ? '1fr' : 'repeat(auto-fill, minmax(max(240px, 100%/10), 1fr))'
+      isViewList ? 'unset' : 'repeat(auto-fit, minmax(250px, 1fr))'
     };
-    ${!isViewList ? 'justify-items: center;' : ''}
   `}
 `
 

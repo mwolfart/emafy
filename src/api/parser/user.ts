@@ -1,4 +1,4 @@
-import { RawUser } from 'types/api/apiUser'
+import { RawUser } from 'api/types/user'
 import { User } from 'types/media'
 import { parseImages } from './images'
 

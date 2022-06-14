@@ -1,4 +1,4 @@
-import { unfollowArtist, followArtist } from 'api/data/own'
+import { setFollowingArtist } from 'api/data/own'
 import { IconButton } from 'components/ui'
 import {
   SubtitleExtraLarge,
@@ -10,13 +10,13 @@ import styled from 'styled-components'
 import { DetailedArtist } from 'types/media'
 import { RelatedArtists } from './relatedArtists'
 
-type Props = {
+interface Props {
   artistInfo: DetailedArtist
   setArtistInfo: (artistInfo: DetailedArtist) => void
   subtitle: string
 }
 
-type StyledProps = {
+interface StyledProps {
   artistInfo?: DetailedArtist
 }
 
@@ -66,13 +66,14 @@ export const ArtistBanner: FC<Props> = ({
       Object.assign({}, artistInfo, { currentUserFollows: isFollowing }),
     )
   }
-  const buttonCallback = artistInfo.currentUserFollows
-    ? () => {
-        unfollowArtist(artistInfo.id, 'artist').then(() => updateArtist(false))
-      }
-    : () => {
-        followArtist(artistInfo.id, 'artist').then(() => updateArtist(true))
-      }
+  const buttonCallback = async (): Promise<void> => {
+    await setFollowingArtist(
+      artistInfo.id,
+      'artist',
+      !artistInfo.currentUserFollows,
+    )
+    updateArtist(!artistInfo.currentUserFollows)
+  }
 
   return (
     <Background artistInfo={artistInfo}>

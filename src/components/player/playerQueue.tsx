@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { PlaybackTrack } from 'types/playbackSDK'
 import { QueueTrack } from './queueTrack'
 
-type Props = {
+interface Props {
   currentTrack: PlaybackTrack
   tracks: PlaybackTrack[]
 }

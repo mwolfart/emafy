@@ -4,8 +4,8 @@ import { parsePlaylists } from 'api/parser/playlist'
 import { parseSavedAlbums, parseSavedTracks } from 'api/parser/saved'
 import { parseUserData } from 'api/parser/user'
 import { spotifyInstance, Method } from 'api/spotifyInstance'
-import { NextURL } from 'types/api/apiData'
-import { RawUser } from 'types/api/apiUser'
+import { NextURL } from 'types/global'
+import { RawUser } from 'api/types/user'
 import { User, Album, Song, SimpleArtist, Playlist } from 'types/media'
 import { MediaListResponse } from 'types/mediaQuery'
 import { getSpotifyData, getArtistListData } from './base'
@@ -83,16 +83,17 @@ export const checkIfOwnFollowsArtist = (
   }).then(({ data }) => data[0])
 }
 
-export const followArtist = (id: string, type: string): Promise<string> => {
+export const setFollowingArtist = (
+  id: string,
+  type: string,
+  isFollowing: boolean,
+): Promise<string> => {
   const route = SPOTIFY_ROUTE.OWN + SPOTIFY_ROUTE.FOLLOWING
-  return spotifyInstance<string[]>(route, Method.PUT, {
-    params: { ids: id, type },
-  }).then(({ data }) => data[0])
-}
-
-export const unfollowArtist = (id: string, type: string): Promise<string> => {
-  const route = SPOTIFY_ROUTE.OWN + SPOTIFY_ROUTE.FOLLOWING
-  return spotifyInstance<string[]>(route, Method.DELETE, {
-    params: { ids: id, type },
-  }).then(({ data }) => data[0])
+  return spotifyInstance<string[]>(
+    route,
+    isFollowing ? Method.PUT : Method.DELETE,
+    {
+      params: { ids: id, type },
+    },
+  ).then(({ data }) => data[0])
 }

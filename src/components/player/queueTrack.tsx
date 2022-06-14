@@ -2,7 +2,7 @@ import { FC } from 'react'
 import styled from 'styled-components'
 import { abbreviateText, nameListToString } from 'utils/utils'
 
-type Props = {
+interface Props {
   title: string
   artists: string[]
 }

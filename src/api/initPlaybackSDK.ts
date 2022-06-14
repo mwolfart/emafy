@@ -1,18 +1,18 @@
 import { getLocalToken } from 'api/credentials'
 import { transferPlaybackHere } from 'api/data/playback'
 import { parsePlaybackState } from 'api/parser/playback'
-import { WebPlaybackState } from 'types/api/apiPlayback'
+import { WebPlaybackState } from 'api/types/playback'
 import { Nullable } from 'types/global'
 import { PlaybackSDK, PlaybackState } from 'types/playbackSDK'
-import { emptyPlackbackSDK } from './constants'
+import { emptyPlackbackSDK } from '../utils/constants'
 
 const initListeners = (
   playbackSDK: PlaybackSDK,
   stateChangeCallback: (state: PlaybackState) => void,
 ): void => {
   playbackSDK.addListener('ready', ({ device_id }) => {
-    transferPlaybackHere(device_id)
     playbackSDK.deviceId = device_id
+    transferPlaybackHere(device_id)
   })
   playbackSDK.addListener(
     'player_state_changed',

@@ -57,7 +57,7 @@ describe('View Artist', () => {
   })
 
   it('clicking in follow button should toggle following artist', () => {
-    const spy = jest.spyOn(ApiOwn, 'unfollowArtist').mockResolvedValue('1')
+    const spy = jest.spyOn(ApiOwn, 'setFollowingArtist').mockResolvedValue('1')
     const btnElement = screen.getByRole('button', {
       name: strings.scenes.artistDetail.unfollow,
     })

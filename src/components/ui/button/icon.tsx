@@ -2,14 +2,14 @@ import { FC } from 'react'
 import styled from 'styled-components'
 import { Button } from './default'
 
-type Props = {
+interface Props {
   icon: string
   onClickCallback: () => void
   title?: string
   resolutionToHideTitle?: string
 }
 
-type StyledProps = {
+interface StyledProps {
   resolutionToHideTitle?: string
 }
 

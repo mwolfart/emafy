@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import styled from 'styled-components'
 
-type Props = {
+interface Props {
   iconClass: string
   isLarge: boolean
   onClick: () => void
@@ -9,7 +9,7 @@ type Props = {
   disabled?: boolean
 }
 
-type StyledProps = {
+interface StyledProps {
   isLarge?: boolean
   disabled?: boolean
 }

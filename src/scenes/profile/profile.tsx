@@ -9,7 +9,7 @@ import { BeatLoader } from 'components/loader'
 import { useGetUserFollows } from 'hooks/useGetUserFollows'
 import { getOwnSavedSongs } from 'api/data/own'
 
-type Props = {
+interface Props {
   user: User
 }
 

@@ -2,13 +2,13 @@ import { FC, ReactNode, useEffect, useRef, useState } from 'react'
 import styled from 'styled-components'
 import { MediaExtraProps } from 'types/mediaExtraProps'
 
-type Props = {
+interface Props {
   rowVariant?: boolean
   extraProps?: MediaExtraProps
   children: ReactNode
 }
 
-type StyledProps = {
+interface StyledProps {
   displayLeft: boolean
   displayTop: boolean
 }

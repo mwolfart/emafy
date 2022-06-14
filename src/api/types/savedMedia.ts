@@ -1,4 +1,4 @@
-import { RawAlbum, RawTrack } from './apiMedia'
+import { RawAlbum, RawTrack } from './media'
 
 export type SavedAlbum = {
   added_at: string

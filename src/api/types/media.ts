@@ -1,4 +1,4 @@
-import { RawImage } from './apiData'
+import { RawImage } from './data'
 
 export type BasicRawMedia = {
   images?: RawImage[]

@@ -5,7 +5,7 @@ import { strings } from 'strings'
 import styled from 'styled-components'
 import { SimpleArtist } from 'types/media'
 
-type Props = {
+interface Props {
   follow: SimpleArtist
   isCurrentUserFollowing: boolean
 }

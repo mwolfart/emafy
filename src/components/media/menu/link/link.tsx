@@ -8,13 +8,13 @@ import { Link as RouterLink } from 'react-router-dom'
 import { MediaExtraProps } from 'types/mediaExtraProps'
 import { PlayerContext } from 'contexts/player'
 
-type Props = {
+interface Props {
   mediaInfo: Media
   rowVariant?: boolean
   extraProps?: MediaExtraProps
 }
 
-type StyledProps = {
+interface StyledProps {
   rowVariant?: boolean
 }
 
@@ -32,7 +32,7 @@ const TileWrapper = styled.div<StyledProps>`
     border-radius: ${theme?.borderRadiusDefault};
     background-color: ${theme?.palette.colorLinkBackground};`
         : `
-    max-width: 210px;`
+    width: 200px;`
     }
 
     @media (max-width: 576px) {

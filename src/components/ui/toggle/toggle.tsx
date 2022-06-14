@@ -2,13 +2,13 @@ import { ChangeEvent, FC, useState } from 'react'
 import { strings } from 'strings'
 import styled from 'styled-components'
 
-type Props = {
+interface Props {
   toggleState: boolean
   onChangeCallback: (value: boolean) => void
   isOnOff?: boolean
 }
 
-type StyledProps = {
+interface StyledProps {
   isChecked: boolean
   isOnOff?: boolean
 }

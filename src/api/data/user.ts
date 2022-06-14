@@ -1,7 +1,7 @@
 import { SPOTIFY_ROUTE } from 'api/enum/spotifyRoute.enum'
 import { parseSavedTracks } from 'api/parser/saved'
 import { spotifyInstance, Method } from 'api/spotifyInstance'
-import { NextURL } from 'types/api/apiData'
+import { NextURL } from 'types/global'
 import { SimpleArtist, Song } from 'types/media'
 import { MediaListResponse } from 'types/mediaQuery'
 import { getArtistListData, getSpotifyData } from './base'
