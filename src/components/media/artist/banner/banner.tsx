@@ -4,7 +4,8 @@ import {
   SubtitleExtraLarge,
   TitleExtraLarge,
 } from 'components/ui/heading/heading'
-import { FC } from 'react'
+import { PlayerContext } from 'contexts/player'
+import { FC, useContext } from 'react'
 import { strings } from 'strings'
 import styled from 'styled-components'
 import { DetailedArtist } from 'types/media'
@@ -50,15 +51,26 @@ const CustomSubtitleExtraLarge = styled(SubtitleExtraLarge)`
   `}
 `
 
+const ButtonsWrapper = styled.div`
+  ${({ theme }) => `
+  display: flex;
+  flex-direction: row;
+  button:first-child {
+    margin-right: ${theme.divSpacingBig};
+  }
+  `}
+`
+
 export const ArtistBanner: FC<Props> = ({
   artistInfo,
   setArtistInfo,
   subtitle,
 }) => {
-  const buttonIcon = artistInfo.currentUserFollows
+  const playerContext = useContext(PlayerContext)
+  const followBtnIcon = artistInfo.currentUserFollows
     ? 'fa-user-minus'
     : 'fa-user-plus'
-  const buttonLabel = artistInfo.currentUserFollows
+  const followBtnLabel = artistInfo.currentUserFollows
     ? strings.scenes.artistDetail.unfollow
     : strings.scenes.artistDetail.follow
   const updateArtist = (isFollowing: boolean): void => {
@@ -66,7 +78,7 @@ export const ArtistBanner: FC<Props> = ({
       Object.assign({}, artistInfo, { currentUserFollows: isFollowing }),
     )
   }
-  const buttonCallback = async (): Promise<void> => {
+  const followBtnCallback = async (): Promise<void> => {
     await setFollowingArtist(
       artistInfo.id,
       'artist',
@@ -74,16 +86,24 @@ export const ArtistBanner: FC<Props> = ({
     )
     updateArtist(!artistInfo.currentUserFollows)
   }
+  const playBtnCallback = (): void => playerContext.playArtist(artistInfo.id)
 
   return (
     <Background artistInfo={artistInfo}>
       <CustomTitleExtraLarge>{artistInfo.name}</CustomTitleExtraLarge>
       <CustomSubtitleExtraLarge>{subtitle}</CustomSubtitleExtraLarge>
-      <IconButton
-        icon={buttonIcon}
-        onClickCallback={buttonCallback}
-        title={buttonLabel}
-      />
+      <ButtonsWrapper>
+        <IconButton
+          icon={followBtnIcon}
+          onClickCallback={followBtnCallback}
+          title={followBtnLabel}
+        />
+        <IconButton
+          icon="fa-play"
+          onClickCallback={playBtnCallback}
+          title={strings.scenes.artistDetail.play}
+        />
+      </ButtonsWrapper>
       <RelatedArtists artistList={artistInfo.relatedArtists} />
     </Background>
   )

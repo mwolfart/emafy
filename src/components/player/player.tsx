@@ -6,7 +6,11 @@ import { useContext, useEffect, useState, FC } from 'react'
 import { strings } from 'strings'
 import styled from 'styled-components'
 import { Nullable } from 'types/global'
-import { PlaybackState, PlaybackTrack } from 'types/playbackSDK'
+import {
+  PlaybackMediaType,
+  PlaybackState,
+  PlaybackTrack,
+} from 'types/playbackSDK'
 import { emptyPlackbackSDK } from 'utils/constants'
 import { initPlaybackSDK } from 'api/initPlaybackSDK'
 import { abbreviateText, nameListToString } from 'utils/utils'
@@ -117,15 +121,18 @@ export const PlayerComponent: FC = () => {
 
   const playerContext = useContext(PlayerContext)
   useEffect(() => {
-    const playSong = (songId: string): void => {
+    const play = (id: string, type: PlaybackMediaType): void => {
       if (playbackSDK.deviceId) {
-        const uri = `spotify:track:${songId}`
+        const uri = `spotify:${type}:${id}`
         setIsPlaying(true)
-        playMedia(playbackSDK.deviceId, uri)
+        playMedia(playbackSDK.deviceId, uri, type)
       }
     }
 
-    playerContext.playSong = playSong
+    playerContext.playMedia = play
+    playerContext.playSong = (id: string) => play(id, 'track')
+    playerContext.playAlbum = (id: string) => play(id, 'album')
+    playerContext.playArtist = (id: string) => play(id, 'artist')
   }, [playerContext, playbackSDK])
 
   const displayedTrackName = currentTrack

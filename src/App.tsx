@@ -72,7 +72,10 @@ const App = (): JSX.Element => {
   const [isLoading, setIsLoading] = useState<boolean>(true)
 
   const initialPlayerContext = {
+    playMedia: () => {},
     playSong: () => {},
+    playAlbum: () => {},
+    playArtist: () => {},
   }
 
   useEffect(() => {

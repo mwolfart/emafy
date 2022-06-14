@@ -88,9 +88,9 @@ export const MediaLink: FC<Props> = ({
       return <RouterLink to={linkRedirectURL}>{mediaTile}</RouterLink>
     case MediaType.album: {
       const albumClickCallback = (): void =>
-        extraProps &&
-        extraProps.mediaSnippetOpenCallback &&
-        extraProps.mediaSnippetOpenCallback(mediaInfo)
+        extraProps && extraProps.mediaSnippetOpenCallback
+          ? extraProps.mediaSnippetOpenCallback(mediaInfo)
+          : playerContext.playAlbum(mediaInfo.id)
       return <SimpleLink onClick={albumClickCallback}>{mediaTile}</SimpleLink>
     }
     default: {

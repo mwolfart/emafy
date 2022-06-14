@@ -91,6 +91,7 @@ export const strings = {
       follow: 'Follow',
       unfollow: 'Unfollow',
       relatedArtists: 'Related artists',
+      play: 'Play top tracks',
     },
     playlists: {
       myPlaylists: 'My Public Playlists',
