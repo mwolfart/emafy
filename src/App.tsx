@@ -84,6 +84,7 @@ const App = (): JSX.Element => {
           setIsLoading(false)
         }
       })
+      .catch(() => false)
       .finally(() => !aborted && setIsLoading(false))
     return () => {
       aborted = true
