@@ -1,6 +1,10 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { createContext } from 'react'
+import { PlaybackMediaType } from 'types/playbackSDK'
 
 export const PlayerContext = createContext({
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  playMedia: (id: string, type: PlaybackMediaType) => {},
   playSong: (songId: string) => {},
+  playAlbum: (albumId: string) => {},
+  playArtist: (artistId: string) => {},
 })

@@ -1,8 +1,10 @@
-import { useCallback, FC } from 'react'
+import { useCallback, FC, useContext } from 'react'
 import {
+  Button,
   ContainerFlexRow,
   GrayIconButton,
   Headline,
+  IconButton,
   Rectangle,
 } from 'components/ui'
 import InfiniteScroll from 'react-infinite-scroll-component'
@@ -14,6 +16,7 @@ import { strings } from 'strings'
 import { getAlbumTracks } from 'api/data/albums'
 import { NextURL } from 'types/global'
 import { Album } from 'types/media'
+import { PlayerContext } from 'contexts/player'
 
 interface Props {
   albumInfo: Album
@@ -29,6 +32,11 @@ const Dash = styled.div`
 const ScrollWrapper = styled.div`
   max-height: 400px;
   overflow-y: scroll;
+`
+
+const HeadlineWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
 `
 
 const TrackWrapper = styled(ContainerFlexRow)`
@@ -67,6 +75,8 @@ export const AlbumCard: FC<Props> = ({ albumInfo, fnCloseSnippet }) => {
     (next?: NextURL) => getAlbumTracks(albumInfo, next),
     [albumInfo],
   )
+  const playerContext = useContext(PlayerContext)
+  const playAlbum = (): void => playerContext.playAlbum(albumInfo.id)
 
   const {
     mediaList: trackList,
@@ -84,7 +94,14 @@ export const AlbumCard: FC<Props> = ({ albumInfo, fnCloseSnippet }) => {
           ariaLabel={strings.components.modal.closeModal}
         />
       )}
-      <Headline title={albumInfo.name} subtitle={albumInfo.artists[0].name} />
+      <HeadlineWrapper>
+        <Headline title={albumInfo.name} subtitle={albumInfo.artists[0].name} />
+        <IconButton
+          title={strings.components.player.play}
+          icon="fa-play"
+          onClickCallback={playAlbum}
+        />
+      </HeadlineWrapper>
       <Dash />
       {isLoading ? (
         <BeatLoader />

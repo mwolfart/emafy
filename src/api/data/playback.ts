@@ -3,6 +3,7 @@ import { spotifyInstance, Method } from 'api/spotifyInstance'
 import { AxiosError, AxiosResponse } from 'axios'
 import { RawDevice, RawDeviceList } from 'api/types/playback'
 import { Nullable } from 'types/global'
+import { PlaybackMediaType } from 'types/playbackSDK'
 
 export const transferPlaybackHere = async (
   deviceId?: string,
@@ -28,13 +29,16 @@ export const transferPlaybackHere = async (
 export const playMedia = (
   deviceId: string,
   mediaUri: string,
+  type: PlaybackMediaType,
 ): Promise<AxiosResponse<void>> => {
   const route = SPOTIFY_ROUTE.OWN + SPOTIFY_ROUTE.PLAYER_PLAY
+  const context =
+    type === 'track' ? { uris: [mediaUri] } : { context_uri: mediaUri }
   return spotifyInstance<void>(
     route,
     Method.PUT,
     { params: { device_id: deviceId } },
-    { uris: [mediaUri] },
+    context,
   )
 }
 
