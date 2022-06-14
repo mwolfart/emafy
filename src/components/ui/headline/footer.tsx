@@ -9,6 +9,7 @@ interface Props {
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
 
   @media (max-width: 576px) {
     display: none;
@@ -40,6 +41,6 @@ const Subtitle = styled.span`
 export const FooterHeadline: FC<Props> = ({ title, subtitle }) => (
   <Wrapper>
     <Title>{title}</Title>
-    <Subtitle>{subtitle}</Subtitle>
+    {subtitle && <Subtitle>{subtitle}</Subtitle>}
   </Wrapper>
 )

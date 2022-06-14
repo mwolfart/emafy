@@ -2,18 +2,15 @@ import { FC } from 'react'
 import { Navigate, Route, Routes } from 'react-router'
 import { LoginScene } from 'scenes/login/login'
 import { MyPlaylists } from 'scenes/myPlaylists/myPlaylists'
-import { Profile } from 'scenes/profile/profile'
 import { SavedAlbums } from 'scenes/savedAlbums/savedAlbums'
 import { SavedArtists } from 'scenes/savedArtists/savedArtists'
 import { SavedSongs } from 'scenes/savedSongs/savedSongs'
 import { ViewArtist } from 'scenes/viewArtist/viewArtist'
 import styled from 'styled-components'
-import { User } from 'types/media'
 
 interface Props {
   isLoggedIn: boolean
   setIsLoggedIn: (value: boolean) => void
-  loggedUser: User
 }
 
 interface StyledProps {
@@ -34,11 +31,7 @@ const Wrapper = styled.div<StyledProps>`
   `}
 `
 
-export const PageDisplayer: FC<Props> = ({
-  isLoggedIn,
-  setIsLoggedIn,
-  loggedUser,
-}) => {
+export const PageDisplayer: FC<Props> = ({ isLoggedIn, setIsLoggedIn }) => {
   const redirect = <Navigate to="/login" />
   return (
     <Wrapper isLoggedIn={isLoggedIn}>
@@ -58,10 +51,6 @@ export const PageDisplayer: FC<Props> = ({
         <Route
           path="/my-playlists"
           element={isLoggedIn ? <MyPlaylists /> : redirect}
-        />
-        <Route
-          path="/me"
-          element={isLoggedIn ? <Profile user={loggedUser} /> : redirect}
         />
         <Route
           path="/artist/:id"

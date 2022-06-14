@@ -108,7 +108,6 @@ const App = (): JSX.Element => {
                 <PageDisplayer
                   isLoggedIn={isLoggedIn}
                   setIsLoggedIn={setIsLoggedIn}
-                  loggedUser={loggedUser}
                 />
               </ContentWrapper>
               <FooterWrapper>{isLoggedIn && <PlayerComponent />}</FooterWrapper>
