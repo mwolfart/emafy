@@ -27,7 +27,7 @@ const mockPlayerContext = {
   playSong: jest.fn(),
 }
 
-jest.mock('utils/initPlaybackSDK', () => ({
+jest.mock('api/initPlaybackSDK', () => ({
   initPlaybackSDK: (callback: (state: Nullable<PlaybackState>) => void) => {
     callback(mockPlaybackState)
     return mockPlaybackSDK
