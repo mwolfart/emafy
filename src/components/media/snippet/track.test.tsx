@@ -1,18 +1,17 @@
 import { render, screen } from '@testing-library/react'
 import { ThemeProvider } from 'styled-components'
 import { defaultTheme } from 'theme'
-import { faker } from '@faker-js/faker'
-import { AlbumSnippetContainer } from './snippetContainer'
+import { SnippetTrack } from './track'
+import { song } from 'fixtures/song'
 
-describe('Snippet Container', () => {
+describe('Snippet Track', () => {
   it('renders component and props correctly', () => {
-    const text = faker.random.words()
     render(
       <ThemeProvider theme={defaultTheme}>
-        <AlbumSnippetContainer>{text}</AlbumSnippetContainer>
+        <SnippetTrack track={song} />
       </ThemeProvider>,
     )
-    const element = screen.getByText(text)
+    const element = screen.getByText(song.name)
     expect(element).toBeInTheDocument()
   })
 })

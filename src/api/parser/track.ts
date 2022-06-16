@@ -14,12 +14,16 @@ export const parseTrack = ({
   duration_ms,
   track_number,
 }: RawTrack | AlbumTrack): Song => {
-  const imagesLinks = isAlbum(album) ? album.images : parseImages(album.images)
-  const parsedArtists = artists.map(({ id, name }) => ({
-    id,
-    name,
-    mediaType: MediaType.artist,
-  }))
+  // TODO parameters may be undefined in some cases
+  const imagesLinks =
+    album && (isAlbum(album) ? album.images : parseImages(album.images))
+  const parsedArtists =
+    artists &&
+    artists.map(({ id, name }) => ({
+      id,
+      name,
+      mediaType: MediaType.artist,
+    }))
 
   return {
     name,

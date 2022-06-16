@@ -1,10 +1,11 @@
 import { FC } from 'react'
 import styled from 'styled-components'
-import { isAlbum, Media } from 'types/media'
+import { isAlbum, isPlaylist, Media } from 'types/media'
 import { MediaExtraProps } from 'types/mediaExtraProps'
 import { AlbumCard } from 'snippets/album/card/card'
-import { AlbumSnippetContainer } from 'components/media/album/snippetContainer/snippetContainer'
+import { SnippetContainer } from 'components/media/snippet/container'
 import { MediaLink } from '../link/link'
+import { PlaylistCard } from 'snippets/playlist/card/card'
 
 interface Props {
   mediaInfo: Media
@@ -22,7 +23,20 @@ export const MediaMenuItem: FC<Props> = ({
   extraProps,
 }) => {
   const shouldRenderAlbumSnippet =
-    extraProps?.renderedAlbumSnippetId === mediaInfo.id && isAlbum(mediaInfo)
+    extraProps?.renderedMediaSnippetId === mediaInfo.id
+  const snippetContent = isAlbum(mediaInfo) ? (
+    <AlbumCard
+      mediaInfo={mediaInfo}
+      fnCloseSnippet={extraProps?.mediaSnippetCloseCallback}
+    />
+  ) : (
+    isPlaylist(mediaInfo) && (
+      <PlaylistCard
+        playlistId={mediaInfo.id}
+        fnCloseSnippet={extraProps?.mediaSnippetCloseCallback}
+      />
+    )
+  )
 
   return (
     <Wrapper>
@@ -32,12 +46,9 @@ export const MediaMenuItem: FC<Props> = ({
         extraProps={extraProps}
       />
       {shouldRenderAlbumSnippet && (
-        <AlbumSnippetContainer rowVariant={rowVariant}>
-          <AlbumCard
-            albumInfo={mediaInfo}
-            fnCloseSnippet={extraProps?.mediaSnippetCloseCallback}
-          />
-        </AlbumSnippetContainer>
+        <SnippetContainer rowVariant={rowVariant}>
+          {snippetContent}
+        </SnippetContainer>
       )}
     </Wrapper>
   )
