@@ -1,15 +1,8 @@
 import { useCallback, FC, useContext } from 'react'
-import {
-  ContainerFlexRow,
-  GrayIconButton,
-  Headline,
-  IconButton,
-  Rectangle,
-} from 'components/ui'
+import { GrayIconButton, Headline, IconButton, Rectangle } from 'components/ui'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import styled from 'styled-components'
 import { BeatLoader } from 'components/loader'
-import { formatDuration, formatTrackNumber } from 'utils/utils'
 import { useGetMediaList } from 'hooks/useGetMediaList'
 import { strings } from 'strings'
 import { getAlbumTracks } from 'api/data/albums'

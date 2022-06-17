@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from '@testing-library/react'
+import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { detailedPlaylist as mockedPlaylist } from 'fixtures/detailedPlaylist'
 import { strings } from 'strings'
 import { ThemeProvider } from 'styled-components'
@@ -20,8 +20,9 @@ describe('Playlist Tracks', () => {
       </ThemeProvider>,
     )
 
-    const labelSavedElement = screen.getByText(mockedPlaylist.name)
-    expect(labelSavedElement).toBeTruthy()
+    await waitFor(() =>
+      expect(screen.getByText(mockedPlaylist.name)).toBeTruthy(),
+    )
   })
 
   it('renders track list correctly', async () => {
@@ -33,9 +34,8 @@ describe('Playlist Tracks', () => {
       </ThemeProvider>,
     )
 
-    mockedPlaylist.tracks.forEach((track) => {
-      const el = screen.getByText(track.name)
-      expect(el).toBeTruthy()
+    mockedPlaylist.tracks.forEach(async (track) => {
+      await waitFor(() => expect(screen.getByText(track.name)).toBeTruthy())
     })
   })
 
