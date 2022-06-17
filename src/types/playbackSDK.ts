@@ -1,6 +1,6 @@
 import { Nullable } from './global'
 
-export type PlaybackMediaType = 'track' | 'album' | 'artist'
+export type PlaybackMediaType = 'track' | 'album' | 'artist' | 'playlist'
 
 export type PlaybackTrack = {
   id: string

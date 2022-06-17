@@ -28,6 +28,7 @@ const mockPlayerContext = {
   playSong: jest.fn(),
   playArtist: jest.fn(),
   playAlbum: jest.fn(),
+  playPlaylist: jest.fn(),
 }
 
 jest.mock('api/initPlaybackSDK', () => ({

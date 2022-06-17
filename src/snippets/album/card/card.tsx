@@ -1,6 +1,5 @@
 import { useCallback, FC, useContext } from 'react'
 import {
-  Button,
   ContainerFlexRow,
   GrayIconButton,
   Headline,
@@ -17,9 +16,10 @@ import { getAlbumTracks } from 'api/data/albums'
 import { NextURL } from 'types/global'
 import { Album } from 'types/media'
 import { PlayerContext } from 'contexts/player'
+import { SnippetTrack } from 'components/media/snippet/track'
 
 interface Props {
-  albumInfo: Album
+  mediaInfo: Album
   fnCloseSnippet?: () => void
 }
 
@@ -39,28 +39,6 @@ const HeadlineWrapper = styled.div`
   flex-direction: row;
 `
 
-const TrackWrapper = styled(ContainerFlexRow)`
-  ${({ theme }) => `
-    align-items: center;
-
-    p {
-      color: ${theme.palette.colorTextDisabled};
-
-      @media (max-width: 576px) {
-        &:last-child {
-          display: none;
-        }
-      }
-    }
-
-    span {
-      flex-grow: 1;
-      justify-content: center;
-      padding: 0 ${theme.divSpacingSmall};
-    }
-  `}
-`
-
 const Footer = styled.div`
   ${({ theme }) => `
     text-align: center;
@@ -70,21 +48,20 @@ const Footer = styled.div`
   `}
 `
 
-export const AlbumCard: FC<Props> = ({ albumInfo, fnCloseSnippet }) => {
-  const getTracksCallback = useCallback(
-    (next?: NextURL) => getAlbumTracks(albumInfo, next),
-    [albumInfo],
-  )
+export const AlbumCard: FC<Props> = ({ mediaInfo, fnCloseSnippet }) => {
   const playerContext = useContext(PlayerContext)
-  const playAlbum = (): void => playerContext.playAlbum(albumInfo.id)
-
+  const playMedia = (): void => playerContext.playAlbum(mediaInfo.id)
+  const getTracksCallback = useCallback(
+    (next?: NextURL) => getAlbumTracks(mediaInfo, next),
+    [mediaInfo],
+  )
   const {
     mediaList: trackList,
     fetchMoreMedia: fetchMoreTracks,
     nextURL,
     isLoading,
   } = useGetMediaList(getTracksCallback)
-
+  const { totalTracks } = mediaInfo
   return (
     <Rectangle>
       {fnCloseSnippet && (
@@ -95,11 +72,11 @@ export const AlbumCard: FC<Props> = ({ albumInfo, fnCloseSnippet }) => {
         />
       )}
       <HeadlineWrapper>
-        <Headline title={albumInfo.name} subtitle={albumInfo.artists[0].name} />
+        <Headline title={mediaInfo.name} subtitle={mediaInfo.artists[0].name} />
         <IconButton
           title={strings.components.player.play}
           icon="fa-play"
-          onClickCallback={playAlbum}
+          onClickCallback={playMedia}
         />
       </HeadlineWrapper>
       <Dash />
@@ -110,18 +87,12 @@ export const AlbumCard: FC<Props> = ({ albumInfo, fnCloseSnippet }) => {
           <InfiniteScroll
             dataLength={trackList.length}
             next={fetchMoreTracks}
-            hasMore={
-              trackList.length < albumInfo.totalTracks && nextURL !== null
-            }
+            hasMore={trackList.length < totalTracks && nextURL !== null}
             loader={<BeatLoader />}
             scrollableTarget="tracksScrollWrapper"
           >
             {trackList.map((track) => (
-              <TrackWrapper key={track.id}>
-                <p>{formatTrackNumber(track.trackNumber)}</p>
-                <span>{track.name}</span>
-                <p>{formatDuration(track.duration)}</p>
-              </TrackWrapper>
+              <SnippetTrack key={track.id} track={track} />
             ))}
           </InfiniteScroll>
         </ScrollWrapper>

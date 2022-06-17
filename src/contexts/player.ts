@@ -7,4 +7,5 @@ export const PlayerContext = createContext({
   playSong: (songId: string) => {},
   playAlbum: (albumId: string) => {},
   playArtist: (artistId: string) => {},
+  playPlaylist: (playlistId: string) => {},
 })

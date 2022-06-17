@@ -1,12 +1,13 @@
-import { FC } from 'react'
+import { FC, useState } from 'react'
 import { useGetMediaList } from 'hooks/useGetMediaList'
-import { Playlist } from 'types/media'
+import { isPlaylist, Media, Playlist } from 'types/media'
 import { strings } from 'strings'
 import { BeatLoader } from 'components/loader'
 import { Headline } from 'components/ui'
 import styled from 'styled-components'
 import { MediaMenu } from 'components/media/menu/menu'
 import { getOwnPlaylists } from 'api/data/own'
+import { MediaExtraProps } from 'types/mediaExtraProps'
 
 const Wrapper = styled.div`
   ${({ theme }) => `
@@ -27,12 +28,30 @@ export const MyPlaylists: FC = () => {
       : strings.scenes.playlists.subtextPlaylists
   const mediaSubtitle = `${totalCount} ${mediaCountLabel}`
 
+  const [renderedListSnippetId, setRenderedListSnippetId] = useState<string>('')
+
+  const mediaSnippetOpenCallback = (list: Media): void => {
+    if (isPlaylist(list)) {
+      setRenderedListSnippetId(list.id)
+    }
+  }
+
+  const mediaSnippetCloseCallback = (): void => {
+    setRenderedListSnippetId('')
+  }
+
+  const extraProps: MediaExtraProps = {
+    mediaSnippetOpenCallback,
+    mediaSnippetCloseCallback,
+    renderedMediaSnippetId: renderedListSnippetId,
+  }
+
   return isLoading ? (
     <BeatLoader />
   ) : (
     <Wrapper id="mainScreenWrapper">
       <Headline title={mediaTitle} subtitle={mediaSubtitle} />
-      <MediaMenu {...savedMediaProps} />
+      <MediaMenu {...savedMediaProps} extraProps={extraProps} />
     </Wrapper>
   )
 }

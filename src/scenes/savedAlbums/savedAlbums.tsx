@@ -43,7 +43,7 @@ export const SavedAlbums: FC = () => {
   const extraProps: MediaExtraProps = {
     mediaSnippetOpenCallback,
     mediaSnippetCloseCallback,
-    renderedAlbumSnippetId,
+    renderedMediaSnippetId: renderedAlbumSnippetId,
   }
 
   return isLoading ? (

@@ -1,6 +1,7 @@
-import { RawPlaylist } from 'api/types/media'
-import { Playlist, MediaType } from 'types/media'
+import { RawPlaylist, RawPlaylistDetails } from 'api/types/media'
+import { Playlist, MediaType, DetailedPlaylist } from 'types/media'
 import { parseImages } from './images'
+import { parseTracks } from './track'
 
 export const parsePlaylist = ({
   id,
@@ -16,7 +17,6 @@ export const parsePlaylist = ({
     name,
     description,
     owner: display_name,
-    tracks: [],
     mediaType: MediaType.playlist,
   }
 }
@@ -24,3 +24,24 @@ export const parsePlaylist = ({
 export const parsePlaylists = (
   rawPlaylists: Array<RawPlaylist>,
 ): Array<Playlist> => rawPlaylists.map((playlist) => parsePlaylist(playlist))
+
+export const parseDetailedPlaylist = ({
+  id,
+  name,
+  description,
+  images,
+  tracks: savedTracks,
+  owner: { display_name },
+}: RawPlaylistDetails): DetailedPlaylist => {
+  const imagesLinks = parseImages(images)
+  const trackList = savedTracks.items.map((savedTrack) => savedTrack.track)
+  return {
+    id,
+    images: imagesLinks,
+    name,
+    description,
+    owner: display_name,
+    tracks: parseTracks(trackList),
+    mediaType: MediaType.playlist,
+  }
+}

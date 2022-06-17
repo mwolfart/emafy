@@ -1,4 +1,5 @@
 import { RawImage } from './data'
+import { RawSavedTrack } from './savedMedia'
 
 export type BasicRawMedia = {
   images?: RawImage[]
@@ -36,8 +37,11 @@ export interface RawPlaylist extends BasicRawMedia {
   followers: { total: number }
   owner: { display_name: string }
   description: string
+}
+
+export interface RawPlaylistDetails extends RawPlaylist {
   tracks: {
-    items: RawTrack[]
+    items: RawSavedTrack[]
     total: number
   }
 }

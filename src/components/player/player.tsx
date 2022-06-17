@@ -133,6 +133,7 @@ export const PlayerComponent: FC = () => {
     playerContext.playSong = (id: string) => play(id, 'track')
     playerContext.playAlbum = (id: string) => play(id, 'album')
     playerContext.playArtist = (id: string) => play(id, 'artist')
+    playerContext.playPlaylist = (id: string) => play(id, 'playlist')
   }, [playerContext, playbackSDK])
 
   const displayedTrackName = currentTrack

@@ -93,6 +93,15 @@ export const MediaLink: FC<Props> = ({
           : playerContext.playAlbum(mediaInfo.id)
       return <SimpleLink onClick={albumClickCallback}>{mediaTile}</SimpleLink>
     }
+    case MediaType.playlist: {
+      const playlistClickCallback = (): void =>
+        extraProps &&
+        extraProps.mediaSnippetOpenCallback &&
+        extraProps.mediaSnippetOpenCallback(mediaInfo)
+      return (
+        <SimpleLink onClick={playlistClickCallback}>{mediaTile}</SimpleLink>
+      )
+    }
     default: {
       const songClickCallback = (): void => playerContext.playSong(mediaInfo.id)
       return <SimpleLink onClick={songClickCallback}>{mediaTile}</SimpleLink>
