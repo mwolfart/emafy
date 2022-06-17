@@ -60,8 +60,11 @@ export interface DetailedArtist extends SimpleArtist {
 export interface Playlist extends Media {
   description: string
   owner: string
-  tracks: Array<Song>
   mediaType: MediaType.playlist
+}
+
+export interface DetailedPlaylist extends Playlist {
+  tracks: Array<Song>
 }
 
 export const isAlbum = (media: Media | RawTracksAlbum): media is Album =>
@@ -78,3 +81,8 @@ export const isArtist = (media: Media): media is SimpleArtist =>
   typeof media === 'object' &&
   'mediaType' in media &&
   media.mediaType === MediaType.artist
+
+export const isPlaylist = (media: Media): media is Playlist =>
+  typeof media === 'object' &&
+  'mediaType' in media &&
+  media.mediaType === MediaType.playlist

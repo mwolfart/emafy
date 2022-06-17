@@ -22,7 +22,7 @@ describe('Album Tracks', () => {
 
     render(
       <ThemeProvider theme={defaultTheme}>
-        <AlbumCard albumInfo={album} fnCloseSnippet={fnCloseSnippet} />
+        <AlbumCard mediaInfo={album} fnCloseSnippet={fnCloseSnippet} />
       </ThemeProvider>,
     )
 
@@ -37,7 +37,7 @@ describe('Album Tracks', () => {
 
     render(
       <ThemeProvider theme={defaultTheme}>
-        <AlbumCard albumInfo={album} fnCloseSnippet={fnCloseSnippet} />
+        <AlbumCard mediaInfo={album} fnCloseSnippet={fnCloseSnippet} />
       </ThemeProvider>,
     )
 
@@ -52,7 +52,7 @@ describe('Album Tracks', () => {
 
     render(
       <ThemeProvider theme={defaultTheme}>
-        <AlbumCard albumInfo={album} fnCloseSnippet={fnCloseSnippet} />
+        <AlbumCard mediaInfo={album} fnCloseSnippet={fnCloseSnippet} />
       </ThemeProvider>,
     )
 

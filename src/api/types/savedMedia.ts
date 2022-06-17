@@ -1,11 +1,11 @@
 import { RawAlbum, RawTrack } from './media'
 
-export type SavedAlbum = {
+export type RawSavedAlbum = {
   added_at: string
   album: RawAlbum
 }
 
-export type SavedTrack = {
+export type RawSavedTrack = {
   added_at: string
   track: RawTrack
 }

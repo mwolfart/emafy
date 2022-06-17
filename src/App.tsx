@@ -76,6 +76,7 @@ const App = (): JSX.Element => {
     playSong: () => {},
     playAlbum: () => {},
     playArtist: () => {},
+    playPlaylist: () => {},
   }
 
   useEffect(() => {
