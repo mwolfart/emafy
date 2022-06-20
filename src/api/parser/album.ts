@@ -32,7 +32,6 @@ export const parseAlbums = (rawAlbums: Array<RawAlbum>): Array<Album> =>
 
 export const parseAlbumTracks = (
   rawTracks: Array<RawAlbumTrack>,
-  parsedAlbum: Album,
 ): Array<Song> => {
-  return rawTracks.map((track) => parseTrack({ ...track, album: parsedAlbum }))
+  return rawTracks.map((track) => parseTrack({ ...track }))
 }

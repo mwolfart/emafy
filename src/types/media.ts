@@ -40,7 +40,7 @@ export interface Song extends Media {
   duration: number
   mediaType: MediaType.song
   trackNumber: number
-  albumReference: Reference
+  albumReference?: Reference
 }
 
 export interface SimpleArtist extends Media {
