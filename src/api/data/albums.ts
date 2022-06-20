@@ -14,7 +14,7 @@ export const getAlbumTracks = (
   const route = SPOTIFY_ROUTE.ALBUM_TRACKS.replace(':id', album.id)
   return getSpotifyData({
     route,
-    parser: (items: RawAlbumTrack[]) => parseAlbumTracks(items, album),
+    parser: (items: RawAlbumTrack[]) => parseAlbumTracks(items),
     next,
   })
 }

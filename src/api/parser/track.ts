@@ -1,20 +1,12 @@
-import { RawTrack } from 'api/types/media'
-import { Song, isAlbum, MediaType, Album } from 'types/media'
+import { RawAlbumTrack, RawTrack } from 'api/types/media'
+import { Song, MediaType } from 'types/media'
 import { parseImages } from './images'
 
-interface AlbumTrack extends Omit<RawTrack, 'album'> {
-  album: Album
-}
-
-export const parseTrack = ({
-  artists,
-  album,
-  id,
-  name,
-  duration_ms,
-  track_number,
-}: RawTrack | AlbumTrack): Song => {
-  const imagesLinks = isAlbum(album) ? album.images : parseImages(album.images)
+export const parseTrack = (rawTrack: RawTrack | RawAlbumTrack): Song => {
+  const { artists, id, name, duration_ms, track_number } = rawTrack
+  const imagesLinks =
+    'album' in rawTrack ? parseImages(rawTrack.album.images) : undefined
+  const albumRef = 'album' in rawTrack ? rawTrack.album.id : undefined
   const parsedArtists = artists.map(({ id, name }) => ({
     id,
     name,
@@ -26,7 +18,7 @@ export const parseTrack = ({
     images: imagesLinks,
     id,
     artists: parsedArtists,
-    albumReference: album.id,
+    albumReference: albumRef,
     duration: duration_ms,
     trackNumber: track_number,
     mediaType: MediaType.song,
