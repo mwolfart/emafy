@@ -1,5 +1,9 @@
 export const strings = {
   components: {
+    carousel: {
+      previous: 'Previous',
+      next: 'Next',
+    },
     modal: {
       closeModal: 'Close modal',
     },
@@ -97,6 +101,9 @@ export const strings = {
       myPlaylists: 'My Public Playlists',
       subtextPlaylist: 'playlist',
       subtextPlaylists: 'playlists',
+    },
+    discover: {
+      listenTo: 'Listen to',
     },
   },
   api: {

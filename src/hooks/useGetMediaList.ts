@@ -1,10 +1,18 @@
 import { useEffect, useState } from 'react'
 import { strings } from 'strings'
 import { NextURL } from 'types/global'
-import { MediaListQuery, MediaListResponse } from 'types/mediaQuery'
+import { PagedDataList } from 'types/media'
+
+interface MediaListQuery<T> {
+  fetchMoreMedia: () => void
+  mediaList: T[]
+  nextURL: NextURL
+  totalCount: number
+  isLoading: boolean
+}
 
 export function useGetMediaList<T>(
-  getFunction: (next?: NextURL) => Promise<MediaListResponse<T>>,
+  getFunction: (next?: NextURL) => Promise<PagedDataList<T>>,
 ): MediaListQuery<T> {
   const [nextURL, setNextURL] = useState<NextURL>(null)
   const [mediaList, setMediaList] = useState<T[]>([])

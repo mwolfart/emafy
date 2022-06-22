@@ -15,4 +15,6 @@ export enum SPOTIFY_ROUTE {
   PLAYER = 'player',
   PLAYER_PLAY = 'player/play',
   PLAYER_DEVICES = 'player/devices',
+  RECOMMENDATIONS = 'recommendations',
+  CATEGORIES = 'browse/categories',
 }

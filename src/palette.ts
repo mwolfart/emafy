@@ -19,6 +19,7 @@ export const mainPalette: IPalette = {
   colorBackgroundBannerEdge: '#505050ff',
   colorBackgroundBannerCenter: '#aaa5',
   colorBackgroundBannerText: '#aaab',
+  colorBackgroundBannerCenterInactive: '#aaac',
   colorLinkBackground: '#e5e5e5',
   colorLinkBackgroundHover: '#dadada',
   colorImageBackground: '#cccccc',

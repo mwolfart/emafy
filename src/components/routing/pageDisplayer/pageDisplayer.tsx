@@ -1,5 +1,6 @@
 import { FC } from 'react'
 import { Navigate, Route, Routes } from 'react-router'
+import { Discover } from 'scenes/discover/discover'
 import { LoginScene } from 'scenes/login/login'
 import { MyPlaylists } from 'scenes/myPlaylists/myPlaylists'
 import { SavedAlbums } from 'scenes/savedAlbums/savedAlbums'
@@ -55,6 +56,10 @@ export const PageDisplayer: FC<Props> = ({ isLoggedIn, setIsLoggedIn }) => {
         <Route
           path="/artist/:id"
           element={isLoggedIn ? <ViewArtist /> : redirect}
+        />
+        <Route
+          path="/discover"
+          element={isLoggedIn ? <Discover /> : redirect}
         />
         <Route path="/login" element={<LoginScene onLogin={setIsLoggedIn} />} />
       </Routes>

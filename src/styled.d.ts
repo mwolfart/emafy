@@ -19,6 +19,7 @@ interface IPalette {
   colorBackgroundBannerEdge: string
   colorBackgroundBannerCenter: string
   colorBackgroundBannerText: string
+  colorBackgroundBannerCenterInactive: string
   colorLinkBackground: string
   colorLinkBackgroundHover: string
   colorImageBackground: string

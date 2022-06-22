@@ -6,7 +6,12 @@ import {
 import { checkIfOwnFollowsArtist } from 'api/data/own'
 import { useEffect, useState } from 'react'
 import { DetailedArtist, MediaType } from 'types/media'
-import { ArtistDetailsQuery } from 'types/mediaQuery'
+
+interface ArtistDetailsQuery {
+  artistInfo: DetailedArtist
+  setArtistInfo: (artistInfo: DetailedArtist) => void
+  isLoading: boolean
+}
 
 export function useGetArtistDetails(artistId: string): ArtistDetailsQuery {
   const [isLoading, setIsLoading] = useState<boolean>(true)

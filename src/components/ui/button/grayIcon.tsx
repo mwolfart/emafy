@@ -35,7 +35,7 @@ export const GrayIconButton: FC<Props> = ({
     aria-label={ariaLabel}
     aria-hidden={!ariaLabel}
   >
-    <Icon className={'fa ' + iconClass + ' fa-2x'} />
+    <Icon className={'fa ' + iconClass} />
     {title && <PaddedText>{title}</PaddedText>}
   </CleanButton>
 )
