@@ -25,6 +25,7 @@ export const Button = styled.button<StyledProps>`
     letter-spacing: 1.5px;
     width: fit-content;
     align-self: center;
+    align-items: center;
     cursor: pointer;
   `}
 `

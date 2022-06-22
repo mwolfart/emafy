@@ -55,6 +55,7 @@ const ContentWrapper = styled.div`
 const FooterWrapper = styled.div`
   position: relative;
   width: 100vw;
+  z-index: 2;
 `
 
 const App = (): JSX.Element => {

@@ -3,20 +3,19 @@ import { parseAlbum, parseAlbumTracks } from 'api/parser/album'
 import { spotifyInstance, Method } from 'api/spotifyInstance'
 import { NextURL } from 'types/global'
 import { RawAlbumTrack, RawAlbum } from 'api/types/media'
-import { Album, Song } from 'types/media'
-import { MediaListResponse } from 'types/mediaQuery'
-import { getSpotifyData } from './base'
+import { Album, Song, PagedDataList } from 'types/media'
+import { getPagedMedia } from './base'
 
 export const getAlbumTracks = (
   album: Album,
   next?: NextURL,
-): Promise<MediaListResponse<Song>> => {
+): Promise<PagedDataList<Song>> => {
   const route = SPOTIFY_ROUTE.ALBUM_TRACKS.replace(':id', album.id)
-  return getSpotifyData({
+  return getPagedMedia(
     route,
-    parser: (items: RawAlbumTrack[]) => parseAlbumTracks(items),
+    (items: RawAlbumTrack[]) => parseAlbumTracks(items),
     next,
-  })
+  )
 }
 
 export const getAlbum = (id: string): Promise<{ entities: Album }> => {

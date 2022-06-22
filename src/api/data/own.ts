@@ -6,9 +6,15 @@ import { parseUserData } from 'api/parser/user'
 import { spotifyInstance, Method } from 'api/spotifyInstance'
 import { NextURL } from 'types/global'
 import { RawUser } from 'api/types/user'
-import { User, Album, Song, SimpleArtist, Playlist } from 'types/media'
-import { MediaListResponse } from 'types/mediaQuery'
-import { getSpotifyData, getArtistListData } from './base'
+import {
+  User,
+  Album,
+  Song,
+  SimpleArtist,
+  Playlist,
+  PagedDataList,
+} from 'types/media'
+import { getPagedMedia, getArtistListData } from './base'
 
 export const getOwnProfile = (): Promise<User> => {
   const route = SPOTIFY_ROUTE.OWN
@@ -19,55 +25,35 @@ export const getOwnProfile = (): Promise<User> => {
 
 export const getOwnSavedAlbums = (
   next?: NextURL,
-): Promise<MediaListResponse<Album>> => {
-  const route = SPOTIFY_ROUTE.ALBUMS
-  return getSpotifyData({
-    route,
-    parser: parseSavedAlbums,
-    next,
-    shouldGetInfoFromLoggedUser: true,
-  })
+): Promise<PagedDataList<Album>> => {
+  const route = `${SPOTIFY_ROUTE.OWN}${SPOTIFY_ROUTE.ALBUMS}`
+  return getPagedMedia(route, parseSavedAlbums, next)
 }
 
 export const getOwnSavedSongs = (
   next?: NextURL,
-): Promise<MediaListResponse<Song>> => {
-  const route = SPOTIFY_ROUTE.TRACKS
-  return getSpotifyData({
-    route,
-    parser: parseSavedTracks,
-    next,
-    shouldGetInfoFromLoggedUser: true,
-  })
+): Promise<PagedDataList<Song>> => {
+  const route = `${SPOTIFY_ROUTE.OWN}${SPOTIFY_ROUTE.TRACKS}`
+  return getPagedMedia(route, parseSavedTracks, next)
 }
 
 export const getOwnTopArtists = (
   next?: NextURL,
-): Promise<MediaListResponse<SimpleArtist>> => {
-  const route = SPOTIFY_ROUTE.TOP_ARTISTS
-  return getSpotifyData({
-    route,
-    parser: parseSimpleArtists,
-    next,
-    shouldGetInfoFromLoggedUser: true,
-  })
+): Promise<PagedDataList<SimpleArtist>> => {
+  const route = `${SPOTIFY_ROUTE.OWN}${SPOTIFY_ROUTE.TOP_ARTISTS}`
+  return getPagedMedia(route, parseSimpleArtists, next)
 }
 
 export const getOwnPlaylists = (
   next?: NextURL,
-): Promise<MediaListResponse<Playlist>> => {
-  const route = SPOTIFY_ROUTE.PLAYLISTS
-  return getSpotifyData({
-    route,
-    parser: parsePlaylists,
-    next,
-    shouldGetInfoFromLoggedUser: true,
-  })
+): Promise<PagedDataList<Playlist>> => {
+  const route = `${SPOTIFY_ROUTE.OWN}${SPOTIFY_ROUTE.PLAYLISTS}`
+  return getPagedMedia(route, parsePlaylists, next)
 }
 
 export const getOwnFollowedUsers = (
   next?: NextURL,
-): Promise<MediaListResponse<SimpleArtist>> => {
+): Promise<PagedDataList<SimpleArtist>> => {
   const baseLink = SPOTIFY_ROUTE.OWN + SPOTIFY_ROUTE.FOLLOWING
   const route = baseLink + (next || '')
   return getArtistListData(route)

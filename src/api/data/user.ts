@@ -2,14 +2,13 @@ import { SPOTIFY_ROUTE } from 'api/enum/spotifyRoute.enum'
 import { parseSavedTracks } from 'api/parser/saved'
 import { spotifyInstance, Method } from 'api/spotifyInstance'
 import { NextURL } from 'types/global'
-import { SimpleArtist, Song } from 'types/media'
-import { MediaListResponse } from 'types/mediaQuery'
-import { getArtistListData, getSpotifyData } from './base'
+import { SimpleArtist, Song, PagedDataList } from 'types/media'
+import { getArtistListData, getPagedMedia } from './base'
 
 export const getUserFollowedUsers = (
   id: string,
   next?: NextURL,
-): Promise<MediaListResponse<SimpleArtist>> => {
+): Promise<PagedDataList<SimpleArtist>> => {
   const baseLink = '/' + id + '/' + SPOTIFY_ROUTE.FOLLOWING
   const route = baseLink + (next || '')
   return getArtistListData(route)
@@ -18,13 +17,9 @@ export const getUserFollowedUsers = (
 export const getUserSavedSongs = (
   id: string,
   next?: NextURL,
-): Promise<MediaListResponse<Song>> => {
+): Promise<PagedDataList<Song>> => {
   const route = '/' + id + '/' + SPOTIFY_ROUTE.TRACKS
-  return getSpotifyData({
-    route,
-    parser: parseSavedTracks,
-    next,
-  })
+  return getPagedMedia(route, parseSavedTracks, next)
 }
 
 export const checkIfUserFollowsArtist = (

@@ -1,4 +1,5 @@
 import { RawTracksAlbum } from '../api/types/media'
+import { NextURL } from './global'
 
 export enum MediaType {
   artist = 'artist',
@@ -65,6 +66,17 @@ export interface Playlist extends Media {
 
 export interface DetailedPlaylist extends Playlist {
   tracks: Array<Song>
+}
+
+export interface Category {
+  id: string
+  name: string
+}
+
+export type PagedDataList<T> = {
+  entities: Array<T>
+  next: NextURL
+  total: number
 }
 
 export const isAlbum = (media: Media | RawTracksAlbum): media is Album =>
