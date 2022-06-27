@@ -9,6 +9,7 @@ import { strings } from 'strings'
 import styled from 'styled-components'
 import { Playlist } from 'types/media'
 import { FeaturedPlaylistCard } from './featuredPlaylistCard'
+import { Link as RouterLink } from 'react-router-dom'
 
 interface Props {
   playlists: Playlist[]
@@ -22,6 +23,7 @@ const HeadlineContainer = styled(ContainerFlexRow)`
   ${({ theme }) => `
     margin: 0 ${theme.divSpacingExtraBig};
     gap: ${theme.divSpacingSmall};
+    align-items: center;
   `}
 `
 
@@ -40,7 +42,9 @@ export const FeaturedPlaylists: FC<Props> = ({ playlists }) => (
         title={strings.scenes.discover.playlists}
         subtitle={strings.scenes.discover.whatsNewSubtitle}
       />
-      <Button>{strings.scenes.discover.seeAll}</Button>
+      <RouterLink to="/popular-playlists">
+        <Button>{strings.scenes.discover.seeAll}</Button>
+      </RouterLink>
     </HeadlineContainer>
     <PlaylistScroller>
       <PlaylistList>

@@ -7,6 +7,7 @@ import { parseTracks } from 'api/parser/track'
 import { Method, spotifyInstance } from 'api/spotifyInstance'
 import { RawCategory, RawRecommendations } from 'api/types/browse'
 import { RawAlbum, RawPlaylist } from 'api/types/media'
+import { extractNextFromNextURL } from 'api/utils'
 import { NextURL } from 'types/global'
 import {
   Album,
@@ -34,7 +35,7 @@ export const getCategories = async (
   }>(route, Method.GET)
   return {
     entities: parseCategories(response.categories.items),
-    next: response.categories.next || null,
+    next: extractNextFromNextURL(response.categories.next),
     total: response.categories.total,
   }
 }
@@ -52,7 +53,7 @@ export const getCategoryPlaylists = async (
     }>(route, Method.GET)
     return {
       entities: parsePlaylists(response.playlists.items),
-      next: response.playlists.next || null,
+      next: extractNextFromNextURL(response.playlists.next),
       total: response.playlists.total,
     }
   } catch (error) {
@@ -73,7 +74,7 @@ export const getNewReleases = async (
   }>(route, Method.GET)
   return {
     entities: parseAlbums(response.albums.items),
-    next: response.albums.next || null,
+    next: extractNextFromNextURL(response.albums.next),
     total: response.albums.total,
   }
 }

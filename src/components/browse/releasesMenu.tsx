@@ -4,6 +4,7 @@ import { FC } from 'react'
 import { strings } from 'strings'
 import styled from 'styled-components'
 import { Album } from 'types/media'
+import { Link as RouterLink } from 'react-router-dom'
 
 interface Props {
   albumList: Album[]
@@ -17,6 +18,7 @@ const Wrapper = styled.div`
 const HeadlineContainer = styled(ContainerFlexRow)`
   ${({ theme }) => `
     gap: ${theme.divSpacingSmall};
+    align-items: center;
   `}
 `
 
@@ -48,7 +50,9 @@ export const ReleasesMenu: FC<Props> = ({ albumList }) => (
         title={strings.scenes.discover.whatsNew}
         subtitle={strings.scenes.discover.whatsNewSubtitle}
       />
-      <Button>{strings.scenes.discover.seeAll}</Button>
+      <RouterLink to="/new-releases">
+        <Button>{strings.scenes.discover.seeAll}</Button>
+      </RouterLink>
     </HeadlineContainer>
     <FeaturedAlbumsMenu>
       {albumList.map((album) => (

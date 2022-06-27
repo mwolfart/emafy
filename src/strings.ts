@@ -113,6 +113,12 @@ export const strings = {
       topSongs: 'Top songs',
       topArtists: 'Top artists',
     },
+    newAlbums: {
+      newReleases: 'New releases',
+    },
+    popularPlaylists: {
+      title: 'Popular playlists',
+    },
   },
   api: {
     credentials: {
