@@ -1,7 +1,7 @@
 import { useCallback, FC, useContext } from 'react'
 import { GrayIconButton, Headline, IconButton, Rectangle } from 'components/ui'
 import InfiniteScroll from 'react-infinite-scroll-component'
-import styled from 'styled-components'
+import styled, { useTheme } from 'styled-components'
 import { BeatLoader } from 'components/loader'
 import { useGetMediaList } from 'hooks/useGetMediaList'
 import { strings } from 'strings'
@@ -42,6 +42,7 @@ const Footer = styled.div`
 `
 
 export const AlbumCard: FC<Props> = ({ mediaInfo, fnCloseSnippet }) => {
+  const theme = useTheme()
   const playerContext = useContext(PlayerContext)
   const playMedia = (): void => playerContext.playAlbum(mediaInfo.id)
   const getTracksCallback = useCallback(
@@ -62,6 +63,7 @@ export const AlbumCard: FC<Props> = ({ mediaInfo, fnCloseSnippet }) => {
           iconClass="fa-times"
           onClickCallback={fnCloseSnippet}
           ariaLabel={strings.components.modal.closeModal}
+          iconSize={theme.fontSizeIcon}
         />
       )}
       <HeadlineWrapper>

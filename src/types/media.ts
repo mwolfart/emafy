@@ -61,6 +61,7 @@ export interface DetailedArtist extends SimpleArtist {
 export interface Playlist extends Media {
   description: string
   owner: string
+  totalTracks: number
   mediaType: MediaType.playlist
 }
 

@@ -10,6 +10,7 @@ for (let i = 0; i < 10; i++) {
     name: faker.name.findName(),
     description: faker.lorem.sentences(),
     owner: faker.name.findName(),
+    totalTracks: faker.datatype.number(),
     mediaType: MediaType.playlist,
   })
 }

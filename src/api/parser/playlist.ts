@@ -8,6 +8,7 @@ export const parsePlaylist = ({
   name,
   description,
   images,
+  tracks,
   owner: { display_name },
 }: RawPlaylist): Playlist => {
   const imagesLinks = parseImages(images)
@@ -17,6 +18,7 @@ export const parsePlaylist = ({
     name,
     description,
     owner: display_name,
+    totalTracks: tracks.total,
     mediaType: MediaType.playlist,
   }
 }
@@ -41,6 +43,7 @@ export const parseDetailedPlaylist = ({
     name,
     description,
     owner: display_name,
+    totalTracks: savedTracks.total,
     tracks: parseTracks(trackList),
     mediaType: MediaType.playlist,
   }

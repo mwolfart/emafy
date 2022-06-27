@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import styled from 'styled-components'
+import styled, { useTheme } from 'styled-components'
 import { ProfileInfo } from './profileInfo'
 import { SearchField } from './searchField'
 import { GrayIconButton } from 'components/ui'
@@ -52,20 +52,24 @@ const HamburgerWrapper = styled.div`
   }
 `
 
-export const Topbar: FC<Props> = ({ user }) => (
-  <Wrapper>
-    <ProfileInfo userInfo={user} />
-    <Dash />
-    <SearchField />
-    <ButtonsWrapper>
-      <GrayIconButton
-        iconClass="fa-chart-line"
-        ariaLabel={strings.components.topbar.viewStatistics}
-        onClickCallback={() => {}}
-      />
-    </ButtonsWrapper>
-    <HamburgerWrapper>
-      <Hamburger />
-    </HamburgerWrapper>
-  </Wrapper>
-)
+export const Topbar: FC<Props> = ({ user }) => {
+  const theme = useTheme()
+  return (
+    <Wrapper>
+      <ProfileInfo userInfo={user} />
+      <Dash />
+      <SearchField />
+      <ButtonsWrapper>
+        <GrayIconButton
+          iconClass="fa-chart-line"
+          iconSize={theme.fontSizeIcon}
+          ariaLabel={strings.components.topbar.viewStatistics}
+          onClickCallback={() => {}}
+        />
+      </ButtonsWrapper>
+      <HamburgerWrapper>
+        <Hamburger />
+      </HamburgerWrapper>
+    </Wrapper>
+  )
+}

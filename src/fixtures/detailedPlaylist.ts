@@ -8,5 +8,6 @@ export const detailedPlaylist: DetailedPlaylist = {
   description: faker.lorem.sentences(),
   owner: faker.name.findName(),
   tracks: songs,
+  totalTracks: songs.length,
   mediaType: MediaType.playlist,
 }

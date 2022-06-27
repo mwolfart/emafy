@@ -6,47 +6,56 @@ import { ContainerFlexCol } from '../container/container'
 interface Props {
   title: string
   subtitle?: string
+  smaller?: boolean
 }
 
-const Wrapper = styled(ContainerFlexCol)`
-  ${({ theme }) => `
+interface StyledProps {
+  smaller?: boolean
+}
+
+const Wrapper = styled(ContainerFlexCol)<StyledProps>`
+  ${({ smaller, theme }) => `
     flex-grow: 1;
-    margin: ${theme.divSpacingMedium} 0;
+    margin: ${smaller ? theme.divSpacingSmall : theme.divSpacingMedium} 0;
   `}
 `
 
-const Title = styled.span`
-  ${({ theme }) => `
-    color: ${theme?.palette.colorTextTitle};
-    font-weight: ${theme?.fontBoldTwo};
-    font-size: ${theme?.fontSizeTitle};
+const Title = styled.span<StyledProps>`
+  ${({ smaller, theme }) => `
+    color: ${theme.palette.colorTextTitle};
+    font-weight: ${theme.fontBoldTwo};
+    font-size: ${smaller ? theme.fontSizeParagraph : theme.fontSizeTitle};
     text-align: left;
     line-height: 1.5;
     @media (max-width: 576px) {
-      font-size: ${theme?.fontSizeTitleResponsive};
+      font-size: ${
+        smaller ? theme.fontSizeParagraph : theme.fontSizeTitleResponsive
+      };
     }
     @media (max-width: 450px) {
-      font-size: ${theme?.fontSizeParagraph};
+      font-size: ${
+        smaller ? theme.fontSizeParagraphResponsive : theme.fontSizeParagraph
+      };
     }
   `}
 `
 
 const Subtitle = styled.span`
   ${({ theme }) => `
-    color: ${theme?.palette.colorTextDisabled};
-    font-weight: ${theme?.fontBoldTwo};
-    font-size: ${theme?.fontSizeParagraph};
+    color: ${theme.palette.colorTextDisabled};
+    font-weight: ${theme.fontBoldTwo};
+    font-size: ${theme.fontSizeParagraph};
     text-align: left;
     line-height: 1.5;
     @media (max-width: 576px) {
-      font-size: ${theme?.fontSizeParagraphResponsive};
+      font-size: ${theme.fontSizeParagraphResponsive};
     }
   `}
 `
 
-export const Headline: FC<Props> = ({ title, subtitle }) => (
-  <Wrapper>
-    <Title>{title}</Title>
+export const Headline: FC<Props> = ({ title, subtitle, smaller }) => (
+  <Wrapper smaller={smaller}>
+    <Title smaller={smaller}>{title}</Title>
     <Subtitle>{subtitle}</Subtitle>
   </Wrapper>
 )
