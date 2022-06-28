@@ -37,6 +37,9 @@ const Wrapper = styled.div<StyledProps>`
     background-size: cover;
     background-position-y: center;
     padding: ${theme.divSpacingExtraBig};
+    @media (max-width: 576px) {
+      padding: ${theme.divSpacingSmall} ${theme.divSpacingExtraBig};
+    }
   `}
 `
 
@@ -76,6 +79,9 @@ const CTAContainer = styled.div`
     justify-content: end;
     align-self: start;
     margin: ${theme.divSpacingBig} 0;
+    @media (max-width: 576px) {
+      margin-top: 0;
+    }
   `}
 `
 

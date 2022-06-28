@@ -8,6 +8,7 @@ export enum SPOTIFY_ROUTE {
   TRACKS = 'tracks',
   PLAYLISTS = 'playlists',
   TOP_ARTISTS = 'top/artists',
+  TOP_TRACKS = 'top/tracks',
   ARTIST = 'artists/:id',
   ARTIST_ALBUMS = 'artists/:id/albums',
   ARTIST_TRACKS = 'artists/:id/top-tracks',
@@ -17,4 +18,6 @@ export enum SPOTIFY_ROUTE {
   PLAYER_DEVICES = 'player/devices',
   RECOMMENDATIONS = 'recommendations',
   CATEGORIES = 'browse/categories',
+  NEW_RELEASES = 'browse/new-releases',
+  FEATURED_PLAYLISTS = 'browse/featured-playlists',
 }

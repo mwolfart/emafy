@@ -37,6 +37,9 @@ export interface RawPlaylist extends BasicRawMedia {
   followers: { total: number }
   owner: { display_name: string }
   description: string
+  tracks: {
+    total: number
+  }
 }
 
 export interface RawPlaylistDetails extends RawPlaylist {

@@ -90,12 +90,12 @@ export const Carousel: FC<Props> = ({ cards }) => {
       </CarouselScroller>
       <Navigator>
         <GrayIconButton
-          iconClass="fa-arrow-left fa-4x"
+          iconClass="fa-arrow-left fa-2x"
           onClickCallback={prevCard}
           ariaLabel={strings.components.carousel.previous}
         />
         <GrayIconButton
-          iconClass="fa-arrow-right"
+          iconClass="fa-arrow-right fa-2x"
           onClickCallback={nextCard}
           ariaLabel={strings.components.carousel.next}
         />

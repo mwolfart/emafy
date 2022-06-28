@@ -1,7 +1,7 @@
 import { GrayIconButton } from 'components/ui'
 import { FC } from 'react'
 import { strings } from 'strings'
-import styled from 'styled-components'
+import styled, { useTheme } from 'styled-components'
 
 const Wrapper = styled.div`
   ${({ theme }) => `
@@ -38,10 +38,15 @@ const SearchInput = styled.input`
 
 export const SearchField: FC = () => {
   const onSearchSong = (): void => {}
+  const theme = useTheme()
 
   return (
     <Wrapper>
-      <GrayIconButton iconClass="fa-search" onClickCallback={onSearchSong} />
+      <GrayIconButton
+        iconClass="fa-search"
+        onClickCallback={onSearchSong}
+        iconSize={theme.fontSizeIcon}
+      />
       <SearchInput
         placeholder={strings.components.topbar.searchFieldPlaceholder}
         aria-label={strings.components.topbar.searchSong}

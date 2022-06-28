@@ -1,4 +1,4 @@
-import { isAlbum, isArtist, isSong, Media } from 'types/media'
+import { isAlbum, isArtist, isPlaylist, isSong, Media } from 'types/media'
 
 const calculateQuotientAndRemainder = (
   dividend: number,
@@ -10,22 +10,26 @@ const calculateQuotientAndRemainder = (
 }
 
 export const renderSubTitle = (mediaInfo: Media): string => {
-  if (
-    isAlbum(mediaInfo) ||
-    (isSong(mediaInfo) && mediaInfo.artists.length > 0)
-  ) {
+  if (isAlbum(mediaInfo) || isSong(mediaInfo)) {
     return artistListToString(mediaInfo.artists)
   }
-  if (isArtist(mediaInfo) && mediaInfo.genres.length > 0) {
+  if (isArtist(mediaInfo)) {
     return nameListToString(mediaInfo.genres)
+  }
+  if (isPlaylist(mediaInfo)) {
+    return `${mediaInfo.totalTracks} tracks`
   }
   return ''
 }
 
-export const artistListToString = (artistList: Media[]): string =>
-  artistList
+export const artistListToString = (artistList: Media[]): string => {
+  if (!artistList.length) {
+    return ''
+  }
+  return artistList
     .map((artist: Media) => artist.name)
     .reduce((accum: string, name: string) => `${accum}, ${name}`)
+}
 
 export const nameListToString = (nameList: string[]): string => {
   if (!nameList.length) {

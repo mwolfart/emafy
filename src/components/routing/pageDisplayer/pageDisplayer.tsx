@@ -3,6 +3,8 @@ import { Navigate, Route, Routes } from 'react-router'
 import { Discover } from 'scenes/discover/discover'
 import { LoginScene } from 'scenes/login/login'
 import { MyPlaylists } from 'scenes/myPlaylists/myPlaylists'
+import { NewAlbums } from 'scenes/newAlbums/newAlbums'
+import { PopularPlaylists } from 'scenes/popularPlaylists/popularPlaylists'
 import { SavedAlbums } from 'scenes/savedAlbums/savedAlbums'
 import { SavedArtists } from 'scenes/savedArtists/savedArtists'
 import { SavedSongs } from 'scenes/savedSongs/savedSongs'
@@ -60,6 +62,14 @@ export const PageDisplayer: FC<Props> = ({ isLoggedIn, setIsLoggedIn }) => {
         <Route
           path="/discover"
           element={isLoggedIn ? <Discover /> : redirect}
+        />
+        <Route
+          path="/new-releases"
+          element={isLoggedIn ? <NewAlbums /> : redirect}
+        />
+        <Route
+          path="/popular-playlists"
+          element={isLoggedIn ? <PopularPlaylists /> : redirect}
         />
         <Route path="/login" element={<LoginScene onLogin={setIsLoggedIn} />} />
       </Routes>

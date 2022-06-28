@@ -22,6 +22,7 @@ const TileWrapper = styled.div<StyledProps>`
   ${({ rowVariant, theme }) => `
     display: flex;
     flex-direction: ${rowVariant ? 'row' : 'column'};
+    box-sizing: border-box;
     font-family: ${theme?.fontStyle};
     padding: ${theme?.divSpacingSmall};
     transition: ${theme?.transitionQuick};

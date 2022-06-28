@@ -6,6 +6,7 @@ interface Props {
   icon: string
   onClickCallback: () => void
   title?: string
+  ariaLabel?: string
   resolutionToHideTitle?: string
 }
 
@@ -27,9 +28,10 @@ export const IconButton: FC<Props> = ({
   title,
   icon,
   onClickCallback,
+  ariaLabel,
   resolutionToHideTitle,
 }) => (
-  <Button square={!title} onClick={onClickCallback}>
+  <Button square={!title} onClick={onClickCallback} aria-label={ariaLabel}>
     <i className={'fa ' + icon} />
     {title && (
       <PaddedText resolutionToHideTitle={resolutionToHideTitle}>

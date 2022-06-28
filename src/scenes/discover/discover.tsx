@@ -1,22 +1,53 @@
-import { getCategories, getCategoryPlaylists } from 'api/data/browse'
+import {
+  getCategories,
+  getCategoryPlaylists,
+  getFeaturedPlaylists,
+  getNewReleases,
+  getTopArtists,
+  getTopTracks,
+} from 'api/data/browse'
 import { Carousel } from 'components/carousel/carousel'
-import { IconButton } from 'components/ui'
+import { ContainerFlexRow, IconButton } from 'components/ui'
 import { PlayerContext } from 'contexts/player'
 import { FC, useContext, useEffect, useState } from 'react'
-import { BeatLoader } from 'react-spinners'
+import { BeatLoader } from 'components/loader'
 import { strings } from 'strings'
 import styled from 'styled-components'
-import { PagedDataList, Playlist } from 'types/media'
+import { Album, PagedDataList, Playlist, SimpleArtist, Song } from 'types/media'
+import { ReleasesMenu } from 'components/browse/releasesMenu'
+import { TopPicks } from 'components/browse/topPicks'
+import { FeaturedPlaylists } from 'components/browse/featuredPlaylists'
 
-const Wrapper = styled.div``
+const Wrapper = styled.div`
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+`
+
+const MiddleContainer = styled(ContainerFlexRow)`
+  ${({ theme }) => `
+    margin: 0 ${theme.divSpacingExtraBig};
+    padding-bottom: ${theme.divSpacingBig};
+    border-bottom: 2px solid #ddd;
+    gap: ${theme.divSpacingExtraBig};
+    @media (max-width: 768px) {
+      flex-direction: column;
+      gap: 0;
+    }
+  `}
+`
 
 export const Discover: FC = () => {
   const [isLoading, setIsLoading] = useState(true)
   const [categoryPlaylists, setCategoryPlaylists] = useState<Playlist[]>([])
+  const [featuredPlaylists, setFeaturesPlaylists] = useState<Playlist[]>([])
+  const [newAlbums, setNewAlbums] = useState<Album[]>([])
+  const [topSongs, setTopSongs] = useState<Song[]>([])
+  const [topArtists, setTopArtists] = useState<SimpleArtist[]>([])
   const playerContext = useContext(PlayerContext)
 
   useEffect(() => {
-    const fetch = async (): Promise<void> => {
+    const fetchCategoryPlaylists = async (): Promise<void> => {
       const categories = await getCategories()
       const requests: Array<Promise<PagedDataList<Playlist>>> = []
       categories.entities.forEach((category) => {
@@ -28,7 +59,29 @@ export const Discover: FC = () => {
       setCategoryPlaylists(playlists)
       setIsLoading(false)
     }
-    fetch()
+    const fetchNewReleases = async (): Promise<void> => {
+      const { entities: releases } = await getNewReleases()
+      const shown = releases.slice(0, 6)
+      setNewAlbums(shown)
+    }
+    const fetchTopSongs = async (): Promise<void> => {
+      const { entities: songs } = await getTopTracks()
+      setTopSongs(songs)
+    }
+    const fetchTopArtists = async (): Promise<void> => {
+      const { entities: artists } = await getTopArtists()
+      setTopArtists(artists)
+    }
+    const fetchFeaturedPlaylists = async (): Promise<void> => {
+      const { entities: playlists } = await getFeaturedPlaylists()
+      const shown = playlists.slice(0, 5)
+      setFeaturesPlaylists(shown)
+    }
+    fetchCategoryPlaylists()
+    fetchNewReleases()
+    fetchTopSongs()
+    fetchTopArtists()
+    fetchFeaturedPlaylists()
   }, [])
 
   const carouselCards = categoryPlaylists.map(
@@ -49,8 +102,13 @@ export const Discover: FC = () => {
   return isLoading ? (
     <BeatLoader />
   ) : (
-    <Wrapper id="mainScreenWrapper">
+    <Wrapper>
       <Carousel cards={carouselCards} />
+      <MiddleContainer>
+        <ReleasesMenu albumList={newAlbums} />
+        <TopPicks tracks={topSongs} artists={topArtists} />
+      </MiddleContainer>
+      <FeaturedPlaylists playlists={featuredPlaylists} />
     </Wrapper>
   )
 }

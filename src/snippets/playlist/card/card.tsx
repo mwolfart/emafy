@@ -1,6 +1,6 @@
 import { FC, useContext, useEffect, useState } from 'react'
 import { GrayIconButton, Headline, IconButton, Rectangle } from 'components/ui'
-import styled from 'styled-components'
+import styled, { useTheme } from 'styled-components'
 import { BeatLoader } from 'components/loader'
 import { strings } from 'strings'
 import { DetailedPlaylist } from 'types/media'
@@ -30,6 +30,7 @@ const HeadlineWrapper = styled.div`
 `
 
 export const PlaylistCard: FC<Props> = ({ playlistId, fnCloseSnippet }) => {
+  const theme = useTheme()
   const playerContext = useContext(PlayerContext)
   const playMedia = (): void => playerContext.playPlaylist(playlistId)
   const [isLoading, setIsLoading] = useState(true)
@@ -47,6 +48,7 @@ export const PlaylistCard: FC<Props> = ({ playlistId, fnCloseSnippet }) => {
           iconClass="fa-times"
           onClickCallback={fnCloseSnippet}
           ariaLabel={strings.components.modal.closeModal}
+          iconSize={theme.fontSizeIcon}
         />
       )}
       {isLoading || !playlistDetails ? (

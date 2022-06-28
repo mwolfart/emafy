@@ -103,7 +103,21 @@ export const strings = {
       subtextPlaylists: 'playlists',
     },
     discover: {
+      playlists: 'Playlists',
+      playPlaylist: 'Play playlist',
+      tracks: 'tracks',
       listenTo: 'Listen to',
+      whatsNew: "What's new",
+      whatsNewSubtitle: "See what's popping this week",
+      seeAll: 'See all',
+      topSongs: 'Top songs',
+      topArtists: 'Top artists',
+    },
+    newAlbums: {
+      newReleases: 'New releases',
+    },
+    popularPlaylists: {
+      title: 'Popular playlists',
     },
   },
   api: {

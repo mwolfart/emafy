@@ -7,14 +7,31 @@ interface Props {
   onClickCallback: () => void
   ariaLabel?: string
   title?: string
+  hasRoundBorder?: boolean
+  iconSize?: string
 }
 
-const Icon = styled.i`
-  ${({ theme }) => `
+interface IconProps {
+  hasRoundBorder?: boolean
+  iconSize?: string
+}
+
+const Icon = styled.i<IconProps>`
+  ${({ hasRoundBorder, iconSize, theme }) =>
+    `
     text-align: right;
-    font-size: ${theme.fontSizeIcon};
     color: ${theme.palette.colorTextDisabled};
-  `}
+    text-align: center;
+    ` +
+    (iconSize ? `font-size: ${iconSize}` : '') +
+    (hasRoundBorder
+      ? `
+        border: 3px solid #ddd;
+        border-radius: calc(2 * ${theme.divSpacingSmall});
+        padding: ${theme.divSpacingSmall};
+        width: ${iconSize || 'auto'};
+      `
+      : '')}
 `
 
 const PaddedText = styled.div`
@@ -29,13 +46,19 @@ export const GrayIconButton: FC<Props> = ({
   onClickCallback,
   ariaLabel,
   title,
+  hasRoundBorder,
+  iconSize,
 }) => (
   <CleanButton
     onClick={onClickCallback}
     aria-label={ariaLabel}
     aria-hidden={!ariaLabel}
   >
-    <Icon className={'fa ' + iconClass} />
+    <Icon
+      className={'fa ' + iconClass}
+      iconSize={iconSize}
+      hasRoundBorder={hasRoundBorder}
+    />
     {title && <PaddedText>{title}</PaddedText>}
   </CleanButton>
 )
