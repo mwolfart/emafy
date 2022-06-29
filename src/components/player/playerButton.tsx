@@ -37,7 +37,7 @@ const Icon = styled.i<StyledProps>`
     text-align: right;
     font-size: ${theme.fontSizeIcon};
     color: ${
-      disabled ? theme.palette.colorBackgroundDisabled : theme.palette.colorGray
+      disabled ? theme.palette.colorGray100 : theme.palette.colorGray500
     };
   `}
 `

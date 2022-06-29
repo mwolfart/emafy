@@ -13,7 +13,7 @@ const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
     text-align: left;
-    font-weight: ${theme?.fontBoldTwo};
+    font-weight: ${theme.fontBoldTwo};
     width: 100%;
   `}
 `

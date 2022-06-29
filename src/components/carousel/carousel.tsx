@@ -48,7 +48,7 @@ const CarouselCell = styled.div`
     width: 70vw;
     min-width: 70vw;
     min-height: 100%;
-    background: ${theme.palette.colorBackgroundDisabled};
+    background: ${theme.palette.colorGray100};
     @media (max-width: 768px) {
       width: 100%;
       min-width: 100%;

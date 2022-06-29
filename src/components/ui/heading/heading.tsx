@@ -37,20 +37,20 @@ export const SubtitleLarge = styled(Heading).attrs({ as: 'h2' })`
 
 export const TitleNormal = styled(Heading).attrs({ as: 'h3' })`
   ${({ theme }) => `
-    color: ${theme?.palette.colorTextTitle};
+    color: ${theme.palette.colorTextTitle};
     width: 100%;
     text-align: left;
-    font-weight: ${theme?.fontBoldTwo};
-    font-size: ${theme?.fontSizeParagraph};
+    font-weight: ${theme.fontBoldTwo};
+    font-size: ${theme.fontSizeParagraph};
   `}
 `
 
 export const SubtitleNormal = styled(Heading).attrs({ as: 'h4' })`
   ${({ theme }) => `
-    color: ${theme?.palette.colorTextDisabled};
+    color: ${theme.palette.colorGray600};
     width: 100%;
     text-align: left;
-    font-weight: ${theme?.fontBoldTwo};
-    font-size: ${theme?.fontSizeTiny};
+    font-weight: ${theme.fontBoldTwo};
+    font-size: ${theme.fontSizeTiny};
   `}
 `

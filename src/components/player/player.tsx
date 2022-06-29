@@ -39,10 +39,7 @@ const Wrapper = styled.div<StyledProps>`
       left: 0;
       width: ${trackProgress * 100}%;
       height: ${theme.progressBarSize};
-      background: linear-gradient(50deg, 
-        ${theme.palette.colorPrimary} 60%, 
-        ${theme.palette.colorSecondary} 100%), 
-        ${theme.palette.colorTrackProgress};
+      background: ${theme.palette.gradientPlayerProgress};
     } 
   `}
 `

@@ -25,7 +25,7 @@ const Wrapper = styled.div`
 
 const Dash = styled.div`
   ${({ theme }) => `
-    border-left: 2px solid ${theme.palette.colorTextSubtitleLarge};
+    border-left: 2px solid ${theme.palette.colorGray300};
     margin: 5px 0;
 
     @media (max-width: 576px) {

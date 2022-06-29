@@ -20,7 +20,7 @@ const Icon = styled.i<IconProps>`
   ${({ hasRoundBorder, iconSize, theme }) =>
     `
     text-align: right;
-    color: ${theme.palette.colorTextDisabled};
+    color: ${theme.palette.colorGray600};
     text-align: center;
     ` +
     (iconSize ? `font-size: ${iconSize}` : '') +

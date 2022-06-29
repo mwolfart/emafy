@@ -11,10 +11,10 @@ interface Props {
 
 const Wrapper = styled.div`
   ${({ theme }) => `
-  border-top: 2px solid ${theme.palette.colorBackgroundDisabled};
+  border-top: 2px solid ${theme.palette.colorGray100};
   text-align: right;
   font-family: ${theme.fontStyle};
-  color: ${theme.palette.colorTextWhite};
+  color: ${theme.palette.colorTextNegative};
   font-weight: ${theme.fontBoldTwo};
   float: right;
   width: 50%;

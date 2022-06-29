@@ -27,16 +27,16 @@ const Background = styled.div<StyledProps>`
     left: 0;
     right: 0;
     bottom: 0;
-    border-radius: ${theme?.borderRadiusLarge};
+    border-radius: ${theme.borderRadiusLarge};
     border-width: 0;
     background-color: ${
       isChecked
-        ? theme?.palette.colorPrimary
+        ? theme.palette.colorPrimary
         : isOnOff
-        ? theme?.palette.colorLinkBackground
-        : theme?.palette.colorSecondary
+        ? theme.palette.colorGray100
+        : theme.palette.colorSecondary
     };
-    transition: ${theme?.transitionQuick};
+    transition: ${theme.transitionQuick};
   
     &:before {
       position: absolute;
@@ -48,7 +48,7 @@ const Background = styled.div<StyledProps>`
       border-radius: 13px;
       border-width: 0;
       background-color: #fff;
-      transition: ${theme?.transitionQuick};
+      transition: ${theme.transitionQuick};
       ${
         isChecked &&
         `

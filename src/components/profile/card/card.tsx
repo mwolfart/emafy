@@ -24,7 +24,7 @@ const Wrapper = styled(Rectangle)`
   ${({ theme }) => `
     width: 50%;
     height: fit-content;
-    box-shadow: ${theme?.shadowDimensionsTiny};
+    box-shadow: ${theme.shadowDimensionsTiny};
 
     @media (max-width: 999px) {
       width: auto;
@@ -34,7 +34,7 @@ const Wrapper = styled(Rectangle)`
 
 const Dash = styled.div`
   ${({ theme }) => `
-    border-bottom: 2px solid ${theme.palette.colorTextSubtitleLarge};
+    border-bottom: 2px solid ${theme.palette.colorGray300};
   `}
 `
 

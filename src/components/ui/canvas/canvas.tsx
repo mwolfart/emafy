@@ -8,7 +8,7 @@ export const Canvas = styled.div`
     min-width: 100vw;
     display: flex;
     justify-content: center;
-    background-color: ${theme?.palette.colorBackgroundDisabled};
+    background-color: ${theme.palette.colorGray100};
     place-items: center;
   `}
 `

@@ -14,8 +14,8 @@ const Wrapper = styled.div`
     position: absolute;
     bottom: ${theme.divDistanceMedium};
     left: ${theme.divSpacingBig};
-    box-shadow: ${theme?.shadowDimensionsTiny};
-    padding: ${theme?.divSpacingMedium} ${theme.divSpacingBig};
+    box-shadow: ${theme.shadowDimensionsTiny};
+    padding: ${theme.divSpacingMedium} ${theme.divSpacingBig};
     background-color: ${theme.palette.colorWhite};
     border-radius: ${theme.divSpacingBig};
     min-width: ${theme.playerQueueWidth};

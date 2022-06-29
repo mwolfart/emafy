@@ -22,10 +22,10 @@ const Wrapper = styled.div`
 
 const Label = styled.div`
   ${({ theme }) => `
-    font-family: ${theme?.fontStyle};
-    font-weight: ${theme?.fontBoldOne};
-    font-size: ${theme?.fontSizeParagraph};
-    padding: 0 ${theme?.divSpacingSmall};
+    font-family: ${theme.fontStyle};
+    font-weight: ${theme.fontBoldOne};
+    font-size: ${theme.fontSizeParagraph};
+    padding: 0 ${theme.divSpacingSmall};
   `}
 `
 

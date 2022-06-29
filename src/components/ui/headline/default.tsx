@@ -42,7 +42,7 @@ const Title = styled.span<StyledProps>`
 
 const Subtitle = styled.span`
   ${({ theme }) => `
-    color: ${theme.palette.colorTextDisabled};
+    color: ${theme.palette.colorGray600};
     font-weight: ${theme.fontBoldTwo};
     font-size: ${theme.fontSizeParagraph};
     text-align: left;

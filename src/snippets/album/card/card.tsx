@@ -18,7 +18,7 @@ interface Props {
 
 const Dash = styled.div`
   ${({ theme }) => `
-    border-bottom: 2px solid ${theme.palette.colorTextSubtitleLarge};
+    border-bottom: 2px solid ${theme.palette.colorGray300};
   `}
 `
 

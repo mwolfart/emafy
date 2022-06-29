@@ -29,11 +29,7 @@ const Wrapper = styled.div<StyledProps>`
     height: 100%;
     box-sizing: border-box;
     position: relative;
-    background-image: linear-gradient(
-      to bottom, 
-      ${theme.palette.colorBackgroundBannerEdge},
-      ${theme.palette.colorBackgroundBannerCenter} 50%, 
-    ${theme.palette.colorBackgroundBannerEdge}), url(${image});
+    background-image: ${theme.palette.gradientBanner}, url(${image});
     background-size: cover;
     background-position-y: center;
     padding: ${theme.divSpacingExtraBig};
@@ -50,7 +46,7 @@ const EffectOverlay = styled.div<OverlayProps>`
     top: 0;
     width: 100%;
     height: 100%;
-    background: ${theme.palette.colorBackgroundBannerCenterInactive};
+    background: ${theme.palette.gradientBannerInactive};
     background-size: cover;
     opacity: ${isActive ? '0' : '1'};
     transition: 1s;
@@ -60,14 +56,14 @@ const EffectOverlay = styled.div<OverlayProps>`
 
 const Title = styled(TitleExtraLarge)`
   ${({ theme }) => `
-    color: ${theme.palette.colorTextTitleLarge};
+    color: ${theme.palette.colorTextNegative};
     padding-top: ${theme.divSpacingSmall};
   `}
 `
 
 const Subtitle = styled(SubtitleExtraLarge)`
   ${({ theme }) => `
-    color: ${theme.palette.colorTextSubtitleLarge};
+    color: ${theme.palette.colorGray300};
     padding-bottom: ${theme.divSpacingBig};
   `}
 `

@@ -15,12 +15,10 @@ const Button = styled.button<StyledProps>`
   ${({ theme, active }) => `
     border: 0;
     border-bottom: 3px solid ${
-      active
-        ? theme.palette.colorSecondary
-        : theme.palette.colorBackgroundDisabled
+      active ? theme.palette.colorSecondary : theme.palette.colorGray100
     };
     color: ${
-      active ? theme.palette.colorTextTitle : theme.palette.colorTextDisabled
+      active ? theme.palette.colorTextTitle : theme.palette.colorGray600
     };
     background: transparent;
     font-family: ${theme.fontStyle};
