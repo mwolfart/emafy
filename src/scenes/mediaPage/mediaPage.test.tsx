@@ -1,50 +1,47 @@
-import { screen, render } from '@testing-library/react'
-import { playlists as mockedPlaylists } from 'fixtures/playlists'
+import { faker } from '@faker-js/faker'
+import { screen, render, waitFor } from '@testing-library/react'
+import { albums } from 'fixtures/albums'
 import { BrowserRouter } from 'react-router-dom'
-import { strings } from 'strings'
 import { ThemeProvider } from 'styled-components'
 import { defaultTheme } from 'theme'
+import { Album, PagedDataList } from 'types/media'
+import { MediaPage } from './mediaPage'
 
-// jest.mock('hooks/useGetMediaList', () => ({
-//   useGetMediaList: () => ({
-//     fetchMoreMedia: jest.fn(),
-//     mediaList: mockedPlaylists,
-//     nextURL: null,
-//     totalCount: mockedPlaylists.length,
-//     isLoading: false,
-//   }),
-// }))
+describe('Media Page', () => {
+  const fetchMock = jest.fn(
+    (): Promise<PagedDataList<Album>> =>
+      Promise.resolve({ entities: albums, next: null, total: albums.length }),
+  )
 
-describe('My Playlists', () => {
-  it('renders scene headers correctly', () => {
-    // render(
-    //   <ThemeProvider theme={defaultTheme}>
-    //     <BrowserRouter>
-    //       <MyPlaylists />
-    //     </BrowserRouter>
-    //   </ThemeProvider>,
-    // )
-    // const labelSavedElement = screen.getByText(
-    //   strings.scenes.playlists.myPlaylists,
-    // )
-    // const labelSongCntElement = screen.getByText(
-    //   `${mockedPlaylists.length} ${strings.scenes.playlists.subtextPlaylists}`,
-    // )
-    // expect(labelSavedElement).toBeTruthy()
-    // expect(labelSongCntElement).toBeTruthy()
+  it('renders scene headers correctly', async () => {
+    const title = faker.random.words()
+    const subtext = jest.fn((): string => faker.random.word())
+    render(
+      <ThemeProvider theme={defaultTheme}>
+        <BrowserRouter>
+          <MediaPage fetchFn={fetchMock} title={title} subtext={subtext} />
+        </BrowserRouter>
+      </ThemeProvider>,
+    )
+    await waitFor(() => expect(screen.getByText(title)).toBeTruthy())
+    expect(subtext).toHaveBeenCalled()
+    expect(fetchMock).toHaveBeenCalled()
   })
 
-  it('renders playlist list correctly', async () => {
-    // render(
-    //   <ThemeProvider theme={defaultTheme}>
-    //     <BrowserRouter>
-    //       <MyPlaylists />
-    //     </BrowserRouter>
-    //   </ThemeProvider>,
-    // )
-    // mockedPlaylists.forEach((playlist) => {
-    //   const el = screen.getByText(playlist.name)
-    //   expect(el).toBeTruthy()
-    // })
+  it('renders media list correctly', async () => {
+    const title = faker.random.words()
+    const subtext = (): string => faker.random.word()
+    render(
+      <ThemeProvider theme={defaultTheme}>
+        <BrowserRouter>
+          <MediaPage fetchFn={fetchMock} title={title} subtext={subtext} />
+        </BrowserRouter>
+      </ThemeProvider>,
+    )
+    await waitFor(() => expect(screen.getByText(title)).toBeTruthy())
+    albums.forEach((album) => {
+      const albumElement = screen.getByText(album.name)
+      expect(albumElement).toBeTruthy()
+    })
   })
 })
