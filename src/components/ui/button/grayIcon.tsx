@@ -26,7 +26,7 @@ const Icon = styled.i<IconProps>`
     (iconSize ? `font-size: ${iconSize}` : '') +
     (hasRoundBorder
       ? `
-        border: 3px solid #ddd;
+        border: 3px solid ${theme.palette.colorGray200};
         border-radius: calc(2 * ${theme.divSpacingSmall});
         padding: ${theme.divSpacingSmall};
         width: ${iconSize || 'auto'};

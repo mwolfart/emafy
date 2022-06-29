@@ -12,7 +12,7 @@ export const Rectangle = styled.div<RectangleProps>`
     border-radius: ${theme.borderRadiusDefault};
     border-width: 0;
     box-shadow: ${theme.shadowDimensionsDefault} ${
-    softerShadow ? '#ddd' : '#999'
+    softerShadow ? theme.palette.colorGray200 : theme.palette.colorGray500
   };
     padding: ${theme.divSpacingBig};
   `}

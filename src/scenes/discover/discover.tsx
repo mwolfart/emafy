@@ -28,7 +28,7 @@ const MiddleContainer = styled(ContainerFlexRow)`
   ${({ theme }) => `
     margin: 0 ${theme.divSpacingExtraBig};
     padding-bottom: ${theme.divSpacingBig};
-    border-bottom: 2px solid #ddd;
+    border-bottom: 2px solid ${theme.palette.colorGray200};
     gap: ${theme.divSpacingExtraBig};
     @media (max-width: 768px) {
       flex-direction: column;

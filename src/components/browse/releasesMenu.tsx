@@ -11,8 +11,10 @@ interface Props {
 }
 
 const Wrapper = styled.div`
-  flex-basis: 65%;
-  border-top: 2px solid #ddd;
+  ${({ theme }) => `
+    flex-basis: 65%;
+    border-top: 2px solid ${theme.palette.colorGray200};
+  `}
 `
 
 const HeadlineContainer = styled(ContainerFlexRow)`

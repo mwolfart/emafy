@@ -47,7 +47,7 @@ const Background = styled.div<StyledProps>`
       left: 4px;
       border-radius: 13px;
       border-width: 0;
-      background-color: #fff;
+      background-color: ${theme.palette.colorWhite};
       transition: ${theme.transitionQuick};
       ${
         isChecked &&

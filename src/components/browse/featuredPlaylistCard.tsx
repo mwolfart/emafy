@@ -21,7 +21,9 @@ const Wrapper = styled(Rectangle)`
 `
 
 const Dash = styled.div`
-  border-top: 2px solid #ddd;
+  ${({ theme }) => `
+    border-top: 2px solid ${theme.palette.colorGray200};
+  `}
 `
 
 export const FeaturedPlaylistCard: FC<Props> = ({ playlist }) => {
