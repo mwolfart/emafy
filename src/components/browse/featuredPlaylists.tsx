@@ -39,11 +39,11 @@ export const FeaturedPlaylists: FC<Props> = ({ playlists }) => (
   <ContainerFlexCol>
     <HeadlineContainer>
       <Headline
-        title={strings.scenes.discover.playlists}
-        subtitle={strings.scenes.discover.whatsNewSubtitle}
+        title={strings.headings.popularPlaylists}
+        subtitle={strings.content.seeWhatsPopping}
       />
       <RouterLink to="/popular-playlists">
-        <Button>{strings.scenes.discover.seeAll}</Button>
+        <Button>{strings.ui.seeAll}</Button>
       </RouterLink>
     </HeadlineContainer>
     <PlaylistScroller>

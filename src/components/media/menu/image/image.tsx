@@ -55,7 +55,7 @@ export const Wrapper = styled.div<StyledProps>`
 export const MediaImage: FC<Props> = ({ src, small, placeholder }) => (
   <Wrapper small={small}>
     {src || !placeholder ? (
-      <img src={src} alt={strings.components.media.image.description} />
+      <img src={src} alt={strings.components.media.noCoverImage} />
     ) : (
       placeholder
     )}

@@ -34,9 +34,9 @@ export const PlayerQueue: FC<Props> = ({ currentTrack, tracks }) => {
   const renderedQueue = tracks.length ? queue : ''
   return (
     <Wrapper>
-      <span>{strings.components.player.nowPlaying}</span>
+      <span>{strings.ui.nowPlaying}</span>
       <QueueTrack title={currentTrack.name} artists={currentTrack.artists} />
-      <span>{strings.components.player.nextInQueue}</span>
+      <span>{strings.ui.nextInQueue}</span>
       {renderedQueue}
     </Wrapper>
   )

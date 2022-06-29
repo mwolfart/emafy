@@ -17,7 +17,7 @@ export const Modal: FC<Props> = ({ children, closeModalCallback, large }) => {
       {closeModalCallback && (
         <GrayIconButton
           iconClass="fa-times"
-          ariaLabel={strings.components.modal.closeModal}
+          ariaLabel={strings.ui.closeModal}
           onClickCallback={closeModalCallback}
           iconSize={theme.fontSizeIcon}
         />

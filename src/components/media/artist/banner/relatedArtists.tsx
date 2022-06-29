@@ -33,7 +33,7 @@ export const RelatedArtists: FC<Props> = ({ artistList }) => {
   const shownArtists = artistList.slice(0, 5)
   return (
     <Wrapper>
-      {strings.scenes.artistDetail.relatedArtists.toUpperCase()}
+      {strings.ui.relatedArtists.toUpperCase()}
       <ArtistsList>
         {shownArtists.map((artist) => {
           const imageSrc =

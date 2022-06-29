@@ -72,7 +72,7 @@ export const MediaLink: FC<Props> = ({
   const placeholder = (
     <i
       className={`fas ${faSize} fa-record-vinyl`}
-      aria-label={strings.components.media.image.unavailable}
+      aria-label={strings.components.media.noCoverImage}
     />
   )
   const playerContext = useContext(PlayerContext)

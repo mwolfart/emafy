@@ -26,7 +26,7 @@ describe('Media Menu', () => {
     )
 
     const toggleElement = screen.getByRole('checkbox', {
-      name: strings.components.media.toggleView,
+      name: strings.ui.toggleView,
     })
     expect(toggleElement).toBeInTheDocument()
 

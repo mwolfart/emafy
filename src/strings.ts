@@ -1,18 +1,50 @@
 export const strings = {
+  ui: {
+    grid: 'Grid',
+    list: 'List',
+    previous: 'Previous',
+    next: 'Next',
+    follow: 'Follow',
+    unfollow: 'Unfollow',
+    closeModal: 'Close modal',
+    closeMenu: 'Close menu',
+    openNavMenu: 'Open navigation menu',
+    toggleView: 'Click to toggle view',
+    tracks: 'Tracks',
+    playlists: 'Playlists',
+    followers: 'Followers',
+    followedArtists: 'Followed artists',
+    relatedArtists: 'Related artists',
+    play: 'Play',
+    pause: 'Pause',
+    nextTrack: 'Next track',
+    previousTrack: 'Previous track',
+    playTrack: 'Play track',
+    playPlaylist: 'Play playlist',
+    playTopTracks: 'Play top tracks',
+    viewQueue: 'View songs in queue',
+    adjustVolume: 'Adjust volume',
+    nowPlaying: 'Now playing',
+    nextInQueue: 'Songs in queue',
+    listenTo: 'Listen to',
+    loginUsingSpotify: 'Login using Spotify',
+    seeAll: 'See all',
+    xAlbums: (x: number) => `${x} album${x !== 1 ? 's' : ''}`,
+    xTracks: (x: number) => `${x} track${x !== 1 ? 's' : ''}`,
+    xArtists: (x: number) => `${x} artist${x !== 1 ? 's' : ''}`,
+    xPlaylists: (x: number) => `${x} playlist${x !== 1 ? 's' : ''}`,
+  },
+  headings: {
+    topSongs: 'Top songs',
+    topArtists: 'Top artists',
+    whatsNew: "What's new",
+    newReleases: 'New Releases',
+    popularPlaylists: 'Popular playlists',
+  },
   components: {
-    carousel: {
-      previous: 'Previous',
-      next: 'Next',
-    },
-    modal: {
-      closeModal: 'Close modal',
-    },
     media: {
-      image: {
-        description: 'Cover image',
-        unavailable: 'No cover image available',
-      },
-      toggleView: 'Click to toggle view',
+      coverImage: 'Cover image',
+      noCoverImage: 'No cover image available',
     },
     sidebar: {
       songs: 'Songs',
@@ -29,106 +61,28 @@ export const strings = {
       viewStatistics: 'View statistics',
       searchFieldPlaceholder: 'Search for a song...',
     },
-    hamburger: {
-      open: 'Open navigation menu',
-      close: 'Close menu',
-    },
-    profile: {
-      card: {
-        followers: 'Followers',
-        followedArtists: 'Followed artists',
-        tracks: 'Tracks',
-        playlists: 'Playlists',
-      },
-      follow: {
-        view: 'View artist',
-        following: 'Following',
-      },
-      followedArtists: 'Followed artists',
-    },
-    player: {
-      play: 'Play',
-      pause: 'Pause',
-      next: 'Next track',
-      previous: 'Previous track',
-      queue: 'View songs in queue',
-      volume: 'Adjust volume',
-      nowPlaying: 'Now playing',
-      nextInQueue: 'Songs in queue',
-    },
   },
-  hooks: {
-    useGetSavedMedia: {
-      errorFetchingData: 'There was an error while fetching the data',
-    },
+  error: {
+    auth: 'There was an error during the authentication, please, refresh the webpage and try again',
+    fetchData: 'There was an error while fetching the data',
+    fetchUser: 'Error while fetching user info',
+    fetchToken: 'Error while fetching token',
+    refreshToken: 'Error while retrieving a new token',
+    loginFailed: 'Login failed',
   },
-  scenes: {
-    login: {
-      signin: 'Sign in',
-      // eslint-disable-next-line prettier/prettier
-      instructions:
-        'To start using the platform, please login using the Spotify API through the link below',
-      loginUsingSpotify: 'Login using Spotify',
-    },
-    albums: {
-      grid: 'Grid',
-      list: 'List',
-      mySavedAlbums: 'My Saved Albums',
-      subtextAlbum: 'album',
-      subtextAlbums: 'albums',
-      errorLoadingAlbum: 'There was an error while fetching the album',
-      errorLoadingAlbumTracks:
-        "There was an error while fetching the current album's tracks",
-    },
-    songs: {
-      mySavedSongs: 'My Saved Songs',
-      subtextSong: 'song',
-      subtextSongs: 'songs',
-    },
-    artists: {
-      mySavedArtists: 'My Saved Artists',
-      subtextArtist: 'artist',
-      subtextArtists: 'artists',
-    },
-    artistDetail: {
-      albums: 'albums',
-      follow: 'Follow',
-      unfollow: 'Unfollow',
-      relatedArtists: 'Related artists',
-      play: 'Play top tracks',
-    },
-    playlists: {
-      myPlaylists: 'My Public Playlists',
-      subtextPlaylist: 'playlist',
-      subtextPlaylists: 'playlists',
-    },
-    discover: {
-      playlists: 'Playlists',
-      playPlaylist: 'Play playlist',
-      tracks: 'tracks',
-      listenTo: 'Listen to',
-      whatsNew: "What's new",
-      whatsNewSubtitle: "See what's popping this week",
-      seeAll: 'See all',
-      topSongs: 'Top songs',
-      topArtists: 'Top artists',
-    },
-    newAlbums: {
-      newReleases: 'New releases',
-    },
-    popularPlaylists: {
-      title: 'Popular playlists',
-    },
+  pages: {
+    signIn: 'Sign in',
+    savedAlbums: 'My Liked Albums',
+    savedTracks: 'My Liked Songs',
+    followedArtists: 'My Followed Artists',
+    playlists: 'My Public Playlists',
+    discover: 'Discover',
+    newReleases: 'New Releases',
+    popularPlaylists: 'Popular Playlists',
   },
-  api: {
-    credentials: {
-      // eslint-disable-next-line prettier/prettier
-      errorAuth:
-        'There was an error during the authentication, please, refresh the webpage and try again',
-      errorUsername: 'Error while fetching user info',
-      errorToken: 'Error while fetching token',
-      errorRefreshToken: 'Error while retrieving a new token',
-      errorLoginFailed: 'Login failed',
-    },
+  content: {
+    signInInstructions:
+      'To start using the platform, please login using the Spotify API through the link below',
+    seeWhatsPopping: "See what's popping this week",
   },
 }

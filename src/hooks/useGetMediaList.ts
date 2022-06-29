@@ -37,7 +37,7 @@ export function useGetMediaList<T>(
           setNextURL(next)
         }
       } catch (error) {
-        !aborted && alert(strings.hooks.useGetSavedMedia.errorFetchingData)
+        !aborted && alert(strings.error.fetchData)
       }
       !aborted && setIsLoading(false)
     }

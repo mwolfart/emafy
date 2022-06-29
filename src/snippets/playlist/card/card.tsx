@@ -47,7 +47,7 @@ export const PlaylistCard: FC<Props> = ({ playlistId, fnCloseSnippet }) => {
         <GrayIconButton
           iconClass="fa-times"
           onClickCallback={fnCloseSnippet}
-          ariaLabel={strings.components.modal.closeModal}
+          ariaLabel={strings.ui.closeModal}
           iconSize={theme.fontSizeIcon}
         />
       )}
@@ -58,7 +58,7 @@ export const PlaylistCard: FC<Props> = ({ playlistId, fnCloseSnippet }) => {
           <HeadlineWrapper>
             <Headline title={playlistDetails.name} />
             <IconButton
-              title={strings.components.player.play}
+              title={strings.ui.play}
               icon="fa-play"
               onClickCallback={playMedia}
             />

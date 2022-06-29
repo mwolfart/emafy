@@ -92,12 +92,12 @@ export const Carousel: FC<Props> = ({ cards }) => {
         <GrayIconButton
           iconClass="fa-arrow-left fa-2x"
           onClickCallback={prevCard}
-          ariaLabel={strings.components.carousel.previous}
+          ariaLabel={strings.ui.previous}
         />
         <GrayIconButton
           iconClass="fa-arrow-right fa-2x"
           onClickCallback={nextCard}
-          ariaLabel={strings.components.carousel.next}
+          ariaLabel={strings.ui.next}
         />
       </Navigator>
     </ContainerFlexCol>

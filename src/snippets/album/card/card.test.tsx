@@ -57,7 +57,7 @@ describe('Album Tracks', () => {
     )
 
     const el = screen.getByRole('button', {
-      name: strings.components.modal.closeModal,
+      name: strings.ui.closeModal,
     })
     fireEvent.click(el)
     expect(fnCloseSnippet).toHaveBeenCalled()

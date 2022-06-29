@@ -51,11 +51,11 @@ describe('Player Component', () => {
 
   it('renders component correctly', () => {
     const buttons = [
-      strings.components.player.play,
-      strings.components.player.previous,
-      strings.components.player.next,
-      strings.components.player.queue,
-      strings.components.player.volume,
+      strings.ui.play,
+      strings.ui.previous,
+      strings.ui.next,
+      strings.ui.viewQueue,
+      strings.ui.adjustVolume,
     ]
 
     buttons.forEach((buttonLabel) => {
@@ -81,15 +81,15 @@ describe('Player Component', () => {
   it('clicking on player navigation buttons triggers sdk navigation', () => {
     const buttons = [
       {
-        label: strings.components.player.play,
+        label: strings.ui.play,
         mock: mockPlaybackSDK.togglePlay,
       },
       {
-        label: strings.components.player.previous,
+        label: strings.ui.previous,
         mock: mockPlaybackSDK.previousTrack,
       },
       {
-        label: strings.components.player.next,
+        label: strings.ui.next,
         mock: mockPlaybackSDK.nextTrack,
       },
     ]

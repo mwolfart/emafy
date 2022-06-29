@@ -71,8 +71,8 @@ export const ArtistBanner: FC<Props> = ({
     ? 'fa-user-minus'
     : 'fa-user-plus'
   const followBtnLabel = artistInfo.currentUserFollows
-    ? strings.scenes.artistDetail.unfollow
-    : strings.scenes.artistDetail.follow
+    ? strings.ui.unfollow
+    : strings.ui.follow
   const updateArtist = (isFollowing: boolean): void => {
     setArtistInfo(
       Object.assign({}, artistInfo, { currentUserFollows: isFollowing }),
@@ -101,7 +101,7 @@ export const ArtistBanner: FC<Props> = ({
         <IconButton
           icon="fa-play"
           onClickCallback={playBtnCallback}
-          title={strings.scenes.artistDetail.play}
+          title={strings.ui.play}
         />
       </ButtonsWrapper>
       <RelatedArtists artistList={artistInfo.relatedArtists} />

@@ -91,7 +91,7 @@ export const Discover: FC = () => {
       image: images ? images[0] : '',
       cta: (
         <IconButton
-          title={strings.scenes.discover.listenTo}
+          title={strings.ui.listenTo}
           icon="fa-play"
           onClickCallback={() => playerContext.playPlaylist(id)}
         />

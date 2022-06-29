@@ -88,8 +88,8 @@ export const MediaMenu: FC<Props> = ({
           <ToggleDescriptor
             toggleState={isViewList}
             onChangeCallback={changeView}
-            labelFalse={strings.scenes.albums.grid}
-            labelTrue={strings.scenes.albums.list}
+            labelFalse={strings.ui.grid}
+            labelTrue={strings.ui.list}
           />
         </ToggleButtonWrapper>
         <MenuWrapper isTransitioning={isTransitioning} isViewList={isViewList}>

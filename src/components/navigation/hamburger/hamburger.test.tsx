@@ -17,7 +17,7 @@ describe('Hamburger', () => {
       </ThemeProvider>,
     )
     const buttonElement = screen.getByRole('button', {
-      name: strings.components.hamburger.open,
+      name: strings.ui.openNavMenu,
     })
     expect(buttonElement).toBeInTheDocument()
   })
