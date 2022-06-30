@@ -23,15 +23,15 @@ const TileWrapper = styled.div<StyledProps>`
     display: flex;
     flex-direction: ${rowVariant ? 'row' : 'column'};
     box-sizing: border-box;
-    font-family: ${theme?.fontStyle};
-    padding: ${theme?.divSpacingSmall};
-    transition: ${theme?.transitionQuick};
+    font-family: ${theme.fontStyle};
+    padding: ${theme.divSpacingSmall};
+    transition: ${theme.transitionQuick};
     ${
       rowVariant
         ? `
-    margin: ${theme?.divSpacingSmall} 0; 
-    border-radius: ${theme?.borderRadiusDefault};
-    background-color: ${theme?.palette.colorLinkBackground};`
+    margin: ${theme.divSpacingSmall} 0; 
+    border-radius: ${theme.borderRadiusDefault};
+    background-color: ${theme.palette.colorGray100};`
         : `
     width: 200px;`
     }
@@ -41,18 +41,18 @@ const TileWrapper = styled.div<StyledProps>`
     }
 
     &:hover {
-      transition: ${theme?.transitionQuick};
+      transition: ${theme.transitionQuick};
       ${
         rowVariant
           ? `
-      background-color: ${theme?.palette.colorLinkBackgroundHover};`
+      background-color: ${theme.palette.colorGray200};`
           : `
       transform: scale(1.1);`
       }
     }
 
     div + div {
-      padding-top: ${rowVariant ? '0' : theme?.divSpacingSmall};
+      padding-top: ${rowVariant ? '0' : theme.divSpacingSmall};
     }
   `}
 `
@@ -72,7 +72,7 @@ export const MediaLink: FC<Props> = ({
   const placeholder = (
     <i
       className={`fas ${faSize} fa-record-vinyl`}
-      aria-label={strings.components.media.image.unavailable}
+      aria-label={strings.components.media.noCoverImage}
     />
   )
   const playerContext = useContext(PlayerContext)

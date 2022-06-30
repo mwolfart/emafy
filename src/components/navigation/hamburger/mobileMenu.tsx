@@ -52,7 +52,7 @@ export const MobileMenu: FC<Props> = ({ closeMenu, isOpen }) => {
         <GrayIconButton
           iconClass="fa-times"
           onClickCallback={closeMenu}
-          ariaLabel={strings.components.hamburger.close}
+          ariaLabel={strings.ui.closeMenu}
         />
       </CloseButtonWrapper>
       {mediaButtons.map(buttonGenerationFn)}

@@ -23,11 +23,7 @@ interface StyledProps {
 
 const Background = styled.div<StyledProps>`
   ${({ theme, artistInfo }) => `
-    background-image: linear-gradient(
-      to bottom, 
-      ${theme.palette.colorBackgroundBannerEdge},
-      ${theme.palette.colorBackgroundBannerCenter} 50%, 
-      ${theme.palette.colorBackgroundBannerEdge}),
+    background-image: ${theme.palette.gradientBanner},
     ${artistInfo && artistInfo.images && `url(${artistInfo.images[0]})`};
     background-size: cover;
     background-position-y: center;
@@ -37,7 +33,7 @@ const Background = styled.div<StyledProps>`
 
 const CustomTitleExtraLarge = styled(TitleExtraLarge)`
   ${({ theme }) => `
-    color: ${theme.palette.colorTextTitleLarge};
+    color: ${theme.palette.colorTextNegative};
     padding-top: ${theme.divSpacingSmall};
     padding-left: ${theme.divSpacingSmall};
   `}
@@ -45,7 +41,7 @@ const CustomTitleExtraLarge = styled(TitleExtraLarge)`
 
 const CustomSubtitleExtraLarge = styled(SubtitleExtraLarge)`
   ${({ theme }) => `
-    color: ${theme.palette.colorTextSubtitleLarge};
+    color: ${theme.palette.colorGray300};
     padding-left: ${theme.divSpacingSmall};
     padding-bottom: ${theme.divSpacingBig};
   `}
@@ -71,8 +67,8 @@ export const ArtistBanner: FC<Props> = ({
     ? 'fa-user-minus'
     : 'fa-user-plus'
   const followBtnLabel = artistInfo.currentUserFollows
-    ? strings.scenes.artistDetail.unfollow
-    : strings.scenes.artistDetail.follow
+    ? strings.ui.unfollow
+    : strings.ui.follow
   const updateArtist = (isFollowing: boolean): void => {
     setArtistInfo(
       Object.assign({}, artistInfo, { currentUserFollows: isFollowing }),
@@ -101,7 +97,7 @@ export const ArtistBanner: FC<Props> = ({
         <IconButton
           icon="fa-play"
           onClickCallback={playBtnCallback}
-          title={strings.scenes.artistDetail.play}
+          title={strings.ui.play}
         />
       </ButtonsWrapper>
       <RelatedArtists artistList={artistInfo.relatedArtists} />

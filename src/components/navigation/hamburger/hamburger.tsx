@@ -25,7 +25,7 @@ export const Hamburger: FC = () => {
       <GrayIconButton
         iconClass="fa-bars"
         onClickCallback={expandMenu}
-        ariaLabel={strings.components.hamburger.open}
+        ariaLabel={strings.ui.openNavMenu}
       />
       <MobileMenu closeMenu={closeMenu} isOpen={isMenuOpen} />
     </Wrapper>

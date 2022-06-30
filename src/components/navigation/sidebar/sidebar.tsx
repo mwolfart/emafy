@@ -7,7 +7,7 @@ const Wrapper = styled.div`
   ${({ theme }) => `
     display: flex;
     flex-direction: column;
-    background-color: ${theme.palette.colorBackgroundSidebar};
+    background-color: ${theme.palette.colorGray900};
     height: 100%;
     width: ${theme.sidebarWidth};
     position: fixed;

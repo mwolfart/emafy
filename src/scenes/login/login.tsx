@@ -52,11 +52,9 @@ export const LoginScene: FC<Props> = ({ onLogin }) => {
   ) : (
     <Canvas>
       <Modal>
-        <div className="title">{strings.scenes.login.signin}</div>
-        <p>{strings.scenes.login.instructions}</p>
-        <Button onClick={apiAuth}>
-          {strings.scenes.login.loginUsingSpotify}
-        </Button>
+        <div className="title">{strings.pages.signIn}</div>
+        <p>{strings.content.signInInstructions}</p>
+        <Button onClick={apiAuth}>{strings.ui.loginUsingSpotify}</Button>
       </Modal>
     </Canvas>
   )

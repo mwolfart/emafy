@@ -18,7 +18,7 @@ describe('Mobile Menu', () => {
       </ThemeProvider>,
     )
     const closeButtonElement = screen.getByRole('button', {
-      name: strings.components.hamburger.close,
+      name: strings.ui.closeMenu,
     })
     expect(closeButtonElement).toBeInTheDocument()
 

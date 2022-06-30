@@ -32,7 +32,7 @@ const Subtitle = styled.span`
     font-family: ${theme.fontStyle};
     font-size: ${theme.fontSizeTiny};
     font-weight: ${theme.fontBoldOne};
-    color: ${theme.palette.colorTextDisabled};
+    color: ${theme.palette.colorGray600};
     text-transform: uppercase;
     white-space: nowrap;
   `}

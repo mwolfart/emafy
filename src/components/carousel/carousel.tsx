@@ -48,7 +48,7 @@ const CarouselCell = styled.div`
     width: 70vw;
     min-width: 70vw;
     min-height: 100%;
-    background: ${theme.palette.colorBackgroundDisabled};
+    background: ${theme.palette.colorGray100};
     @media (max-width: 768px) {
       width: 100%;
       min-width: 100%;
@@ -92,12 +92,12 @@ export const Carousel: FC<Props> = ({ cards }) => {
         <GrayIconButton
           iconClass="fa-arrow-left fa-2x"
           onClickCallback={prevCard}
-          ariaLabel={strings.components.carousel.previous}
+          ariaLabel={strings.ui.previous}
         />
         <GrayIconButton
           iconClass="fa-arrow-right fa-2x"
           onClickCallback={nextCard}
-          ariaLabel={strings.components.carousel.next}
+          ariaLabel={strings.ui.next}
         />
       </Navigator>
     </ContainerFlexCol>

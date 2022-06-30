@@ -24,7 +24,7 @@ const Wrapper = styled(Rectangle)`
   ${({ theme }) => `
     width: 50%;
     height: fit-content;
-    box-shadow: ${theme?.shadowDimensionsTiny};
+    box-shadow: ${theme.shadowDimensionsTiny};
 
     @media (max-width: 999px) {
       width: auto;
@@ -34,7 +34,7 @@ const Wrapper = styled(Rectangle)`
 
 const Dash = styled.div`
   ${({ theme }) => `
-    border-bottom: 2px solid ${theme.palette.colorTextSubtitleLarge};
+    border-bottom: 2px solid ${theme.palette.colorGray300};
   `}
 `
 
@@ -69,23 +69,23 @@ export const ProfileCard: FC<Props> = ({
       <IconHeadline
         icon="fa-user-friends"
         title={userFollowerCount}
-        subtitle={strings.components.profile.card.followers}
+        subtitle={strings.ui.followers}
       />
       <IconHeadline
         icon="fa-user-friends"
         title={userFollowingCount}
-        subtitle={strings.components.profile.card.followedArtists}
+        subtitle={strings.ui.followedArtists}
       />
       <IconHeadline
         icon="fa-music"
         title={userSavedMusicCount}
-        subtitle={strings.components.profile.card.tracks}
+        subtitle={strings.ui.tracks}
       />
       <Dash />
       <IconHeadline
         icon="fa-list"
         title={userPlaylistCount}
-        subtitle={strings.components.profile.card.playlists}
+        subtitle={strings.ui.playlists}
       />
     </Wrapper>
   )

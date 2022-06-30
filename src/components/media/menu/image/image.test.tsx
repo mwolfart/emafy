@@ -19,7 +19,7 @@ describe('Media Image', () => {
     const placeholder = (
       <i
         className={`fas fa-times`}
-        aria-label={strings.components.media.image.unavailable}
+        aria-label={strings.components.media.noCoverImage}
       />
     )
 
@@ -28,9 +28,7 @@ describe('Media Image', () => {
         <MediaImage placeholder={placeholder} />
       </ThemeProvider>,
     )
-    const element = screen.getByLabelText(
-      strings.components.media.image.unavailable,
-    )
+    const element = screen.getByLabelText(strings.components.media.noCoverImage)
     expect(element).toBeInTheDocument()
   })
 })

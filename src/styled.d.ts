@@ -4,28 +4,23 @@ interface IPalette {
   colorPrimary: string
   colorSecondary: string
   colorTertiary: string
-  colorButtonIntermed: string
-  colorTextParagraph: string
-  colorTextTitle: string
-  colorTextTitleLarge: string
-  colorTextSubtitleLarge: string
-  colorTextButton: string
-  colorTextDisabled: string
-  colorTextSidebar: string
-  colorTextWhite: string
   colorBackground: string
-  colorBackgroundSidebar: string
-  colorBackgroundDisabled: string
-  colorBackgroundBannerEdge: string
-  colorBackgroundBannerCenter: string
-  colorBackgroundBannerText: string
-  colorBackgroundBannerCenterInactive: string
-  colorLinkBackground: string
-  colorLinkBackgroundHover: string
-  colorImageBackground: string
-  colorTrackProgress: string
-  colorGray: string
+  colorTextTitle: string
+  colorTextParagraph: string
+  colorTextNegative: string
+  colorTextButton: string
   colorWhite: string
+  colorGray900: string
+  colorGray700: string
+  colorGray600: string
+  colorGray500: string
+  colorGray300: string
+  colorGray200: string
+  colorGray100: string
+  gradientButton: string
+  gradientBanner: string
+  gradientBannerInactive: string
+  gradientPlayerProgress: string
 }
 
 declare module 'styled-components' {

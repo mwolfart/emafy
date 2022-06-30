@@ -12,7 +12,7 @@ describe('Toggle', () => {
       </ThemeProvider>,
     )
     const inputElement = screen.getByRole('checkbox', {
-      name: strings.components.media.toggleView,
+      name: strings.ui.toggleView,
     })
     expect(inputElement).toBeInTheDocument()
   })
@@ -25,7 +25,7 @@ describe('Toggle', () => {
       </ThemeProvider>,
     )
     const inputElement = screen.getByRole('checkbox', {
-      name: strings.components.media.toggleView,
+      name: strings.ui.toggleView,
     })
     fireEvent.click(inputElement)
     expect(onChangeCallback).toHaveBeenCalledWith(false)

@@ -19,7 +19,7 @@ const TrackWrapper = styled(ContainerFlexRow)`
     align-items: center;
 
     p {
-      color: ${theme.palette.colorTextDisabled};
+      color: ${theme.palette.colorGray600};
 
       @media (max-width: 576px) {
         &:last-child {
@@ -36,7 +36,7 @@ const TitleWrapper = styled(ContainerFlexCol)`
     justify-content: center;
     span {
       padding: 0 ${theme.divSpacingSmall};
-      color: ${theme.palette.colorTextDisabled};
+      color: ${theme.palette.colorGray600};
       &:first-child {
         color: ${theme.palette.colorTextTitle};
       }

@@ -11,7 +11,7 @@ interface Props {
 
 const Wrapper = styled.div`
   ${({ theme }) => `
-    border-bottom: 1px solid ${theme.palette.colorBackgroundDisabled};
+    border-bottom: 1px solid ${theme.palette.colorGray100};
     padding: ${theme.divSpacingSmall} 0;
     font-size: ${theme.fontSizeParagraph};
   `}

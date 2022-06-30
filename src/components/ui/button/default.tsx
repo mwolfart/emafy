@@ -6,12 +6,7 @@ interface StyledProps {
 
 export const Button = styled.button<StyledProps>`
   ${({ square, theme }) => `
-    background-image: linear-gradient(
-      45deg,
-      ${theme.palette.colorPrimary},
-      ${theme.palette.colorButtonIntermed} 66%,
-      ${theme.palette.colorSecondary}
-    );
+    background-image: ${theme.palette.gradientButton};
     border-radius: ${theme.borderRadiusSmall};
     border-width: 0;
     display: flex;

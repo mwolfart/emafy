@@ -14,17 +14,19 @@ interface Props {
 }
 
 const Wrapper = styled(ContainerFlexRow)`
-  border-top: 2px solid #ddd;
-  align-items: center;
-  &:first-child {
-    border-top: none;
-  }
-  & > :first-child {
-    flex-grow: 1;
-  }
-  & > button {
+  ${({ theme }) => `
+    border-top: 2px solid ${theme.palette.colorGray200};
     align-items: center;
-  }
+    &:first-child {
+      border-top: none;
+    }
+    & > :first-child {
+      flex-grow: 1;
+    }
+    & > button {
+      align-items: center;
+    }
+  `}
 `
 export const MediaListLink: FC<Props> = ({ mediaInfo }) => {
   const playerContext = useContext(PlayerContext)

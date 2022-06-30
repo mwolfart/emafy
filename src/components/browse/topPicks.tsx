@@ -25,13 +25,13 @@ const TopPicksScroller = styled(ContainerFlexCol)`
 
 export const TopPicks: FC<Props> = ({ tracks, artists }) => (
   <TopPicksRectangle>
-    <TitleLarge>{strings.scenes.discover.topSongs}</TitleLarge>
+    <TitleLarge>{strings.headings.topSongs}</TitleLarge>
     <TopPicksScroller>
       {tracks.map((song) => (
         <MediaListLink key={song.id} mediaInfo={song} />
       ))}
     </TopPicksScroller>
-    <TitleLarge>{strings.scenes.discover.topArtists}</TitleLarge>
+    <TitleLarge>{strings.headings.topArtists}</TitleLarge>
     <TopPicksScroller>
       {artists.map((artist) => (
         <MediaListLink key={artist.id} mediaInfo={artist} />

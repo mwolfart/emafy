@@ -18,27 +18,27 @@ export const Wrapper = styled.div<StyledProps>`
     height: ${small ? '100px' : '200px'};
     display: flex;
     flex-direction: column;
-    background-color: ${theme?.palette.colorImageBackground};
-    border-radius: ${theme?.borderRadiusDefault};
+    background-color: ${theme.palette.colorGray300};
+    border-radius: ${theme.borderRadiusDefault};
     justify-content: center;
     text-align: center;
-    color: ${theme?.palette.colorTextParagraph};
+    color: ${theme.palette.colorTextParagraph};
     ${
       !small &&
-      `box-shadow: ${theme?.shadowDimensionsDefault} ${theme?.shadowDefault};`
+      `box-shadow: ${theme.shadowDimensionsDefault} ${theme.shadowDefault};`
     }
 
     &:hover {
       ${
         !small &&
-        `box-shadow: ${theme?.shadowDimensionsDefault} ${theme?.shadowAccent};`
+        `box-shadow: ${theme.shadowDimensionsDefault} ${theme.shadowAccent};`
       }
     }
 
     img {
       width: 100%;
       height: 100%;
-      border-radius: ${theme?.borderRadiusDefault};
+      border-radius: ${theme.borderRadiusDefault};
       overflow: hidden;
       object-fit: cover;
     }
@@ -55,7 +55,7 @@ export const Wrapper = styled.div<StyledProps>`
 export const MediaImage: FC<Props> = ({ src, small, placeholder }) => (
   <Wrapper small={small}>
     {src || !placeholder ? (
-      <img src={src} alt={strings.components.media.image.description} />
+      <img src={src} alt={strings.components.media.noCoverImage} />
     ) : (
       placeholder
     )}

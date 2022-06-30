@@ -21,13 +21,15 @@ const Wrapper = styled(Rectangle)`
 `
 
 const Dash = styled.div`
-  border-top: 2px solid #ddd;
+  ${({ theme }) => `
+    border-top: 2px solid ${theme.palette.colorGray200};
+  `}
 `
 
 export const FeaturedPlaylistCard: FC<Props> = ({ playlist }) => {
   const artist = playlist.owner
   const player = useContext(PlayerContext)
-  const trackCountLabel = `${playlist.totalTracks} ${strings.scenes.discover.tracks}`
+  const trackCountLabel = strings.ui.xTracks(playlist.totalTracks)
   return (
     <Wrapper>
       <ContainerFlexRow>
@@ -39,7 +41,7 @@ export const FeaturedPlaylistCard: FC<Props> = ({ playlist }) => {
         <IconButton
           icon="fa-play"
           onClickCallback={() => player.playPlaylist(playlist.id)}
-          ariaLabel={strings.scenes.discover.playPlaylist}
+          ariaLabel={strings.ui.playPlaylist}
         />
       </ContainerFlexRow>
       <Dash />

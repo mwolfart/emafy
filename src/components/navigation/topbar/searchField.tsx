@@ -7,7 +7,7 @@ const Wrapper = styled.div`
   ${({ theme }) => `
     display: flex;
     flex-direction: row;
-    color: ${theme.palette.colorTextDisabled};
+    color: ${theme.palette.colorGray600};
     padding: 0 ${theme.divSpacingBig};
     align-items: center;
     flex-grow: 1;
@@ -26,10 +26,10 @@ const Wrapper = styled.div`
 const SearchInput = styled.input`
   ${({ theme }) => `
     border: none;
-    border-bottom: 2px solid ${theme.palette.colorTextSubtitleLarge};
+    border-bottom: 2px solid ${theme.palette.colorGray300};
     flex-grow: 1;
     font-family: ${theme.fontStyle};
-    color: ${theme.palette.colorTextDisabled};
+    color: ${theme.palette.colorGray600};
     height: ${theme.divSpacingBig};
     outline: none;
     margin: 0 ${theme.divSpacingSmall};

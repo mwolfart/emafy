@@ -16,7 +16,7 @@ const Wrapper = styled.div`
     padding-right: ${theme.divSpacingSmall};
     padding-top: ${theme.divSpacingSmall};
     text-align: center;
-    color: ${theme.palette.colorTextSidebar};
+    color: ${theme.palette.colorGray700};
     font-style: ${theme.fontStyle};
     font-size: ${theme.fontSizeTiny};
     line-height: ${theme.lineHeightSimple};
@@ -26,12 +26,7 @@ const Wrapper = styled.div`
 const IconBackground = styled.div`
   ${({ theme }) => `
     border-radius: ${theme.sidebarIconBig};
-    background-image: linear-gradient(
-        45deg,
-        ${theme?.palette.colorPrimary},
-        ${theme?.palette.colorButtonIntermed} 66%,
-        ${theme?.palette.colorSecondary}
-      );
+    background-image: ${theme.palette.gradientButton};
     justify-content: center;
     place-self: center;
     align-items: center;

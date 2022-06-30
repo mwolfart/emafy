@@ -33,7 +33,7 @@ export const ViewArtist: FC = () => {
   )
   const artistAlbumsQuery = useGetMediaList(getArtistAlbumsCallback)
   const { totalCount: totalAlbums } = artistAlbumsQuery
-  const bannerSubtitle = `${totalAlbums} ${strings.scenes.artistDetail.albums}`
+  const bannerSubtitle = strings.ui.xAlbums(totalAlbums)
 
   return isLoading || !artistInfo ? (
     <BeatLoader />

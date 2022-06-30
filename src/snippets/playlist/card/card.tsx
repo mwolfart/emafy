@@ -15,7 +15,7 @@ interface Props {
 
 const Dash = styled.div`
   ${({ theme }) => `
-    border-bottom: 2px solid ${theme.palette.colorTextSubtitleLarge};
+    border-bottom: 2px solid ${theme.palette.colorGray300};
   `}
 `
 
@@ -47,7 +47,7 @@ export const PlaylistCard: FC<Props> = ({ playlistId, fnCloseSnippet }) => {
         <GrayIconButton
           iconClass="fa-times"
           onClickCallback={fnCloseSnippet}
-          ariaLabel={strings.components.modal.closeModal}
+          ariaLabel={strings.ui.closeModal}
           iconSize={theme.fontSizeIcon}
         />
       )}
@@ -58,7 +58,7 @@ export const PlaylistCard: FC<Props> = ({ playlistId, fnCloseSnippet }) => {
           <HeadlineWrapper>
             <Headline title={playlistDetails.name} />
             <IconButton
-              title={strings.components.player.play}
+              title={strings.ui.play}
               icon="fa-play"
               onClickCallback={playMedia}
             />

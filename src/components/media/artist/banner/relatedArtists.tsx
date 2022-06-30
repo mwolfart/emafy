@@ -11,10 +11,10 @@ interface Props {
 
 const Wrapper = styled.div`
   ${({ theme }) => `
-  border-top: 2px solid ${theme.palette.colorBackgroundDisabled};
+  border-top: 2px solid ${theme.palette.colorGray100};
   text-align: right;
   font-family: ${theme.fontStyle};
-  color: ${theme.palette.colorTextWhite};
+  color: ${theme.palette.colorTextNegative};
   font-weight: ${theme.fontBoldTwo};
   float: right;
   width: 50%;
@@ -33,7 +33,7 @@ export const RelatedArtists: FC<Props> = ({ artistList }) => {
   const shownArtists = artistList.slice(0, 5)
   return (
     <Wrapper>
-      {strings.scenes.artistDetail.relatedArtists.toUpperCase()}
+      {strings.ui.relatedArtists.toUpperCase()}
       <ArtistsList>
         {shownArtists.map((artist) => {
           const imageSrc =

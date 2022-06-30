@@ -39,10 +39,7 @@ const Wrapper = styled.div<StyledProps>`
       left: 0;
       width: ${trackProgress * 100}%;
       height: ${theme.progressBarSize};
-      background: linear-gradient(50deg, 
-        ${theme.palette.colorPrimary} 60%, 
-        ${theme.palette.colorSecondary} 100%), 
-        ${theme.palette.colorTrackProgress};
+      background: ${theme.palette.gradientPlayerProgress};
     } 
   `}
 `
@@ -155,7 +152,7 @@ export const PlayerComponent: FC = () => {
         onClick={() => setShowQueue(!showQueue)}
         isLarge={false}
         disabled={currentTrack === null}
-        ariaLabel={strings.components.player.queue}
+        ariaLabel={strings.ui.viewQueue}
       />
       {showQueue && currentTrack && (
         <PlayerQueue currentTrack={currentTrack} tracks={queueTracks} />
@@ -168,30 +165,26 @@ export const PlayerComponent: FC = () => {
           iconClass="fa-step-backward"
           onClick={skipToPrevious}
           isLarge={false}
-          ariaLabel={strings.components.player.previous}
+          ariaLabel={strings.ui.previous}
         />
         <PlayerButton
           iconClass={isPlaying ? 'fa-pause' : 'fa-play'}
           onClick={togglePlay}
           isLarge={true}
-          ariaLabel={
-            isPlaying
-              ? strings.components.player.pause
-              : strings.components.player.play
-          }
+          ariaLabel={isPlaying ? strings.ui.pause : strings.ui.play}
         />
         <PlayerButton
           iconClass="fa-step-forward"
           onClick={skipToNext}
           isLarge={false}
-          ariaLabel={strings.components.player.next}
+          ariaLabel={strings.ui.next}
         />
       </MusicControlWrapper>
       <PlayerButton
         iconClass="fa-volume-up"
         onClick={() => setShowVolumeControls(!showVolumeControls)}
         isLarge={false}
-        ariaLabel={strings.components.player.volume}
+        ariaLabel={strings.ui.adjustVolume}
       />
       {showVolumeControls && (
         <PlayerVolumeControl setVolume={updateVolume} currentVolume={volume} />

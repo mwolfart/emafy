@@ -85,7 +85,7 @@ const storeFirstToken = (
   }
 
   if (hasCrossSiteRequestForgery(state)) {
-    alert(strings.api.credentials.errorAuth)
+    alert(strings.error.auth)
     return false
   }
 
@@ -159,7 +159,7 @@ const initToken = (
       onSuccessCallback && onSuccessCallback()
     })
     .catch(() => {
-      alert(strings.api.credentials.errorLoginFailed)
+      alert(strings.error.loginFailed)
       onErrorCallback && onErrorCallback()
     })
 }
@@ -177,7 +177,7 @@ const updateToken = (
       onSuccessCallback && onSuccessCallback()
     })
     .catch(() => {
-      alert(strings.api.credentials.errorLoginFailed)
+      alert(strings.error.loginFailed)
       onErrorCallback && onErrorCallback()
     })
 }

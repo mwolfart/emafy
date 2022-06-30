@@ -39,7 +39,7 @@ const InputSlider = styled.input`
     &::-webkit-slider-runnable-track {
       width: 100%;
       height: ${theme.inputSliderHeight};
-      background: ${theme.palette.colorGray};
+      background: ${theme.palette.colorGray500};
       border: none;
       border-radius: ${theme.inputSliderBorderRadius};
       overflow: hidden;
@@ -57,7 +57,7 @@ const InputSlider = styled.input`
     }
 
     &::-moz-range-track {  
-      background-color: ${theme.palette.colorGray};
+      background-color: ${theme.palette.colorGray500};
     }
 
     &::-moz-range-thumb {
@@ -75,7 +75,7 @@ const InputSlider = styled.input`
     }
 
     &::-ms-fill-upper {  
-      background-color: ${theme.palette.colorGray};
+      background-color: ${theme.palette.colorGray500};
     }
   `}
 `

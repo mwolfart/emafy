@@ -11,8 +11,10 @@ interface Props {
 }
 
 const Wrapper = styled.div`
-  flex-basis: 65%;
-  border-top: 2px solid #ddd;
+  ${({ theme }) => `
+    flex-basis: 65%;
+    border-top: 2px solid ${theme.palette.colorGray200};
+  `}
 `
 
 const HeadlineContainer = styled(ContainerFlexRow)`
@@ -47,11 +49,11 @@ export const ReleasesMenu: FC<Props> = ({ albumList }) => (
   <Wrapper>
     <HeadlineContainer>
       <Headline
-        title={strings.scenes.discover.whatsNew}
-        subtitle={strings.scenes.discover.whatsNewSubtitle}
+        title={strings.headings.whatsNew}
+        subtitle={strings.content.seeWhatsPopping}
       />
       <RouterLink to="/new-releases">
-        <Button>{strings.scenes.discover.seeAll}</Button>
+        <Button>{strings.ui.seeAll}</Button>
       </RouterLink>
     </HeadlineContainer>
     <FeaturedAlbumsMenu>

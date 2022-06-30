@@ -10,13 +10,13 @@ describe('Gray Icon Button', () => {
       <ThemeProvider theme={defaultTheme}>
         <GrayIconButton
           iconClass="fa-times"
-          ariaLabel={strings.components.modal.closeModal}
+          ariaLabel={strings.ui.closeModal}
           onClickCallback={() => {}}
         />
       </ThemeProvider>,
     )
     const buttonElement = screen.getByRole('button', {
-      name: strings.components.modal.closeModal,
+      name: strings.ui.closeModal,
     })
     expect(buttonElement).toBeInTheDocument()
   })
@@ -27,13 +27,13 @@ describe('Gray Icon Button', () => {
       <ThemeProvider theme={defaultTheme}>
         <GrayIconButton
           iconClass="fa-times"
-          ariaLabel={strings.components.modal.closeModal}
+          ariaLabel={strings.ui.closeModal}
           onClickCallback={onClick}
         />
       </ThemeProvider>,
     )
     const buttonElement = screen.getByRole('button', {
-      name: strings.components.modal.closeModal,
+      name: strings.ui.closeModal,
     })
     fireEvent.click(buttonElement)
     expect(onClick).toHaveBeenCalled()
