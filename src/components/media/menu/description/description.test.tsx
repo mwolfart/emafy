@@ -8,7 +8,7 @@ describe('Media Description', () => {
   it('renders component and props correctly', () => {
     render(
       <ThemeProvider theme={defaultTheme}>
-        <MediaDescription mediaInfo={album} />
+        <MediaDescription mediaInfo={album} rowVariant={true} />
       </ThemeProvider>,
     )
 
