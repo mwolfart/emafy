@@ -1,20 +1,24 @@
 import { MediaMenuItem } from 'components/media/menu/item/item'
-import { ContainerFlexRow, Headline, Button } from 'components/ui'
+import {
+  ContainerFlexRow,
+  Headline,
+  Button,
+  ContainerFlexCol,
+} from 'components/ui'
 import { FC } from 'react'
 import { strings } from 'strings'
 import styled from 'styled-components'
-import { Album } from 'types/media'
-import { Link as RouterLink } from 'react-router-dom'
+import { Media } from 'types/media'
 
 interface Props {
-  albumList: Album[]
+  mediaList: Media[]
+  btnClick: () => void
+  title: string
+  subtext?: string
 }
 
-const Wrapper = styled.div`
-  ${({ theme }) => `
-    flex-basis: 65%;
-    border-top: 2px solid ${theme.palette.colorGray200};
-  `}
+const Wrapper = styled(ContainerFlexCol)`
+  flex-grow: 1;
 `
 
 const HeadlineContainer = styled(ContainerFlexRow)`
@@ -24,7 +28,7 @@ const HeadlineContainer = styled(ContainerFlexRow)`
   `}
 `
 
-const FeaturedAlbumsMenu = styled.div`
+const MediaGrid = styled.div`
   ${({ theme }) => `
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -45,21 +49,21 @@ const FeaturedAlbumsMenu = styled.div`
   `}
 `
 
-export const ReleasesMenu: FC<Props> = ({ albumList }) => (
+export const MediaSummaryMenu: FC<Props> = ({
+  mediaList,
+  btnClick,
+  title,
+  subtext,
+}) => (
   <Wrapper>
     <HeadlineContainer>
-      <Headline
-        title={strings.headings.whatsNew}
-        subtitle={strings.content.seeWhatsPopping}
-      />
-      <RouterLink to="/new-releases">
-        <Button>{strings.ui.seeAll}</Button>
-      </RouterLink>
+      <Headline title={title} subtitle={subtext} />
+      <Button onClick={btnClick}>{strings.ui.seeAll}</Button>
     </HeadlineContainer>
-    <FeaturedAlbumsMenu>
-      {albumList.map((album) => (
-        <MediaMenuItem key={album.id} mediaInfo={album} />
+    <MediaGrid>
+      {mediaList.slice(0, 6).map((media) => (
+        <MediaMenuItem key={media.id} mediaInfo={media} />
       ))}
-    </FeaturedAlbumsMenu>
+    </MediaGrid>
   </Wrapper>
 )

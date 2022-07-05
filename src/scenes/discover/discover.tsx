@@ -14,9 +14,10 @@ import { BeatLoader } from 'components/loader'
 import { strings } from 'strings'
 import styled from 'styled-components'
 import { Album, PagedDataList, Playlist, SimpleArtist, Song } from 'types/media'
-import { ReleasesMenu } from 'components/browse/releasesMenu'
 import { TopPicks } from 'components/browse/topPicks'
 import { FeaturedPlaylists } from 'components/browse/featuredPlaylists'
+import { MediaSummaryMenu } from 'components/media/summaryMenu/summaryMenu'
+import { useNavigate } from 'react-router-dom'
 
 const Wrapper = styled.div`
   height: 100%;
@@ -99,13 +100,21 @@ export const Discover: FC = () => {
     }),
   )
 
+  const navigate = useNavigate()
+  const seeAllReleases = (): void => navigate('/new-releases')
+
   return isLoading ? (
     <BeatLoader />
   ) : (
     <Wrapper>
       <Carousel cards={carouselCards} />
       <MiddleContainer>
-        <ReleasesMenu albumList={newAlbums} />
+        <MediaSummaryMenu
+          mediaList={newAlbums}
+          btnClick={seeAllReleases}
+          title={strings.headings.whatsNew}
+          subtext={strings.content.seeWhatsPopping}
+        />
         <TopPicks tracks={topSongs} artists={topArtists} />
       </MiddleContainer>
       <FeaturedPlaylists playlists={featuredPlaylists} />

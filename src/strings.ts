@@ -40,6 +40,10 @@ export const strings = {
     whatsNew: "What's new",
     newReleases: 'New Releases',
     popularPlaylists: 'Popular playlists',
+    tracksFound: 'Tracks found',
+    artistsFound: 'Artists found',
+    albumsFound: 'Albums found',
+    playlistsFound: 'Playlists found',
   },
   components: {
     media: {

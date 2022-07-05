@@ -1,7 +1,9 @@
 import { Nullable } from 'types/global'
 
 export const extractNextFromNextURL = (nextUrl?: string): Nullable<string> => {
-  return typeof nextUrl === 'string'
-    ? nextUrl.slice(nextUrl.indexOf('?'))
-    : null
+  if (!nextUrl) {
+    return null
+  }
+  const params = new URLSearchParams(nextUrl)
+  return `?offset=${params.get('offset')}&limit=${params.get('limit')}`
 }
