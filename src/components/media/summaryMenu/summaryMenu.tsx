@@ -6,6 +6,7 @@ import {
   ContainerFlexCol,
 } from 'components/ui'
 import { FC } from 'react'
+import { useMediaQuery } from 'react-responsive'
 import { strings } from 'strings'
 import styled from 'styled-components'
 import { Media } from 'types/media'
@@ -36,15 +37,9 @@ const MediaGrid = styled.div`
     padding: ${theme.divSpacingMedium} 0;
     @media (min-width: 999px) and (max-width: 1300px), (max-width: 768px) {
       grid-template-columns: repeat(2, 1fr);
-      & > div:nth-last-child(-n + 2) {
-        display: none;
-      }
     }
     @media (min-width: 769px) and (max-width: 999px), (max-width: 460px) {
       grid-template-columns: 1fr;
-      & > div:nth-last-child(-n + 4) {
-        display: none;
-      }
     }
   `}
 `
@@ -54,16 +49,25 @@ export const MediaSummaryMenu: FC<Props> = ({
   btnClick,
   title,
   subtext,
-}) => (
-  <Wrapper>
-    <HeadlineContainer>
-      <Headline title={title} subtitle={subtext} />
-      <Button onClick={btnClick}>{strings.ui.seeAll}</Button>
-    </HeadlineContainer>
-    <MediaGrid>
-      {mediaList.slice(0, 6).map((media) => (
-        <MediaMenuItem key={media.id} mediaInfo={media} />
-      ))}
-    </MediaGrid>
-  </Wrapper>
-)
+}) => {
+  const isSmall = useMediaQuery({
+    query: '(min-width: 999px) and (max-width: 1300px), (max-width: 768px)',
+  })
+  const isSmaller = useMediaQuery({
+    query: '(min-width: 769px) and (max-width: 999px), (max-width: 460px)',
+  })
+  const displayedMedia = mediaList.slice(0, isSmaller ? 2 : isSmall ? 4 : 6)
+  return (
+    <Wrapper>
+      <HeadlineContainer>
+        <Headline title={title} subtitle={subtext} />
+        <Button onClick={btnClick}>{strings.ui.seeAll}</Button>
+      </HeadlineContainer>
+      <MediaGrid>
+        {displayedMedia.map((media) => (
+          <MediaMenuItem key={media.id} mediaInfo={media} />
+        ))}
+      </MediaGrid>
+    </Wrapper>
+  )
+}

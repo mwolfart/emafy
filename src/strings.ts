@@ -73,6 +73,8 @@ export const strings = {
     fetchToken: 'Error while fetching token',
     refreshToken: 'Error while retrieving a new token',
     loginFailed: 'Login failed',
+    noResults:
+      'Oops! No results were found for this query. Perhaps try a different one.',
   },
   pages: {
     signIn: 'Sign in',
