@@ -1,11 +1,15 @@
 import { SPOTIFY_ROUTE } from 'api/enum/spotifyRoute.enum'
 import { parseAlbums } from 'api/parser/album'
 import { parseSimpleArtists } from 'api/parser/artist'
-import { parseCategories } from 'api/parser/browse'
+import { parseCategories, parsePagedData } from 'api/parser/browse'
 import { parsePlaylists } from 'api/parser/playlist'
 import { parseTracks } from 'api/parser/track'
 import { Method, spotifyInstance } from 'api/spotifyInstance'
-import { RawCategory, RawRecommendations } from 'api/types/browse'
+import {
+  RawCategory,
+  RawRecommendations,
+  RawSearchResults,
+} from 'api/types/browse'
 import { RawAlbum, RawPlaylist } from 'api/types/media'
 import { extractNextFromNextURL } from 'api/utils'
 import { NextURL } from 'types/global'
@@ -14,6 +18,7 @@ import {
   Category,
   PagedDataList,
   Playlist,
+  SearchResults,
   SimpleArtist,
   Song,
 } from 'types/media'
@@ -102,7 +107,26 @@ export const getFeaturedPlaylists = async (
   }>(route, Method.GET)
   return {
     entities: parsePlaylists(response.playlists.items),
-    next: response.playlists.next || null,
+    next: extractNextFromNextURL(response.playlists.next),
     total: response.playlists.total,
+  }
+}
+
+export const searchTerm = async (
+  term: string,
+  type?: 'track' | 'album' | 'artist' | 'playlist',
+  next?: NextURL,
+): Promise<SearchResults> => {
+  const route = `${SPOTIFY_ROUTE.SEARCH}${next || ''}`
+  const params = { q: term, type: type || 'track,album,artist,playlist' }
+  const {
+    data: { tracks, albums, artists, playlists },
+  } = await spotifyInstance<RawSearchResults>(route, Method.GET, { params })
+
+  return {
+    tracks: tracks && parsePagedData(parseTracks, tracks),
+    albums: albums && parsePagedData(parseAlbums, albums),
+    artists: artists && parsePagedData(parseSimpleArtists, artists),
+    playlists: playlists && parsePagedData(parsePlaylists, playlists),
   }
 }

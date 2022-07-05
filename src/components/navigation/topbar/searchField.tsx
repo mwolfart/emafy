@@ -1,5 +1,6 @@
 import { GrayIconButton } from 'components/ui'
-import { FC } from 'react'
+import { FC, KeyboardEvent, useRef } from 'react'
+import { useNavigate } from 'react-router'
 import { strings } from 'strings'
 import styled, { useTheme } from 'styled-components'
 
@@ -37,7 +38,18 @@ const SearchInput = styled.input`
 `
 
 export const SearchField: FC = () => {
-  const onSearchSong = (): void => {}
+  const navigate = useNavigate()
+  const searchRef = useRef<HTMLInputElement>(null)
+  const onSearchSong = (): void => {
+    if (searchRef.current) {
+      navigate(`/search/${searchRef.current.value}`)
+    }
+  }
+  const onKeyPress = (evt: KeyboardEvent): void => {
+    if (evt.key === 'Enter') {
+      onSearchSong()
+    }
+  }
   const theme = useTheme()
 
   return (
@@ -50,6 +62,8 @@ export const SearchField: FC = () => {
       <SearchInput
         placeholder={strings.components.topbar.searchFieldPlaceholder}
         aria-label={strings.components.topbar.searchSong}
+        onKeyDown={onKeyPress}
+        ref={searchRef}
       />
     </Wrapper>
   )

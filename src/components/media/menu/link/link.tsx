@@ -80,7 +80,7 @@ export const MediaLink: FC<Props> = ({
   const mediaTile = (
     <TileWrapper rowVariant={isRowVariant}>
       <MediaImage src={imgSrc} small={isRowVariant} placeholder={placeholder} />
-      <MediaDescription mediaInfo={mediaInfo} />
+      <MediaDescription mediaInfo={mediaInfo} rowVariant={isRowVariant} />
     </TileWrapper>
   )
 
@@ -96,9 +96,9 @@ export const MediaLink: FC<Props> = ({
     }
     case MediaType.playlist: {
       const playlistClickCallback = (): void =>
-        extraProps &&
-        extraProps.mediaSnippetOpenCallback &&
-        extraProps.mediaSnippetOpenCallback(mediaInfo)
+        extraProps && extraProps.mediaSnippetOpenCallback
+          ? extraProps.mediaSnippetOpenCallback(mediaInfo)
+          : playerContext.playPlaylist(mediaInfo.id)
       return (
         <SimpleLink onClick={playlistClickCallback}>{mediaTile}</SimpleLink>
       )

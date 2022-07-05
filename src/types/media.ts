@@ -80,6 +80,13 @@ export type PagedDataList<T> = {
   total: number
 }
 
+export interface SearchResults {
+  tracks: PagedDataList<Song>
+  artists: PagedDataList<SimpleArtist>
+  albums: PagedDataList<Album>
+  playlists: PagedDataList<Playlist>
+}
+
 export const isAlbum = (media: Media | RawTracksAlbum): media is Album =>
   typeof media === 'object' &&
   'mediaType' in media &&

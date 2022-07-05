@@ -10,6 +10,8 @@ import { Navigate, Route, Routes } from 'react-router'
 import { Discover } from 'scenes/discover/discover'
 import { LoginScene } from 'scenes/login/login'
 import { MediaPage } from 'scenes/mediaPage/mediaPage'
+import { MediaSearchPage } from 'scenes/mediaSearchPage/mediaSearchPage'
+import { Search } from 'scenes/search/search'
 import { ViewArtist } from 'scenes/viewArtist/viewArtist'
 import { strings } from 'strings'
 import styled from 'styled-components'
@@ -115,6 +117,26 @@ export const PageDisplayer: FC<Props> = ({ isLoggedIn, setIsLoggedIn }) => {
         <Route
           path="/popular-playlists"
           element={isLoggedIn ? popularPlaylists : redirect}
+        />
+        <Route
+          path="/search/:term"
+          element={isLoggedIn ? <Search /> : redirect}
+        />
+        <Route
+          path="/search-tracks/:term"
+          element={isLoggedIn ? <MediaSearchPage type="track" /> : redirect}
+        />
+        <Route
+          path="/search-albums/:term"
+          element={isLoggedIn ? <MediaSearchPage type="album" /> : redirect}
+        />
+        <Route
+          path="/search-artists/:term"
+          element={isLoggedIn ? <MediaSearchPage type="artist" /> : redirect}
+        />
+        <Route
+          path="/search-playlists/:term"
+          element={isLoggedIn ? <MediaSearchPage type="playlist" /> : redirect}
         />
         <Route path="/login" element={<LoginScene onLogin={setIsLoggedIn} />} />
       </Routes>

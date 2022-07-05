@@ -20,4 +20,5 @@ export enum SPOTIFY_ROUTE {
   CATEGORIES = 'browse/categories',
   NEW_RELEASES = 'browse/new-releases',
   FEATURED_PLAYLISTS = 'browse/featured-playlists',
+  SEARCH = 'search',
 }
