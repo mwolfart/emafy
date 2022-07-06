@@ -3,13 +3,8 @@ import styled, { useTheme } from 'styled-components'
 import { ProfileInfo } from './profileInfo'
 import { SearchField } from './searchField'
 import { GrayIconButton } from 'components/ui'
-import { User } from 'types/media'
 import { strings } from 'strings'
 import { Hamburger } from '../hamburger/hamburger'
-
-interface Props {
-  user: User
-}
 
 const Wrapper = styled.div`
   ${({ theme }) => `
@@ -52,11 +47,11 @@ const HamburgerWrapper = styled.div`
   }
 `
 
-export const Topbar: FC<Props> = ({ user }) => {
+export const Topbar: FC = () => {
   const theme = useTheme()
   return (
     <Wrapper>
-      <ProfileInfo userInfo={user} />
+      <ProfileInfo />
       <Dash />
       <SearchField />
       <ButtonsWrapper>

@@ -22,13 +22,10 @@ interface Props {
 
 const Wrapper = styled(Rectangle)`
   ${({ theme }) => `
-    width: 50%;
+    flex-grow: 1;
     height: fit-content;
     box-shadow: ${theme.shadowDimensionsTiny};
-
-    @media (max-width: 999px) {
-      width: auto;
-    }
+    padding-top: ${theme.divSpacingExtraBig};
   `}
 `
 
@@ -36,10 +33,6 @@ const Dash = styled.div`
   ${({ theme }) => `
     border-bottom: 2px solid ${theme.palette.colorGray300};
   `}
-`
-
-const FlexRowAlignRight = styled(ContainerFlexRow)`
-  justify-content: right;
 `
 
 export const ProfileCard: FC<Props> = ({
@@ -56,14 +49,9 @@ export const ProfileCard: FC<Props> = ({
 
   return (
     <Wrapper>
-      <FlexRowAlignRight>
-        <GrayIconButton iconClass="fa-star" onClickCallback={() => {}} />
-        <GrayIconButton iconClass="fa-dots" onClickCallback={() => {}} />
-      </FlexRowAlignRight>
       <Avatar imagePath={userImage} />
       <ContainerFlexRow>
         <Headline title={user.name} subtitle={user.country} />
-        <IconButton icon="fa-user-check" onClickCallback={() => {}} />
       </ContainerFlexRow>
       <Dash />
       <IconHeadline

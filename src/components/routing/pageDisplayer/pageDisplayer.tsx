@@ -12,6 +12,7 @@ import { LoginScene } from 'scenes/login/login'
 import { MediaPage } from 'scenes/mediaPage/mediaPage'
 import { MediaSearchPage } from 'scenes/mediaSearchPage/mediaSearchPage'
 import { Search } from 'scenes/search/search'
+import { Settings } from 'scenes/settings/settings'
 import { ViewArtist } from 'scenes/viewArtist/viewArtist'
 import { strings } from 'strings'
 import styled from 'styled-components'
@@ -103,20 +104,20 @@ export const PageDisplayer: FC<Props> = ({ isLoggedIn, setIsLoggedIn }) => {
           element={isLoggedIn ? savedPlaylists : redirect}
         />
         <Route
-          path="/artist/:id"
-          element={isLoggedIn ? <ViewArtist /> : redirect}
-        />
-        <Route
-          path="/discover"
-          element={isLoggedIn ? <Discover /> : redirect}
-        />
-        <Route
           path="/new-releases"
           element={isLoggedIn ? newReleases : redirect}
         />
         <Route
           path="/popular-playlists"
           element={isLoggedIn ? popularPlaylists : redirect}
+        />
+        <Route
+          path="/artist/:id"
+          element={isLoggedIn ? <ViewArtist /> : redirect}
+        />
+        <Route
+          path="/discover"
+          element={isLoggedIn ? <Discover /> : redirect}
         />
         <Route
           path="/search/:term"
@@ -137,6 +138,10 @@ export const PageDisplayer: FC<Props> = ({ isLoggedIn, setIsLoggedIn }) => {
         <Route
           path="/search-playlists/:term"
           element={isLoggedIn ? <MediaSearchPage type="playlist" /> : redirect}
+        />
+        <Route
+          path="/settings"
+          element={isLoggedIn ? <Settings /> : redirect}
         />
         <Route path="/login" element={<LoginScene onLogin={setIsLoggedIn} />} />
       </Routes>
