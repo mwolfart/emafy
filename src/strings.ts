@@ -44,6 +44,22 @@ export const strings = {
     artistsFound: 'Artists found',
     albumsFound: 'Albums found',
     playlistsFound: 'Playlists found',
+    interfaceTheme: 'Interface theme',
+    fontStyle: 'Font style',
+    language: 'Language',
+    settings: 'Settings',
+  },
+  inputs: {
+    light: 'Light',
+    dark: 'Dark',
+    english: 'English',
+    portugueseBr: 'Portuguese (Brazil)',
+    spanish: 'Spanish',
+    german: 'German',
+    classic: 'Classic',
+    modern: 'Modern',
+    typewriter: 'Typewriter',
+    strong: 'Strong',
   },
   components: {
     media: {

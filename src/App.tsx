@@ -16,6 +16,7 @@ import { PageDisplayer } from 'components/routing/pageDisplayer/pageDisplayer'
 import { emptyUser } from 'utils/constants'
 import { PlayerComponent } from 'components/player/player'
 import { PlayerContext } from 'contexts/player'
+import { UserContext, UserContextProps, UserPreferences } from 'contexts/user'
 
 interface StyledProps {
   isLoggedIn: boolean
@@ -60,18 +61,25 @@ const FooterWrapper = styled.div`
 
 const App = (): JSX.Element => {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
-
+  const [isLoading, setIsLoading] = useState<boolean>(true)
+  const [loggedUser, setLoggedUser] = useState<User>(emptyUser)
+  const [preferences, setPreferences] = useState<UserPreferences>({
+    theme: 'light',
+    language: 'en',
+    font: 'classic',
+  })
   const { code, state } = getAuthParamsFromURI()
   const destinationPath = `/login${
     code && state ? `?code=${code}&state=${state}` : ''
   }`
-
   const history = createBrowserHistory()
   !isLoggedIn && history.push(destinationPath)
 
-  const [loggedUser, setLoggedUser] = useState<User>(emptyUser)
-  const [isLoading, setIsLoading] = useState<boolean>(true)
-
+  const initialUserContext: UserContextProps = {
+    user: loggedUser,
+    preferences,
+    setPreferences,
+  }
   const initialPlayerContext = {
     playMedia: () => {},
     playSong: () => {},
@@ -98,28 +106,32 @@ const App = (): JSX.Element => {
 
   return (
     <ThemeProvider theme={defaultTheme}>
-      <PlayerContext.Provider value={initialPlayerContext}>
-        <GlobalLinkStyle />
-        <BrowserRouter>
-          {isLoading ? (
-            <BeatLoader />
-          ) : (
-            <Wrapper>
-              <HeaderWrapper isLoggedIn={isLoggedIn}>
-                {isLoggedIn && <Topbar user={loggedUser} />}
-              </HeaderWrapper>
-              <ContentWrapper>
-                {isLoggedIn && <Sidebar />}
-                <PageDisplayer
-                  isLoggedIn={isLoggedIn}
-                  setIsLoggedIn={setIsLoggedIn}
-                />
-              </ContentWrapper>
-              <FooterWrapper>{isLoggedIn && <PlayerComponent />}</FooterWrapper>
-            </Wrapper>
-          )}
-        </BrowserRouter>
-      </PlayerContext.Provider>
+      <UserContext.Provider value={initialUserContext}>
+        <PlayerContext.Provider value={initialPlayerContext}>
+          <GlobalLinkStyle />
+          <BrowserRouter>
+            {isLoading ? (
+              <BeatLoader />
+            ) : (
+              <Wrapper>
+                <HeaderWrapper isLoggedIn={isLoggedIn}>
+                  {isLoggedIn && <Topbar />}
+                </HeaderWrapper>
+                <ContentWrapper>
+                  {isLoggedIn && <Sidebar />}
+                  <PageDisplayer
+                    isLoggedIn={isLoggedIn}
+                    setIsLoggedIn={setIsLoggedIn}
+                  />
+                </ContentWrapper>
+                <FooterWrapper>
+                  {isLoggedIn && <PlayerComponent />}
+                </FooterWrapper>
+              </Wrapper>
+            )}
+          </BrowserRouter>
+        </PlayerContext.Provider>
+      </UserContext.Provider>
     </ThemeProvider>
   )
 }
