@@ -234,3 +234,10 @@ export const requestValidToken = ({
     updateToken(onSuccessCallback, onErrorCallback)
   }
 }
+
+export const logout = (): void => {
+  localStorage.removeItem(LOCAL_STORAGE.ACCESS_TOKEN)
+  localStorage.removeItem(LOCAL_STORAGE.STORED_TIME)
+  localStorage.removeItem(LOCAL_STORAGE.EXPIRES_IN)
+  localStorage.removeItem(LOCAL_STORAGE.REFRESH_TOKEN)
+}

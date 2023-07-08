@@ -5,6 +5,8 @@ import { SearchField } from './searchField'
 import { GrayIconButton } from 'components/ui'
 import { strings } from 'strings'
 import { Hamburger } from '../hamburger/hamburger'
+import { logout } from 'api/credentials'
+import { useNavigate } from 'react-router'
 
 const Wrapper = styled.div`
   ${({ theme }) => `
@@ -49,6 +51,7 @@ const HamburgerWrapper = styled.div`
 
 export const Topbar: FC = () => {
   const theme = useTheme()
+  const navigate = useNavigate()
   return (
     <Wrapper>
       <ProfileInfo />
@@ -56,10 +59,13 @@ export const Topbar: FC = () => {
       <SearchField />
       <ButtonsWrapper>
         <GrayIconButton
-          iconClass="fa-chart-line"
+          iconClass="fa-right-from-bracket"
           iconSize={theme.fontSizeIcon}
-          ariaLabel={strings.components.topbar.viewStatistics}
-          onClickCallback={() => {}}
+          ariaLabel={strings.components.topbar.logout}
+          onClickCallback={() => {
+            logout()
+            navigate('/login')
+          }}
         />
       </ButtonsWrapper>
       <HamburgerWrapper>

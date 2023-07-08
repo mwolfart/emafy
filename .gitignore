@@ -25,5 +25,6 @@ yarn-debug.log*
 yarn-error.log*
 
 .parcel-cache
-
+.env
+.env.example
 dist

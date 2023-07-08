@@ -80,6 +80,7 @@ export const strings = {
       searchSong: 'Search for a song',
       viewStatistics: 'View statistics',
       searchFieldPlaceholder: 'Search for a song...',
+      logout: 'Logout',
     },
   },
   error: {
