@@ -38,3 +38,7 @@
 
 - The Spotify API is very limited compared to the original player developed by them, so there is a lot of features that the application does not provide.
 - There are still some functionalities and improvements that have yet to be implemented, those being mainly the genres screen and the settings features (which currently serve only as placeholders).
+
+## Credits
+
+Favicon - Sing icons created by Freepik - https://www.flaticon.com/free-icons/sing
