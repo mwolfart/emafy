@@ -1,6 +1,7 @@
 {
   "name": "emafy",
   "source": "src/index.html",
+  "homepage": "/emafy",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -22,6 +23,7 @@
   "scripts": {
     "start": "parcel",
     "build": "parcel build",
+    "build-ci": "parcel build --public-url .",
     "test": "jest",
     "lint": "eslint . --ext .ts --ext .tsx"
   },
