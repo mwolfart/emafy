@@ -69,7 +69,7 @@ const App = (): JSX.Element => {
     font: 'classic',
   })
   const { code, state } = getAuthParamsFromURI()
-  const destinationPath = `/login${
+  const destinationPath = `${process.env.REACT_APP_BASE_ROUTER_URL}/login${
     code && state ? `?code=${code}&state=${state}` : ''
   }`
   const history = createBrowserHistory()
@@ -109,7 +109,7 @@ const App = (): JSX.Element => {
       <UserContext.Provider value={initialUserContext}>
         <PlayerContext.Provider value={initialPlayerContext}>
           <GlobalLinkStyle />
-          <BrowserRouter>
+          <BrowserRouter basename={process.env.REACT_APP_BASE_ROUTER_URL}>
             {isLoading ? (
               <BeatLoader />
             ) : (

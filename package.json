@@ -1,7 +1,6 @@
 {
   "name": "emafy",
   "source": "src/index.html",
-  "homepage": "/emafy",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
