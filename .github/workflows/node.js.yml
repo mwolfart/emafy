@@ -13,6 +13,12 @@ permissions:
   pages: write
   id-token: write
 
+env:
+  REACT_APP_API_KEY: ${{ vars.REACT_APP_API_KEY }}
+  REACT_APP_API_SECRET: ${{ vars.REACT_APP_API_SECRET }}
+  REACT_APP_API_URI: ${{ vars.REACT_APP_API_URI }}
+  REACT_APP_BASE_ROUTER_URL: ${{ vars.REACT_APP_BASE_ROUTER_URL }}
+
 jobs:
   build:
     runs-on: ubuntu-latest
