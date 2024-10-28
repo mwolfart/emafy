@@ -12,11 +12,17 @@ const Wrapper = styled.div`
   ${({ theme }) => `
     display: flex;
     flex-direction: row;
-    padding: ${theme.divSpacingMedium};
+    padding: ${theme.divSpacingSmall};
     position: fixed;
     background-color: white;
-    width: calc(100% - 2 * ${theme.divSpacingMedium});
-    height: calc(${theme.topbarHeight} - 2 * ${theme.divSpacingMedium});
+    width: calc(100% - 2 * ${theme.divSpacingSmall});
+    height: calc(${theme.topbarHeightMobile} - 2 * ${theme.divSpacingSmall});
+
+    @media (min-width: 576px) {
+      padding: ${theme.divSpacingMedium};
+      width: calc(100% - 2 * ${theme.divSpacingMedium});
+      height: calc(${theme.topbarHeight} - 2 * ${theme.divSpacingMedium});
+    }
   `}
 `
 

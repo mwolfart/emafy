@@ -23,7 +23,7 @@ const Wrapper = styled.div<StyledProps>`
     top: 0;
     height: 100%;
     background-color: white;
-    padding: 0 ${theme.divSpacingMedium};
+    padding: 0 ${theme.divSpacingBig};
     right: ${isOpen ? '0' : '-200px'};
     transition: 0.5s;
   `}

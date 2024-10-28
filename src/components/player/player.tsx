@@ -29,7 +29,7 @@ const Wrapper = styled.div<StyledProps>`
     background-color: ${theme.palette.colorWhite};
     align-items: center;
     justify-content: center;
-    height: ${theme.playerHeight};
+    height: ${theme.playerHeightMobile};
 
     &:after {
       content: "";
@@ -41,6 +41,10 @@ const Wrapper = styled.div<StyledProps>`
       height: ${theme.progressBarSize};
       background: ${theme.palette.gradientPlayerProgress};
     } 
+
+    @media (min-width: 576px) {
+      height: ${theme.playerHeight};
+    }
   `}
 `
 

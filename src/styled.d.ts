@@ -59,8 +59,6 @@ declare module 'styled-components' {
     divSpacingMedium: string
     divSpacingBig: string
     divSpacingExtraBig: string
-    divSpacingPlayerButton: string
-    divSpacingPlayerButtonLarge: string
     divDistanceSmall: string
     divDistanceMedium: string
     inputSliderHeight: string
@@ -71,7 +69,9 @@ declare module 'styled-components' {
     transitionQuickDelayed: string
     sidebarWidth: string
     topbarHeight: string
+    topbarHeightMobile: string
     playerHeight: string
+    playerHeightMobile: string
     playerQueueWidth: string
     progressBarSize: string
     palette: Palette

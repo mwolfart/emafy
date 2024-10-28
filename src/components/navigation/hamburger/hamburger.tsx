@@ -8,6 +8,8 @@ const Wrapper = styled.div`
   flex-grow: 1;
   float: right;
   height: 100%;
+  display: flex;
+  align-items: center;
 `
 
 export const Hamburger: FC = () => {
@@ -26,6 +28,7 @@ export const Hamburger: FC = () => {
         iconClass="fa-bars"
         onClickCallback={expandMenu}
         ariaLabel={strings.ui.openNavMenu}
+        iconSize="24px"
       />
       <MobileMenu closeMenu={closeMenu} isOpen={isMenuOpen} />
     </Wrapper>

@@ -39,8 +39,12 @@ const HeaderWrapper = styled.div<StyledProps>`
   ${({ isLoggedIn, theme }) => `
     position: relative;
     width: 100vw;
-    ${isLoggedIn && `height: ${theme.topbarHeight};`}
+    ${isLoggedIn && `height: ${theme.topbarHeightMobile};`}
     z-index: 1;
+
+    @media (min-width: 576px) {
+      ${isLoggedIn && `height: ${theme.topbarHeight};`}
+    }
   `}
 `
 
@@ -49,7 +53,11 @@ const ContentWrapper = styled.div`
     display: flex;
     flex-direction: row;
     width: 100vw;
-    height: calc(100% - ${theme.topbarHeight} - ${theme.playerHeight});
+    height: calc(100% - ${theme.topbarHeightMobile} - ${theme.playerHeightMobile});
+
+    @media (min-width: 576px) {
+      height: calc(100% - ${theme.topbarHeight} - ${theme.playerHeight});
+    }
   `}
 `
 

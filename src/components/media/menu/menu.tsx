@@ -24,7 +24,11 @@ interface StyledProps {
 
 const Wrapper = styled.div`
   height: 100%;
-  margin-top: -80px;
+  margin-top: -40px;
+
+  @media (min-width: 576px) {
+    margin-top: -80px;
+  }
 `
 
 const ToggleButtonWrapper = styled.div`

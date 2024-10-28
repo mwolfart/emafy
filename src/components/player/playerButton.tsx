@@ -16,10 +16,8 @@ interface StyledProps {
 
 const Button = styled.button<StyledProps>`
   ${({ isLarge, disabled, theme }) => `
-    margin: ${theme.divSpacingSmall};
-    padding: ${
-      isLarge ? theme.divSpacingPlayerButtonLarge : theme.divSpacingPlayerButton
-    };
+    margin: 5px;
+    padding: ${isLarge ? '16px' : '10px'};
     box-shadow: ${theme.shadowDimensionsDefault};
     border-radius: ${
       isLarge ? theme.borderRadiusExtraLarge : theme.borderRadiusLarge
@@ -29,6 +27,11 @@ const Button = styled.button<StyledProps>`
     outline: none;
     border: none;
     background: ${theme.palette.colorWhite};
+
+    @media (min-width: 576px) {
+      margin: 10px;
+      padding: ${isLarge ? '25px' : '18px'};
+    }
   `}
 `
 

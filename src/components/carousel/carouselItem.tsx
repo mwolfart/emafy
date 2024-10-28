@@ -4,6 +4,7 @@ import {
 } from 'components/ui/heading/heading'
 import { FC } from 'react'
 import styled from 'styled-components'
+import sanitizeHtml from 'sanitize-html'
 
 interface Props {
   title: string
@@ -92,7 +93,7 @@ export const CarouselItem: FC<Props> = ({
     <Wrapper image={image}>
       <EffectOverlay isActive={isActive} />
       <Title>{title}</Title>
-      <Subtitle>{subtitle}</Subtitle>
+      <Subtitle dangerouslySetInnerHTML={{ __html: sanitizeHtml(subtitle) }} />
       <CTAContainer>{cta}</CTAContainer>
     </Wrapper>
   )
