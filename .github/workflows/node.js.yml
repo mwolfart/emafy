@@ -16,7 +16,7 @@ permissions:
 env:
   REACT_APP_API_KEY: ${{ secrets.REACT_APP_API_KEY }}
   REACT_APP_API_SECRET: ${{ secrets.REACT_APP_API_SECRET }}
-  REACT_APP_API_URI: 'http://localhost:1234/'
+  REACT_APP_API_URI: 'https://mwolfart.github.io/emafy/'
   REACT_APP_BASE_ROUTER_URL: '/emafy'
 
 jobs:
