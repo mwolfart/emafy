@@ -13,6 +13,7 @@ import {
 } from 'components/ui'
 import { AppFont, AppLanguage, AppTheme, UserContext } from 'contexts/user'
 import { FC, useContext, useEffect, useState } from 'react'
+import { useMediaQuery } from 'react-responsive'
 import { strings } from 'strings'
 import styled from 'styled-components'
 
@@ -21,10 +22,19 @@ const Wrapper = styled.div`
   overflow: auto;
 `
 
-const InnerContainer = styled(ContainerFlexRow)`
+const InnerContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+
   ${({ theme }) => `
-    padding: ${theme.divSpacingExtraBig};
-    gap: ${theme.divSpacingExtraBig};
+    padding: ${theme.divSpacingBig};
+    gap: ${theme.divSpacingMedium};
+
+    @media (min-width: 768px) {
+      flex-direction: row;
+      gap: ${theme.divSpacingExtraBig};
+      padding: ${theme.divSpacingExtraBig};
+    }
   `}
 `
 
@@ -34,6 +44,7 @@ const SettingListContainer = styled(ContainerFlexCol)`
 
 export const Settings: FC = () => {
   const { user, preferences, setPreferences } = useContext(UserContext)
+  const isTabletLarge = useMediaQuery({ minWidth: 768 })
   const [isLoading, setIsLoading] = useState(true)
   const [totalTracks, setTotalTracks] = useState(0)
   const [totalFollowings, setTotalFollowings] = useState(0)
@@ -82,6 +93,9 @@ export const Settings: FC = () => {
   ) : (
     <Wrapper>
       <InnerContainer>
+        {!isTabletLarge && (
+          <TitleExtraLarge>{strings.headings.settings}</TitleExtraLarge>
+        )}
         <ProfileCard
           user={user}
           followingCount={totalFollowings}
@@ -89,7 +103,9 @@ export const Settings: FC = () => {
           playlistCount={totalPlaylists}
         />
         <SettingListContainer>
-          <TitleExtraLarge>{strings.headings.settings}</TitleExtraLarge>
+          {isTabletLarge && (
+            <TitleExtraLarge>{strings.headings.settings}</TitleExtraLarge>
+          )}
           <Setting
             title={strings.headings.interfaceTheme}
             options={themeOptions}

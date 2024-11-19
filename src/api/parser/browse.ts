@@ -1,6 +1,5 @@
 import { RawCategory } from 'api/types/browse'
 import { RawMediaListResponse } from 'api/types/query'
-import { extractNextFromNextURL } from 'api/utils'
 import { Category, PagedDataList } from 'types/media'
 
 export const parseCategory = (category: RawCategory): Category => category
@@ -13,6 +12,6 @@ export const parsePagedData = <T, U>(
   pagedData: RawMediaListResponse<U>,
 ): PagedDataList<T> => ({
   entities: parseFn(pagedData.items),
-  next: extractNextFromNextURL(pagedData.next),
+  next: pagedData.next || null,
   total: pagedData.total,
 })

@@ -11,7 +11,6 @@ import {
   RawSearchResults,
 } from 'api/types/browse'
 import { RawAlbum, RawPlaylist } from 'api/types/media'
-import { extractNextFromNextURL } from 'api/utils'
 import { NextURL } from 'types/global'
 import {
   Album,
@@ -34,13 +33,13 @@ export const getRecommendations = (): Promise<Song[]> => {
 export const getCategories = async (
   next?: NextURL,
 ): Promise<PagedDataList<Category>> => {
-  const route = `${SPOTIFY_ROUTE.CATEGORIES}${next || ''}`
+  const route = next ? next : SPOTIFY_ROUTE.CATEGORIES
   const { data: response } = await spotifyInstance<{
     categories: RawPagedItems<RawCategory>
   }>(route, Method.GET)
   return {
     entities: parseCategories(response.categories.items),
-    next: extractNextFromNextURL(response.categories.next),
+    next: next || null,
     total: response.categories.total,
   }
 }
@@ -50,15 +49,15 @@ export const getCategoryPlaylists = async (
   next?: NextURL,
 ): Promise<PagedDataList<Playlist>> => {
   try {
-    const route =
-      `${SPOTIFY_ROUTE.CATEGORIES}/${categoryId}/${SPOTIFY_ROUTE.PLAYLISTS}` +
-      `${next || ''}`
+    const route = next
+      ? next
+      : `${SPOTIFY_ROUTE.CATEGORIES}/${categoryId}/${SPOTIFY_ROUTE.PLAYLISTS}`
     const { data: response } = await spotifyInstance<{
       playlists: RawPagedItems<RawPlaylist>
     }>(route, Method.GET)
     return {
       entities: parsePlaylists(response.playlists.items),
-      next: extractNextFromNextURL(response.playlists.next),
+      next: next || null,
       total: response.playlists.total,
     }
   } catch (error) {
@@ -73,13 +72,13 @@ export const getCategoryPlaylists = async (
 export const getNewReleases = async (
   next?: NextURL,
 ): Promise<PagedDataList<Album>> => {
-  const route = `${SPOTIFY_ROUTE.NEW_RELEASES}${next || ''}`
+  const route = next ? next : SPOTIFY_ROUTE.NEW_RELEASES
   const { data: response } = await spotifyInstance<{
     albums: RawPagedItems<RawAlbum>
   }>(route, Method.GET)
   return {
     entities: parseAlbums(response.albums.items),
-    next: extractNextFromNextURL(response.albums.next),
+    next: next || null,
     total: response.albums.total,
   }
 }
@@ -87,27 +86,27 @@ export const getNewReleases = async (
 export const getTopArtists = async (
   next?: NextURL,
 ): Promise<PagedDataList<SimpleArtist>> => {
-  const route = `${SPOTIFY_ROUTE.OWN}${SPOTIFY_ROUTE.TOP_ARTISTS}${next || ''}`
+  const route = next || `${SPOTIFY_ROUTE.OWN}${SPOTIFY_ROUTE.TOP_ARTISTS}`
   return getPagedMedia(route, parseSimpleArtists, next)
 }
 
 export const getTopTracks = async (
   next?: NextURL,
 ): Promise<PagedDataList<Song>> => {
-  const route = `${SPOTIFY_ROUTE.OWN}${SPOTIFY_ROUTE.TOP_TRACKS}${next || ''}`
+  const route = next || `${SPOTIFY_ROUTE.OWN}${SPOTIFY_ROUTE.TOP_TRACKS}`
   return getPagedMedia(route, parseTracks, next)
 }
 
 export const getFeaturedPlaylists = async (
   next?: NextURL,
 ): Promise<PagedDataList<Playlist>> => {
-  const route = `${SPOTIFY_ROUTE.FEATURED_PLAYLISTS}${next || ''}`
+  const route = next || `${SPOTIFY_ROUTE.FEATURED_PLAYLISTS}`
   const { data: response } = await spotifyInstance<{
     playlists: RawPagedItems<RawPlaylist>
   }>(route, Method.GET)
   return {
     entities: parsePlaylists(response.playlists.items),
-    next: extractNextFromNextURL(response.playlists.next),
+    next: next || null,
     total: response.playlists.total,
   }
 }
@@ -117,7 +116,7 @@ export const searchTerm = async (
   type?: 'track' | 'album' | 'artist' | 'playlist',
   next?: NextURL,
 ): Promise<SearchResults> => {
-  const route = `${SPOTIFY_ROUTE.SEARCH}${next || ''}`
+  const route = next || `${SPOTIFY_ROUTE.SEARCH}`
   const params = { q: term, type: type || 'track,album,artist,playlist' }
   const {
     data: { tracks, albums, artists, playlists },

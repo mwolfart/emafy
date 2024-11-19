@@ -1,6 +1,7 @@
 import { ContainerFlexRow, GrayIconButton, IconHeadline } from 'components/ui'
 import { PlayerContext } from 'contexts/player'
 import { FC, useContext } from 'react'
+import { useMediaQuery } from 'react-responsive'
 import styled from 'styled-components'
 import { isArtist, SimpleArtist, Song } from 'types/media'
 import {
@@ -29,6 +30,9 @@ const Wrapper = styled(ContainerFlexRow)`
   `}
 `
 export const MediaListLink: FC<Props> = ({ mediaInfo }) => {
+  const isTablet = useMediaQuery({
+    query: '(min-width: 576px)',
+  })
   const playerContext = useContext(PlayerContext)
   const subtitle = isArtist(mediaInfo)
     ? nameListToString(mediaInfo.genres)
@@ -42,7 +46,7 @@ export const MediaListLink: FC<Props> = ({ mediaInfo }) => {
   return (
     <Wrapper>
       <IconHeadline
-        icon="fa-headphones-simple"
+        icon={isTablet ? 'fa-headphones-simple' : ''}
         title={title}
         subtitle={abbrSubtitle}
         smaller={true}

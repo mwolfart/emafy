@@ -17,7 +17,12 @@ describe('Mobile Menu Button', () => {
     render(
       <ThemeProvider theme={defaultTheme}>
         <Router location={history.location} navigator={history}>
-          <MobileMenuButton icon="fa-times" title={text} path={path} />
+          <MobileMenuButton
+            icon="fa-times"
+            title={text}
+            path={path}
+            closeMenu={() => {}}
+          />
         </Router>
       </ThemeProvider>,
     )

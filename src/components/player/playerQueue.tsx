@@ -12,17 +12,23 @@ interface Props {
 const Wrapper = styled.div`
   ${({ theme }) => `
     position: absolute;
-    bottom: ${theme.divDistanceMedium};
-    left: ${theme.divSpacingBig};
+    bottom: ${theme.divDistanceSmall};
+    left: ${theme.divSpacingMedium};
     box-shadow: ${theme.shadowDimensionsTiny};
     padding: ${theme.divSpacingMedium} ${theme.divSpacingBig};
     background-color: ${theme.palette.colorWhite};
     border-radius: ${theme.divSpacingBig};
-    min-width: ${theme.playerQueueWidth};
+    width: calc(100vw - ${theme.divSpacingBig} * 4);
 
     span {
         font-weight: ${theme.fontBoldThree};
         padding: ${theme.divSpacingMedium} 0;
+    }
+
+    @media (min-width: 576px) {
+      left: ${theme.divSpacingBig};
+      bottom: ${theme.divDistanceMedium};
+      width: ${theme.playerQueueWidth};
     }
   `}
 `

@@ -8,11 +8,16 @@ interface Props {
 
 const Wrapper = styled.div`
   ${({ theme }) => `
+    display: none;
     position: absolute;
     right: ${theme.divDistanceMedium};
     box-shadow: ${theme.shadowDimensionsDefault};
     padding: ${theme.divSpacingMedium} ${theme.divSpacingBig};
     border-radius: ${theme.borderRadiusLarge};
+
+    @media (min-width: 768px) {
+      display: block;
+    }
   `}
 `
 

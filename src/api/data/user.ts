@@ -10,7 +10,7 @@ export const getUserFollowedUsers = (
   next?: NextURL,
 ): Promise<PagedDataList<SimpleArtist>> => {
   const baseLink = '/' + id + '/' + SPOTIFY_ROUTE.FOLLOWING
-  const route = baseLink + (next || '')
+  const route = next || baseLink
   return getArtistListData(route)
 }
 

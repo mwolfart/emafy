@@ -18,7 +18,6 @@ const TopPicksScroller = styled(ContainerFlexCol)`
   ${({ theme }) => `
     max-height: 280px;
     overflow: auto;
-    padding: 0 ${theme.divSpacingMedium};
     margin: ${theme.divSpacingMedium} 0;
   `}
 `

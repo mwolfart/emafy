@@ -7,6 +7,7 @@ interface Props {
   title: string
   path: string
   icon: string
+  closeMenu: () => void
 }
 
 const Wrapper = styled.div`
@@ -17,13 +18,18 @@ const Wrapper = styled.div`
   `}
 `
 
-export const MobileMenuButton: FC<Props> = ({ title, path, icon }) => (
+export const MobileMenuButton: FC<Props> = ({
+  title,
+  path,
+  icon,
+  closeMenu,
+}) => (
   <Wrapper>
     <RouterLink to={path}>
       <GrayIconButton
         title={title}
         iconClass={icon}
-        onClickCallback={() => {}}
+        onClickCallback={closeMenu}
       />
     </RouterLink>
   </Wrapper>

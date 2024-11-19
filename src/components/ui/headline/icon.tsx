@@ -5,7 +5,7 @@ import { ContainerFlexRow, Headline } from '..'
 
 interface Props {
   title: string
-  icon: string
+  icon?: string
   subtitle?: string
   smaller?: boolean
 }
@@ -29,7 +29,7 @@ const Icon = styled.i<StyledProps>`
 
 export const IconHeadline: FC<Props> = ({ title, icon, subtitle, smaller }) => (
   <ContainerFlexRow>
-    <Icon className={'fa ' + icon} smaller={smaller} />
+    {icon && <Icon className={'fa ' + icon} smaller={smaller} />}
     <Headline title={title} subtitle={subtitle} smaller={smaller} />
   </ContainerFlexRow>
 )

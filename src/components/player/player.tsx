@@ -63,6 +63,16 @@ const TrackInfoContainer = styled.div`
   `}
 `
 
+export const VolumeButtonWrapper = styled.div`
+  opacity: 0;
+  pointer-events: none;
+
+  @media (min-width: 768px) {
+    opacity: 1;
+    pointer-events: all;
+  }
+`
+
 export const PlayerComponent: FC = () => {
   const [playbackSDK, setPlaybackSDK] = useState(emptyPlackbackSDK)
   const [isPlaying, setIsPlaying] = useState(false)
@@ -184,12 +194,14 @@ export const PlayerComponent: FC = () => {
           ariaLabel={strings.ui.next}
         />
       </MusicControlWrapper>
-      <PlayerButton
-        iconClass="fa-volume-up"
-        onClick={() => setShowVolumeControls(!showVolumeControls)}
-        isLarge={false}
-        ariaLabel={strings.ui.adjustVolume}
-      />
+      <VolumeButtonWrapper>
+        <PlayerButton
+          iconClass="fa-volume-up"
+          onClick={() => setShowVolumeControls(!showVolumeControls)}
+          isLarge={false}
+          ariaLabel={strings.ui.adjustVolume}
+        />
+      </VolumeButtonWrapper>
       {showVolumeControls && (
         <PlayerVolumeControl setVolume={updateVolume} currentVolume={volume} />
       )}

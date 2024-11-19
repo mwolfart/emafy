@@ -21,10 +21,12 @@ const Wrapper = styled.div<StyledProps>`
     position: fixed;
     right: 0;
     top: 0;
+    width: 100vw;
+    box-sizing: border-box;
     height: 100%;
     background-color: white;
     padding: 0 ${theme.divSpacingBig};
-    right: ${isOpen ? '0' : '-200px'};
+    right: ${isOpen ? '0' : '-100vw'};
     transition: 0.5s;
   `}
 `
@@ -43,7 +45,13 @@ export const MobileMenu: FC<Props> = ({ closeMenu, isOpen }) => {
     path,
     icon,
   }: ButtonProps): JSX.Element => (
-    <MobileMenuButton title={title} key={path} path={path} icon={icon} />
+    <MobileMenuButton
+      title={title}
+      key={path}
+      path={path}
+      icon={icon}
+      closeMenu={closeMenu}
+    />
   )
 
   return (
@@ -53,6 +61,7 @@ export const MobileMenu: FC<Props> = ({ closeMenu, isOpen }) => {
           iconClass="fa-times"
           onClickCallback={closeMenu}
           ariaLabel={strings.ui.closeMenu}
+          iconSize="24px"
         />
       </CloseButtonWrapper>
       {mediaButtons.map(buttonGenerationFn)}

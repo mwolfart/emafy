@@ -1,6 +1,5 @@
 import { parseSimpleArtists } from 'api/parser/artist'
 import { spotifyInstance, Method } from 'api/spotifyInstance'
-import { extractNextFromNextURL } from 'api/utils'
 import { RawArtist } from 'api/types/media'
 import { RawMediaListResponse } from 'api/types/query'
 import { SimpleArtist, PagedDataList } from 'types/media'
@@ -18,7 +17,7 @@ export const getPagedData = <T>(
   next?: NextURL,
   otherParams?: { [key: string]: string },
 ): Promise<AxiosResponse<RawPagedItems<T>>> => {
-  const requestLink = next ? `${route}${next}` : route
+  const requestLink = next ? next : route
   return spotifyInstance<RawPagedItems<T>>(requestLink, Method.GET, {
     params: otherParams,
   })
@@ -34,7 +33,7 @@ export const getPagedMedia = <T, U>(
     ({ data: { items, next, total } }) => {
       return {
         entities: parser(items),
-        next: extractNextFromNextURL(next),
+        next: next || null,
         total: total,
       }
     },
@@ -54,7 +53,7 @@ export const getArtistListData = (
     }) => {
       return {
         entities: parseSimpleArtists(items),
-        next: extractNextFromNextURL(next),
+        next: next || null,
         total: total,
       }
     },
