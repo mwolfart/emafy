@@ -12,7 +12,7 @@ describe('Volume Control', () => {
       </ThemeProvider>,
     )
 
-    const sliderElement = screen.getByRole('slider')
+    const sliderElement = screen.getByRole('slider', { hidden: true })
     expect(sliderElement).toBeInTheDocument()
     fireEvent.change(sliderElement, { target: { value: 40 } })
     expect(setVolume).toHaveBeenCalledWith(0.4)
