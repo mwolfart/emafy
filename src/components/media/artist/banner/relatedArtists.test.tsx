@@ -17,7 +17,7 @@ describe('Related Artists', () => {
       </ThemeProvider>,
     )
 
-    const elements = screen.getAllByRole('link')
+    const elements = screen.getAllByRole('link', { hidden: true })
     const hrefs = elements.map((el) => el.getAttribute('href'))
     hrefs.forEach((href, idx) => {
       const url = `/artist/${artists[idx].id}`
