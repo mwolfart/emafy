@@ -27,7 +27,11 @@ const Background = styled.div<StyledProps>`
     ${artistInfo && artistInfo.images && `url(${artistInfo.images[0]})`};
     background-size: cover;
     background-position-y: center;
-    padding: 60px 120px;
+    padding: 30px 60px;
+
+    @media (min-width: 768px) {
+      padding: 60px 120px;
+    }
   `}
 `
 

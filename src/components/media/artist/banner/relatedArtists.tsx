@@ -11,6 +11,7 @@ interface Props {
 
 const Wrapper = styled.div`
   ${({ theme }) => `
+  display: none;
   border-top: 2px solid ${theme.palette.colorGray100};
   text-align: right;
   font-family: ${theme.fontStyle};
@@ -19,6 +20,10 @@ const Wrapper = styled.div`
   float: right;
   width: 50%;
   padding: ${theme.divSpacingSmall} 0;
+
+  @media (min-width: 970px) {
+    display: block;
+  }
 `}
 `
 

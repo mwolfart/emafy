@@ -24,8 +24,12 @@ const Button = styled.button<StyledProps>`
     font-family: ${theme.fontStyle};
     font-size: ${theme.fontSizeParagraph};
     font-weight: ${theme.fontBoldTwo};
-    padding: ${theme.divSpacingMedium} ${theme.divSpacingExtraBig};
+    padding: ${theme.divSpacingSmall} ${theme.divSpacingMedium};
     cursor: pointer;
+
+    @media (min-width: 768px) {
+      padding: ${theme.divSpacingMedium} ${theme.divSpacingExtraBig};
+    }
   `}
 `
 
